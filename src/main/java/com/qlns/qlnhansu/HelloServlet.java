@@ -1,5 +1,7 @@
 package com.qlns.qlnhansu;
 
+import com.qlns.connection.DBConnection;
+
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -19,6 +21,7 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
+        out.println("<h1>" + new DBConnection().getConnection() + "</h1>");
         out.println("</body></html>");
     }
 
