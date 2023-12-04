@@ -16,7 +16,7 @@ public class LoginDaoImpl implements LoginDao {
 
     @Override
     public TaiKhoan getAccount(String userName) {
-        String sql = "SELECT * FROM  TaiKhoan WHERE username = ?";
+        String sql = "SELECT * FROM  TaiKhoan WHERE status = 1 and username = ?";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
@@ -24,7 +24,12 @@ public class LoginDaoImpl implements LoginDao {
             rs= ps.executeQuery();
             while(rs.next()){
                 TaiKhoan tk = new TaiKhoan();
-                
+                tk.setUserID(rs.getInt("UserID"));
+                tk.setUserName(rs.getString("UserName"));
+                tk.setMaNV(rs.getString("MaNV"));
+                tk.setPassword(rs.getString("Password"));
+                tk.setUserRole(rs.getString("UserRole"));
+                return tk;
             }
 
 

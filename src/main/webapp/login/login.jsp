@@ -35,16 +35,16 @@
         </div>
         <div class="col-md-6">
             <h3 class="fw-normal pb-3 text-center text-dark" style="letter-spacing: 1px;font-size: 32px;">Đăng Nhập</h3>
-            <form class="mx-auto mt-5"  action="login" method="post">
+            <form class="mx-auto mt-5"  action="<%=request.getContextPath()%>/login" method="post">
                 <div class="myin form-outline ">
-                    <input type="email" name="account" id="useraccount" placeholder="account" class="myinp form-control form-control-lg" />
+                    <input type="text" name="username" id="username" placeholder="account" class="myinp form-control form-control-lg" />
                 </div>
                 <div class="myin form-outline">
                     <input type="password" name="pwd" id="pwd" placeholder="password" class="myinp form-control form-control-lg" />
                 </div>
 
                 <div class="mylogin pt-1 text-center ">
-                    <button class="mybtn btn btn-success btn-lg btn-block text-light"  type="button">Đăng nhập</button>
+                    <button class="mybtn btn btn-success btn-lg btn-block text-light"  type="submit">Đăng nhập</button>
                 </div>
             </form>
         </div>
