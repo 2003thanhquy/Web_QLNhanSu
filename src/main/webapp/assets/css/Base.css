@@ -1,0 +1,48 @@
+*{
+    box-sizing: inherit;
+}
+body {
+    margin: 0;
+}
+.grid {
+    width: 1502px;
+    margin: 0 auto;
+    max-width:calc(100% - 32px);
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.grid__full-width {
+    width: 100%;
+}
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    margin:0;
+}
+
+a{
+    text-decoration: none;
+}
+
+:root {
+    --header-color : #0033c4;
+    --header-height:  60px;
+    --nav-width: 300px;
+    --brand-backColor: #1a4978;
+    --text-color: #000
+}
