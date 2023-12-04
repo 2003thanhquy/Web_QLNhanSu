@@ -1,0 +1,11 @@
+#main-web {
+    display: flex;
+    min-height: 100%;
+}
+#content {
+    position: relative;
+    top: var(--header-height);
+    left: var(--nav-width);
+    max-width: calc(100% - var(--nav-width));
+    width: calc(100% - var(--nav-width))
+}
