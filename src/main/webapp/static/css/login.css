@@ -1,0 +1,62 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background: linear-gradient(0deg, rgba(185, 149, 230, 0.20) 0%, rgba(185, 149, 230, 0.20) 100%), linear-gradient(113deg, #87BDE6 27.94%, rgba(135, 189, 230, 0.00) 71.8%);
+    font: "Poppins", sans-serif;
+}
+
+.mycontainer{
+    margin: 87px 136px 50px;
+    background: #F8F8F8;
+    border-radius: 20px;
+}
+.myimg{
+    width: 253px;
+    height: 246px;
+    margin: 0 auto;
+    display: block;
+
+}
+.myimg img{
+    width: 100%;
+    height: 100%;
+}
+.myin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myin:first-child{
+    margin-top: 78px;
+}
+.myin:nth-child(2){
+    margin: 29px 0 62px;
+}
+.myinp{
+    border-radius: 36px !important;
+    border: 1px solid #000 !important;
+    background: #FFF;
+    width: 50% !important;;
+    height: 56px;
+    padding : 0 30px !important;
+}
+.myinp::placeholder{
+    color: #9D9D9D;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.mybtn{
+    width: 207px !important;
+    height: 80px !important;
+    border-radius: 28px !important;
+    background: #2FED8F;
+}
+.mylogin{
+    margin-bottom:100px;
+
+}
