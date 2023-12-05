@@ -18,10 +18,11 @@
   <%@ include file = "../component/all_css.jsp"%>
 </head>
 <body>
-<div >
+<div id="main-web" >
+  <%@include file="../component/nav.jsp"%>
   <%@include file="../component/header.jsp"%>
-  <div >
-    <div >
+  <div id="content">
+    <div id="main-content">
 
       <div class="thongtincanhan">
         <div class="rectangle-parent">
@@ -57,10 +58,10 @@
 
 
         <div class="h-v-tn">Họ và tên:</div>
-        <div class="rectangle-div" contentEditable="true">
+        <div class="rectangle-div">
           <%= nvhienthi.getHoTen() %>
         </div>
-        <div class="thongtincanhan-child1 " contentEditable="true">
+        <div class="thongtincanhan-child1 " >
           <%= nvhienthi.getNamSinh()%>
         </div>
         <div class="thongtincanhan-child2">  <%= nvhienthi.getGioiTinh()%></div>
@@ -104,6 +105,24 @@
 </div>
 </div>
 <%@include file="../component/all_javascript.jsp"%>
+
+<script type="text/javascript">
+
+  var elementsMenuNav = document.querySelectorAll('.menu-nav');
+  elementsMenuNav.forEach(function(elementMenuNav) {
+    elementMenuNav.style.display = 'none';
+  });
+  var capnhatdiv = document.querySelectorAll('.instance-child1,.chi-tit');
+  var capnhat = document.querySelectorAll('.rectangle-div, .thongtincanhan-child, .thongtincanhan-child1, .thongtincanhan-child2, .thongtincanhan-child3, .thongtincanhan-child4, .thongtincanhan-child5, .thongtincanhan-child6, .thongtincanhan-child7, .thongtincanhan-child8, .thongtincanhan-child9, .thongtincanhan-child10');
+
+  capnhatdiv.forEach(function(element) {
+    element.addEventListener('click', function() {
+      capnhat.forEach(function(innerElement) {
+        innerElement.contentEditable = true;
+      });
+    });
+  });
+</script>
 
 </body>
 </html>

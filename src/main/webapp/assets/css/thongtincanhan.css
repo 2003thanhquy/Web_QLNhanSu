@@ -1,12 +1,4 @@
-body {
-    margin: 0;
-    line-height: normal;
-}
 
-:root {
-
-
-}
 .instance-child,
 .xc-nhn {
     position: absolute;
@@ -128,8 +120,6 @@ body {
     padding: 0;
     background-color: var(--color-white);
     position: absolute;
-    top: 16px;
-    left: 120px;
     border-radius: var(--br-3xs);
     width: 1296px;
     height: 944px;
@@ -141,13 +131,13 @@ body {
 }
 .thng-tin-c {
     top: 196px;
-    left: 364px;
+    left: 114px;
     font-size: 32px;
     color: #000;
 }
 .h-v-tn {
     top: 345px;
-    left: 354px;
+    left: 104px;
 }
 .rectangle-div,
 .thongtincanhan-child1,
@@ -155,7 +145,7 @@ body {
 .thongtincanhan-child3 {
     position: absolute;
     top: 344px;
-    left: 496px;
+    left: 246px;
     border-radius: var(--br-2xl);
     background-color: var(--color-whitesmoke);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -183,7 +173,7 @@ body {
 .thongtincanhan-child9 {
     position: absolute;
     top: 564px;
-    left: 496px;
+    left: 246px;
     border-radius: var(--br-2xl);
     background-color: var(--color-whitesmoke);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -205,14 +195,14 @@ body {
 .thongtincanhan-child8,
 .thongtincanhan-child9 {
     top: 343px;
-    left: 1031px;
+    left: 781px;
 }
 .thongtincanhan-child10,
 .thongtincanhan-child7,
 .thongtincanhan-child8,
 .thongtincanhan-child9 {
     top: 449px;
-    left: 1032px;
+    left: 782px;
 }
 .thongtincanhan-child10,
 .thongtincanhan-child8,
@@ -234,7 +224,7 @@ body {
 .phng-ban {
     position: absolute;
     top: 397px;
-    left: 349px;
+    left: 99px;
     font-weight: 600;
 }
 .a-ch,
@@ -249,22 +239,22 @@ body {
 .cmnd,
 .phng-ban {
     top: 506px;
-    left: 354px;
+    left: 104px;
 }
 .a-ch,
 .chc-v,
 .phng-ban {
     top: 564px;
-    left: 356px;
+    left: 106px;
 }
 .chc-v,
 .phng-ban {
     top: 344px;
-    left: 845px;
+    left: 595px;
 }
 .phng-ban {
     top: 392px;
-    left: 846px;
+    left: 596px;
 }
 .bc-lng,
 .chi-nhnh,
@@ -272,23 +262,23 @@ body {
 .trnh {
     position: absolute;
     top: 449px;
-    left: 847px;
+    left: 597px;
     font-weight: 600;
 }
 .bc-lng,
 .chi-nhnh,
 .trnh {
     top: 505px;
-    left: 845px;
+    left: 595px;
 }
 .chi-nhnh,
 .trnh {
     top: 567px;
-    left: 847px;
+    left: 597px;
 }
 .chi-nhnh {
     top: 622px;
-    left: 350px;
+    left: 100px;
 }
 .instance-inner {
     position: absolute;
@@ -310,7 +300,7 @@ body {
 .rectangle-parent2 {
     position: absolute;
     top: 752px;
-    left: 1084px;
+    left: 834px;
     width: 207px;
     height: 80px;
     color: var(--color-white);
@@ -335,7 +325,7 @@ body {
 .thongtincanhan-inner1 {
     position: absolute;
     top: 752px;
-    left: 851px;
+    left: 601px;
     width: 207px;
     height: 80px;
     color: var(--color-white);
@@ -360,7 +350,7 @@ body {
 .rectangle-parent4 {
     position: absolute;
     top: 756px;
-    left: 621px;
+    left: 371px;
     width: 196px;
     height: 68px;
     color: var(--color-white);
