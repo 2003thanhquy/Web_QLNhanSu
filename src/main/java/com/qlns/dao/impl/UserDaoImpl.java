@@ -2,15 +2,14 @@ package com.qlns.dao.impl;
 
 import com.qlns.connection.DBConnection;
 import com.qlns.dao.UserDao;
-import com.qlns.model.ChucVu;
-import com.qlns.model.Luong;
-import com.qlns.model.NhanVien;
-import com.qlns.model.Thongtinnhanvien;
+import com.qlns.model.*;
 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     public Connection conn = null;
@@ -61,6 +60,86 @@ public class UserDaoImpl implements UserDao {
 
         }
         return null;
+    }
+
+    @Override
+    public List<Thongtinnhanvien> laydanhsachnhanvienadmin() {
+        List<Thongtinnhanvien> list = new ArrayList<>();
+        String sql = "SELECT * FROM  ThongTinNhanVien WHERE status = 1 ";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+
+    @Override
+    public List<Thongtinnhanvien> laydanhsachnhanviengiamdoc(String MaGiamDoc) {
+
+        List<Thongtinnhanvien> list = new ArrayList<>();
+        String sql = "    \n" +
+                "SELECT nv.*\n" +
+                "FROM ThongTinNhanVien nv\n" +
+                "INNER JOIN chinhanh cn ON nv.MaCN = cn.MaCN\n" +
+                "WHERE cn.MaGiamDoc = ? ";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,MaGiamDoc);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+
+    @Override
+    public List<Thongtinnhanvien> laydanhsachnhanvientruongphong(String MaTruongPhong) {
+        List<Thongtinnhanvien> list = new ArrayList<>();
+        String sql = "SELECT *\n" +
+                "FROM (\n" +
+                "    SELECT nv.*\n" +
+                "    FROM ThongTinNhanVien nv\n" +
+                "    INNER JOIN phongban pb ON nv.MaPB = pb.MaPB OR pb.MaPBCha = nv.MaPB\n" +
+                "    WHERE pb.MaQuanLy = ?\n" +
+                "    \n" +
+                "    UNION\n" +
+                "    \n" +
+                "    SELECT nv.*\n" +
+                "    FROM ThongTinNhanVien nv\n" +
+                "    INNER JOIN QuanLyNhanSu.phongban pb ON nv.MaPB = pb.MaPB\n" +
+                "    INNER JOIN QuanLyNhanSu.phongban pbcha ON pbcha.MaPB = pb.MaPBCha\n" +
+                "    WHERE pbcha.MaQuanLy = ? AND pb.status = 1\n" +
+                ")as nv\n" +
+                "ORDER BY nv.MaNV;";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,MaTruongPhong);
+            ps.setString(2,MaTruongPhong);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
     }
 
 }

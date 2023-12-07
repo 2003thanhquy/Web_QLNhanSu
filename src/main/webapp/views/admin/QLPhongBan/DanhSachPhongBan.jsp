@@ -147,6 +147,12 @@
         macn.value = ''; // Xóa giá trị của biến macn
         maql.value = ''; // Xóa giá trị của biến maql
         ngaybd.value = ''; // Xóa giá trị của biến ngaybd
+        maphong.disabled = false; // Vô hiệu hóa phần tử maphong
+        tenpb.disabled = false; // Vô hiệu hóa phần tử tenpb
+        macn.disabled = false; // Vô hiệu hóa phần tử macn
+        maql.disabled = false; // Vô hiệu hóa phần tử maql
+        ngaybd.disabled = false;
+        maphong.focus();
     }
     function SuaPhongBan() {
         kieucapnhat = "sua";

@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/common/taglib.jsp"%>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -40,151 +42,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="${listnv}" var="nhanVien">
                             <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
+                                <td>${nhanVien.maNV}</td>
+                                <td>${nhanVien.hoTen}</td>
+                                <td>${nhanVien.tenChucVu}</td>
+                                <td>${nhanVien.tenPhongBan}</td>
                                 <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
                                 <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
                             </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>21110713</td>
-                                <td>Phạm Hữu Tuấn</td>
-                                <td>Nhân viên</td>
-                                <td>Marketing</td>
-                                <td>Còn làm</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
-                            </tr>
-
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
