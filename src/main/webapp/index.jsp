@@ -11,8 +11,7 @@
 <body>
 <div id="main-web" >
 
-  <%@include file="component/GiamDoc/nav.jsp"%>
-  <%@include file="component/GiamDoc/header.jsp"%>
+  <%@include file="component/header.jsp"%>
   <div id="content">
     <div id="main-content">
       <h1>Làm nội dung vào đây</h1>
