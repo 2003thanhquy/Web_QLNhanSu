@@ -18,8 +18,13 @@ public class WaitingController extends HttpServlet {
             request.setAttribute("username",acc.getUserName());
             if(acc.getUserRole().equals("admin")){
                 response.sendRedirect(request.getContextPath()+"/index.jsp");
-            }else{
-                response.sendRedirect(request.getContextPath()+"/index.jsp");
+            }
+            else {
+                if (acc.getUserRole().equals("user")) {
+                    response.sendRedirect(request.getContextPath()+"/thongtincanhan");
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/index.jsp");
+                }
             }
 
         }else{

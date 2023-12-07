@@ -6,8 +6,9 @@ public class NhanVien {
     String maCT;
     int idBacLuong;
     int idChucVu;
-    Boolean trangThai;
     int idTrinhDo;
+
+    String HoTen;
     String CCCD;
     String DiaChi;
     Byte[] hinhAnh;
@@ -18,13 +19,13 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String maPB, String maCT, int idBacLuong, int idChucVu, Boolean trangThai, int idTrinhDo, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+    public NhanVien(String maPB, String maCT, int idBacLuong, int idChucVu, int idTrinhDo,String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
         this.maPB = maPB;
         this.maCT = maCT;
         this.idBacLuong = idBacLuong;
         this.idChucVu = idChucVu;
-        this.trangThai = trangThai;
         this.idTrinhDo = idTrinhDo;
+        this.HoTen = HoTen;
         this.CCCD = CCCD;
         DiaChi = diaChi;
         this.hinhAnh = hinhAnh;
@@ -33,14 +34,14 @@ public class NhanVien {
         GioiTinh = gioiTinh;
     }
 
-    public NhanVien(String maNV, String maPB, String maCT, int idBacLuong, int idChucVu, Boolean trangThai, int idTrinhDo, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+    public NhanVien(String maNV, String maPB, String maCT, int idBacLuong, int idChucVu,  int idTrinhDo,String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
         this.maNV = maNV;
         this.maPB = maPB;
         this.maCT = maCT;
         this.idBacLuong = idBacLuong;
         this.idChucVu = idChucVu;
-        this.trangThai = trangThai;
         this.idTrinhDo = idTrinhDo;
+        this.HoTen = HoTen;
         this.CCCD = CCCD;
         DiaChi = diaChi;
         this.hinhAnh = hinhAnh;
@@ -89,13 +90,6 @@ public class NhanVien {
         this.idChucVu = idChucVu;
     }
 
-    public Boolean getTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(Boolean trangThai) {
-        this.trangThai = trangThai;
-    }
 
     public int getIdTrinhDo() {
         return idTrinhDo;
@@ -103,6 +97,13 @@ public class NhanVien {
 
     public void setIdTrinhDo(int idTrinhDo) {
         this.idTrinhDo = idTrinhDo;
+    }
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.HoTen = hoTen;
     }
 
     public String getCCCD() {
