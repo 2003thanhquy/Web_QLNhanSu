@@ -45,7 +45,8 @@ a{
     --nav-width: 300px;
     --brand-backColor: #1a4978;
     --text-color: #000;
-
+    --color-header-selected: #666666;
+    --backcolor-menu-selected: #4dbce8;
     --accept-backColorButton: #5bd49b;
     --warning-backcolorButton: #e6ce55;
     --error-backcolorButton: #ed2f2f;

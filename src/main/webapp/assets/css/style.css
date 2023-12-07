@@ -3,7 +3,7 @@
     min-height: 100%;
 }
 #content {
-    position: relative;
+    position: absolute;
     top: var(--header-height);
     left: var(--nav-width);
     max-width: calc(100% - var(--nav-width));
