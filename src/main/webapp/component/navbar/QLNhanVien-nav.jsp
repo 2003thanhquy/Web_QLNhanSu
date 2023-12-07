@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@include file="/common/taglib.jsp"%>
 <nav id="nav">
     <div class="nav-human-infor">
         <div class="" style="text-align: center; z-index: 1;">
@@ -26,19 +27,19 @@
     <div class="menu-nav">
         <ul class="nav-list-items">
             <li class="nav-menu-item">
-                <a href="" class="nav-item-context">
+                <a href="" class="nav-item-context nav-item--danhsachnhanvien">
                     <i class="fa-solid fa-list icon-menu"></i>
                     <p class="menu-item-text" item-tag="1">Danh sách nhân viên</p>
                 </a>
             </li>
             <li class="nav-menu-item">
-                <a href="" class="nav-item-context">
+                <a href="" class="nav-item-context nav-item--themnhanvien">
                     <i class="fa-solid fa-plus icon-menu"></i>
                     <p class="menu-item-text" item-tag="2">Thêm nhân viên</p>
                 </a>
             </li>
             <li class="nav-menu-item">
-                <a href="" class="nav-item-context">
+                <a href="" class="nav-item-context nav-item--duanthamgia">
                     <i class="fa-solid fa-diagram-project icon-menu"></i>
                     <p class="menu-item-text" item-tag="3">Dự án tham gia</p>
                 </a>
@@ -46,3 +47,4 @@
         </ul>
     </div>
 </nav>
+
