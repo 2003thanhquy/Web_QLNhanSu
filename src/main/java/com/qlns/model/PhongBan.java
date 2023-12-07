@@ -8,28 +8,27 @@ public class PhongBan {
     String  tenPB;
     String maCN;
     String maQuanLy;
-    String tenPhongBan;
+    String tenPBCha;
     Date ngayBD;
 
     public PhongBan() {
     }
 
-    public PhongBan(String maPB, String tenPB, String maCN, String maQuanLy, String tenPhongBan, Date ngayBD) {
+    public PhongBan(String maPB, String tenPB, String maCN, String maQuanLy, Date ngayBD) {
         this.maPB = maPB;
         this.tenPB = tenPB;
         this.maCN = maCN;
         this.maQuanLy = maQuanLy;
-        this.tenPhongBan = tenPhongBan;
         this.ngayBD = ngayBD;
     }
 
-    public PhongBan(String maPB, String maPBCha, String tenPB, String maCN, String maQuanLy, String tenPhongBan, Date ngayBD) {
+    public PhongBan(String maPB, String maPBCha, String tenPB,String tenPBcha, String maCN, String maQuanLy,  Date ngayBD) {
         this.maPB = maPB;
         this.maPBCha = maPBCha;
         this.tenPB = tenPB;
         this.maCN = maCN;
         this.maQuanLy = maQuanLy;
-        this.tenPhongBan = tenPhongBan;
+        this.tenPBCha= tenPBcha;
         this.ngayBD = ngayBD;
     }
 
@@ -73,12 +72,12 @@ public class PhongBan {
         this.maQuanLy = maQuanLy;
     }
 
-    public String getTenPhongBan() {
-        return tenPhongBan;
+    public String getTenPBCha() {
+        return tenPBCha;
     }
 
-    public void setTenPhongBan(String tenPhongBan) {
-        this.tenPhongBan = tenPhongBan;
+    public void setTenPBCha(String tenPhongBan) {
+        this.tenPBCha = tenPhongBan;
     }
 
     public Date getNgayBD() {
