@@ -1,20 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="/common/taglib.jsp"%>
 <header id="header">
     <ul class="header-list-items">
         <li class="header-item header-item-withHover">
-            <a href="" class="header-item-context">Nhân viên</a>
+            <a href="" class="header-item-context header-item-context--nhanvien">Nhân viên</a>
         </li>
         <li class="header-item header-item-withHover">
-            <a href="" class="header-item-context">Phòng ban</a>
+            <a href="<%= request.getContextPath()%>/XemPhongBan-GiamDoc" class="header-item-context header-item-context--phongban">Phòng ban</a>
         </li>
         <li class="header-item header-item-withHover">
-            <a href="" class="header-item-context">Chi nhánh</a>
+            <a href="" class="header-item-context header-item-context--chinhanh">Chi nhánh</a>
         </li>
         <li class="header-item header-item-account" >
             <div class="header-item-account--container " >
                 <div class="header-account" >
                     <p class="account-text">Your Account</p>
-                    <img src="./assets/image/Ellipse 1.png" alt="" class = "account-image">
+                    <img src="<%= request.getContextPath()%>/assets/image/Ellipse%201.png" alt="" class = "account-image">
                 </div>
                 <div class="header-deltail-container" tabindex="0">
                     <ul class="header-deltail-list-tiems">
@@ -42,7 +43,7 @@
         </li>
     </ul>
     <div class="more-options-managing">
-        <img src="./assets/image/close-button.png" alt="" class="close-button">
+        <img src="<%=request.getContextPath()%>/assets/image/close-button.png" alt="" class="close-button">
         <ul class="list-items--more-managing">
             <li class="item--more-managing">
                 <a href="" class="more-managing--context">

@@ -11,7 +11,7 @@
     <div class="brand-nav">
         <div class="nav-main-brand">
             <div class="brand-logo">
-                <img src="./assets/image/logo.png" alt="" class="brand-logo-image">
+                <img src="<%= request.getContextPath()%>/assets/image/logo.png" alt="" class="brand-logo-image">
                 <p class="brand-name">
                     Quản Lý Nhân Sự
                 </p>
@@ -22,6 +22,7 @@
         </div>
 
     </div>
+
     <div class="menu-nav">
         <ul class="nav-list-items">
             <li class="nav-menu-item">

@@ -44,5 +44,8 @@ a{
     --header-height:  60px;
     --nav-width: 300px;
     --brand-backColor: #1a4978;
-    --text-color: #000
+    --text-color: #000;
+    --accept-backColorButton: #5bd49b;
+    --warning-backcolorButton: #e6ce55;
+    --error-backcolorButton: #ed2f2f;
 }
