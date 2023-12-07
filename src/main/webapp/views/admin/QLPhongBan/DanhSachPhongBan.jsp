@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file = "/component/all_css.jsp"%>
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/XemPhongBan.css">
     <title>Quản lý nhân sự</title>
     <style>
         .header-item-context--phongban {
