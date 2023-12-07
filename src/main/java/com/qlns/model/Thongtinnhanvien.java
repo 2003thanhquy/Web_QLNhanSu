@@ -55,6 +55,20 @@ public class Thongtinnhanvien {
         this.tenTrinhDo = tenTrinhDo;
         this.hinhAnh = hinhAnh;
     }
+    public Thongtinnhanvien(String maNV, String hoTen, String namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo) {
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.namSinh = namSinh;
+        this.gioiTinh = gioiTinh;
+        this.cccd = cccd;
+        this.diaChi = diaChi;
+        this.tenChiNhanh = tenChiNhanh;
+        this.tenChucVu = tenChucVu;
+        this.tenPhongBan = tenPhongBan;
+        this.soDienThoai = soDienThoai;
+        this.bacLuong = bacLuong;
+        this.tenTrinhDo = tenTrinhDo;
+    }
 
     public String getMaNV() {
         return maNV;
