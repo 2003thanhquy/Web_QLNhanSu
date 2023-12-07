@@ -41,17 +41,3 @@ danhsachnhanvien-table {
 .danhsachnhanvien-table-wrapper tr:nth-child(even) {
     background-color: #dddddd;
 }
-.btn-loadthemnhanvien {
-    margin: auto;
-    display: block;
-    margin-top: 10px;
-    width: 100px;
-    height: 30px;
-    font-size: 1.2rem;
-    font-weight: 400;
-    transition: all 0.2s ease ;
-}
-.btn-loadthemnhanvien:hover {
-    transform: scale(1.2);
-    background-color: #6ea8fe;
-}
