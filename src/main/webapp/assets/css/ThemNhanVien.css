@@ -1,0 +1,54 @@
+.themnhanvien-container {
+    margin-top: 30px;
+}
+.themnhanvien-excel--container {
+    margin-left: 20px;
+}
+.themnhanvien-excel--image {
+    width: 200px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+.themnhanvien-excel--content {
+    display: inline-block;
+}
+.themnhanvien-excel--image:hover {
+    transform: scale(1.2);
+}
+.themnhanvien-thucong--container {
+    margin-top: 25px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 20px 30px;
+
+}
+
+.gioitinh-radiobutton {
+    display: inline-block;
+}
+.input-container {
+    margin: 10px;
+}
+.input-text, .gioitinh-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+.input-text {
+    min-width: 150px;
+}
+.tnv-input {
+    width: 50%;
+    height: 30px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.btnHuy, .btnXacNhan {
+    display: block;
+    width: 90px;
+    height: 50px;
+    margin: 5px;
+    font-size: 1.4rem;
+}

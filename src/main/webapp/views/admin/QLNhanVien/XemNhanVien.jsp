@@ -56,7 +56,7 @@
                     </table>
                 </div>
             </div>
-            <button class="btn btn-primary btn-loadthemnhanvien">Hiện thêm >></button>
+
         </div>
     </div>
 </div>

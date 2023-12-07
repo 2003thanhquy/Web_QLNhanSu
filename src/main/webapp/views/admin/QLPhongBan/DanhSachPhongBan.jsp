@@ -190,9 +190,6 @@
                 console.log(error);
             }
         });
-
-
-
     }
 
 </script>

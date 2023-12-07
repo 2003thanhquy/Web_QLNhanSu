@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file = "/component/all_css.jsp"%>
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/ThemNhanVien.css">
     <title>Quản lý nhân sự</title>
     <style>
         .header-item-context--nhanvien {
@@ -31,7 +32,82 @@
     <%@include file="/component/header.jsp"%>
     <div id="content">
         <div id="main-content">
-            <h1>Làm nội dung vào đây</h1>
+            <div class="themnhanvien-container container-md">
+                <div class="themnhanvien-excel--container">
+                    <div class="themnhanvien-excel--content">
+                        <img class="themnhanvien-excel--image" src="<%=request.getContextPath()%>/assets/image/excel-logo.png">
+                    </div>
+                </div>
+                <div class="themnhanvien-thucong--container">
+                    <h1 class="themnhanvien-thucong--header">Thêm thủ công</h1>
+                    <div class="themnhanvien-thucong--content">
+                        <div class="themnhanvien-thucong-form--container container">
+
+                            <form action="" method="post" class="form-tnv container">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="input-element--container">
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-hovaten">Họ và tên</label>
+                                                <input class="tnv-input" type="text" id="tnv-hovaten" name="tnv-hovaten">
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-cmnd">CMND/CCCD</label>
+                                                <input class="tnv-input" type="text" id="tnv-cmnd" name="tnv-cmnd">
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-diachi">Địa chỉ</label>
+                                                <input class="tnv-input" type="text" id="tnv-diachi" name="tnv-diachi">
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-sdt">Số điện thoại</label>
+                                                <input class="tnv-input" type="text" id="tnv-sdt" name="tnv-sdt">
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-ngaysinh">Ngày sinh</label>
+                                                <input class="tnv-input" type="text" id="tnv-ngaysinh" name="tnv-ngaysinh">
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text ">Giới tính</label>
+                                                <div class="gioitinh-radiobutton">
+                                                    <label class="gioitinh-text">
+                                                        <input  type="radio" name="gender" value="male"> Nam
+                                                    </label>
+                                                    <label class="gioitinh-text" style="margin-left: 8px">
+                                                        <input  type="radio" name="gender" value="female"> Nữ
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-idphongban">Mã phòng ban</label>
+                                                <input class="tnv-input" type="text" id="tnv-idphongban" name="tnv-idphongban">
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-idbacluong">Mã bậc lương</label>
+                                                <input class="tnv-input" type="text" id="tnv-idbacluong" name="tnv-idbacluong">
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-idchucvu">Mã chức vụ</label>
+                                                <input class="tnv-input" type="text" id="tnv-idchucvu" name="tnv-idchucvu">
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
+                                                <input class="tnv-input" type="text" id="tnv-idtrinhdo" name="tnv-idtrinhdo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="button-container">
+                                            <button class="btn btn-outline-danger btnHuy">Hủy</button>
+                                            <button type="submit" class="btn btn-outline-success btnXacNhan">Xác nhận</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
