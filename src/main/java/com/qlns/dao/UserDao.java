@@ -1,11 +1,11 @@
-package com.qlns.service;
+package com.qlns.dao;
 
 import com.qlns.model.ChucVu;
+import com.qlns.model.Luong;
 import com.qlns.model.NhanVien;
 import com.qlns.model.Thongtinnhanvien;
 
-public interface UserService {
-
+public interface UserDao {
     Thongtinnhanvien laythongtincanhan(String MaNV);
 
 }
