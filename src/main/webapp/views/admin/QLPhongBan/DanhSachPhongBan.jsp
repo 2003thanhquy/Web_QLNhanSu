@@ -184,9 +184,6 @@
                 console.log(error);
             }
         });
-
-
-
     }
 
 </script>
