@@ -1,0 +1,83 @@
+.phongban-container {
+    margin-top: 30px;
+}
+.thongtinphongban-container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+.thongtinphongban-header {
+    border-bottom: solid 0.5px #686869;
+    text-align: center;
+}
+.thongtinphongban-content {
+    text-align: center;
+}
+.thongtinphongban-content-input--item {
+    margin: 10px 20px;
+    display: flex;
+}
+
+.thongtinphongban-content-input--lable {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    min-width: 85px;
+}
+.thongtinphongban-input {
+    flex-grow: 1;
+    height: 30px;
+    margin-left: 50px;
+    border-radius: 40px;
+    padding: 10px;
+    border: solid 0.5px;
+}
+.button-control {
+    display: flex;
+    justify-content: space-around;
+}
+.button-confirm {
+    display: flex;
+    justify-content: space-around;
+}
+.button-container {
+    margin: 20px;
+}
+.button-thongtinphongban {
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.danhsachphongban-container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    height: 600px;
+    overflow: scroll;
+}
+.phongban-item--container {
+    margin-top: 10px;
+}
+.phongban-item {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding:30px 0px 0px 0px;
+}
+.chitietphong {
+    text-align: start;
+    z-index: 1;
+}
+.chitiet-container {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+}
+.chitietphong {
+    background-color:#34aeeb;
+    padding: 20px;
+}
