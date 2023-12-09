@@ -116,7 +116,7 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
-<script src=""></script>
+
 <script>
 
     var pbhienthidautien = document.querySelector('.phongban-item');
