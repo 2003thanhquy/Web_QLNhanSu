@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,7 +114,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <%@include file="/component/all_javascript.jsp"%>
 <script src=""></script>
 <script>
@@ -174,7 +173,6 @@
                 macn  :MaCN,
                 maql :MaQL,
                 ngaybd :NgayBD,
-
             },
             success: function (response) {
                 window.location.href = "/views/admin/QLPhongBan/DanhSachPhongBan.jsp";

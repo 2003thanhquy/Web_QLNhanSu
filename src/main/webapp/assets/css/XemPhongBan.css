@@ -58,7 +58,7 @@
     padding: 20px;
     border-radius: 10px;
     height: 600px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 .phongban-item--container {
     margin-top: 10px;

@@ -94,11 +94,19 @@
                                                 <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
                                                 <input class="tnv-input" type="text" id="tnv-idtrinhdo" name="tnv-idtrinhdo">
                                             </div>
+                                            <div class="input-container">
+                                                <label class="h2" for="fileInput-avatar">Chọn ảnh đại diện:</label>
+                                                <input class="btn btn-outline-info" type="file" id="fileInput-avatar" name="image" accept="image/*">
+                                                <div id="imageContainer-avatar">
+
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="button-container">
-                                            <button class="btn btn-outline-danger btnHuy">Hủy</button>
+                                            <button  class="btn btn-outline-danger btnHuy">Hủy</button>
                                             <button type="submit" class="btn btn-outline-success btnXacNhan">Xác nhận</button>
                                         </div>
                                     </div>
@@ -113,5 +121,22 @@
 </div>
 </div>
 <%@include file="/component/all_javascript.jsp"%>
+<script>
+    document.getElementById('fileInput-avatar').addEventListener('change', function(event) {
+        const selectedImage = event.target.files[0];
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageElement = document.createElement('img');
+                imageElement.classList.add("image-avatar");
+                imageElement.src = e.target.result;
+                const imageContainer = document.getElementById('imageContainer-avatar');
+                imageContainer.innerHTML = '';
+                imageContainer.appendChild(imageElement);
+            };
+            reader.readAsDataURL(selectedImage);
+        }
+    });
+</script>
 </body>
 </html>
