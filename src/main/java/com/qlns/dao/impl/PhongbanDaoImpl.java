@@ -3,6 +3,7 @@ package com.qlns.dao.impl;
 import com.qlns.connection.DBConnection;
 import com.qlns.dao.PhongbanDao;
 import com.qlns.model.PhongBan;
+import com.qlns.model.ThongTinPhongBan;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,16 +17,16 @@ public class PhongbanDaoImpl implements PhongbanDao {
     public ResultSet rs = null;
 
     @Override
-    public List<PhongBan> layhetdanhsachphongban() {
-        List<PhongBan> list = new ArrayList<>();
-        String sql =  "SELECT * FROM  PhongBan WHERE status = 1";
+    public List<ThongTinPhongBan> layhetdanhsachphongban() {
+        List<ThongTinPhongBan> list = new ArrayList<>();
+        String sql =  "SELECT * FROM  ThongTinPhongBan WHERE status = 1";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
             rs= ps.executeQuery();
             while(rs.next()){
-        list.add(new PhongBan(rs.getString(1),
-                rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7)));
+        list.add(new ThongTinPhongBan(rs.getString(1),
+                rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7), rs.getString(8),rs.getString(9)));
             }
 
 
@@ -37,11 +38,11 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
 
     }
-    public List<PhongBan> laydanhsachphongbangiamdoc(String MaGiamDoc)
+    public List<ThongTinPhongBan> laydanhsachphongbangiamdoc(String MaGiamDoc)
     {
-        List<PhongBan> list = new ArrayList<>();
-        String sql =" select pb.MaPB,pb.MaPBCha,pb.TenPB,TenPBCha,pb.MaCN,MaQuanLy,pb.NgayBD from\n" +
-                "    QuanLyNhanSu.chinhanh cn inner join QuanLyNhanSu.phongban pb on cn.MaCN = pb.MaCN\n" +
+        List<ThongTinPhongBan> list = new ArrayList<>();
+        String sql =" select pb.MaPB,pb.MaPBCha,pb.TenPB,TenPBCha,pb.MaCN,MaQuanLy,pb.NgayBD,pb.TenQuanLy,pb.TenChiNhanh from\n" +
+                "    QuanLyNhanSu.chinhanh cn inner join QuanLyNhanSu.ThongTinPhongBan pb on cn.MaCN = pb.MaCN\n" +
                 "    where MaGiamDoc = ? and pb.status = 1";
         try{
             conn = new DBConnection().getConnection();
@@ -49,8 +50,8 @@ public class PhongbanDaoImpl implements PhongbanDao {
             ps.setString(1,MaGiamDoc);
             rs= ps.executeQuery();
             while(rs.next()){
-                list.add(new PhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7)));
+                list.add(new ThongTinPhongBan(rs.getString(1),
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8), rs.getString(9)));
             }
 
         }catch (Exception e){
@@ -61,10 +62,10 @@ public class PhongbanDaoImpl implements PhongbanDao {
     }
 
     @Override
-    public List<PhongBan> laydanhsachphongbantruongphong(String MaTruongPhong) {
-        List<PhongBan> list = new ArrayList<>();
-        String sql= "   select pb.MaPB,pb.MaPBCha,pb.TenPB,pb.TenPBCha,pb.MaCN,pb.MaQuanLy,pb.NgayBD from \n" +
-                "   QuanLyNhanSu.phongban pbcha inner join  QuanLyNhanSu.phongban pb on pbcha.MaPB = pb.MaPBCha\n" +
+    public List<ThongTinPhongBan> laydanhsachphongbantruongphong(String MaTruongPhong) {
+        List<ThongTinPhongBan> list = new ArrayList<>();
+        String sql= "   select pb.MaPB,pb.MaPBCha,pb.TenPB,pb.TenPBCha,pb.MaCN,pb.MaQuanLy,pb.NgayBD,pb.TenQuanLy,pb.TenChiNhanh from \n" +
+                "   QuanLyNhanSu.ThongTinPhongBan pbcha inner join  QuanLyNhanSu.ThongTinPhongBan pb on pbcha.MaPB = pb.MaPBCha\n" +
                 "   where pbcha.MaQuanLy=? and pb.status =1";
         try{
             list.add(layphongbanthanquanly(MaTruongPhong));
@@ -74,8 +75,8 @@ public class PhongbanDaoImpl implements PhongbanDao {
             rs= ps.executeQuery();
 
             while(rs.next()){
-                list.add(new PhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7)));
+                list.add(new ThongTinPhongBan(rs.getString(1),
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8),rs.getString(9)));
             }
 
         }catch (Exception e){
@@ -84,16 +85,16 @@ public class PhongbanDaoImpl implements PhongbanDao {
         }
         return list;
     }
-    public  PhongBan layphongbanthanquanly(String MaToTruong){
-        String sql= " select * from phongban where MaQuanLy = ? and status =1";
+    public  ThongTinPhongBan layphongbanthanquanly(String MaToTruong){
+        String sql= " select * from ThongTinPhongBan where MaQuanLy = ? and status =1";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1,MaToTruong);
             rs= ps.executeQuery();
             while(rs.next()){
-            PhongBan pb = new PhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7));
+                ThongTinPhongBan pb = new ThongTinPhongBan(rs.getString(1),
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8),rs.getString(9));
             return pb;
             }
 

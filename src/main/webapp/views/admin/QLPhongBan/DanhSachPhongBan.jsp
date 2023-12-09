@@ -38,7 +38,7 @@
                                 <div class="row">
                                     <c:forEach items="${listpb}" var="phongban">
                                         <div class="col-6 phongban-item--container">
-                                            <div class="phongban-item" onclick="handleItemClick('${phongban.tenPB}', '${phongban.maPB}', '${phongban.maCN}', '${phongban.maQuanLy}', '${phongban.ngayBD}')">
+                                            <div class="phongban-item" onclick="handleItemClick('${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}')">
                                                 <h1 class="tenphong">${phongban.tenPB}</h1>
                                                 <div class="chitietphong">
                                                     <div class="maphong-container chitiet-container">
@@ -47,7 +47,7 @@
                                                     </div>
                                                     <div class="chinhanh-container chitiet-container">
                                                         <h3 class="chinhanh-label">Chi nhánh:</h3>
-                                                        <h3 class="chinhanh-text">${phongban.maCN}</h3>
+                                                        <h3 class="chinhanh-text">${phongban.tenChiNhanh}</h3>
                                                     </div>
                                                 </div>
                                             </div>

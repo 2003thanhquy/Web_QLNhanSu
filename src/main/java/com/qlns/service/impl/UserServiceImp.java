@@ -19,8 +19,8 @@ public class UserServiceImp implements  UserService {
     }
 
     @Override
-    public void themnhanvien(String maNV, String maPB,  int idBacLuong, int idChucVu, int idTrinhDo, String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
-        userDao.themnhanvien(maNV, maPB, idBacLuong, idChucVu, idTrinhDo, HoTen, CCCD, diaChi, hinhAnh, sdt, namSinh, gioiTinh);
+    public void themnhanvien( String maPB,  int idBacLuong, int idChucVu, int idTrinhDo, String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+        userDao.themnhanvien( maPB, idBacLuong, idChucVu, idTrinhDo, HoTen, CCCD, diaChi, hinhAnh, sdt, namSinh, gioiTinh);
     }
 
     @Override
@@ -36,6 +36,9 @@ public class UserServiceImp implements  UserService {
     @Override
     public List<Thongtinnhanvien> laydanhsachnhanvientruongphong(String MaTruongPhong) {
         return userDao.laydanhsachnhanvientruongphong(MaTruongPhong);
+    }
+    public List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB){
+        return userDao.laydanhsachnhanvientheophongban(MaPB);
     }
 
 }
