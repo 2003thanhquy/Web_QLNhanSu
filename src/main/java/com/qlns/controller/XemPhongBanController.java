@@ -62,9 +62,7 @@ public class XemPhongBanController extends HttpServlet {
                 }
             }
         }
-
         session.setAttribute("listpb",listpb);
-
         response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
     }
 }

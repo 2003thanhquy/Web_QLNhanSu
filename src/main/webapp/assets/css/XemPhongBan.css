@@ -84,3 +84,10 @@
 .danhsachphongbancon-content {
 
 }
+.button-xemphongcon {
+    color: #fff;
+    border-color: #fff;
+    height: 40px;
+    margin-top: 6px;
+    margin-bottom: -6px;
+}

@@ -95,41 +95,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 container-fluid" >
-                        <div class="row">
-                            <div class="col-10" >
-                                <div class="capnhatnv-tnv--container capnhatnv-themnv--container">
-                                    <h1 class="heading-content">Thêm nhân viên vào phòng ban</h1>
-                                    <div class="form-themnv--container">
-                                        <form action="" method="post" class="form-themnnv">
-                                            <div class="capnhatnv-input-container">
-                                                <label class="canhatnv-label" for="input-capnhatnv-mapb">Mã phòng ban</label>
-<%--                                                <input class="capnhatnv-input" type="text" id="input-capnhatnv-mapb" name="input-capnhatnv-mapb">--%>
-                                                <select class="capnhatnv-input" id="input-capnhatnv-mapb" name="input-capnhatnv-mapb">
-                                                    <option value="option1">Option 1</option>
-                                                    <option value="option2">Option 2</option>
-                                                    <option value="option3">Option 3</option>
-                                                    <option value="option4">Option 4</option>
-                                                </select>
-                                            </div>
-                                            <div class="capnhatnv-input-container">
-                                                <label class="canhatnv-label" for="input-capnhatnv-manv">Mã nhân viên</label>
-                                                <input class="capnhatnv-input" type="text" id="input-capnhatnv-manv" name="input-capnhatnv-manv">
-                                            </div>
-                                            <div class="capnhatnv-input-container">
-                                                <label class="canhatnv-label" for="input-capnhatnv-tennv">Tên nhân viên</label>
-                                                <input class="capnhatnv-input" type="text" id="input-capnhatnv-tennv" name="input-capnhatnv-tennv">
-                                            </div>
-                                            <div class="button-confirm-container">
-                                                <button class="capnhatnv-button btn btn-outline-warning">Hủy</button>
-                                                <button type="submit" class="capnhatnv-button btn btn-outline-success">Xác nhân</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
