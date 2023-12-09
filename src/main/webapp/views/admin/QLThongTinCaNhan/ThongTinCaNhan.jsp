@@ -19,8 +19,8 @@
 </head>
 <body>
 <div id="main-web" >
-    <%@include file="../component/nav.jsp"%>
-    <%@include file="../component/header.jsp"%>
+    <%@include file="/component/navbar/NoneMenu-nav.jsp"%>
+    <%@include file="/component/header.jsp"%>
     <div id="content">
         <div id="main-content">
 
@@ -104,7 +104,7 @@
     </div>
 </div>
 </div>
-<%@include file="../component/all_javascript.jsp"%>
+<%@include file="/component/all_javascript.jsp"%>
 
 <script type="text/javascript">
 

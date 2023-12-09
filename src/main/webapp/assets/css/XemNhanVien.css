@@ -1,3 +1,4 @@
+
 .danhsachnhanvien-table-wrapper {
     position: relative;
     text-align: center;
@@ -9,7 +10,7 @@
     overflow:auto;
     margin-top:70px;
 }
-danhsachnhanvien-table {
+.danhsachnhanvien-table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
 

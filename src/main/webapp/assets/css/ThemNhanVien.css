@@ -52,3 +52,14 @@
     margin: 5px;
     font-size: 1.4rem;
 }
+#imageContainer-avatar {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-avatar {
+   max-width: 100%;
+    max-height: 100%;
+}
