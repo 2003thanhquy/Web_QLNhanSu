@@ -36,8 +36,7 @@
                                 <th><span class="text">Họ và tên</span></th>
                                 <th><span class="text">Chức vụ</span></th>
                                 <th><span class="text">Phòng ban</span></th>
-                                <th><span class="text">Trạng thái</span></th>
-                                <th><span class="text">Chi tiết</span></th>
+                                <th><span class="text">Chi tiết Nhân Viên</span></th>
                                 <th><span class="text">Xóa</span></th>
                             </tr>
                         </thead>
@@ -48,7 +47,7 @@
                                 <td>${nhanVien.hoTen}</td>
                                 <td>${nhanVien.tenChucVu}</td>
                                 <td>${nhanVien.tenPhongBan}</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon"></i></td>
+                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon" data-nhanvien="${nhanVien}"></i></td>
                                 <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
                             </tr>
                         </c:forEach>

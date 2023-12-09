@@ -43,7 +43,7 @@
                     <div class="themnhanvien-thucong--content">
                         <div class="themnhanvien-thucong-form--container container">
 
-                            <form action="" method="post" class="form-tnv container">
+                            <form action="<%=request.getContextPath()%>/themnhanvien" method="post" class="form-tnv container" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="input-element--container">

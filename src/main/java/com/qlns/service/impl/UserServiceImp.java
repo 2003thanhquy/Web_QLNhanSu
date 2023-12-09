@@ -19,6 +19,11 @@ public class UserServiceImp implements  UserService {
     }
 
     @Override
+    public void themnhanvien(String maNV, String maPB,  int idBacLuong, int idChucVu, int idTrinhDo, String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+        userDao.themnhanvien(maNV, maPB, idBacLuong, idChucVu, idTrinhDo, HoTen, CCCD, diaChi, hinhAnh, sdt, namSinh, gioiTinh);
+    }
+
+    @Override
     public List<Thongtinnhanvien> laydanhsachnhanvienadmin() {
         return userDao.laydanhsachnhanvienadmin();
     }

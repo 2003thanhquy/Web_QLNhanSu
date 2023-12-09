@@ -63,6 +63,45 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void themnhanvien(String maNV, String maPB, int idBacLuong, int idChucVu, int idTrinhDo, String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+        String sql = "INSERT INTO nhanvien (MaNV, MaPB, IDBacLuong, IDChucVu, IDTrinhDo, HoTen, CCCD, DiaChi, HinhAnh, SDT, NamSinh, GioiTinh) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maNV);
+            ps.setString(2, maPB);
+            ps.setInt(3, idBacLuong);
+            ps.setInt(4, idChucVu);
+            ps.setInt(5, idTrinhDo);
+            ps.setString(6, HoTen);
+            ps.setString(7, CCCD);
+            ps.setString(8, diaChi);
+            byte[] hinhAnhBytes = null;
+            if (hinhAnh != null) {
+                hinhAnhBytes = new byte[hinhAnh.length];
+                for (int i = 0; i < hinhAnh.length; i++) {
+                    hinhAnhBytes[i] = hinhAnh[i];
+                }
+            }
+            ps.setBytes(9, hinhAnhBytes);
+            ps.setString(10, sdt);
+            ps.setString(11, namSinh);
+            ps.setString(12, gioiTinh);
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Thêm nhân viên thành công");
+            } else {
+                System.out.println("Thêm nhân viên không thành công");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+
+    }
+
+    @Override
     public List<Thongtinnhanvien> laydanhsachnhanvienadmin() {
         List<Thongtinnhanvien> list = new ArrayList<>();
         String sql = "SELECT * FROM  ThongTinNhanVien WHERE status = 1 ";
