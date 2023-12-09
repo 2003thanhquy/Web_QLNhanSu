@@ -1,14 +1,15 @@
 package com.qlns.service;
 
 import com.qlns.model.PhongBan;
+import com.qlns.model.ThongTinPhongBan;
 
 import java.util.List;
 
 public interface PhongbanService {
-    List<PhongBan> layhetdanhsachphongban();
+    List<ThongTinPhongBan> layhetdanhsachphongban();
 
-    List<PhongBan> laydanhsachphongbangiamdoc(String MaGiamDoc);
+    List<ThongTinPhongBan> laydanhsachphongbangiamdoc(String MaGiamDoc);
 
-    List<PhongBan> laydanhsachphongbantruongphong(String MaTruongPhong);
-    PhongBan layphongbanthanquanly(String ToTruong);
+    List<ThongTinPhongBan> laydanhsachphongbantruongphong(String MaTruongPhong);
+    ThongTinPhongBan layphongbanthanquanly(String ToTruong);
 }

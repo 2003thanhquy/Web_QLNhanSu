@@ -2,6 +2,7 @@ package com.qlns.controller;
 
 import com.qlns.model.PhongBan;
 import com.qlns.model.TaiKhoan;
+import com.qlns.model.ThongTinPhongBan;
 import com.qlns.model.Thongtinnhanvien;
 import com.qlns.service.PhongbanService;
 import com.qlns.service.UserService;
@@ -46,7 +47,7 @@ public class XemPhongBanController extends HttpServlet {
         Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
         session.setAttribute("user", user);
 
-        List<PhongBan> listpb;
+        List<ThongTinPhongBan> listpb;
         if(tk.getUserRole().equals("admin")){
             listpb = pbService.layhetdanhsachphongban();
         }
@@ -57,7 +58,7 @@ public class XemPhongBanController extends HttpServlet {
                 if (tk.getUserRole().equals("truongphong")) {
                     listpb =  pbService.laydanhsachphongbantruongphong(tk.getMaNV());
                 } else {
-                    listpb = (List<PhongBan>) pbService.layphongbanthanquanly(tk.getMaNV());
+                    listpb = (List<ThongTinPhongBan>) pbService.layphongbanthanquanly(tk.getMaNV());
                 }
             }
         }

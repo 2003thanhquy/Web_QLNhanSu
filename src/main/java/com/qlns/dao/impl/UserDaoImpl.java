@@ -63,19 +63,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void themnhanvien(String maNV, String maPB, int idBacLuong, int idChucVu, int idTrinhDo, String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
-        String sql = "INSERT INTO nhanvien (MaNV, MaPB, IDBacLuong, IDChucVu, IDTrinhDo, HoTen, CCCD, DiaChi, HinhAnh, SDT, NamSinh, GioiTinh) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void themnhanvien( String maPB, int idBacLuong, int idChucVu, int idTrinhDo, String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+        String sql = "INSERT INTO nhanvien (MaNV,MaPB, IDBacLuong, IDChucVu, IDTrinhDo, HoTen, CCCD, DiaChi, HinhAnh, SDT, NamSinh, GioiTinh) VALUES (null,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, maNV);
-            ps.setString(2, maPB);
-            ps.setInt(3, idBacLuong);
-            ps.setInt(4, idChucVu);
-            ps.setInt(5, idTrinhDo);
-            ps.setString(6, HoTen);
-            ps.setString(7, CCCD);
-            ps.setString(8, diaChi);
+            ps.setString(1, maPB);
+            ps.setInt(2, idBacLuong);
+            ps.setInt(3, idChucVu);
+            ps.setInt(4, idTrinhDo);
+            ps.setString(5, HoTen);
+            ps.setString(6, CCCD);
+            ps.setString(7, diaChi);
             byte[] hinhAnhBytes = null;
             if (hinhAnh != null) {
                 hinhAnhBytes = new byte[hinhAnh.length];
@@ -83,10 +82,10 @@ public class UserDaoImpl implements UserDao {
                     hinhAnhBytes[i] = hinhAnh[i];
                 }
             }
-            ps.setBytes(9, hinhAnhBytes);
-            ps.setString(10, sdt);
-            ps.setString(11, namSinh);
-            ps.setString(12, gioiTinh);
+            ps.setBytes(8, hinhAnhBytes);
+            ps.setString(9, sdt);
+            ps.setString(10, namSinh);
+            ps.setString(11, gioiTinh);
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
@@ -180,5 +179,26 @@ public class UserDaoImpl implements UserDao {
         }
         return list;
     }
+
+    @Override
+    public List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB) {
+        List<Thongtinnhanvien> list = new ArrayList<>();
+        String sql = "SELECT nv.* FROM  ThongTinNhanVien nv inner join PhongBan pb on nv.MaPB = pb.MaPB WHERE nv.status = 1 and pb.MaPB = ? ";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,MaPB);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+
 
 }
