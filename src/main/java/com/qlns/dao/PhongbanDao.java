@@ -12,4 +12,8 @@ public interface PhongbanDao {
     List<ThongTinPhongBan> laydanhsachphongbantruongphong(String MaTruongPhong);
     ThongTinPhongBan layphongbanthanquanly(String ToTruong);
 
+
+
+
+
 }
