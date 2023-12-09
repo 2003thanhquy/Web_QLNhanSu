@@ -35,7 +35,7 @@
             <li class="nav-menu-item">
                 <a href="" class="nav-item-context nav-item--capnhatnhanvien">
                     <i class="fa-solid fa-plus icon-menu"></i>
-                    <p class="menu-item-text" item-tag="2">Cập nhật nhân viên</p>
+                    <p class="menu-item-text" item-tag="2">Nhân viên phòng ban</p>
                 </a>
             </li>
 
