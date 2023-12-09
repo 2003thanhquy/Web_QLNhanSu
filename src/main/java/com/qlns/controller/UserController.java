@@ -13,15 +13,18 @@ import com.qlns.service.impl.UserServiceImp;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
 
-@WebServlet( "/thongtincanhan")
+@WebServlet(urlPatterns = {"/themnhanvien"})
+@MultipartConfig
 public class UserController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserService userService;
@@ -31,24 +34,71 @@ public class UserController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        try {
+//            thongtincanhan(request, response);
+//
+//        } catch (SQLException e) {
+//
+//            e.printStackTrace();
+//        }
         try {
-            thongtincanhan(request,response);
+            themnhanvien(request, response);
 
-    } catch (SQLException e) {
+        } catch (SQLException e) {
 
-        e.printStackTrace();
+            e.printStackTrace();
+        }
+
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
+
     private void thongtincanhan(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
         Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
         session.setAttribute("user", user);
         /*RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath()+ "/nhanvien/thongtincanhan.jsp");
         dispatcher.forward(request, response);*/
 
-        response.sendRedirect(request.getContextPath()+ "/nhanvien/thongtincanhan.jsp");
+        response.sendRedirect(request.getContextPath() + "/nhanvien/thongtincanhan.jsp");
+    }
+
+
+    private void themnhanvien(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+//        HttpSession session = request.getSession();
+//        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
+//        Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
+//        session.setAttribute("user", user);
+        InputStream fileInputStream = request.getPart("image").getInputStream();
+        byte[] fileData = fileInputStream.readAllBytes();
+
+        Byte[] byteArrayWrapper = new Byte[fileData.length];
+        for (int i = 0; i < fileData.length; i++) {
+            byteArrayWrapper[i] = fileData[i];
+        }
+
+        String hoVaTen = request.getParameter("tnv-hovaten");
+        String cmnd = request.getParameter("tnv-cmnd");
+        String diaChi = request.getParameter("tnv-diachi");
+        String sdt = request.getParameter("tnv-sdt");
+        String ngaySinh = request.getParameter("tnv-ngaysinh");
+        String gioiTinh = request.getParameter("gender");
+        String maPhongBan = request.getParameter("tnv-idphongban");
+        int maBacLuong = Integer.parseInt(request.getParameter("tnv-idbacluong"));
+        int maChucVu = Integer.parseInt(request.getParameter("tnv-idchucvu"));
+        int maTrinhDo = Integer.parseInt(request.getParameter("tnv-idtrinhdo"));
+
+        userService.themnhanvien("NV0034", maPhongBan, maBacLuong, maChucVu, maTrinhDo, hoVaTen, cmnd, diaChi, byteArrayWrapper, sdt, ngaySinh, gioiTinh);
+
+//            response.sendRedirect(request.getContextPath() + "/nhanvien/thongtincanhan.jsp");
+
+
     }
 }
+

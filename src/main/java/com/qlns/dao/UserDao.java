@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface UserDao {
     Thongtinnhanvien laythongtincanhan(String MaNV);
+    void themnhanvien(String maNV, String maPB, int idBacLuong, int idChucVu,  int idTrinhDo,String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh);
 
     List<Thongtinnhanvien> laydanhsachnhanvienadmin();
     List<Thongtinnhanvien> laydanhsachnhanviengiamdoc(String MaGiamDoc);
