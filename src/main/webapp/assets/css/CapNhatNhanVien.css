@@ -8,7 +8,7 @@
 .table-scroll {
     background:#fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    max-height:calc(100vh/2 - 50px);
+    max-height:calc(100vh - 50px);
     overflow:auto;
     margin-top: 50px;
 }

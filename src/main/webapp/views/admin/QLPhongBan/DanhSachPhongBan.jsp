@@ -35,6 +35,12 @@
                     <div class = "col-xl-6 col-sm-12">
                         <div class="danhsachphongban-container">
                             <div class="danhsachphongban-content container">
+                                <div class="button-quaylaiphongcha--container">
+                                    <button class="button-qualaiphongcha btn btn-secondary">
+                                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                                        Quay lại
+                                    </button>
+                                </div>
                                 <div class="row">
                                     <c:forEach items="${listpb}" var="phongban">
                                         <div class="col-6 phongban-item--container">
@@ -48,6 +54,9 @@
                                                     <div class="chinhanh-container chitiet-container">
                                                         <h3 class="chinhanh-label">Chi nhánh:</h3>
                                                         <h3 class="chinhanh-text">${phongban.tenChiNhanh}</h3>
+                                                    </div>
+                                                    <div class="button-xemphongcon--container">
+                                                        <button class="button-xemphongcon btn btn-outline-primary">Xem phòng ban con</button>
                                                     </div>
                                                 </div>
                                             </div>
