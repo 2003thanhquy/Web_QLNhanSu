@@ -31,6 +31,7 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
+<body>
 <div id="main-web" >
     <%@include file="/component/navbar/QLPhongBan-nav.jsp"%>
     <%@include file="/component/header.jsp"%>
@@ -42,7 +43,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="capnhatnv-dspb--container">
-                                    <h1>Danh sách phòng ban</h1>
+                                    <h1 class="heading-content">Danh sách phòng ban</h1>
                                     <div class="capnhatnv-dspb--content">
                                         <div class="capnhatnv-dspb-table--wrapper">
                                             <div class="table-scroll">
@@ -204,22 +205,134 @@
 
                             </div>
                             <div class="col-6">
-    `                           <div class="capnhatnv-dsnvdc--container">
-
-                                </div>
+                               <div class="capnhatnv-dsnvdc--container">
+                                   <div class="capnhatnv-dnvdc--content">
+                                        <h1 class="heading-content">Danh sách nhân viên đã có</h1>
+                                       <div class="capnhatnv-dnvdc-table--wrapper">
+                                           <div class="table-scroll">
+                                               <table class="capnhatnv-dnvdc-table">
+                                                   <thead>
+                                                   <tr>
+                                                       <th><span class="text">Mã Nhân viên</span></th>
+                                                       <th><span class="text">Họ và tên</span></th>
+                                                       <th><span class="text">Chức vụ</span></th>
+                                                   </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>21110713</td>
+                                                       <td>Cáp Lê Hữu Tân</td>
+                                                       <td>Nhân viên</td>
+                                                   </tr>
+                                                   </tbody>
+                                               </table>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 container-fluid">
+                    <div class="col-12 container-fluid" >
                         <div class="row">
-                            <div class="col-6">
-                                <div class="capnhatnv-ttbp--container">
-
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="capnhatnv-tnv--container">
-
+                            <div class="col-10" >
+                                <div class="capnhatnv-tnv--container capnhatnv-themnv--container">
+                                    <h1 class="heading-content">Thêm nhân viên vào phòng ban</h1>
+                                    <div class="form-themnv--container">
+                                        <form action="" method="post" class="form-themnnv">
+                                            <div class="capnhatnv-input-container">
+                                                <label class="canhatnv-label" for="input-capnhatnv-mapb">Mã phòng ban</label>
+                                                <input class="capnhatnv-input" type="text" id="input-capnhatnv-mapb" name="input-capnhatnv-mapb">
+                                            </div>
+                                            <div class="capnhatnv-input-container">
+                                                <label class="canhatnv-label" for="input-capnhatnv-manv">Mã nhân viên</label>
+                                                <input class="capnhatnv-input" type="text" id="input-capnhatnv-manv" name="input-capnhatnv-manv">
+                                            </div>
+                                            <div class="capnhatnv-input-container">
+                                                <label class="canhatnv-label" for="input-capnhatnv-tennv">Tên nhân viên</label>
+                                                <input class="capnhatnv-input" type="text" id="input-capnhatnv-tennv" name="input-capnhatnv-tennv">
+                                            </div>
+                                            <div class="button-confirm-container">
+                                                <button class="capnhatnv-button btn btn-outline-warning">Hủy</button>
+                                                <button type="submit" class="capnhatnv-button btn btn-outline-success">Xác nhân</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -229,7 +342,6 @@
         </div>
     </div>
 </div>
-<body>
-
+<%@include file="/component/all_javascript.jsp"%>
 </body>
 </html>
