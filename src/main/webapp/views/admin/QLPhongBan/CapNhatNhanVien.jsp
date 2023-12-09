@@ -56,146 +56,13 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
+                                                    <c:forEach items="${listpb}" var="phongban">
+                                                    <tr onclick="hienthongtinnhanvienphongban('${phongban.maPB}')">
+                                                        <td>${phongban.maPB}</td>
+                                                        <td>${phongban.tenPB} </td>
+                                                        <td>${phongban.tenChiNhanh}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr> <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p0001</td>
-                                                        <td>Marketing fffff</td>
-                                                        <td>Hà Nội</td>
-                                                    </tr>
-
+                                                    </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -210,7 +77,7 @@
                                         <h1 class="heading-content">Danh sách nhân viên đã có</h1>
                                        <div class="capnhatnv-dnvdc-table--wrapper">
                                            <div class="table-scroll">
-                                               <table class="capnhatnv-dnvdc-table">
+                                               <table id="nhanvien-table" class="capnhatnv-dnvdc-table">
                                                    <thead>
                                                    <tr>
                                                        <th><span class="text">Mã Nhân viên</span></th>
@@ -218,87 +85,7 @@
                                                        <th><span class="text">Chức vụ</span></th>
                                                    </tr>
                                                    </thead>
-                                                   <tbody>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <td>21110713</td>
-                                                       <td>Cáp Lê Hữu Tân</td>
-                                                       <td>Nhân viên</td>
-                                                   </tr>
+                                                   <tbody id="nhanvien-tbody">
                                                    </tbody>
                                                </table>
                                            </div>
@@ -317,7 +104,13 @@
                                         <form action="" method="post" class="form-themnnv">
                                             <div class="capnhatnv-input-container">
                                                 <label class="canhatnv-label" for="input-capnhatnv-mapb">Mã phòng ban</label>
-                                                <input class="capnhatnv-input" type="text" id="input-capnhatnv-mapb" name="input-capnhatnv-mapb">
+<%--                                                <input class="capnhatnv-input" type="text" id="input-capnhatnv-mapb" name="input-capnhatnv-mapb">--%>
+                                                <select class="capnhatnv-input" id="input-capnhatnv-mapb" name="input-capnhatnv-mapb">
+                                                    <option value="option1">Option 1</option>
+                                                    <option value="option2">Option 2</option>
+                                                    <option value="option3">Option 3</option>
+                                                    <option value="option4">Option 4</option>
+                                                </select>
                                             </div>
                                             <div class="capnhatnv-input-container">
                                                 <label class="canhatnv-label" for="input-capnhatnv-manv">Mã nhân viên</label>
@@ -345,3 +138,27 @@
 <%@include file="/component/all_javascript.jsp"%>
 </body>
 </html>
+<script>
+    // JavaScript
+
+    var tbody = document.getElementById("nhanvien-tbody");
+
+    function hienthongtinnhanvienphongban(MaPB) {
+
+        tbody.innerHTML="";
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/danhsachnhanvientheophongban",
+            data: {
+                MaPB: MaPB
+            },
+            success: function(data) {
+
+                tbody.innerHTML=data;
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+</script>

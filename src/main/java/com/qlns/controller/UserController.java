@@ -58,6 +58,7 @@ public class UserController extends HttpServlet {
 
     private void thongtincanhan(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
         Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
@@ -71,6 +72,7 @@ public class UserController extends HttpServlet {
 
     private void themnhanvien(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
 //        HttpSession session = request.getSession();
 //        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
 //        Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
@@ -94,9 +96,8 @@ public class UserController extends HttpServlet {
         int maChucVu = Integer.parseInt(request.getParameter("tnv-idchucvu"));
         int maTrinhDo = Integer.parseInt(request.getParameter("tnv-idtrinhdo"));
 
-        userService.themnhanvien("NV0034", maPhongBan, maBacLuong, maChucVu, maTrinhDo, hoVaTen, cmnd, diaChi, byteArrayWrapper, sdt, ngaySinh, gioiTinh);
-
-//            response.sendRedirect(request.getContextPath() + "/nhanvien/thongtincanhan.jsp");
+        userService.themnhanvien( maPhongBan, maBacLuong, maChucVu, maTrinhDo, hoVaTen, cmnd, diaChi, byteArrayWrapper, sdt, ngaySinh, gioiTinh);
+            response.sendRedirect("XemNhanVien");
 
 
     }
