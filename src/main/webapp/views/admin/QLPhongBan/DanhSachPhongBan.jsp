@@ -35,6 +35,10 @@
                     <div class = "col-xl-6 col-sm-12">
                         <div class="danhsachphongban-container">
                             <div class="danhsachphongban-content container">
+                                <div class="button-chuyennoidung" style="display: flex;justify-content: space-around;margin-bottom:10px">
+                                    <button class="btn btn-outline-primary">Phòng đã có quản lý</button>
+                                    <button class="btn btn-outline-secondary">Phòng chưa có quản lý</button>
+                                </div>
                                 <div class="button-quaylaiphongcha--container">
                                     <button class="button-qualaiphongcha btn btn-secondary" onclick="xempbcha()">
                                         <i class="fa-solid fa-arrow-rotate-left"></i>
