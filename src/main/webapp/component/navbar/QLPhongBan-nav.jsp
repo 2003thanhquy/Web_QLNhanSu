@@ -38,7 +38,12 @@
                     <p class="menu-item-text" item-tag="2">Nhân viên phòng ban</p>
                 </a>
             </li>
-
+            <li class="nav-menu-item">
+                <a href="" class="nav-item-context nav-item--themphongcon">
+                    <i class="fa-solid fa-plus icon-menu"></i>
+                    <p class="menu-item-text" item-tag="3">Thêm phòng ban con</p>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
