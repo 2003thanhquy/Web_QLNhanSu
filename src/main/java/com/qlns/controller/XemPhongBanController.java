@@ -75,7 +75,8 @@ public class XemPhongBanController extends HttpServlet {
             }
         }
         session.setAttribute("listpb",listpb);
-        response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
+        //response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
+        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request,response);
     }
     private void xemphongbancon(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
         String MaPB = req.getParameter("MaPB");
