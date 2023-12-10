@@ -96,8 +96,8 @@ public class UserController extends HttpServlet {
         int maChucVu = Integer.parseInt(request.getParameter("tnv-idchucvu"));
         int maTrinhDo = Integer.parseInt(request.getParameter("tnv-idtrinhdo"));
 
-        userService.themnhanvien( maPhongBan, maBacLuong, maChucVu, maTrinhDo, hoVaTen, cmnd, diaChi, byteArrayWrapper, sdt, ngaySinh, gioiTinh);
-            response.sendRedirect("XemNhanVien");
+//        userService.themnhanvien( maPhongBan, maBacLuong, maChucVu, maTrinhDo, hoVaTen, cmnd, diaChi, , sdt, ngaySinh, gioiTinh);
+//            response.sendRedirect("XemNhanVien");
 
 
     }

@@ -1,5 +1,7 @@
 package com.qlns.controller;
 
+import com.qlns.dao.UserDao;
+import com.qlns.dao.impl.UserDaoImpl;
 import com.qlns.model.NhanVien;
 import com.qlns.model.TaiKhoan;
 import com.qlns.model.Thongtinnhanvien;
@@ -9,17 +11,23 @@ import com.qlns.service.impl.UserServiceImp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
 @WebServlet("/nhanvien/*")
+@MultipartConfig
 public class NhanVienController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -73,25 +81,46 @@ public class NhanVienController extends HttpServlet {
         request.setAttribute("listnv",listnv);
         request.getRequestDispatcher("/views/admin/QLNhanVien/XemNhanVien.jsp").forward(request,response);
     }
-    public void ThemNhanVien(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException{
-            if(request.getMethod().equals("GET")){
-                request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
-            }else{
+    public void ThemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException {
+        if (request.getMethod().equals("GET")) {
+            request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request, response);
+        } else {
+
                 String hoten = request.getParameter("tnv-hovaten");
                 String cmnd = request.getParameter("tnv-cmnd");
                 String diachi = request.getParameter("tnv-diachi");
                 String sdt = request.getParameter("tnv-sdt");
-                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate targetDate = LocalDate.parse(request.getParameter("tnv-ngaysinh"),df);
+                LocalDate namsinh = LocalDate.parse(request.getParameter("tnv-ngaysinh"));
                 String gioitinh = request.getParameter("gender");
-                int idphongban = Integer.parseInt(request.getParameter("tnv-idphongban"));
+                String maphongban = request.getParameter("tnv-maphongban");
+                int idbacluong = Integer.parseInt(request.getParameter("tnv-idbacluong"));
                 int idchucvu = Integer.parseInt(request.getParameter("tnv-idchucvu"));
                 int idtrinhdo = Integer.parseInt(request.getParameter("tnv-idtrinhdo"));
                 Part part = request.getPart("image");
+                String realpath = request.getServletContext().getRealPath("/uploads");
+                String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+
+                NhanVien nv = new NhanVien(maphongban,idbacluong,idchucvu,idtrinhdo,hoten,cmnd,diachi,filename,sdt,namsinh,gioitinh);
+                UserService user = new UserServiceImp();
+                if(user.themnhanvien(nv)){
+                    if(!Files.exists(Paths.get(realpath))){
+                        System.out.println("khoi  tao thanh cong"+ realpath);
+                        Files.createDirectories(Paths.get(realpath));
+                    }
+                    part.write(realpath+"/"+filename);
+                    response.setContentType("text/html");
+                    PrintWriter out = response.getWriter();
+                    out.println("<h1>day la file</h1>");
+                    try{
+                        out.println("<img src='"+request.getContextPath()+"/uploads/"+filename+"'>");
+                    }catch (Exception e){}
+                }
 
 
-            }
+
+
+        }
+
 
     }
-
 }
