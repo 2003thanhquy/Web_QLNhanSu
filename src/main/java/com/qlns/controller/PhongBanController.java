@@ -33,6 +33,10 @@ public class PhongBanController extends HttpServlet {
             switch (relativePath) {
                 case "/":
                     xemphongban(request, response);
+        try{
+            switch (relativePath){
+                case "/":
+                    xemphongban(request,response);
                     break;
                 case "/themphongban":
                     danhsachnhanvientheophongban(request, response);
@@ -42,9 +46,6 @@ public class PhongBanController extends HttpServlet {
                     break;
                 case "/xoaphongban":
                     danhsachnhanvientheophongban(request, response);
-                    break;
-                case "/xemphongbancon":
-                    xemphongbancon(request, response);
                     break;
                 case "/xemphongbancha":
                     xemphongbancha(request, response);
@@ -57,6 +58,10 @@ public class PhongBanController extends HttpServlet {
                     break;
             }
         } catch (Exception ex) {
+                    response.sendRedirect(request.getContextPath()+"/error/error.jsp");
+                    break;
+            }
+        }catch (Exception ex){
             System.out.print(ex);
         }
     }
@@ -89,6 +94,10 @@ public class PhongBanController extends HttpServlet {
         session.setAttribute("listpb", listpb);
 //        response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
         request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request, response);
+
+        session.setAttribute("listpb",listpb);
+      response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
+        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request,response);
     }
 
     private void xemphongbancon(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
@@ -199,4 +208,28 @@ public class PhongBanController extends HttpServlet {
 
         }
     }
+    private void danhsachnhanvientheophongban(HttpServletRequest req, HttpServletResponse resp)
+            throws SQLException, IOException, ServletException {
+        String MaPB = req.getParameter("MaPB");
+        UserDao userDao = new UserDaoImpl();
+        List<Thongtinnhanvien> listnv = userDao.laydanhsachnhanvientheophongban(MaPB);
+        HttpSession session = req.getSession();
+        session.setAttribute("listnvcuapb", listnv);
+
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+
+        PrintWriter out = resp.getWriter();
+        for (Thongtinnhanvien nv : listnv) {
+            out.println("<tr onclick=\"chitietnhanvien('" + nv + "')\">\n" +
+                    "                                                     <td>" + nv.getMaNV() + "</td>\n" +
+                    "                                                       <td>" + nv.getHoTen() + "</td>\n" +
+                    "                                                       <td>" + nv.getTenChucVu() + "</td>\n" +
+                    "                                                   </tr>");
+
+
+        }
+    }
+
+
 }
