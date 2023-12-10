@@ -66,6 +66,25 @@
                                                 </div>
                                             </div>
                                         </c:forEach>
+                                <div class="row" >
+                                    <div class="col-6 phongban-item--container">
+                                        <div class="phongban-item" >
+                                            <h1 class="tenphong">sss</h1>
+                                            <div class="chitietphong">
+                                                <div class="maphong-container chitiet-container">
+                                                    <h3 class="maphong-label">Mã phòng:</h3>
+                                                    <h3 class="maphong-text">dđ</h3>
+                                                </div>
+                                                <div class="chinhanh-container chitiet-container">
+                                                    <h3 class="chinhanh-label">Chi nhánh:</h3>
+                                                    <h3 class="chinhanh-text">dđ</h3>
+                                                </div>
+                                                <div class="button-xemphongcon--container">
+                                                    <button class="button-xemphongcon btn btn-outline-primary" >Xem phòng ban con</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
