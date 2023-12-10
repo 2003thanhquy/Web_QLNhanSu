@@ -14,6 +14,9 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet("/nhanvien/*")
@@ -74,8 +77,18 @@ public class NhanVienController extends HttpServlet {
             if(request.getMethod().equals("GET")){
                 request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
             }else{
-                NhanVien nv = new NhanVien();
-                
+                String hoten = request.getParameter("tnv-hovaten");
+                String cmnd = request.getParameter("tnv-cmnd");
+                String diachi = request.getParameter("tnv-diachi");
+                String sdt = request.getParameter("tnv-sdt");
+                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate targetDate = LocalDate.parse(request.getParameter("tnv-ngaysinh"),df);
+                String gioitinh = request.getParameter("gender");
+                int idphongban = Integer.parseInt(request.getParameter("tnv-idphongban"));
+                int idchucvu = Integer.parseInt(request.getParameter("tnv-idchucvu"));
+                int idtrinhdo = Integer.parseInt(request.getParameter("tnv-idtrinhdo"));
+                Part part = request.getPart("image");
+
 
             }
 

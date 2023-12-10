@@ -11,7 +11,7 @@ public class NhanVien {
     String HoTen;
     String CCCD;
     String DiaChi;
-    Byte[] hinhAnh;
+    String hinhAnh;
     String sdt;
     String namSinh;
     String GioiTinh;
@@ -19,7 +19,7 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String maPB, String maCT, int idBacLuong, int idChucVu, int idTrinhDo,String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+    public NhanVien(String maPB, String maCT, int idBacLuong, int idChucVu, int idTrinhDo,String HoTen, String CCCD, String diaChi, String hinhAnh, String sdt, String namSinh, String gioiTinh) {
         this.maPB = maPB;
         this.maCT = maCT;
         this.idBacLuong = idBacLuong;
@@ -34,7 +34,7 @@ public class NhanVien {
         GioiTinh = gioiTinh;
     }
 
-    public NhanVien(String maNV, String maPB, String maCT, int idBacLuong, int idChucVu,  int idTrinhDo,String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+    public NhanVien(String maNV, String maPB, String maCT, int idBacLuong, int idChucVu,  int idTrinhDo,String HoTen, String CCCD, String diaChi, String hinhAnh, String sdt, String namSinh, String gioiTinh) {
         this.maNV = maNV;
         this.maPB = maPB;
         this.maCT = maCT;
@@ -122,11 +122,11 @@ public class NhanVien {
         DiaChi = diaChi;
     }
 
-    public Byte[] getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(Byte[] hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 
