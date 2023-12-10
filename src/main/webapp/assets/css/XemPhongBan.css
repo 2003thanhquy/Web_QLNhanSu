@@ -53,13 +53,38 @@
     font-weight: 600;
     font-size: 1.4rem;
 }
+.button-chuyennoidung {
+    box-sizing: border-box;
+
+    height: 36px;
+}
 .danhsachphongban-container {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
     border-radius: 10px;
+    overflow: hidden;
+}
+.phongban-menu--container {
+    flex-grow: 1;
+    cursor: pointer;
+}
+.phongban-menu--container:hover {
+    background-color: #5eb9cc;
+    color: #fff;
+}
+
+.phongban-menu--container h3{
+    text-align: center;
+    margin: 0;
+    padding:5px;
+}
+.danhsachphongban-main-content {
+
+    padding: 20px;
+
     height: 600px;
     overflow-y: scroll;
 }
+
 .phongban-item--container {
     margin-top: 10px;
 }
@@ -90,4 +115,8 @@
     height: 40px;
     margin-top: 6px;
     margin-bottom: -6px;
+}
+.phongban-menu--container.selected {
+    background-color: #6ea8fe;
+    color: #fff;
 }

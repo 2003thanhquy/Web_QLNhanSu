@@ -174,4 +174,66 @@ public class PhongbanDaoImpl implements PhongbanDao {
         return list;
     }
 
+    @Override
+    public List<ThongTinPhongBan> laydanhsachphongbanchuacapnhatquanly() {
+        List<ThongTinPhongBan> list = new ArrayList<>();
+        String sql =  "SELECT * FROM  ThongTinPhongBan WHERE status = 1 and ThongTinPhongBan.MaQuanLy is null";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                list.add(new ThongTinPhongBan(rs.getString(1),
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7), rs.getString(8),rs.getString(9)));
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
+
+    }
+
+    public void themphongbancha(String tenpb, String MaQuanLy,String MaCN, String NgayBD) {
+        String sql = "INSERT INTO `QuanLyNhanSu`.`phongban` (`MaPB`, `MaPBCha`, `TenPB`, `TenPBCha`, `MaCN`, `MaQuanLy`, `NgayBD`) "
+                + "VALUES (null, NULL, ?, NULL, ?, ?, ?)";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            int rowsInserted = ps.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Thêm phòng ban thành công.");
+            } else {
+                System.out.println("Thêm phòng ban thất bại.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
+
+    public void themphongbancon(String tenpb, String MaPBCha, String TenPBCha,String MaCN, String MaQuanLy, String NgayBD) {
+        String sql = "INSERT INTO `QuanLyNhanSu`.`phongban` (`MaPB`, `MaPBCha`, `TenPB`, `TenPBCha`, `MaCN`, `MaQuanLy`, `NgayBD`) "
+                + "VALUES (null, ? , ?, ?, ?, ?, ?)";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            int rowsInserted = ps.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Thêm phòng ban thành công.");
+            } else {
+                System.out.println("Thêm phòng ban thất bại.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
+
+
+
 }

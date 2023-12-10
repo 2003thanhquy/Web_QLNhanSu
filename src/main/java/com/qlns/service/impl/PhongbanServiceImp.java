@@ -43,4 +43,17 @@ public class PhongbanServiceImp implements PhongbanService {
         return pbDao.laydanhsachphongbanchaquyenadmin();
     }
 
+    @Override
+    public List<ThongTinPhongBan> laydanhsachphongbanchuacapnhatquanly() {
+        return pbDao.laydanhsachphongbanchuacapnhatquanly();
+    }
+
+    public void themphongbancha(String tenpb,String MaQuanLy,String MaCN,String NgayBD){
+        pbDao.themphongbancha(tenpb, MaQuanLy, MaCN, NgayBD);
+    }
+
+    public void themphongbancon(String tenpb,String MaPBCha,String TenPBCha,String MaQuanLy,String MaCN,String NgayBD){
+        pbDao.themphongbancon(tenpb, MaPBCha, TenPBCha, MaQuanLy, MaCN, NgayBD);
+    }
+
 }
