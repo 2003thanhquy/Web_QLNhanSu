@@ -226,8 +226,8 @@
     }
     function GuiDuLieu(){
         jQuery.ajax({
-            type: "POST", // hoặc "GET" tùy thuộc vào cách bạn xử lý trên server
-            url: "Capnhatphongban", // Thay thế bằng URL xử lý dữ liệu trên server
+            type: "POST",
+            url: "Capnhatphongban",
             data: {
                 kieucapnhat : Kieucapnhat,
                 maphong : MaPhong,
@@ -248,32 +248,7 @@
 
 
 </script>
-<%--<script>--%>
 
-
-<%--        jQuery.ajax({--%>
-<%--            type: "GET", // hoặc "GET" tùy thuộc vào cách bạn xử lý trên server--%>
-<%--            url: "DuyetDeTai", // Thay thế bằng URL xử lý dữ liệu trên server--%>
-<%--            data: {--%>
-<%--                maGV: maGV,--%>
-<%--                maPhongQL: maPhongQL,--%>
-<%--                tenDeTai: tenDeTai,--%>
-<%--                moTa: moTa,--%>
-<%--                kinhPhi: kinhPhi,--%>
-<%--                lyDo: lyDo,--%>
-<%--                trangThai: trangThai,--%>
-
-<%--            },--%>
-<%--            success: function (response) {--%>
-<%--                window.location.href = "/web_ck/duyetdexuatdetai";--%>
-<%--                alert("Dữ liệu đã được gửi thành công" + maPhongQL.toString() + " a "+ response);--%>
-<%--            },--%>
-<%--            error: function (error) {--%>
-<%--                console.log(error);--%>
-<%--            }--%>
-<%--        });--%>
-<%--    }--%>
-<%--</script>--%>
 
 </body>
 </html>
