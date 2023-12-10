@@ -7,9 +7,27 @@ import java.util.List;
 
 public interface PhongbanDao {
     List<ThongTinPhongBan> layhetdanhsachphongban();
-    List<ThongTinPhongBan> laydanhsachphongbangiamdoc(String MaGiamDoc);
+    List<ThongTinPhongBan> layhetdanhsachphongbangiamdoc(String MaGiamDoc);
 
-    List<ThongTinPhongBan> laydanhsachphongbantruongphong(String MaTruongPhong);
-    ThongTinPhongBan layphongbanthanquanly(String ToTruong);
+    List<ThongTinPhongBan> layhetdanhsachphongbantruongphong(String MaTruongPhong);
+    ThongTinPhongBan layhetphongbanthanquanly(String ToTruong);
+
+
+
+//xemphongban
+    List<ThongTinPhongBan> laydanhsachphongbanchaquyenadmin();
+    List<ThongTinPhongBan> laydanhsachphongbangiamdoc(String MaTGiamDoc);
+
+    List<ThongTinPhongBan> laydanhsachphongbancontuphongbancha(String MaPBCha);
+
+
+
+
+
+
+
+
+
+
 
 }

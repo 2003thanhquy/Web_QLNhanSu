@@ -16,18 +16,31 @@ public class PhongbanServiceImp implements PhongbanService {
     }
 
     @Override
+    public List<ThongTinPhongBan> layhetdanhsachphongbangiamdoc(String MaGiamDoc) {
+        return pbDao.layhetdanhsachphongbangiamdoc(MaGiamDoc);
+    }
+
+    @Override
+    public List<ThongTinPhongBan> layhetdanhsachphongbantruongphong(String MaTruongPhong) {
+        return pbDao.layhetdanhsachphongbantruongphong(MaTruongPhong);
+    }
+
+    @Override
+    public ThongTinPhongBan layhetphongbanthanquanly(String MaToTruong) {
+        return pbDao.layhetphongbanthanquanly(MaToTruong);
+    }
+
+    @Override
     public List<ThongTinPhongBan> laydanhsachphongbangiamdoc(String MaGiamDoc) {
         return pbDao.laydanhsachphongbangiamdoc(MaGiamDoc);
     }
 
     @Override
-    public List<ThongTinPhongBan> laydanhsachphongbantruongphong(String MaTruongPhong) {
-        return pbDao.laydanhsachphongbantruongphong(MaTruongPhong);
+    public List<ThongTinPhongBan> laydanhsachphongbancontuphongbancha(String MaPBCha) {
+        return pbDao.laydanhsachphongbancontuphongbancha(MaPBCha);
     }
-
-    @Override
-    public ThongTinPhongBan layphongbanthanquanly(String MaToTruong) {
-        return pbDao.layphongbanthanquanly(MaToTruong);
+    public List<ThongTinPhongBan> laydanhsachphongbanchaquyenadmin(){
+        return pbDao.laydanhsachphongbanchaquyenadmin();
     }
 
 }
