@@ -30,6 +30,15 @@
     <%@include file="/component/header.jsp"%>
     <div id="content">
         <div id="main-content">
+            <div class="container-md tpc-container">
+                <form action="" method="post" class="tpc-form">
+                    <div class="tpc-input--container">
+                        <label class="tpc-input--label">Mã phòng ban cha</label>
+                        <input class="tpc-input--element" type="text">
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>
