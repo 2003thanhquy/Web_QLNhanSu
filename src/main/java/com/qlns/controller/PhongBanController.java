@@ -30,8 +30,9 @@ public class PhongBanController extends HttpServlet {
         String contextPath = request.getContextPath();
         String relativePath = uri.substring(contextPath.length() + "/phongban".length());
 
-        try{
-            switch (relativePath){
+        try {
+            switch (relativePath) {
+
                 case "/":
                     xemphongban(request, response);
                     break;
@@ -45,7 +46,7 @@ public class PhongBanController extends HttpServlet {
                     danhsachnhanvientheophongban(request, response);
                     break;
                 case "/xemphongbancon":
-                    xemphongbancon(request,response);
+                    xemphongbancon(request, response);
                     break;
                 case "/xemphongbancha":
                     xemphongbancha(request, response);
@@ -54,7 +55,7 @@ public class PhongBanController extends HttpServlet {
                     danhsachnhanvientheophongban(request, response);
                     break;
                 default:
-                    response.sendRedirect(request.getContextPath()+"/error/error.jsp");
+                    response.sendRedirect(request.getContextPath() + "/error/error.jsp");
                     break;
             }
         } catch (Exception ex) {
@@ -69,18 +70,17 @@ public class PhongBanController extends HttpServlet {
         PhongbanService pbService = new PhongbanServiceImp();
 
         HttpSession session = request.getSession();
-        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
         Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
         session.setAttribute("user", user);
 
         List<ThongTinPhongBan> listpb = new ArrayList<>();
 
-        if(tk.getUserRole().equals("admin")){
+        if (tk.getUserRole().equals("admin")) {
             listpb = pbService.laydanhsachphongbanchaquyenadmin();
-        }
-        else {
+        } else {
             if (tk.getUserRole().equals("giamdoc")) {
-                listpb =  pbService.laydanhsachphongbangiamdoc(tk.getMaNV());
+                listpb = pbService.laydanhsachphongbangiamdoc(tk.getMaNV());
             } else {
                 if (tk.getUserRole().equals("truongphong")) {
                     listpb.add(pbService.layhetphongbanthanquanly(tk.getMaNV()));
@@ -91,10 +91,12 @@ public class PhongBanController extends HttpServlet {
         }
 
 
-        session.setAttribute("listpb",listpb);
+        session.setAttribute("listpb", listpb);
+
 //        response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
-        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request,response);
+        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request, response);
     }
+
     private void xemphongbancon(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
         String MaPB = req.getParameter("MaPB");
         PhongbanService phongbanService = new PhongbanServiceImp();
@@ -106,16 +108,16 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcon) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getNgayBD()+"')\">\n" +
-                    "                                                <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
+                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick('" + pb.getTenPB() + "', '" + pb.getMaPB() + "', '" + pb.getTenChiNhanh() + "', '" + pb.getTenChiNhanh() + "', '" + pb.getNgayBD() + "')\">\n" +
+                    "                                                <h1 class=\"tenphong\">" + pb.getTenPB() + "</h1>\n" +
                     "                                                <div class=\"chitietphong\">\n" +
                     "                                                    <div class=\"maphong-container chitiet-container\">\n" +
                     "                                                        <h3 class=\"maphong-label\">Mã phòng:</h3>\n" +
-                    "                                                        <h3 class=\"maphong-text\">"+pb.getMaPB()+"</h3>\n" +
+                    "                                                        <h3 class=\"maphong-text\">" + pb.getMaPB() + "</h3>\n" +
                     "                                                    </div>\n" +
                     "                                                    <div class=\"chinhanh-container chitiet-container\">\n" +
                     "                                                        <h3 class=\"chinhanh-label\">Chi nhánh:</h3>\n" +
-                    "                                                        <h3 class=\"chinhanh-text\">"+pb.getTenChiNhanh()+"</h3>\n" +
+                    "                                                        <h3 class=\"chinhanh-text\">" + pb.getTenChiNhanh() + "</h3>\n" +
                     "                                                    </div>\n" +
                     "                                                </div>\n" +
                     "                                                </div>\n" +
@@ -124,36 +126,39 @@ public class PhongBanController extends HttpServlet {
 
         }
     }
+
     private void xemphongbancha(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         List<ThongTinPhongBan> listpbcha = new ArrayList<>();
 
-        listpbcha = (List<ThongTinPhongBan>)session.getAttribute("listpb");
+
+        listpbcha = (List<ThongTinPhongBan>) session.getAttribute("listpb");
+
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcha) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                                <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getNgayBD()+"')\">\n" +
-                    "                                                    <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
+                    "                                                <div class=\"phongban-item\" onclick=\"handleItemClick('" + pb.getTenPB() + "', '" + pb.getMaPB() + "', '" + pb.getTenChiNhanh() + "', '" + pb.getTenChiNhanh() + "', '" + pb.getNgayBD() + "')\">\n" +
+                    "                                                    <h1 class=\"tenphong\">" + pb.getTenPB() + "</h1>\n" +
                     "                                                    <div class=\"chitietphong\">\n" +
                     "                                                        <div class=\"maphong-container chitiet-container\">\n" +
                     "                                                            <h3 class=\"maphong-label\">Mã phòng:</h3>\n" +
-                    "                                                            <h3 class=\"maphong-text\">"+pb.getMaPB()+"</h3>\n" +
+                    "                                                            <h3 class=\"maphong-text\">" + pb.getMaPB() + "</h3>\n" +
                     "                                                        </div>\n" +
                     "                                                        <div class=\"chinhanh-container chitiet-container\">\n" +
                     "                                                            <h3 class=\"chinhanh-label\">Chi nhánh:</h3>\n" +
-                    "                                                            <h3 class=\"chinhanh-text\">"+pb.getTenChiNhanh()+"</h3>\n" +
+                    "                                                            <h3 class=\"chinhanh-text\">" + pb.getTenChiNhanh() + "</h3>\n" +
                     "                                                        </div>\n" +
                     "                                                        <div class=\"button-xemphongcon--container\">\n" +
-                    "                                                            <button class=\"button-xemphongcon btn btn-outline-primary\" onclick= xempbcon('"+pb.getMaPB()+"')>Xem phòng ban con</button>\n" +
+                    "                                                            <button class=\"button-xemphongcon btn btn-outline-primary\" onclick= xempbcon('" + pb.getMaPB() + "')>Xem phòng ban con</button>\n" +
                     "                                            </div>\n" +
                     "                                                </div>\n" +
                     "                                                </div>\n" +
                     "                                            </div>");
         }
     }
-    
+
     private void danhsachnhanvientheophongban(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String MaPB = req.getParameter("MaPB");
