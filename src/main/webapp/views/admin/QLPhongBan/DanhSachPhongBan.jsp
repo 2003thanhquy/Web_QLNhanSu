@@ -131,9 +131,6 @@
 <%@include file="/component/all_javascript.jsp"%>
 
 
-
-
-
 <script>
     var button = document.querySelector(".button-quaylaiphongcha--container");
     button.style.display = "none";
@@ -165,7 +162,7 @@
     function xempbcon(MaPB) {
         jQuery.ajax({
             type: "GET",
-            url: "${request.getContextPath()}/QLNhanSu_war_exploded/xemphongbancon",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancon",
             data: {
                 MaPB: MaPB
             },
@@ -184,7 +181,7 @@
     function xempbcha() {
         jQuery.ajax({
             type: "GET",
-            url: "${request.getContextPath()}/QLNhanSu_war_exploded/xemphongbancha",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancha",
             data: {
             },
             success: function(data) {

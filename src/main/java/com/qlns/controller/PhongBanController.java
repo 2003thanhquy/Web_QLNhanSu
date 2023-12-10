@@ -40,20 +40,15 @@ public class PhongBanController extends HttpServlet {
                 case "/capnhatphongban":
                     break;
                 case "/xoaphongban":
+                    danhsachnhanvientheophongban(request, response);
                     break;
                 case "/xemphongbancon":
-                    xemphongbancon(request, response);
-                    break;
-                case "/xemphongbancha":
-                    xemphongbancha(request, response);
-                    break;
-                case "/danhsachnhanvientheophongban":
+                    xemphongbancon(request,response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath() + "/error/error.jsp");
                     break;
             }
-
         }catch (Exception ex){
             System.out.print(ex);
         }
@@ -86,9 +81,10 @@ public class PhongBanController extends HttpServlet {
             }
         }
 
-        session.setAttribute("listpb", listpb);
+        session.setAttribute("listpb",listpb);
 //        response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
-        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request,response);
+
     }
 
     private void xemphongbancon(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
@@ -151,6 +147,7 @@ public class PhongBanController extends HttpServlet {
                     "                                            </div>");
         }
     }
+    
     private void danhsachnhanvientheophongban(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String MaPB = req.getParameter("MaPB");
