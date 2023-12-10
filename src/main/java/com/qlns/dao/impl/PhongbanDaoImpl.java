@@ -196,4 +196,44 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
     }
 
+    public void themphongbancha(String tenpb, String MaQuanLy,String MaCN, String NgayBD) {
+        String sql = "INSERT INTO `QuanLyNhanSu`.`phongban` (`MaPB`, `MaPBCha`, `TenPB`, `TenPBCha`, `MaCN`, `MaQuanLy`, `NgayBD`) "
+                + "VALUES (null, NULL, ?, NULL, ?, ?, ?)";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            int rowsInserted = ps.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Thêm phòng ban thành công.");
+            } else {
+                System.out.println("Thêm phòng ban thất bại.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
+
+    public void themphongbancon(String tenpb, String MaPBCha, String TenPBCha,String MaCN, String MaQuanLy, String NgayBD) {
+        String sql = "INSERT INTO `QuanLyNhanSu`.`phongban` (`MaPB`, `MaPBCha`, `TenPB`, `TenPBCha`, `MaCN`, `MaQuanLy`, `NgayBD`) "
+                + "VALUES (null, ? , ?, ?, ?, ?, ?)";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            int rowsInserted = ps.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Thêm phòng ban thành công.");
+            } else {
+                System.out.println("Thêm phòng ban thất bại.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
+
+
+
 }
