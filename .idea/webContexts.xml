@@ -5,6 +5,8 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/nhanvien/thongtincanhan.jsp" value="file://$PROJECT_DIR$/src/main/webapp/nhanvien" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/QLPhongBan/CapNhatNhanVien.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/QLPhongBan" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/QLPhongBan/DanhSachPhongBan.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/QLPhongBan" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/QLPhongBan/ThemPhongCon.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/QLPhongBan" />
       </map>
     </option>
   </component>
