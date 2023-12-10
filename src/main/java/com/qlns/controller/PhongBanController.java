@@ -29,36 +29,25 @@ public class PhongBanController extends HttpServlet {
         String uri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String relativePath = uri.substring(contextPath.length() + "/phongban".length());
-        try {
-            switch (relativePath) {
-                case "/":
-                    xemphongban(request, response);
+
         try{
             switch (relativePath){
                 case "/":
                     xemphongban(request,response);
                     break;
                 case "/themphongban":
-                    danhsachnhanvientheophongban(request, response);
                     break;
                 case "/capnhatphongban":
-                    danhsachnhanvientheophongban(request, response);
                     break;
                 case "/xoaphongban":
-                    danhsachnhanvientheophongban(request, response);
                     break;
                 case "/xemphongbancha":
                     xemphongbancha(request, response);
                     break;
                 case "/danhsachnhanvientheophongban":
-                    danhsachnhanvientheophongban(request, response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath() + "/error/error.jsp");
-                    break;
-            }
-        } catch (Exception ex) {
-                    response.sendRedirect(request.getContextPath()+"/error/error.jsp");
                     break;
             }
         }catch (Exception ex){
@@ -130,106 +119,39 @@ public class PhongBanController extends HttpServlet {
         }
     }
 
-    private void xemphongbancha(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        HttpSession session = req.getSession();
-        List<ThongTinPhongBan> listpbcha = new ArrayList<>();
+    private void xemphongbancha(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException
+        {
+            resp.setContentType("text/html");
+            resp.setCharacterEncoding("UTF-8");
+            HttpSession session = req.getSession();
+            List<ThongTinPhongBan> listpbcha = new ArrayList<>();
 
-        listpbcha = (List<ThongTinPhongBan>) session.getAttribute("listpb");
+            listpbcha = (List<ThongTinPhongBan>) session.getAttribute("listpb");
 
-        PrintWriter out = resp.getWriter();
-        for (ThongTinPhongBan pb : listpbcha) {
-            out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                                <div class=\"phongban-item\" onclick=\"handleItemClick('" + pb.getTenPB() + "', '" + pb.getMaPB() + "', '" + pb.getTenChiNhanh() + "', '" + pb.getTenChiNhanh() + "', '" + pb.getNgayBD() + "')\">\n" +
-                    "                                                    <h1 class=\"tenphong\">" + pb.getTenPB() + "</h1>\n" +
-                    "                                                    <div class=\"chitietphong\">\n" +
-                    "                                                        <div class=\"maphong-container chitiet-container\">\n" +
-                    "                                                            <h3 class=\"maphong-label\">Mã phòng:</h3>\n" +
-                    "                                                            <h3 class=\"maphong-text\">" + pb.getMaPB() + "</h3>\n" +
-                    "                                                        </div>\n" +
-                    "                                                        <div class=\"chinhanh-container chitiet-container\">\n" +
-                    "                                                            <h3 class=\"chinhanh-label\">Chi nhánh:</h3>\n" +
-                    "                                                            <h3 class=\"chinhanh-text\">" + pb.getTenChiNhanh() + "</h3>\n" +
-                    "                                                        </div>\n" +
-                    "                                                        <div class=\"button-xemphongcon--container\">\n" +
-                    "                                                            <button class=\"button-xemphongcon btn btn-outline-primary\" onclick= xempbcon('" + pb.getMaPB() + "')>Xem phòng ban con</button>\n" +
-                    "                                            </div>\n" +
-                    "                                                </div>\n" +
-                    "                                                </div>\n" +
-                    "                                            </div>");
+            PrintWriter out = resp.getWriter();
+            for (ThongTinPhongBan pb : listpbcha) {
+                out.println("<div class=\"col-6 phongban-item--container\">\n" +
+                        "                                                <div class=\"phongban-item\" onclick=\"handleItemClick('" + pb.getTenPB() + "', '" + pb.getMaPB() + "', '" + pb.getTenChiNhanh() + "', '" + pb.getTenChiNhanh() + "', '" + pb.getNgayBD() + "')\">\n" +
+                        "                                                    <h1 class=\"tenphong\">" + pb.getTenPB() + "</h1>\n" +
+                        "                                                    <div class=\"chitietphong\">\n" +
+                        "                                                        <div class=\"maphong-container chitiet-container\">\n" +
+                        "                                                            <h3 class=\"maphong-label\">Mã phòng:</h3>\n" +
+                        "                                                            <h3 class=\"maphong-text\">" + pb.getMaPB() + "</h3>\n" +
+                        "                                                        </div>\n" +
+                        "                                                        <div class=\"chinhanh-container chitiet-container\">\n" +
+                        "                                                            <h3 class=\"chinhanh-label\">Chi nhánh:</h3>\n" +
+                        "                                                            <h3 class=\"chinhanh-text\">" + pb.getTenChiNhanh() + "</h3>\n" +
+                        "                                                        </div>\n" +
+                        "                                                        <div class=\"button-xemphongcon--container\">\n" +
+                        "                                                            <button class=\"button-xemphongcon btn btn-outline-primary\" onclick= xempbcon('" + pb.getMaPB() + "')>Xem phòng ban con</button>\n" +
+                        "                                            </div>\n" +
+                        "                                                </div>\n" +
+                        "                                                </div>\n" +
+                        "                                            </div>");
 
 
+            }
         }
-    }
-
-
-    private void danhsachnhanvientheophongban(HttpServletRequest req, HttpServletResponse resp)
-            throws SQLException, IOException, ServletException {
-        String MaPB = req.getParameter("MaPB");
-        UserDao userDao = new UserDaoImpl();
-        List<Thongtinnhanvien> listnv = userDao.laydanhsachnhanvientheophongban(MaPB);
-        HttpSession session = req.getSession();
-        session.setAttribute("listnvcuapb", listnv);
-
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-
-        PrintWriter out = resp.getWriter();
-        for (Thongtinnhanvien nv : listnv) {
-            out.println("<tr onclick=\"chitietnhanvien('" + nv + "')\">\n" +
-                    "                                                     <td>" + nv.getMaNV() + "</td>\n" +
-                    "                                                       <td>" + nv.getHoTen() + "</td>\n" +
-                    "                                                       <td>" + nv.getTenChucVu() + "</td>\n" +
-                    "                                                   </tr>");
-
-
-        }
-    }
-    private void danhsachnhanvientheophongban(HttpServletRequest req, HttpServletResponse resp)
-            throws SQLException, IOException, ServletException {
-        String MaPB = req.getParameter("MaPB");
-        UserDao userDao = new UserDaoImpl();
-        List<Thongtinnhanvien> listnv = userDao.laydanhsachnhanvientheophongban(MaPB);
-        HttpSession session = req.getSession();
-        session.setAttribute("listnvcuapb", listnv);
-
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-
-        PrintWriter out = resp.getWriter();
-        for (Thongtinnhanvien nv : listnv) {
-            out.println("<tr onclick=\"chitietnhanvien('" + nv + "')\">\n" +
-                    "                                                     <td>" + nv.getMaNV() + "</td>\n" +
-                    "                                                       <td>" + nv.getHoTen() + "</td>\n" +
-                    "                                                       <td>" + nv.getTenChucVu() + "</td>\n" +
-                    "                                                   </tr>");
-
-
-        }
-    }
-    private void danhsachnhanvientheophongban(HttpServletRequest req, HttpServletResponse resp)
-            throws SQLException, IOException, ServletException {
-        String MaPB = req.getParameter("MaPB");
-        UserDao userDao = new UserDaoImpl();
-        List<Thongtinnhanvien> listnv = userDao.laydanhsachnhanvientheophongban(MaPB);
-        HttpSession session = req.getSession();
-        session.setAttribute("listnvcuapb", listnv);
-
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-
-        PrintWriter out = resp.getWriter();
-        for (Thongtinnhanvien nv : listnv) {
-            out.println("<tr onclick=\"chitietnhanvien('" + nv + "')\">\n" +
-                    "                                                     <td>" + nv.getMaNV() + "</td>\n" +
-                    "                                                       <td>" + nv.getHoTen() + "</td>\n" +
-                    "                                                       <td>" + nv.getTenChucVu() + "</td>\n" +
-                    "                                                   </tr>");
-
-
-        }
-    }
 
 
 }
