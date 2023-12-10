@@ -30,8 +30,6 @@ public class NhanVienController extends HttpServlet {
         }catch (Exception ex){
             System.out.print(ex);
         }
-
-
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
