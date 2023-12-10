@@ -106,6 +106,28 @@ public class PhongbanDaoImpl implements PhongbanDao {
     }
 
     @Override
+    public List<ThongTinPhongBan> laydanhsachphongbanchaquyenadmin() {
+        List<ThongTinPhongBan> list = new ArrayList<>();
+        String sql ="   select pb.MaPB,pb.MaPBCha,pb.TenPB,TenPBCha,pb.MaCN,MaQuanLy,pb.NgayBD,pb.TenQuanLy,pb.TenChiNhanh from\n" +
+                "QuanLyNhanSu.chinhanh cn inner join QuanLyNhanSu.ThongTinPhongBan pb \n" +
+                "  where  pb.status = 1 and pb.MaPBCha is null";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                list.add(new ThongTinPhongBan(rs.getString(1),
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8), rs.getString(9)));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+
+    @Override
     public List<ThongTinPhongBan> laydanhsachphongbangiamdoc(String MaGiamDoc) {
         List<ThongTinPhongBan> list = new ArrayList<>();
         String sql ="   select pb.MaPB,pb.MaPBCha,pb.TenPB,TenPBCha,pb.MaCN,MaQuanLy,pb.NgayBD,pb.TenQuanLy,pb.TenChiNhanh from\n" +
@@ -127,6 +149,7 @@ public class PhongbanDaoImpl implements PhongbanDao {
         }
         return list;
     }
+
 
     @Override
     public List<ThongTinPhongBan> laydanhsachphongbancontuphongbancha(String MaPBCha) {

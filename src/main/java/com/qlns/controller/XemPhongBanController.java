@@ -61,7 +61,7 @@ public class XemPhongBanController extends HttpServlet {
 
         List<ThongTinPhongBan> listpb = new ArrayList<>();
         if(tk.getUserRole().equals("admin")){
-            listpb = pbService.layhetdanhsachphongban();
+            listpb = pbService.laydanhsachphongbanchaquyenadmin();
         }
         else {
             if (tk.getUserRole().equals("giamdoc")) {
@@ -107,9 +107,6 @@ public class XemPhongBanController extends HttpServlet {
         }
     }
     private void xemphongbancha(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
-        String MaPB = req.getParameter("MaPB");
-        PhongbanService phongbanService = new PhongbanServiceImp();
-        List<ThongTinPhongBan> listpbcon = phongbanService.laydanhsachphongbancontuphongbancha(MaPB);
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
