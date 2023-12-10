@@ -14,7 +14,8 @@ public interface PhongbanDao {
 
 
 
-
+//xemphongban
+    List<ThongTinPhongBan> laydanhsachphongbanchaquyenadmin();
     List<ThongTinPhongBan> laydanhsachphongbangiamdoc(String MaTGiamDoc);
 
     List<ThongTinPhongBan> laydanhsachphongbancontuphongbancha(String MaPBCha);

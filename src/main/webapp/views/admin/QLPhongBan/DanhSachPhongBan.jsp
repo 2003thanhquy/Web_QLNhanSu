@@ -127,12 +127,37 @@
 <%@include file="/component/all_javascript.jsp"%>
 
 
-<script>
 
+
+
+<script>
     var button = document.querySelector(".button-quaylaiphongcha--container");
     button.style.display = "none";
 
     var row = document.querySelector(".phongban-item--container");
+    var pbhienthidautien = document.querySelector('.phongban-item');
+
+
+    var maphong = document.getElementById('maphong');
+    var tenpb = document.getElementById('tenphong');
+    var macn = document.getElementById('chinhanh');
+    var maql = document.getElementById('truongphong');
+    var ngaybd = document.getElementById('ngaythanhlap');
+    var kieucapnhat;
+
+    maphong.disabled = true; // Vô hiệu hóa phần tử maphong
+    tenpb.disabled = true; // Vô hiệu hóa phần tử tenpb
+    macn.disabled = true; // Vô hiệu hóa phần tử macn
+    maql.disabled = true; // Vô hiệu hóa phần tử maql
+    ngaybd.disabled = true; // Vô hiệu hóa phần tử ngaybd
+
+    function handleItemClick(tenPB, maPB, maCN,maQL,ngayBD) {
+        maphong.value= maPB;
+        tenpb.value= tenPB;
+        macn.value=maCN;
+        maql.value=maQL;
+        ngaybd.value=ngayBD;
+    }
     function xempbcon(MaPB) {
         jQuery.ajax({
             type: "GET",
@@ -141,10 +166,10 @@
                 MaPB: MaPB
             },
             success: function(data) {
-                console.log(MaPB)
-                console.log(data)
+
                 row.innerHTML=data;
                 button.style.display = "";
+                document.querySelector('.phongban-item').onclick();
 
             },
             error: function(error) {
@@ -162,44 +187,14 @@
 
                 row.innerHTML=data;
                 button.style.display = "none";
+                document.querySelector('.phongban-item').onclick();
             },
             error: function(error) {
                 console.log(error);
             }
         });
     }
-
-
-
-
-
-
-
-</script>
-
-
-
-<script>
-    var pbhienthidautien = document.querySelector('.phongban-item');
-    var maphong = document.getElementById('maphong');
-    var tenpb = document.getElementById('tenphong');
-    var macn = document.getElementById('chinhanh');
-    var maql = document.getElementById('truongphong');
-    var ngaybd = document.getElementById('ngaythanhlap');
-    var kieucapnhat;
     pbhienthidautien.click();
-    maphong.disabled = true; // Vô hiệu hóa phần tử maphong
-    tenpb.disabled = true; // Vô hiệu hóa phần tử tenpb
-    macn.disabled = true; // Vô hiệu hóa phần tử macn
-    maql.disabled = true; // Vô hiệu hóa phần tử maql
-    ngaybd.disabled = true; // Vô hiệu hóa phần tử ngaybd
-    function handleItemClick(tenPB, maPB, maCN,maQL,ngayBD) {
-        maphong.value= maPB;
-        tenpb.value= tenPB;
-        macn.value=maCN;
-        maql.value=maQL;
-        ngaybd.value=ngayBD;
-    }
     function ThemPhongBan() {
         kieucapnhat = "them";
         maphong.value = ''; // Xóa giá trị của biến maphong
@@ -250,6 +245,7 @@
             }
         });
     }
+
 
 </script>
 <%--<script>--%>

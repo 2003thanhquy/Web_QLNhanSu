@@ -39,5 +39,8 @@ public class PhongbanServiceImp implements PhongbanService {
     public List<ThongTinPhongBan> laydanhsachphongbancontuphongbancha(String MaPBCha) {
         return pbDao.laydanhsachphongbancontuphongbancha(MaPBCha);
     }
+    public List<ThongTinPhongBan> laydanhsachphongbanchaquyenadmin(){
+        return pbDao.laydanhsachphongbanchaquyenadmin();
+    }
 
 }
