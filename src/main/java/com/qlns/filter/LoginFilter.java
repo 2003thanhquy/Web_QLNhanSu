@@ -30,7 +30,7 @@ public class LoginFilter implements Filter{
             HttpSession session = request.getSession();
             TaiKhoan acc =(TaiKhoan)session.getAttribute("account");
             if(acc==null){
-                response.sendRedirect(request.getContextPath()+"/login/login.jsp");
+                response.sendRedirect(request.getContextPath()+"/login");
                 return;
             }
 
@@ -43,6 +43,6 @@ public class LoginFilter implements Filter{
 
     @Override
     public void destroy() {
-        Filter.super.destroy();
+
     }
 }
