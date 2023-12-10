@@ -41,9 +41,9 @@
                                         Quay lại
                                     </button>
                                 </div>
-                                <div class="row" >
+                                <div class="row dataphongban">
+                                        <c:forEach items="${listpb}" var="phongban">
                                             <div class="col-6 phongban-item--container">
-                                                <c:forEach items="${listpb}" var="phongban">
                                                 <div class="phongban-item" onclick="handleItemClick('${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}')">
                                                     <h1 class="tenphong">${phongban.tenPB}</h1>
                                                     <div class="chitietphong">
@@ -60,8 +60,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                </c:forEach>
                                             </div>
+                                        </c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
     var button = document.querySelector(".button-quaylaiphongcha--container");
     button.style.display = "none";
 
-    var row = document.querySelector(".phongban-item--container");
+    var row = document.querySelector(".dataphongban");
     var pbhienthidautien = document.querySelector('.phongban-item');
 
 
