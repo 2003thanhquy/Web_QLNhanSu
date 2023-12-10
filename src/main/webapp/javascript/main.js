@@ -56,3 +56,16 @@ close_button_more_item.addEventListener('click',e=>{
     }
     more_managings.classList.add("disappear");
 })
+
+
+const phongban_menu_container = $$(".phongban-menu--container");
+Array.from(phongban_menu_container).forEach(element=>{
+    element.addEventListener('click',e =>{
+        Array.from(phongban_menu_container).forEach(el=>{
+            if(el.classList.contains("selected")){
+                el.classList.remove(("selected"));
+            }
+        })
+        element.classList.add("selected");
+    })
+})
