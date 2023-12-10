@@ -196,6 +196,4 @@ public class PhongBanController extends HttpServlet {
 
         }
     }
-
-
 }
