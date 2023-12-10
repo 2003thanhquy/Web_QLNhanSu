@@ -3,7 +3,7 @@
 <header id="header">
     <ul class="header-list-items">
         <li class="header-item header-item-withHover">
-            <a href="<%= request.getContextPath()%>/views/nhanvien" class="header-item-context header-item-context--nhanvien">Nhân viên</a>
+            <a href="<%= request.getContextPath()%>/nhanvien/" class="header-item-context header-item-context--nhanvien">Nhân viên</a>
         </li>
         <li class="header-item header-item-withHover">
             <a href="<%= request.getContextPath()%>/XemPhongBan" class="header-item-context header-item-context--phongban">Phòng ban</a>
