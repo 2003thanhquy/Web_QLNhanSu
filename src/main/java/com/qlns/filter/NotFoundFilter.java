@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
-@WebFilter("/*")
+
 public class NotFoundFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
