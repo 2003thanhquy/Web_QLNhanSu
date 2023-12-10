@@ -30,10 +30,10 @@ public class PhongBanController extends HttpServlet {
         String contextPath = request.getContextPath();
         String relativePath = uri.substring(contextPath.length() + "/phongban".length());
 
-        try{
-            switch (relativePath){
+        try {
+            switch (relativePath) {
                 case "/":
-                    xemphongban(request,response);
+                    xemphongban(request, response);
                     break;
                 case "/themphongban":
                     break;
@@ -43,13 +43,13 @@ public class PhongBanController extends HttpServlet {
                     danhsachnhanvientheophongban(request, response);
                     break;
                 case "/xemphongbancon":
-                    xemphongbancon(request,response);
+                    xemphongbancon(request, response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath() + "/error/error.jsp");
                     break;
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.print(ex);
         }
     }
@@ -66,7 +66,6 @@ public class PhongBanController extends HttpServlet {
         session.setAttribute("user", user);
 
         List<ThongTinPhongBan> listpb = new ArrayList<>();
-
         if (tk.getUserRole().equals("admin")) {
             listpb = pbService.laydanhsachphongbanchaquyenadmin();
         } else {
@@ -81,10 +80,9 @@ public class PhongBanController extends HttpServlet {
             }
         }
 
-        session.setAttribute("listpb",listpb);
+        session.setAttribute("listpb", listpb);
 //        response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
-        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request,response);
-
+        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request, response);
     }
 
     private void xemphongbancon(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
@@ -170,6 +168,4 @@ public class PhongBanController extends HttpServlet {
 
         }
     }
-
-
 }
