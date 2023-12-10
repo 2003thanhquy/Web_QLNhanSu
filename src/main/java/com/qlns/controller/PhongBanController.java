@@ -29,19 +29,17 @@ public class PhongBanController extends HttpServlet {
         String uri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String relativePath = uri.substring(contextPath.length() + "/phongban".length());
-        try {
-            switch (relativePath) {
+
+        try{
+            switch (relativePath){
                 case "/":
-                    xemphongban(request, response);
+                    xemphongban(request,response);
                     break;
                 case "/themphongban":
-                    danhsachnhanvientheophongban(request, response);
                     break;
                 case "/capnhatphongban":
-                    danhsachnhanvientheophongban(request, response);
                     break;
                 case "/xoaphongban":
-                    danhsachnhanvientheophongban(request, response);
                     break;
                 case "/xemphongbancon":
                     xemphongbancon(request, response);
@@ -50,13 +48,13 @@ public class PhongBanController extends HttpServlet {
                     xemphongbancha(request, response);
                     break;
                 case "/danhsachnhanvientheophongban":
-                    danhsachnhanvientheophongban(request, response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath() + "/error/error.jsp");
                     break;
             }
-        } catch (Exception ex) {
+
+        }catch (Exception ex){
             System.out.print(ex);
         }
     }
