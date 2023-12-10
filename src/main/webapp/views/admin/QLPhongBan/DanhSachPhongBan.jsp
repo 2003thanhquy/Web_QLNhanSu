@@ -36,10 +36,10 @@
                     <div class = "col-xl-6 col-sm-12">
                         <div class="danhsachphongban-container">
                             <div class="button-chuyennoidung" style="display: flex">
-                                <div tabindex="0" class="phongban-menu--container selected phongcoquanly-container">
+                                <div tabindex="0" class="phongban-menu--container selected phongcoquanly-container " onclick="xempbqly()">
                                     <h3>Phòng có quản lý</h3>
                                 </div>
-                                <div tabindex="0" class="phongban-menu--container phongchuacoquanly-container">
+                                <div tabindex="0" class="phongban-menu--container phongchuacoquanly-container" onclick="xempbkhongqly()">
                                     <h3>Phòng chưa có quản lý</h3>
                                 </div>
                             </div>
@@ -144,9 +144,11 @@
 <% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
 
 <script>
+
+
     var buttonqlaiphongban = document.querySelector(".button-quaylaiphongcha--container");
-    var buttonqly = document.querySelector(".btn-outline-primary");
-    var buttonkhongqly=document.querySelector(".btn-outline-secondary")
+    var buttonqly = document.querySelector(".phongcoquanly-container");
+    var buttonkhongqly=document.querySelector(".phongchuacoquanly-container")
 
 
     buttonqlaiphongban.style.display = "none";
