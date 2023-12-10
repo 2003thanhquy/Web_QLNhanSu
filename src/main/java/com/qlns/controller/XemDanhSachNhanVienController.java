@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-@WebServlet(urlPatterns = {"/XemNhanVien"})
+//@WebServlet(urlPatterns = {"/XemNhanVien"})
 public class XemDanhSachNhanVienController extends HttpServlet {
     protected  void doGet(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException, ServletException {
         // resp.sendRedirect(req.getContextPath()+"/views/GiamDoc/PhongBan.jsp");
@@ -59,8 +59,6 @@ public class XemDanhSachNhanVienController extends HttpServlet {
             }
         }
         session.setAttribute("listnv",listnv);
-
-
         response.sendRedirect(request.getContextPath()+"/views/admin/QLNhanVien/XemNhanVien.jsp");
     }
 }
