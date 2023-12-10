@@ -75,7 +75,8 @@ public class XemPhongBanController extends HttpServlet {
             }
         }
         session.setAttribute("listpb",listpb);
-        response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
+        //response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
+        request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request,response);
     }
     private void xemphongbancon(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
         String MaPB = req.getParameter("MaPB");
@@ -87,7 +88,7 @@ public class XemPhongBanController extends HttpServlet {
 
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcon) {
-            out.println(
+            out.println("<div class=\"col-6 phongban-item--container\">\n" +
                     "                                            <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getNgayBD()+"')\">\n" +
                     "                                                <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
                     "                                                <div class=\"chitietphong\">\n" +
@@ -98,10 +99,10 @@ public class XemPhongBanController extends HttpServlet {
                     "                                                    <div class=\"chinhanh-container chitiet-container\">\n" +
                     "                                                        <h3 class=\"chinhanh-label\">Chi nhánh:</h3>\n" +
                     "                                                        <h3 class=\"chinhanh-text\">"+pb.getTenChiNhanh()+"</h3>\n" +
-                            "   </div>\n" +
-                            "                                                     \n" +
-                            "                                                    </div>\n" +
-                            "                                                </div>");
+                    "                                                    </div>\n" +
+                    "                                                </div>\n" +
+                    "                                                </div>\n" +
+                    "                                            </div>");
 
 
         }
@@ -116,7 +117,7 @@ public class XemPhongBanController extends HttpServlet {
 
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcha) {
-            out.println(
+            out.println("<div class=\"col-6 phongban-item--container\">\n" +
                     "                                                <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getNgayBD()+"')\">\n" +
                     "                                                    <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
                     "                                                    <div class=\"chitietphong\">\n" +
@@ -130,13 +131,10 @@ public class XemPhongBanController extends HttpServlet {
                     "                                                        </div>\n" +
                     "                                                        <div class=\"button-xemphongcon--container\">\n" +
                     "                                                            <button class=\"button-xemphongcon btn btn-outline-primary\" onclick= xempbcon('"+pb.getMaPB()+"')>Xem phòng ban con</button>\n" +
-                    "                                                        </div>\n" +
-                    "                                                    </div>\n" +
-                    "                                                </div>\n");
-
-
+                    "                                            </div>\n" +
+                            "                                                </div>\n" +
+                    "                                                </div>\n" +
+                    "                                            </div>");
         }
     }
-
-
 }

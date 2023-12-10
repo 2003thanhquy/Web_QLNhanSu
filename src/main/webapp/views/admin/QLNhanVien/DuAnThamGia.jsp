@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="datg-nhanvien--container">
-                            <h1 class="datg-nhanvien-heading">Nhân viên</h1>
+                            <h1 class="datg-nhanvien-heading" style="text-align: center">Nhân viên</h1>
                             <div class="datg-nhanvien--content">
                                 <div class="datg-nhanvien-table--wrapper">
                                     <div class="table-scroll">
@@ -44,9 +44,84 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td></td>
-                                                    <td>${phongban.tenPB} </td>
-                                                    <td>${phongban.tenChiNhanh}</td>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21110713</td>
+                                                    <td>Phạm Hữu Tuấn</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -57,7 +132,121 @@
                     </div>
                     <div class="col-6">
                         <div class="datg-duan--container">
-
+                            <div class="datg-da--container">
+                                <h1 class="datg-da-heading" style="text-align: center">Dự án tham gia</h1>
+                                <div class="datg-da--content">
+                                    <div class="datg-da-table--wrapper">
+                                        <div class="table-scroll">
+                                            <table class="datg-da-table">
+                                                <thead>
+                                                <tr>
+                                                    <th><span class="text">Mã dự án</span></th>
+                                                    <th><span class="text">Tên dự án</span></th>
+                                                    <th><span class="text">Trạng thái</span></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DA0001</td>
+                                                    <td>Code web</td>
+                                                    <td>Hoàn thành</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,7 @@
     <div class="row p-5">
         <div class="col-md-6">
             <figure class="myimg text-center">
-                <img src="<%=request.getContextPath()%>/assets/image/userlogin.png" alt="userlogin">
+                <img style="width: 120px;height: 120px;" src="<%=request.getContextPath()%>/assets/image/userlogin.png" alt="userlogin">
             </figure>
 
         </div>
