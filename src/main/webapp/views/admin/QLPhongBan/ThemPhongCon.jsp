@@ -15,7 +15,7 @@
         .header-item-context--phongban:hover {
             color: #666666;
         }
-        .nav-item--xemphongban {
+        .nav-item--themphongcon {
             background-color: #4dbce8;
         }
         .phongban-item {
@@ -30,3 +30,9 @@
     <%@include file="/component/header.jsp"%>
     <div id="content">
         <div id="main-content">
+        </div>
+    </div>
+</div>
+<%@include file="/component/all_javascript.jsp"%>
+</body>
+</html>

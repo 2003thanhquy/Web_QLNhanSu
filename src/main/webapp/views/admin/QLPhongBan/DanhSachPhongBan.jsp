@@ -42,26 +42,24 @@
                                     </button>
                                 </div>
                                 <div class="row" >
-                                            <div class="col-6 phongban-item--container">
-                                                <c:forEach items="${listpb}" var="phongban">
-                                                <div class="phongban-item" onclick="handleItemClick('${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}')">
-                                                    <h1 class="tenphong">${phongban.tenPB}</h1>
-                                                    <div class="chitietphong">
-                                                        <div class="maphong-container chitiet-container">
-                                                            <h3 class="maphong-label">Mã phòng:</h3>
-                                                            <h3 class="maphong-text">${phongban.maPB}</h3>
-                                                        </div>
-                                                        <div class="chinhanh-container chitiet-container">
-                                                            <h3 class="chinhanh-label">Chi nhánh:</h3>
-                                                            <h3 class="chinhanh-text">${phongban.tenChiNhanh}</h3>
-                                                        </div>
-                                                        <div class="button-xemphongcon--container">
-                                                            <button class="button-xemphongcon btn btn-outline-primary" onclick= xempbcon('${phongban.maPB}')>Xem phòng ban con</button>
-                                                        </div>
-                                                    </div>
+                                    <div class="col-6 phongban-item--container">
+                                        <div class="phongban-item" >
+                                            <h1 class="tenphong">sss</h1>
+                                            <div class="chitietphong">
+                                                <div class="maphong-container chitiet-container">
+                                                    <h3 class="maphong-label">Mã phòng:</h3>
+                                                    <h3 class="maphong-text">dđ</h3>
                                                 </div>
-                                                </c:forEach>
+                                                <div class="chinhanh-container chitiet-container">
+                                                    <h3 class="chinhanh-label">Chi nhánh:</h3>
+                                                    <h3 class="chinhanh-text">dđ</h3>
+                                                </div>
+                                                <div class="button-xemphongcon--container">
+                                                    <button class="button-xemphongcon btn btn-outline-primary" >Xem phòng ban con</button>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
