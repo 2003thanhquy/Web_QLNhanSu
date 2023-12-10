@@ -34,18 +34,25 @@
                 <div class="row">
                     <div class = "col-xl-6 col-sm-12">
                         <div class="danhsachphongban-container">
-                            <div class="danhsachphongban-content container">
-                                <div class="button-chuyennoidung" style="display: flex;justify-content: space-around;margin-bottom:10px">
-                                    <button class="btn btn-outline-primary">Phòng đã có quản lý</button>
-                                    <button class="btn btn-outline-secondary">Phòng chưa có quản lý</button>
+                            <div class="button-chuyennoidung" style="display: flex">
+                                <div tabindex="0" class="phongban-menu--container selected phongcoquanly-container">
+                                    <h3>Phòng có quản lý</h3>
                                 </div>
-                                <div class="button-quaylaiphongcha--container">
-                                    <button class="button-qualaiphongcha btn btn-secondary" onclick="xempbcha()">
-                                        <i class="fa-solid fa-arrow-rotate-left"></i>
-                                        Quay lại
-                                    </button>
+                                <div tabindex="0" class="phongban-menu--container phongchuacoquanly-container">
+                                    <h3>Phòng chưa có quản lý</h3>
                                 </div>
-                                <div class="row dataphongban">
+                            </div>
+                            <div class="danhsachphongban-main-content">
+
+                                <div class="danhsachphongban-content container">
+
+                                    <div class="button-quaylaiphongcha--container">
+                                        <button class="button-qualaiphongcha btn btn-secondary" onclick="xempbcha()">
+                                            <i class="fa-solid fa-arrow-rotate-left"></i>
+                                            Quay lại
+                                        </button>
+                                    </div>
+                                    <div class="row dataphongban">
                                         <c:forEach items="${listpb}" var="phongban">
                                             <div class="col-6 phongban-item--container">
                                                 <div class="phongban-item" onclick="handleItemClick('${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}')">
@@ -66,6 +73,7 @@
                                                 </div>
                                             </div>
                                         </c:forEach>
+                                    </div>
                                 </div>
                             </div>
                         </div>
