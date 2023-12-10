@@ -36,32 +36,32 @@
                         <div class="danhsachphongban-container">
                             <div class="danhsachphongban-content container">
                                 <div class="button-quaylaiphongcha--container">
-                                    <button class="button-qualaiphongcha btn btn-secondary">
+                                    <button class="button-qualaiphongcha btn btn-secondary" onclick="xempbcha()">
                                         <i class="fa-solid fa-arrow-rotate-left"></i>
                                         Quay lại
                                     </button>
                                 </div>
-                                <div class="row">
-                                    <c:forEach items="${listpb}" var="phongban">
-                                        <div class="col-6 phongban-item--container">
-                                            <div class="phongban-item" onclick="handleItemClick('${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}')">
-                                                <h1 class="tenphong">${phongban.tenPB}</h1>
-                                                <div class="chitietphong">
-                                                    <div class="maphong-container chitiet-container">
-                                                        <h3 class="maphong-label">Mã phòng:</h3>
-                                                        <h3 class="maphong-text">${phongban.maPB}</h3>
-                                                    </div>
-                                                    <div class="chinhanh-container chitiet-container">
-                                                        <h3 class="chinhanh-label">Chi nhánh:</h3>
-                                                        <h3 class="chinhanh-text">${phongban.tenChiNhanh}</h3>
-                                                    </div>
-                                                    <div class="button-xemphongcon--container">
-                                                        <button class="button-xemphongcon btn btn-outline-primary">Xem phòng ban con</button>
+                                <div class="row" >
+                                            <div class="col-6 phongban-item--container">
+                                                <c:forEach items="${listpb}" var="phongban">
+                                                <div class="phongban-item" onclick="handleItemClick('${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}')">
+                                                    <h1 class="tenphong">${phongban.tenPB}</h1>
+                                                    <div class="chitietphong">
+                                                        <div class="maphong-container chitiet-container">
+                                                            <h3 class="maphong-label">Mã phòng:</h3>
+                                                            <h3 class="maphong-text">${phongban.maPB}</h3>
+                                                        </div>
+                                                        <div class="chinhanh-container chitiet-container">
+                                                            <h3 class="chinhanh-label">Chi nhánh:</h3>
+                                                            <h3 class="chinhanh-text">${phongban.tenChiNhanh}</h3>
+                                                        </div>
+                                                        <div class="button-xemphongcon--container">
+                                                            <button class="button-xemphongcon btn btn-outline-primary" onclick= xempbcon('${phongban.maPB}')>Xem phòng ban con</button>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                </c:forEach>
                                             </div>
-                                        </div>
-                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -126,8 +126,60 @@
 
 <%@include file="/component/all_javascript.jsp"%>
 
+
 <script>
 
+    var button = document.querySelector(".button-quaylaiphongcha--container");
+    button.style.display = "none";
+
+    var row = document.querySelector(".phongban-item--container");
+    function xempbcon(MaPB) {
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/xemphongbancon",
+            data: {
+                MaPB: MaPB
+            },
+            success: function(data) {
+                console.log(MaPB)
+                console.log(data)
+                row.innerHTML=data;
+                button.style.display = "";
+
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+    function xempbcha() {
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/xemphongbancha",
+            data: {
+            },
+            success: function(data) {
+
+                row.innerHTML=data;
+                button.style.display = "none";
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+
+
+
+
+
+</script>
+
+
+
+<script>
     var pbhienthidautien = document.querySelector('.phongban-item');
     var maphong = document.getElementById('maphong');
     var tenpb = document.getElementById('tenphong');

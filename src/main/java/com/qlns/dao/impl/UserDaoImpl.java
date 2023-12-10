@@ -200,20 +200,7 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
-    @Override
-    public void capnhatphongbanchonhanvien(String MaPB, String MaNV) {
-        String sql = "UPDATE `QuanLyNhanSu`.`nhanvien` SET `MaPB` = ? WHERE `MaNV` = ?";
-        try {
-            conn = new DBConnection().getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, MaPB);
-            ps.setString(2, MaNV);
-            int rowsAffected = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
 
-        }
-    }
 
 
 }

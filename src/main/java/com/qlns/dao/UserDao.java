@@ -17,7 +17,7 @@ public interface UserDao {
 
     List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB);
 
-    void capnhatphongbanchonhanvien(String MaPB, String MaNV);
+
 
 
 

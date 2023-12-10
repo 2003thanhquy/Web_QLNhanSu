@@ -61,15 +61,14 @@ public class CapNhatPhongBanNhanVienController extends HttpServlet {
 
         PrintWriter out = resp.getWriter();
         for (Thongtinnhanvien nv : listnv) {
-            out.println("<tr> onclick=\"chitietnhanvien("+ nv +")\"\n" +
-                    "                                                       <td>" + nv.getMaNV() + "</td>\n" +
-                    "                                                       <td>" + nv.getHoTen() + "</td>\n" +
-                    "                                                       <td>" + nv.getTenChucVu() + "</td>\n" +
-                    "                                                   </tr>");
+            out.println("<tr onclick=\"chitietnhanvien('" + nv + "')\">\n" +
+                    "                                                     <td>" + nv.getMaNV() + "</td>\n" +
+                            "                                                       <td>" + nv.getHoTen() + "</td>\n" +
+                            "                                                       <td>" + nv.getTenChucVu() + "</td>\n" +
+                            "                                                   </tr>");
+
+
         }
-
-
-
     }
 
     private void capnhatphongban(HttpServletRequest request, HttpServletResponse response)
@@ -88,12 +87,12 @@ public class CapNhatPhongBanNhanVienController extends HttpServlet {
         }
         else {
             if (tk.getUserRole().equals("giamdoc")) {
-                listpb =  pbService.laydanhsachphongbangiamdoc(tk.getMaNV());
+                listpb =  pbService.layhetdanhsachphongbangiamdoc(tk.getMaNV());
             } else {
                 if (tk.getUserRole().equals("truongphong")) {
-                    listpb =  pbService.laydanhsachphongbantruongphong(tk.getMaNV());
+                    listpb =  pbService.layhetdanhsachphongbantruongphong(tk.getMaNV());
                 } else {
-                    listpb = (List<ThongTinPhongBan>) pbService.layphongbanthanquanly(tk.getMaNV());
+                    listpb = (List<ThongTinPhongBan>) pbService.layhetphongbanthanquanly(tk.getMaNV());
                 }
             }
         }
