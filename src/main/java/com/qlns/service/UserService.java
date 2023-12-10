@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
 
     Thongtinnhanvien laythongtincanhan(String MaNV);
-    void themnhanvien( String maPB,  int idBacLuong, int idChucVu,  int idTrinhDo,String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh);
+    boolean themnhanvien(NhanVien nv);
     List<Thongtinnhanvien> laydanhsachnhanvienadmin();
     List<Thongtinnhanvien> laydanhsachnhanviengiamdoc(String MaGiamDoc);
     List<Thongtinnhanvien> laydanhsachnhanvientruongphong(String MaTruongPhong);
