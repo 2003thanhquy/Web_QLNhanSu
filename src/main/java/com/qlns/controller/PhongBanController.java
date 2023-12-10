@@ -174,4 +174,28 @@ public class PhongBanController extends HttpServlet {
 
         }
     }
+    private void danhsachnhanvientheophongban(HttpServletRequest req, HttpServletResponse resp)
+            throws SQLException, IOException, ServletException {
+        String MaPB = req.getParameter("MaPB");
+        UserDao userDao = new UserDaoImpl();
+        List<Thongtinnhanvien> listnv = userDao.laydanhsachnhanvientheophongban(MaPB);
+        HttpSession session = req.getSession();
+        session.setAttribute("listnvcuapb", listnv);
+
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+
+        PrintWriter out = resp.getWriter();
+        for (Thongtinnhanvien nv : listnv) {
+            out.println("<tr onclick=\"chitietnhanvien('" + nv + "')\">\n" +
+                    "                                                     <td>" + nv.getMaNV() + "</td>\n" +
+                    "                                                       <td>" + nv.getHoTen() + "</td>\n" +
+                    "                                                       <td>" + nv.getTenChucVu() + "</td>\n" +
+                    "                                                   </tr>");
+
+
+        }
+    }
+
+
 }
