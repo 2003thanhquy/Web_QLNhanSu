@@ -36,16 +36,22 @@ public class PhongBanController extends HttpServlet {
                     xemphongban(request,response);
                     break;
                 case "/danhsachnhanvientheophongban":
+                    danhsachnhanvientheophongban(request, response);
                     break;
                 case "/xemphongbancon":
+                    xemphongbancon(request, response);
                     break;
                 case "/xemphongbancha":
+                    xemphongbancha(request,response);
                     break;
                 case "/themphongban":
                     break;
                 case "/suaphongban":
                     break;
                 case "/xoaphongban":
+                    break;
+                case "/xemphongbanchuacapnhatquanly":
+                    xemphongbanchuacapnhatquanly(request,response);
                     break;
 
                 default:
@@ -126,6 +132,35 @@ public class PhongBanController extends HttpServlet {
 
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcha) {
+            out.println("<div class=\"col-6 phongban-item--container\">\n" +
+                    "                                                <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getNgayBD()+"')\">\n" +
+                    "                                                    <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
+                    "                                                    <div class=\"chitietphong\">\n" +
+                    "                                                        <div class=\"maphong-container chitiet-container\">\n" +
+                    "                                                            <h3 class=\"maphong-label\">Mã phòng:</h3>\n" +
+                    "                                                            <h3 class=\"maphong-text\">"+pb.getMaPB()+"</h3>\n" +
+                    "                                                        </div>\n" +
+                    "                                                        <div class=\"chinhanh-container chitiet-container\">\n" +
+                    "                                                            <h3 class=\"chinhanh-label\">Chi nhánh:</h3>\n" +
+                    "                                                            <h3 class=\"chinhanh-text\">"+pb.getTenChiNhanh()+"</h3>\n" +
+                    "                                                        </div>\n" +
+                    "                                                        <div class=\"button-xemphongcon--container\">\n" +
+                    "                                                            <button class=\"button-xemphongcon btn btn-outline-primary\" onclick= xempbcon('"+pb.getMaPB()+"')>Xem phòng ban con</button>\n" +
+                    "                                            </div>\n" +
+                    "                                                </div>\n" +
+                    "                                                </div>\n" +
+                    "                                            </div>");
+        }
+    }
+    private void xemphongbanchuacapnhatquanly(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        PhongbanService pbService = new PhongbanServiceImp();
+        List<ThongTinPhongBan> listpbchuaql = new ArrayList<>();
+
+        listpbchuaql = pbService.laydanhsachphongbanchuacapnhatquanly();
+        PrintWriter out = resp.getWriter();
+        for (ThongTinPhongBan pb : listpbchuaql) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
                     "                                                <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getNgayBD()+"')\">\n" +
                     "                                                    <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +

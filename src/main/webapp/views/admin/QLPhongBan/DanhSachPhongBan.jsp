@@ -1,3 +1,4 @@
+<%@ page import="com.qlns.model.TaiKhoan" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
@@ -36,8 +37,8 @@
                         <div class="danhsachphongban-container">
                             <div class="danhsachphongban-content container">
                                 <div class="button-chuyennoidung" style="display: flex;justify-content: space-around;margin-bottom:10px">
-                                    <button class="btn btn-outline-primary">Phòng đã có quản lý</button>
-                                    <button class="btn btn-outline-secondary">Phòng chưa có quản lý</button>
+                                    <button class="btn btn-outline-primary"  onclick="xempbqly()">Phòng đã có quản lý</button>
+                                    <button class="btn btn-outline-secondary" onclick="xempbkhongqly()">Phòng chưa có quản lý</button>
                                 </div>
                                 <div class="button-quaylaiphongcha--container">
                                     <button class="button-qualaiphongcha btn btn-secondary" onclick="xempbcha()">
@@ -132,11 +133,20 @@
 
 
 
-
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
 
 <script>
-    var button = document.querySelector(".button-quaylaiphongcha--container");
-    button.style.display = "none";
+    var buttonqlaiphongban = document.querySelector(".button-quaylaiphongcha--container");
+    var buttonqly = document.querySelector(".btn-outline-primary");
+    var buttonkhongqly=document.querySelector(".btn-outline-secondary")
+
+
+    buttonqlaiphongban.style.display = "none";
+    buttonqly.style.display="none";
+
+
+
+
 
     var row = document.querySelector(".dataphongban");
     var pbhienthidautien = document.querySelector('.phongban-item');
@@ -165,14 +175,16 @@
     function xempbcon(MaPB) {
         jQuery.ajax({
             type: "GET",
-            url: "${request.getContextPath()}/QLNhanSu_war_exploded/xemphongbancon",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancon",
             data: {
                 MaPB: MaPB
             },
             success: function(data) {
 
                 row.innerHTML=data;
-                button.style.display = "";
+                buttonqlaiphongban.style.display = "";
+                buttonkhongqly.style.display="none";
+                buttonqly.style.display="none";
                 document.querySelector('.phongban-item').onclick();
 
             },
@@ -184,13 +196,15 @@
     function xempbcha() {
         jQuery.ajax({
             type: "GET",
-            url: "${request.getContextPath()}/QLNhanSu_war_exploded/xemphongbancha",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancha",
             data: {
             },
             success: function(data) {
 
                 row.innerHTML=data;
-                button.style.display = "none";
+                buttonqlaiphongban.style.display = "none";
+                buttonqly.style.display="none";
+                buttonkhongqly.style.display="";
                 document.querySelector('.phongban-item').onclick();
             },
             error: function(error) {
@@ -198,6 +212,48 @@
             }
         });
     }
+    function xempbqly() {
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancha",
+            data: {
+            },
+            success: function(data) {
+
+                row.innerHTML=data;
+                buttonqlaiphongban.style.display = "none";
+                buttonqly.style.display="none";
+                buttonkhongqly.style.display="";
+                document.querySelector('.phongban-item').onclick();
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+    function xempbkhongqly() {
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbanchuacapnhatquanly",
+            data: {
+            },
+            success: function(data) {
+                console.log(data);
+                row.innerHTML=data;
+                buttonqlaiphongban.style.display = "none";
+                buttonkhongqly.style.display="none";
+                buttonqly.style.display="";
+                document.querySelector('.phongban-item').onclick();
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+
+
     pbhienthidautien.click();
     function ThemPhongBan() {
         kieucapnhat = "them";

@@ -17,5 +17,6 @@ public interface PhongbanService {
 
     List<ThongTinPhongBan> laydanhsachphongbancontuphongbancha(String MaPBCha);
     List<ThongTinPhongBan> laydanhsachphongbanchaquyenadmin();
+    List<ThongTinPhongBan> laydanhsachphongbanchuacapnhatquanly();
 
 }

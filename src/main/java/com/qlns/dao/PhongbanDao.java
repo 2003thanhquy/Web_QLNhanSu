@@ -20,6 +20,11 @@ public interface PhongbanDao {
 
     List<ThongTinPhongBan> laydanhsachphongbancontuphongbancha(String MaPBCha);
 
+    List<ThongTinPhongBan> laydanhsachphongbanchuacapnhatquanly();
+
+
+
+
 
 
 
