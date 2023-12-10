@@ -150,7 +150,6 @@ public class PhongbanDaoImpl implements PhongbanDao {
         return list;
     }
 
-
     @Override
     public List<ThongTinPhongBan> laydanhsachphongbancontuphongbancha(String MaPBCha) {
         List<ThongTinPhongBan> list = new ArrayList<>();
@@ -174,8 +173,5 @@ public class PhongbanDaoImpl implements PhongbanDao {
         }
         return list;
     }
-
-
-
 
 }

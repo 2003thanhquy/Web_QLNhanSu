@@ -135,10 +135,6 @@ public class XemPhongBanController extends HttpServlet {
                             "                                                </div>\n" +
                     "                                                </div>\n" +
                     "                                            </div>");
-
-
         }
     }
-
-
 }
