@@ -26,6 +26,7 @@
     <%@include file="/component/header.jsp"%>
     <div id="content">
         <div id="main-content">
+
         </div>
     </div>
 </div>
