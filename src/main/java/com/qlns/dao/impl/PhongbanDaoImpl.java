@@ -207,9 +207,9 @@ public class PhongbanDaoImpl implements PhongbanDao {
     }
 
 
-    public void themphongban(PhongBan pb) {
+    public boolean themphongban(PhongBan pb) {
         String sql = "INSERT INTO `QuanLyNhanSu`.`phongban` (`MaPB`, `MaPBCha`, `TenPB`, `TenPBCha`, `MaCN`, `MaQuanLy`, `NgayBD`) "
-                + "VALUES (null, ? , ?, ?, ?, ?, ?)";
+                + "VALUES (null, ? , ?, ?, ?, ?, null)";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
@@ -218,17 +218,18 @@ public class PhongbanDaoImpl implements PhongbanDao {
             ps.setString(3, pb.getTenPBCha());
             ps.setString(4, pb.getMaCN());
             ps.setString(5, pb.getMaQuanLy());
-            ps.setDate(6, java.sql.Date.valueOf(pb.getNgayBD()));
+//            ps.setDate(6, java.sql.Date.valueOf(pb.getNgayBD()));
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("Thêm phòng ban thành công.");
+                return true;
             } else {
-                System.out.println("Thêm phòng ban thất bại.");
+                return false;
             }
         }catch (Exception e){
             e.printStackTrace();
 
         }
+        return false;
     }
 
     @Override

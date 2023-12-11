@@ -23,7 +23,7 @@ public interface PhongbanDao {
     List<ThongTinPhongBan> laydanhsachphongbanchuacapnhatquanly();
 
 
-    void themphongban(PhongBan pb);
+     boolean themphongban(PhongBan pb);
 
     List<PhongBan> getPhongBan();
 

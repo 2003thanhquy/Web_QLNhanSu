@@ -16,4 +16,21 @@ public class ChiNhanhServiceImp implements ChiNhanhService {
         return cnDao.danhsachchinhanh();
 
     }
+
+    @Override
+    public void themchinhanh(ChiNhanh cn) {
+        cnDao.themchinhanh(cn);
+
+    }
+
+    @Override
+    public void capnhatchinhanh(ChiNhanh cn) {
+        cnDao.capnhatchinhanh(cn);
+
+    }
+
+    @Override
+    public void xoachinhanh(String macn) {
+        cnDao.xoachinhanh(macn);
+    }
 }
