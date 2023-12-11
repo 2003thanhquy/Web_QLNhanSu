@@ -22,11 +22,15 @@ public interface PhongbanDao {
 
     List<ThongTinPhongBan> laydanhsachphongbanchuacapnhatquanly();
 
-    void themphongbancha(String tenpb,String MaQuanLy,String MaCN,String NgayBD);
 
-    void themphongbancon(String tenpb,String MaPBCha,String TenPBCha,String MaQuanLy,String MaCN,String NgayBD);
+    void themphongban(PhongBan pb);
 
     List<PhongBan> getPhongBan();
+
+
+    void capnhatphongban(PhongBan pb);
+
+    void xoaphongban(String mapb);
 
 
 
