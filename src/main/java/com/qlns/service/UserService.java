@@ -14,9 +14,7 @@ public interface UserService {
 
     List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB);
 
-    List<PhongBan> getPhongBan();
-    List<Luong> getLuong();
-    List<ChucVu> getChucVu();
-    List<TrinhDo> getTrinHDo();
+
+    Boolean UpdateNV(NhanVien nv);
 
 }

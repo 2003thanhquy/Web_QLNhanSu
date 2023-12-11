@@ -75,10 +75,10 @@
                                                 <label class="input-text ">Giới tính</label>
                                                 <div class="gioitinh-radiobutton">
                                                     <label class="gioitinh-text">
-                                                        <input  type="radio" name="gender" value="male"> Nam
+                                                        <input  type="radio" name="gender" value="Nam"> Nam
                                                     </label>
                                                     <label class="gioitinh-text" style="margin-left: 8px">
-                                                        <input  type="radio" name="gender" value="female"> Nữ
+                                                        <input  type="radio" name="gender" value="Nữ"> Nữ
                                                     </label>
                                                 </div>
                                             </div>

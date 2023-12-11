@@ -50,12 +50,13 @@ public class PhongbanServiceImp implements PhongbanService {
 
 
 
-    public void themphongban(PhongBan pb){
-        pbDao.themphongban(pb);
+    public   boolean  themphongban(PhongBan pb){
+        return pbDao.themphongban(pb);
     }
 
     @Override
     public void capnhatphongban(PhongBan pb) {
+
         pbDao.capnhatphongban(pb);
     }
 

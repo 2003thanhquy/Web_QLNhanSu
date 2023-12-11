@@ -37,19 +37,7 @@ public class UserDaoImpl implements UserDao {
                 ttnv.setSoDienThoai(rs.getString("SDT"));
                 ttnv.setNamSinh(rs.getDate("NamSinh").toLocalDate());
                 ttnv.setTenChiNhanh(rs.getString("TenChiNhanh"));
-                byte[] hinhAnhBytes = rs.getBytes("HinhAnh");
-
-
-                if (hinhAnhBytes != null) {
-                    Byte[] hinhAnh = new Byte[hinhAnhBytes.length];
-                    for (int i = 0; i < hinhAnhBytes.length; i++) {
-                        hinhAnh[i] = hinhAnhBytes[i];
-                    }
-//                    ttnv.setHinhAnh(hinhAnh);
-                } else {
-                    // Trường HinhAnh có giá trị NULL, xử lý theo ý muốn của bạn
-                    ttnv.setHinhAnh(null); // hoặc thực hiện một xử lý khác
-                }
+                ttnv.setHinhAnh(rs.getString("HinhAnh"));
                 ttnv.setGioiTinh(rs.getString("GioiTinh"));
                 return ttnv;
             }
@@ -189,6 +177,35 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
+    @Override
+    public Boolean UpdateNV(NhanVien nv) {
+        String sql = "UPDATE NhanVien SET maPB=?, idbacluong=?, idchucvu=?, " +
+                "idtrinhdo=?, hoten=?, cccd=?, diachi=?, hinhanh=?, sdt=?, namsinh=?, gioitinh=? " +
+                "WHERE MaNV=?";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,nv.getMaPB());
+            ps.setInt(2,nv.getIdBacLuong());
+            ps.setInt(3, nv.getIdChucVu());
+            ps.setInt(4, nv.getIdTrinhDo());
+            ps.setString(5, nv.getHoTen());
+            ps.setString(6, nv.getCCCD());
+            ps.setString(7, nv.getDiaChi());
+            ps.setString(8, nv.getHinhAnh());
+            ps.setString(9, nv.getSdt());
+            ps.setDate(10,java.sql.Date.valueOf(nv.getNamSinh()) );
+            ps.setString(11, nv.getGioiTinh());
+            ps.setString(12, nv.getMaNV());
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated >0;
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return false;
+    }
 
 
 }

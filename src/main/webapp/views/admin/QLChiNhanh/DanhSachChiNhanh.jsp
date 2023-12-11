@@ -29,6 +29,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<h1> hello</h1>
 <div id="main-web" >
     <%@include file="/component/navbar/QLChiNhanh-nav.jsp"%>
     <%@include file="/component/header.jsp"%>
@@ -56,17 +57,16 @@
                                     </div>
                                     <div class="table100-body js-pscroll">
                                         <table>
-                                            <tbody>
-                                            <c:forEach items="${listcn}" var="cn">
-                                                <tr class="row100 body dscn-table-tr">
-                                                    <td class="cell100 column1">${cn.maCN}</td>
-                                                    <td class="cell100 column2">Chi nhánh 1</td>
-                                                    <td class="cell100 column3">Hà Nội</td>
-                                                    <td class="cell100 column4">24-11-2003</td>
-                                                    <td class="cell100 column5">NV0001</td>
-                                                </tr>
+                                            <tbody id="bodydata">
+                                            <c:forEach items="${listcn}" var="chinhanh" >
+                                            <tr class="row100 body dscn-table-tr" onclick="handleItemClick('${chinhanh.maCN}','${chinhanh.tenChiNhanh}','${chinhanh.diaChi}','${chinhanh.ngayBD}','${chinhanh.maGiamDoc}')">
+                                                <td class="cell100 column1">${chinhanh.maCN}</td>
+                                                <td class="cell100 column2">${chinhanh.tenChiNhanh}</td>
+                                                <td class="cell100 column3">${chinhanh.diaChi}</td>
+                                                <td class="cell100 column4">${chinhanh.ngayBD}</td>
+                                                <td class="cell100 column5">${chinhanh.maGiamDoc}</td>
+                                            </tr>
                                             </c:forEach>
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -102,18 +102,18 @@
                                            <input class="dscn-ttcn-input-element" type="text" id="dscn--ttcn-idgiamdoc" name="dscn--ttcn-idgiamdoc">
                                        </div>
                                    </div>
+                               </form>
                                    <div class="button-container">
                                         <div class="dscn-ttcn--thaotac-button">
-                                            <button class="btn btn-outline-primary dscn-ttcn-thembutton dscn-ttcn--button">Thêm</button>
-                                            <button class="btn btn-outline-warning dscn-ttcn-capnhatbutton dscn-ttcn--button">Cập nhật</button>
-                                            <button class="btn btn-outline-danger dscn-ttcn-xoatbutton dscn-ttcn--button">Xóa</button>
+                                            <button class="btn btn-outline-primary dscn-ttcn-thembutton dscn-ttcn--button" onclick="themcn">Thêm</button>
+                                            <button class="btn btn-outline-warning dscn-ttcn-capnhatbutton dscn-ttcn--button" onclick="capnhatcn">Cập nhật</button>
+                                            <button class="btn btn-outline-danger dscn-ttcn-xoatbutton dscn-ttcn--button" onclick="xoacn">Xóa</button>
                                         </div>
                                        <div class="dscn-ttcn--confirm-button">
-                                           <button class="btn btn-outline-secondary dscn-ttcn-huytbutton dscn-ttcn--button">Hủy</button>
-                                           <button class="btn btn-outline-success dscn-ttcn-xacnhantbutton dscn-ttcn--button">Xác nhận</button>
+                                           <button class="btn btn-outline-secondary dscn-ttcn-huytbutton dscn-ttcn--button" onclick="huy()">Hủy</button>
+                                           <button class="btn btn-outline-success dscn-ttcn-xacnhantbutton dscn-ttcn--button" onclick="xacnhan">Xác nhận</button>
                                        </div>
                                    </div>
-                               </form>
                             </div>
                         </div>
                     </div>
@@ -124,6 +124,67 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+<script>
+    var macn = document.getElementById("dscn--ttcn-idchinhanh");
+    var tencn =document.getElementById("dscn--ttcn-tenchinhanh");
+    var diachi = document.getElementById("dscn--ttcn-diachi");
+    var ngaythanhlap = document.getElementById("dscn--ttcn-ngaythanhlap");
+    var magiamdoc = document.getElementById("dscn--ttcn-idgiamdoc");
+    var kieucapnhat;
+    var dulieu = document.getElementById("bodydata");
+
+
+     function  handleItemClick(MaCN,TenCN,DiaChi,NgayThanhLap,Magd){
+         macn.value = MaCN;
+         tencn.value= TenCN;
+         diachi.value = DiaChi;
+         ngaythanhlap.value = NgayThanhLap;
+         magiamdoc.value = Magd;
+
+     }
+     function  themcn(){
+         kieucapnhat = "them";
+
+     }
+     function  capnhatcn(){
+         kieucapnhat = "capnhat";
+     }
+     function  xoacn(){
+         kieucapnhat = "xoa";
+     }
+    function  huy(){
+
+    }
+    function  xacnhan(){
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/chinhanh/capnhatchinhanh",
+            data: {
+                kieucapnhat: kieucapnhat,
+                macn  : macn,
+                tencn : tencn,
+                diachi : diachi,
+                ngaythanhlap  :ngaythanhlap,
+                magiamdoc : magiamdoc,
+            },
+            success: function (data) {
+                dulieu.innerHTML=data;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+</script>
 
 </body>
 </html>

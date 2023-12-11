@@ -96,7 +96,6 @@
                                     </div>
                                     <div class="thongtinphongban-content-input--item" >
                                         <label for="chinhanh" class="thongtinphongban-content-input--lable">Chi nhánh</label>
-<%--                                        <input id="chinhanh" type="text" name="chinhanh" class="thongtinphongban-input">--%>
                                         <select id="chinhanh"  name="chinhanh" class="thongtinphongban-input" >
                                             <option id="tenchinhanh"  ></option>
                                             <c:forEach items="${listcntoanbo}" var="chinhanh">
@@ -112,6 +111,7 @@
                                         <label for="ngaythanhlap" class="thongtinphongban-content-input--lable">Thành lập</label>
                                         <input id="ngaythanhlap" type="text" name="ngaythanhlap" class="thongtinphongban-input">
                                     </div>
+                                </form>
                                     <div class="thongtin-content--button">
                                         <div class = "button-control button-container">
                                             <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
@@ -128,12 +128,12 @@
                                             <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy()">
                                                 <p class="button-huy--label">Hủy</p>
                                             </div>
-                                            <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" type="button" onclick="XacNhan()">
+                                            <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" onclick="XacNhan()">
                                                 <p class=" button-xacnhan--label">Xác nhận</p>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -200,7 +200,7 @@
         maql=maQL;
         macnCha =  maCNCha;
 
-        // phongbandangclick = event.target;
+        phongbandangclick = event.target;
         maphong.disabled = true;
         tenpb.disabled = true;
         macn.disabled = true;
@@ -217,6 +217,7 @@
                 maphong: MaPB
             },
             success: function(data) {
+                console.log(data);
                 row.innerHTML=data;
                 document.querySelector('.phongban-item').click();
 
@@ -241,7 +242,6 @@
             data: {
             },
             success: function(data) {
-
                 row.innerHTML=data;
                 document.querySelector('.phongban-item').click();
 
@@ -299,8 +299,6 @@
 
     }
 
-
-
     pbhienthidautien.click();
     function ThemPhongBan() {
         kieucapnhat = "them";
@@ -350,6 +348,10 @@
         document.querySelector(".button-capnhat--label").disabled = true;
         tencn.style.display = '';
     }
+
+
+</script>
+<script>
     function XacNhan(){
         let dataObj = {
             kieucapnhat : kieucapnhat,
@@ -366,18 +368,25 @@
 
         jQuery.ajax({
             type: "GET",
-            url: "${request.getContextPath()}/phongban/capnhatphongban",
-            data: JSON.stringify(dataObj),
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/capnhatphongban",
+            data: {
+                kieucapnhat : kieucapnhat,
+                maphong : maphong.value,
+                tenpb : tenpb.value,
+                mapbcha:mapbcha.value,
+                tenpbcha:tenpbcha.value,
+                macn:macn.value,
+                maql:maql.value,
+                mgaybd :ngaybd.value,
+            },
             success: function (data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').onclick();
             },
             error: function (error) {
                 console.log(error);
             }
         });
     }
-
 </script>
 
 
