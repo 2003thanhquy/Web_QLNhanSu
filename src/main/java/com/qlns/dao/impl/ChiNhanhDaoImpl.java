@@ -25,8 +25,9 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
             rs= ps.executeQuery();
 
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(5).toLocalDate());
                list.add(new ChiNhanh(rs.getString(1),rs.getString(2),
-                       rs.getString(3),rs.getString(4),rs.getDate(5)));
+                       rs.getString(3),rs.getString(4),dateValue.toLocalDate()));
             }
 
         }catch (Exception e){
