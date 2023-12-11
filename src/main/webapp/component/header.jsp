@@ -14,7 +14,7 @@
         <li class="header-item header-item-account" >
             <div class="header-item-account--container " >
                 <div class="header-account" >
-                    <p class="account-text">Your Account</p>
+                    <p class="account-text">Tài khoản</p>
                     <img src="<%= request.getContextPath()%>/assets/image/Ellipse%201.png" alt="" class = "account-image">
                 </div>
                 <div class="header-deltail-container" tabindex="0">
