@@ -96,12 +96,21 @@
                                                 <input class="tnv-input" type="text" id="tnv-idtrinhdo" name="tnv-idtrinhdo">
                                             </div>
                                             <div class="input-container">
+                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
+                                                <select class="tnv-input"  id="tnv-idtrinhdo" name="tnv-idtrinhdo">
+                                                    <c:forEach items="[1,2,3]" var="x">
+                                                        <option>${x}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                            <div class="input-container">
                                                 <label class="h2" for="fileInput-avatar">Chọn ảnh đại diện:</label>
                                                 <input class="btn btn-outline-info" type="file" id="fileInput-avatar" name="image" accept="image/*">
                                                 <div id="imageContainer-avatar">
 
                                                 </div>
                                             </div>
+
 
                                         </div>
                                     </div>

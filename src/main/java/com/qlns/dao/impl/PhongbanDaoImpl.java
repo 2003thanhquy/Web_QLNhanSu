@@ -234,6 +234,32 @@ public class PhongbanDaoImpl implements PhongbanDao {
         }
     }
 
+    @Override
+    public List<PhongBan> getPhongBan() {
+        List<PhongBan> lstPhongBan = new ArrayList<>();
+        String sql = "SELECT * FROM PhongBan where status = 1";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                PhongBan pb  = new PhongBan();
+                pb.setMaPB(rs.getString("MaPB"));
+                pb.setTenPB(rs.getString("TenPB"));
+                pb.setMaCN(rs.getString("MaCN"));
+                pb.setMaPBCha(rs.getString("MaPBCha"));
+                pb.setTenPBCha(rs.getString("TenPBCha"));
+                pb.setMaQuanLy(rs.getString("MaQuanLy"));
+                pb.setNgayBD(rs.getDate("NgayBD").toLocalDate());
+                lstPhongBan.add(pb);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return lstPhongBan;
+    }
 
 
 }

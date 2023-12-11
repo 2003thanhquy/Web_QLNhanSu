@@ -1,8 +1,6 @@
 package com.qlns.service;
 
-import com.qlns.model.ChucVu;
-import com.qlns.model.NhanVien;
-import com.qlns.model.Thongtinnhanvien;
+import com.qlns.model.*;
 
 import java.util.List;
 
@@ -16,6 +14,9 @@ public interface UserService {
 
     List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB);
 
-
+    List<PhongBan> getPhongBan();
+    List<Luong> getLuong();
+    List<ChucVu> getChucVu();
+    List<TrinhDo> getTrinHDo();
 
 }

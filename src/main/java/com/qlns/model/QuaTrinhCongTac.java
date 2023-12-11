@@ -1,19 +1,20 @@
 package com.qlns.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class QuaTrinhCongTac {
     String maCT;
     String MaNV;
     String DiaDiem;
-    Date NgayDB;
-    Date NgayKT;
+    LocalDate NgayDB;
+    LocalDate NgayKT;
     String congViecCongTac;
 
     public QuaTrinhCongTac() {
     }
 
-    public QuaTrinhCongTac(String maNV, String diaDiem, Date ngayDB, Date ngayKT, String congViecCongTac) {
+    public QuaTrinhCongTac(String maNV, String diaDiem, LocalDate ngayDB, LocalDate ngayKT, String congViecCongTac) {
         MaNV = maNV;
         DiaDiem = diaDiem;
         NgayDB = ngayDB;
@@ -21,7 +22,7 @@ public class QuaTrinhCongTac {
         this.congViecCongTac = congViecCongTac;
     }
 
-    public QuaTrinhCongTac(String maCT, String maNV, String diaDiem, Date ngayDB, Date ngayKT, String congViecCongTac) {
+    public QuaTrinhCongTac(String maCT, String maNV, String diaDiem, LocalDate ngayDB, LocalDate ngayKT, String congViecCongTac) {
         this.maCT = maCT;
         MaNV = maNV;
         DiaDiem = diaDiem;
@@ -54,19 +55,19 @@ public class QuaTrinhCongTac {
         DiaDiem = diaDiem;
     }
 
-    public Date getNgayDB() {
+    public LocalDate getNgayDB() {
         return NgayDB;
     }
 
-    public void setNgayDB(Date ngayDB) {
+    public void setNgayDB(LocalDate ngayDB) {
         NgayDB = ngayDB;
     }
 
-    public Date getNgayKT() {
+    public LocalDate getNgayKT() {
         return NgayKT;
     }
 
-    public void setNgayKT(Date ngayKT) {
+    public void setNgayKT(LocalDate ngayKT) {
         NgayKT = ngayKT;
     }
 

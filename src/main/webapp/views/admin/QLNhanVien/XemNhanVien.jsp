@@ -47,7 +47,7 @@
                                 <td>${nhanVien.hoTen}</td>
                                 <td>${nhanVien.tenChucVu}</td>
                                 <td>${nhanVien.tenPhongBan}</td>
-                                <td><i class="fa-solid fa-eye thongtinnhanvien-icon" data-nhanvien="${nhanVien}"></i></td>
+                                <td><a href="thongtin?manv=<c:out value='${nhanVien.maNV}' />"><i class="fa-solid fa-eye thongtinnhanvien-icon" data-nhanvien="${nhanVien}"></i></a></td>
                                 <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
                             </tr>
                         </c:forEach>
