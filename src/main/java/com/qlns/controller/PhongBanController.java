@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -233,7 +234,7 @@ public class PhongBanController extends HttpServlet {
     private void themphongban(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException{
 
-        PhongbanService pbservice = new PhongbanServiceImp();
+        PhongbanService  phongbanService = new PhongbanServiceImp();
         PhongBan pb = new PhongBan();
         pb.setMaPB(request.getParameter("maphong"));
         pb.setTenPB(request.getParameter("tenpb"));;
@@ -241,13 +242,17 @@ public class PhongBanController extends HttpServlet {
         pb.setMaPBCha(request.getParameter("mapbcha"));
         pb.setTenPBCha(request.getParameter("tenpbcha"));
         pb.setMaQuanLy(request.getParameter("maql"));
-        pb.setNgayBD(Date.valueOf(request.getParameter("ngaybd")).toLocalDate());
-        pbservice.themphongban(pb);
-        if (pb.getMaPBCha().isEmpty()) {
-            xemphongbancha(request,response);
+
+        if(phongbanService.themphongban(pb))
+        {
+            System.out.println("Thêm phòng ban thành công");
         }
-        else
-            xemphongbancon(request, response);
+       String maPBCha = pb.getMaPBCha();
+      if (maPBCha != null && !maPBCha.isEmpty()) {
+           xemphongbancha(request,response);
+       }
+       else
+           xemphongbancon(request, response);
     }
     private void suaphongban(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException{
