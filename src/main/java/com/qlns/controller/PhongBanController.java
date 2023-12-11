@@ -2,11 +2,14 @@ package com.qlns.controller;
 
 import com.qlns.dao.UserDao;
 import com.qlns.dao.impl.UserDaoImpl;
+import com.qlns.model.ChiNhanh;
 import com.qlns.model.TaiKhoan;
 import com.qlns.model.ThongTinPhongBan;
 import com.qlns.model.Thongtinnhanvien;
+import com.qlns.service.ChiNhanhService;
 import com.qlns.service.PhongbanService;
 import com.qlns.service.UserService;
+import com.qlns.service.impl.ChiNhanhServiceImp;
 import com.qlns.service.impl.PhongbanServiceImp;
 import com.qlns.service.impl.UserServiceImp;
 
@@ -77,6 +80,10 @@ public class PhongBanController extends HttpServlet {
         List<ThongTinPhongBan> listpb = new ArrayList<>();
         if(tk.getUserRole().equals("admin")){
             listpb = pbService.laydanhsachphongbanchaquyenadmin();
+            ChiNhanhService cnservice = new ChiNhanhServiceImp();
+            List<ChiNhanh> listcntoanbo = new ArrayList<>();
+            listcntoanbo = cnservice.danhsachchinhanh();
+            session.setAttribute("listcntoanbo", listcntoanbo);
         }
         else {
             if (tk.getUserRole().equals("giamdoc")) {
@@ -104,7 +111,7 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcon) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"')\">\n" +
+                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"')\">\n" +
                     "                                                <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
                     "                                                <div class=\"chitietphong\">\n" +
                     "                                                    <div class=\"maphong-container chitiet-container\">\n" +
@@ -133,7 +140,7 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcha) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                                <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"')\">\n" +
+                    "                                                <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"')\">\n" +
                     "                                                    <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
                     "                                                    <div class=\"chitietphong\">\n" +
                     "                                                        <div class=\"maphong-container chitiet-container\">\n" +
@@ -162,7 +169,7 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbchuaql) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick('"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"')\">\n" +
+                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"')\">\n" +
                     "                                                <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
                     "                                                <div class=\"chitietphong\">\n" +
                     "                                                    <div class=\"maphong-container chitiet-container\">\n" +
