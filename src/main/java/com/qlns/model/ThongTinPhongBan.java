@@ -15,7 +15,7 @@ public class ThongTinPhongBan {
     public ThongTinPhongBan() {
     }
 
-    public ThongTinPhongBan(String maPB, String maPBCha, String tenPB, String maCN, String maQuanLy, String tenPBCha, Date ngayBD, String tenQuanLy, String tenChiNhanh) {
+    public ThongTinPhongBan(String maPB, String maPBCha, String tenPB,String tenPBCha, String maCN, String maQuanLy, Date ngayBD, String tenQuanLy, String tenChiNhanh) {
         this.maPB = maPB;
         this.maPBCha = maPBCha;
         this.tenPB = tenPB;
