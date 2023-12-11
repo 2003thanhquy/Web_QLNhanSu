@@ -1,12 +1,13 @@
 package com.qlns.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class KThuongKLuc {
     int id;
     String maNV;
     String noiDung;
-    Date Ngay;
+    LocalDate Ngay;
     String soKT_KL;
     int loai;
 
@@ -14,7 +15,7 @@ public class KThuongKLuc {
 
     }
 
-    public KThuongKLuc(String maNV, String noiDung, Date ngay, String soKT_KL, int loai) {
+    public KThuongKLuc(String maNV, String noiDung, LocalDate ngay, String soKT_KL, int loai) {
         this.maNV = maNV;
         this.noiDung = noiDung;
         Ngay = ngay;
@@ -22,7 +23,7 @@ public class KThuongKLuc {
         this.loai = loai;
     }
 
-    public KThuongKLuc(int id, String maNV, String noiDung, Date ngay, String soKT_KL, int loai) {
+    public KThuongKLuc(int id, String maNV, String noiDung, LocalDate ngay, String soKT_KL, int loai) {
         this.id = id;
         this.maNV = maNV;
         this.noiDung = noiDung;
@@ -55,11 +56,11 @@ public class KThuongKLuc {
         this.noiDung = noiDung;
     }
 
-    public Date getNgay() {
+    public LocalDate getNgay() {
         return Ngay;
     }
 
-    public void setNgay(Date ngay) {
+    public void setNgay(LocalDate ngay) {
         Ngay = ngay;
     }
 

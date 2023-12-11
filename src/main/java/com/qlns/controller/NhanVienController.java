@@ -38,10 +38,13 @@ public class NhanVienController extends HttpServlet {
         try{
             switch (relativePath){
                 case "/":
-                    XemNhanVien(request,response);
+                    XemDanhSach(request,response);
                     break;
                 case "/themnhanvien":
                     ThemNhanVien(request,response);
+                    break;
+                case "/thongtin":
+                    XemNhanVien(request,response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath()+"/error/error.jsp");
@@ -57,7 +60,7 @@ public class NhanVienController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
-    public void XemNhanVien(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
+    public void XemDanhSach(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
         UserService userService = new UserServiceImp();
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
@@ -121,6 +124,16 @@ public class NhanVienController extends HttpServlet {
 
         }
 
+
+    }
+    public void XemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+          String manv = request.getParameter("manv");
+         // UserService user = new UserServiceImp();
+          //user.laythongtincanhan(manv);
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>hello world</h1>");
+        out.println("<a href='./about?manv=1'>day ka biu dybg</a>");
 
     }
 }
