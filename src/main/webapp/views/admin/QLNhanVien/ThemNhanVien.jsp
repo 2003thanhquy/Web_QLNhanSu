@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.qlns.model.PhongBan"%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -49,6 +50,8 @@
                                     <div class="col-10">
                                         <div class="input-element--container">
                                             <div class="input-container">
+                                            </div>
+                                            <div class="input-container">
                                                 <label class="input-text" for="tnv-hovaten">Họ và tên</label>
                                                 <input class="tnv-input" type="text" id="tnv-hovaten" name="tnv-hovaten">
                                             </div>
@@ -80,28 +83,37 @@
                                                 </div>
                                             </div>
                                             <div class="input-container">
-                                                <label class="input-text" for="tnv-idphongban">Mã phòng ban</label>
-                                                <input class="tnv-input" type="text" id="tnv-idphongban" name="tnv-maphongban">
+                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
+                                                <select class="tnv-input"   id="tnv-idphongban" name="tnv-maphongban">
+                                                    <c:forEach items="${lstPB}" var="pb">
+                                                        <option value="${pb.maPB}">${pb.tenPB}</option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                             <div class="input-container">
                                                 <label class="input-text" for="tnv-idbacluong">Mã bậc lương</label>
-                                                <input class="tnv-input" type="text" id="tnv-idbacluong" name="tnv-idbacluong">
+                                                <select class="tnv-input"   id="tnv-idbacluong" name="tnv-idbacluong">
+                                                    <c:forEach items="${lstLuong}" var="l">
+                                                        <option value="${l.idBacLuong}">${l.idBacLuong}</option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                             <div class="input-container">
                                                 <label class="input-text" for="tnv-idchucvu">Mã chức vụ</label>
-                                                <input class="tnv-input" type="text" id="tnv-idchucvu" name="tnv-idchucvu">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
-                                                <input class="tnv-input" type="text" id="tnv-idtrinhdo" name="tnv-idtrinhdo">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
-                                                <select class="tnv-input"  id="tnv-idtrinhdo" name="tnv-idtrinhdo">
-                                                    <c:forEach items="[1,2,3]" var="x">
-                                                        <option>${x}</option>
+                                                <select class="tnv-input"   id="tnv-idchucvu" name="tnv-idchucvu">
+                                                    <c:forEach items="${lstCV}" var="cv">
+                                                        <option value="${cv.idChucVu}">${cv.tenChucVu}</option>
                                                     </c:forEach>
                                                 </select>
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
+                                                <select class="tnv-input"   id="tnv-idtrinhdo" name="tnv-idtrinhdo">
+                                                    <c:forEach items="${lstTD}" var="td">
+                                                        <option value="${td.idTrinhDo}">${td.tenTrinhDo}</option>
+                                                    </c:forEach>
+                                                </select>
+
                                             </div>
                                             <div class="input-container">
                                                 <label class="h2" for="fileInput-avatar">Chọn ảnh đại diện:</label>

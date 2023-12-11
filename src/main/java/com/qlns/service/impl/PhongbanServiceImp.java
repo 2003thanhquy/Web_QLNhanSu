@@ -56,4 +56,9 @@ public class PhongbanServiceImp implements PhongbanService {
         pbDao.themphongbancon(tenpb, MaPBCha, TenPBCha, MaQuanLy, MaCN, NgayBD);
     }
 
+    @Override
+    public List<PhongBan> getPhongBan() {
+        return pbDao.getPhongBan();
+    }
+
 }

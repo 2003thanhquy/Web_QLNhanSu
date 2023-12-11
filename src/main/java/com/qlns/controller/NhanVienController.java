@@ -2,11 +2,9 @@ package com.qlns.controller;
 
 import com.qlns.dao.UserDao;
 import com.qlns.dao.impl.UserDaoImpl;
-import com.qlns.model.NhanVien;
-import com.qlns.model.TaiKhoan;
-import com.qlns.model.Thongtinnhanvien;
-import com.qlns.service.UserService;
-import com.qlns.service.impl.UserServiceImp;
+import com.qlns.model.*;
+import com.qlns.service.*;
+import com.qlns.service.impl.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -29,6 +27,19 @@ import java.util.List;
 @WebServlet("/nhanvien/*")
 @MultipartConfig
 public class NhanVienController extends HttpServlet {
+    private UserService userService;
+    private PhongbanService pb;
+    private LuongSerrvice luong;
+    private ChucVuService cv;
+    private TrinhDoService td ;
+    @Override
+    public void init(){
+        pb = new PhongbanServiceImp();
+        luong = new LuongServiceImpl();
+        cv = new ChucVuServiceImlp();
+        td = new TrinhDoServiceImpl();
+        userService = new UserServiceImp();
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -61,7 +72,7 @@ public class NhanVienController extends HttpServlet {
         doGet(request,response);
     }
     public void XemDanhSach(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
-        UserService userService = new UserServiceImp();
+
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
         Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
@@ -86,6 +97,10 @@ public class NhanVienController extends HttpServlet {
     }
     public void ThemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException {
         if (request.getMethod().equals("GET")) {
+            request.setAttribute("lstPB",pb.getPhongBan());
+            request.setAttribute("lstLuong",luong.getLuong());
+            request.setAttribute("lstCV",cv.getChucVu());
+            request.setAttribute("lstTD",td.getTrinhDo());
             request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request, response);
         } else {
 
