@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -43,7 +44,7 @@
                     <div class="themnhanvien-thucong--content">
                         <div class="themnhanvien-thucong-form--container container">
 
-                            <form action="<%=request.getContextPath()%>/themnhanvien" method="post" class="form-tnv container" enctype="multipart/form-data">
+                            <form action="<%=request.getContextPath()%>/nhanvien/themnhanvien" method="post" class="form-tnv container" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="input-element--container">
@@ -65,7 +66,7 @@
                                             </div>
                                             <div class="input-container">
                                                 <label class="input-text" for="tnv-ngaysinh">Ngày sinh</label>
-                                                <input class="tnv-input" type="text" id="tnv-ngaysinh" name="tnv-ngaysinh">
+                                                <input class="tnv-input" type="date" id="tnv-ngaysinh" name="tnv-ngaysinh">
                                             </div>
                                             <div class="input-container">
                                                 <label class="input-text ">Giới tính</label>
@@ -80,7 +81,7 @@
                                             </div>
                                             <div class="input-container">
                                                 <label class="input-text" for="tnv-idphongban">Mã phòng ban</label>
-                                                <input class="tnv-input" type="text" id="tnv-idphongban" name="tnv-idphongban">
+                                                <input class="tnv-input" type="text" id="tnv-idphongban" name="tnv-maphongban">
                                             </div>
                                             <div class="input-container">
                                                 <label class="input-text" for="tnv-idbacluong">Mã bậc lương</label>

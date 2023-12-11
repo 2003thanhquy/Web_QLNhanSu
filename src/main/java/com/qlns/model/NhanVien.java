@@ -1,9 +1,12 @@
 package com.qlns.model;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class NhanVien {
     String maNV;
     String maPB;
-    String maCT;
+    
     int idBacLuong;
     int idChucVu;
     int idTrinhDo;
@@ -13,15 +16,14 @@ public class NhanVien {
     String DiaChi;
     String hinhAnh;
     String sdt;
-    String namSinh;
+    LocalDate namSinh;
     String GioiTinh;
 
     public NhanVien() {
     }
 
-    public NhanVien(String maPB, String maCT, int idBacLuong, int idChucVu, int idTrinhDo,String HoTen, String CCCD, String diaChi, String hinhAnh, String sdt, String namSinh, String gioiTinh) {
+    public NhanVien(String maPB, int idBacLuong, int idChucVu, int idTrinhDo,String HoTen, String CCCD, String diaChi, String hinhAnh, String sdt, LocalDate namSinh, String gioiTinh) {
         this.maPB = maPB;
-        this.maCT = maCT;
         this.idBacLuong = idBacLuong;
         this.idChucVu = idChucVu;
         this.idTrinhDo = idTrinhDo;
@@ -34,10 +36,9 @@ public class NhanVien {
         GioiTinh = gioiTinh;
     }
 
-    public NhanVien(String maNV, String maPB, String maCT, int idBacLuong, int idChucVu,  int idTrinhDo,String HoTen, String CCCD, String diaChi, String hinhAnh, String sdt, String namSinh, String gioiTinh) {
+    public NhanVien(String maNV, String maPB, int idBacLuong, int idChucVu,  int idTrinhDo,String HoTen, String CCCD, String diaChi, String hinhAnh, String sdt, LocalDate namSinh, String gioiTinh) {
         this.maNV = maNV;
         this.maPB = maPB;
-        this.maCT = maCT;
         this.idBacLuong = idBacLuong;
         this.idChucVu = idChucVu;
         this.idTrinhDo = idTrinhDo;
@@ -64,14 +65,6 @@ public class NhanVien {
 
     public void setMaPB(String maPB) {
         this.maPB = maPB;
-    }
-
-    public String getMaCT() {
-        return maCT;
-    }
-
-    public void setMaCT(String maCT) {
-        this.maCT = maCT;
     }
 
     public int getIdBacLuong() {
@@ -138,11 +131,11 @@ public class NhanVien {
         this.sdt = sdt;
     }
 
-    public String getNamSinh() {
+    public LocalDate getNamSinh() {
         return namSinh;
     }
 
-    public void setNamSinh(String namSinh) {
+    public void setNamSinh(LocalDate namSinh) {
         this.namSinh = namSinh;
     }
 

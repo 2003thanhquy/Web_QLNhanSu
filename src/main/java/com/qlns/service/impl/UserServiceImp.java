@@ -19,8 +19,8 @@ public class UserServiceImp implements  UserService {
     }
 
     @Override
-    public void themnhanvien( String maPB,  int idBacLuong, int idChucVu, int idTrinhDo, String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
-        userDao.themnhanvien( maPB, idBacLuong, idChucVu, idTrinhDo, HoTen, CCCD, diaChi, hinhAnh, sdt, namSinh, gioiTinh);
+    public boolean themnhanvien(NhanVien nv) {
+        return userDao.themnhanvien(nv);
     }
 
     @Override

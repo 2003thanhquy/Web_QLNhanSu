@@ -63,41 +63,30 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void themnhanvien( String maPB, int idBacLuong, int idChucVu, int idTrinhDo, String HoTen, String CCCD, String diaChi, Byte[] hinhAnh, String sdt, String namSinh, String gioiTinh) {
+    public boolean themnhanvien( NhanVien nv) {
         String sql = "INSERT INTO nhanvien (MaNV,MaPB, IDBacLuong, IDChucVu, IDTrinhDo, HoTen, CCCD, DiaChi, HinhAnh, SDT, NamSinh, GioiTinh) VALUES (null,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, maPB);
-            ps.setInt(2, idBacLuong);
-            ps.setInt(3, idChucVu);
-            ps.setInt(4, idTrinhDo);
-            ps.setString(5, HoTen);
-            ps.setString(6, CCCD);
-            ps.setString(7, diaChi);
-            byte[] hinhAnhBytes = null;
-            if (hinhAnh != null) {
-                hinhAnhBytes = new byte[hinhAnh.length];
-                for (int i = 0; i < hinhAnh.length; i++) {
-                    hinhAnhBytes[i] = hinhAnh[i];
-                }
-            }
-            ps.setBytes(8, hinhAnhBytes);
-            ps.setString(9, sdt);
-            ps.setString(10, namSinh);
-            ps.setString(11, gioiTinh);
+            ps.setString(1, nv.getMaPB());
+            ps.setInt(2, nv.getIdBacLuong());
+            ps.setInt(3, nv.getIdChucVu());
+            ps.setInt(4, nv.getIdTrinhDo());
+            ps.setString(5, nv.getHoTen());
+            ps.setString(6, nv.getCCCD());
+            ps.setString(7, nv.getDiaChi());
+            ps.setString(8, nv.getHinhAnh());
+            ps.setString(9, nv.getSdt());
+            ps.setDate(10, java.sql.Date.valueOf(nv.getNamSinh()));
+            ps.setString(11, nv.getGioiTinh());
             int rowsAffected = ps.executeUpdate();
 
-            if (rowsAffected > 0) {
-                System.out.println("Thêm nhân viên thành công");
-            } else {
-                System.out.println("Thêm nhân viên không thành công");
-            }
+            return rowsAffected>0;
         }catch (Exception e){
             e.printStackTrace();
 
         }
-
+        return false;
     }
 
     @Override
