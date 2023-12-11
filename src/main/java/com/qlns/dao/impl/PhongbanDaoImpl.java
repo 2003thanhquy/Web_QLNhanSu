@@ -25,9 +25,11 @@ public class PhongbanDaoImpl implements PhongbanDao {
             ps = conn.prepareStatement(sql);
             rs= ps.executeQuery();
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
         list.add(new ThongTinPhongBan(rs.getString(1),
-                rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7), rs.getString(8),rs.getString(9)));
+                rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
             }
+
 
 
         }catch (Exception e){
@@ -50,8 +52,9 @@ public class PhongbanDaoImpl implements PhongbanDao {
             ps.setString(1,MaGiamDoc);
             rs= ps.executeQuery();
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
                 list.add(new ThongTinPhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8), rs.getString(9)));
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
             }
 
         }catch (Exception e){
@@ -75,8 +78,9 @@ public class PhongbanDaoImpl implements PhongbanDao {
             rs= ps.executeQuery();
 
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
                 list.add(new ThongTinPhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8),rs.getString(9)));
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
             }
 
         }catch (Exception e){
@@ -93,8 +97,10 @@ public class PhongbanDaoImpl implements PhongbanDao {
             ps.setString(1,MaToTruong);
             rs= ps.executeQuery();
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
+
                 ThongTinPhongBan pb = new ThongTinPhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8),rs.getString(9));
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),dateValue.toLocalDate(),rs.getString(8),rs.getString(9));
             return pb;
             }
 
@@ -116,8 +122,9 @@ public class PhongbanDaoImpl implements PhongbanDao {
             ps = conn.prepareStatement(sql);
             rs= ps.executeQuery();
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
                 list.add(new ThongTinPhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8), rs.getString(9)));
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
             }
 
         }catch (Exception e){
@@ -139,8 +146,9 @@ public class PhongbanDaoImpl implements PhongbanDao {
             ps.setString(1,MaGiamDoc);
             rs= ps.executeQuery();
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
                 list.add(new ThongTinPhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8), rs.getString(9)));
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
             }
 
         }catch (Exception e){
@@ -163,8 +171,9 @@ public class PhongbanDaoImpl implements PhongbanDao {
             rs= ps.executeQuery();
 
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
                 list.add(new ThongTinPhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getString(8),rs.getString(9)));
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
             }
 
         }catch (Exception e){
@@ -183,8 +192,9 @@ public class PhongbanDaoImpl implements PhongbanDao {
             ps = conn.prepareStatement(sql);
             rs= ps.executeQuery();
             while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
                 list.add(new ThongTinPhongBan(rs.getString(1),
-                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7), rs.getString(8),rs.getString(9)));
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
             }
 
 

@@ -45,7 +45,7 @@ public class UserDaoImpl implements UserDao {
                     for (int i = 0; i < hinhAnhBytes.length; i++) {
                         hinhAnh[i] = hinhAnhBytes[i];
                     }
-                    ttnv.setHinhAnh(hinhAnh);
+//                    ttnv.setHinhAnh(hinhAnh);
                 } else {
                     // Trường HinhAnh có giá trị NULL, xử lý theo ý muốn của bạn
                     ttnv.setHinhAnh(null); // hoặc thực hiện một xử lý khác
