@@ -56,7 +56,7 @@
                                     <div class="row dataphongban">
                                         <c:forEach items="${listpb}" var="phongban">
                                             <div class="col-6 phongban-item--container">
-                                                <div class="phongban-item" onclick="handleItemClick('${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}')">
+                                                <div class="phongban-item" onclick="handleItemClick(event,'${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}','${phongban.maQuanLy}')">
                                                     <h1 class="tenphong">${phongban.tenPB}</h1>
                                                     <div class="chitietphong">
                                                         <div class="maphong-container chitiet-container">
@@ -68,7 +68,7 @@
                                                             <h3 class="chinhanh-text">${phongban.tenChiNhanh}</h3>
                                                         </div>
                                                         <div class="button-xemphongcon--container">
-                                                            <button class="button-xemphongcon btn btn-outline-primary" onclick= xempbcon('${phongban.maPB}')>Xem phòng ban con</button>
+                                                            <button class="button-xemphongcon btn btn-outline-primary" onclick= "xempbcon('${phongban.maPB}','${phongban.tenPB}')">Xem phòng ban con</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -96,7 +96,12 @@
                                     </div>
                                     <div class="thongtinphongban-content-input--item" >
                                         <label for="chinhanh" class="thongtinphongban-content-input--lable">Chi nhánh</label>
-                                        <input id="chinhanh" type="text" name="chinhanh" class="thongtinphongban-input">
+<%--                                        <input id="chinhanh" type="text" name="chinhanh" class="thongtinphongban-input">--%>
+                                        <select id="chinhanh" type="text" name="chinhanh" class="thongtinphongban-input" >
+                                            <c:forEach items="${listcntoanbo}" var="chinhanh">
+                                                <option value="${chinhanh.maCN}">${chinhanh.maCN}</option>
+                                            </c:forEach>
+                                        </select>
                                     </div>
                                     <div class="thongtinphongban-content-input--item">
                                         <label for="truongphong" class="thongtinphongban-content-input--lable">Quản lý</label>
@@ -154,8 +159,10 @@
     buttonqlaiphongban.style.display = "none";
     buttonqly.style.display="none";
 
-
-
+    var them = "thempbcha";
+    var kieucapnhat = "";
+    var mapbcha="";
+    var tenpbcha="";
 
 
     var row = document.querySelector(".dataphongban");
@@ -164,25 +171,31 @@
 
     var maphong = document.getElementById('maphong');
     var tenpb = document.getElementById('tenphong');
-    var macn = document.getElementById('chinhanh');
-    var maql = document.getElementById('truongphong');
+    var tencn = document.getElementById('chinhanh');
+    var tenql = document.getElementById('truongphong');
     var ngaybd = document.getElementById('ngaythanhlap');
-    var kieucapnhat;
+    var maql;
 
-    maphong.disabled = true; // Vô hiệu hóa phần tử maphong
-    tenpb.disabled = true; // Vô hiệu hóa phần tử tenpb
-    macn.disabled = true; // Vô hiệu hóa phần tử macn
-    maql.disabled = true; // Vô hiệu hóa phần tử maql
-    ngaybd.disabled = true; // Vô hiệu hóa phần tử ngaybd
+    maphong.disabled = true;
+    tenpb.disabled = true;
+    tencn.disabled = true;
+    tenql.disabled = true;
+    ngaybd.disabled = true;
+    var phongbandangclick;
 
-    function handleItemClick(tenPB, maPB, maCN,maQL,ngayBD) {
+    function handleItemClick(event,tenPB, maPB, tenCN,tenQL, ngayBD ,maQL) {
         maphong.value= maPB;
         tenpb.value= tenPB;
-        macn.value=maCN;
-        maql.value=maQL;
+        tencn.value=tenCN;
+        tenql.value=tenQL;
         ngaybd.value=ngayBD;
+        maql=maQL;
+        console.log(maQL);
+        phongbandangclick = event.target;
     }
-    function xempbcon(MaPB) {
+    function xempbcon(MaPB,TenPB) {
+        mapbcha= MaPB;
+        tenpbcha = TenPB;
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancon",
@@ -190,20 +203,24 @@
                 MaPB: MaPB
             },
             success: function(data) {
-
                 row.innerHTML=data;
-                buttonqlaiphongban.style.display = "";
-                buttonkhongqly.style.display="none";
-                buttonqly.style.display="none";
                 document.querySelector('.phongban-item').onclick();
+
 
             },
             error: function(error) {
                 console.log(error);
             }
         });
+        them = "thempbcon";
+        buttonqlaiphongban.style.display = "";
+        buttonkhongqly.style.display="none";
+        buttonqly.style.display="none";
+
     }
     function xempbcha() {
+        mapbcha= "";
+        tenpbcha = "";
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancha",
@@ -212,15 +229,18 @@
             success: function(data) {
 
                 row.innerHTML=data;
-                buttonqlaiphongban.style.display = "none";
-                buttonqly.style.display="none";
-                buttonkhongqly.style.display="";
                 document.querySelector('.phongban-item').onclick();
+
             },
             error: function(error) {
                 console.log(error);
             }
         });
+        them = "thempbcha"
+        buttonqlaiphongban.style.display = "none";
+        buttonqly.style.display="none";
+        buttonkhongqly.style.display="";
+
     }
     function xempbqly() {
         jQuery.ajax({
@@ -231,15 +251,17 @@
             success: function(data) {
 
                 row.innerHTML=data;
-                buttonqlaiphongban.style.display = "none";
-                buttonqly.style.display="none";
-                buttonkhongqly.style.display="";
                 document.querySelector('.phongban-item').onclick();
+
             },
             error: function(error) {
                 console.log(error);
             }
         });
+        buttonqlaiphongban.style.display = "none";
+        buttonqly.style.display="none";
+        buttonkhongqly.style.display="";
+
     }
     function xempbkhongqly() {
         jQuery.ajax({
@@ -248,66 +270,83 @@
             data: {
             },
             success: function(data) {
-                console.log(data);
                 row.innerHTML=data;
-                buttonqlaiphongban.style.display = "none";
-                buttonkhongqly.style.display="none";
-                buttonqly.style.display="";
                 document.querySelector('.phongban-item').onclick();
+
             },
             error: function(error) {
                 console.log(error);
             }
         });
-    }
+        buttonqlaiphongban.style.display = "none";
+        buttonkhongqly.style.display="none";
+        buttonqly.style.display="";
 
+    }
 
 
 
     pbhienthidautien.click();
     function ThemPhongBan() {
-        kieucapnhat = "them";
-        maphong.value = ''; // Xóa giá trị của biến maphong
-        tenpb.value = ''; // Xóa giá trị của biến tenpb
-        macn.value = ''; // Xóa giá trị của biến macn
-        maql.value = ''; // Xóa giá trị của biến maql
-        ngaybd.value = ''; // Xóa giá trị của biến ngaybd
-        maphong.disabled = false; // Vô hiệu hóa phần tử maphong
-        tenpb.disabled = false; // Vô hiệu hóa phần tử tenpb
-        macn.disabled = false; // Vô hiệu hóa phần tử macn
-        maql.disabled = false; // Vô hiệu hóa phần tử maql
+        kieucapnhat = them;
+        maphong.value = '';
+        tenpb.value = '';
+        tencn.value = '';
+        tenql.value = '';
+        ngaybd.value = '';
+        tenpb.disabled = false;
+        tencn.disabled = false;
+        tenql.disabled = false;
         ngaybd.disabled = false;
-        maphong.focus();
+        tenpb.focus();
     }
     function SuaPhongBan() {
         kieucapnhat = "sua";
-        maphong.disabled = false; // Vô hiệu hóa phần tử maphong
-        tenpb.disabled = false; // Vô hiệu hóa phần tử tenpb
-        macn.disabled = false; // Vô hiệu hóa phần tử macn
-        maql.disabled = false; // Vô hiệu hóa phần tử maql
-        ngaybd.disabled = false; // Vô hiệu hóa phần tử ngaybd
+        tenpb.disabled = false;
+        tencn.disabled = false;
+        tenql.disabled = false;
+        ngaybd.disabled = false;
+        tenql.value=   maql
+        tenpb.focus();
     }
     function XoaPhongBan() {
         kieucapnhat = "xoa";
+        if(them="thempbcha")
+        {
+
+        }
+        else
+        {
+
+        }
 
     }
     function Huy() {
+        phongbandangclick.click();
+        maphong.disabled = true;
+        tenpb.disabled = true;
+        tencn.disabled = true;
+        tenql.disabled = true;
+        ngaybd.disabled = true;
+
 
     }
     function GuiDuLieu(){
         jQuery.ajax({
             type: "POST",
-            url: "Capnhatphongban",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/capnhatphongban",
             data: {
-                kieucapnhat : Kieucapnhat,
-                maphong : MaPhong,
-                tenpb : TenPB,
-                macn  :MaCN,
-                maql :MaQL,
-                ngaybd :NgayBD,
+                kieucapnhat : kieucapnhat,
+                maphong : maphong,
+                tenpb : tenpb,
+
+                ngaybd :ngaybd,
+                mapbcha : mapbcha,
+                tenpbcha:tenpbcha,
             },
-            success: function (response) {
-                window.location.href = "/views/admin/QLPhongBan/DanhSachPhongBan.jsp";
+            success: function (data) {
+                row.innerHTML=data;
+                document.querySelector('.phongban-item').onclick();
                 // alert("Dữ liệu đã được gửi thành công" + maPhongQL.toString() + " a "+ response);
             },
             error: function (error) {
