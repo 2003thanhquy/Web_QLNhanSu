@@ -15,4 +15,20 @@ public class TrinhDo {
         this.idTrinhDo = idTrinhDo;
         this.tenTrinhDo = tenTrinhDo;
     }
+
+    public int getIdTrinhDo() {
+        return idTrinhDo;
+    }
+
+    public void setIdTrinhDo(int idTrinhDo) {
+        this.idTrinhDo = idTrinhDo;
+    }
+
+    public String getTenTrinhDo() {
+        return tenTrinhDo;
+    }
+
+    public void setTenTrinhDo(String tenTrinhDo) {
+        this.tenTrinhDo = tenTrinhDo;
+    }
 }
