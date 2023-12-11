@@ -45,10 +45,10 @@
             <%}%>
             <form class="mx-auto mt-5"  action="<%=request.getContextPath()%>/login" method="post">
                 <div class="myin form-outline ">
-                    <input type="text" name="username" id="username" placeholder="account" class="myinp form-control form-control-lg" />
+                    <input type="text" name="username" id="username" value="admin" placeholder="account" class="myinp form-control form-control-lg" />
                 </div>
                 <div class="myin form-outline">
-                    <input type="password" name="pwd" id="pwd" placeholder="password" class="myinp form-control form-control-lg" />
+                    <input type="password" name="pwd" id="pwd" value="admin" placeholder="password" class="myinp form-control form-control-lg" />
                 </div>
                 <div class="mylogin pt-1 text-center ">
                     <button class="mybtn btn btn-success btn-lg btn-block text-light"  type="submit">Đăng nhập</button>

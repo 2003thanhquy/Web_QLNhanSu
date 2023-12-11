@@ -142,13 +142,16 @@ public class NhanVienController extends HttpServlet {
 
     }
     public void XemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-          String manv = request.getParameter("manv");
-         // UserService user = new UserServiceImp();
-          //user.laythongtincanhan(manv);
+
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<h1>hello world</h1>");
-        out.println("<a href='./about?manv=1'>day ka biu dybg</a>");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+            String manv = request.getParameter("manv");
+          UserService user = new UserServiceImp();
+          Thongtinnhanvien ttnv = user.laythongtincanhan(manv);
+          request.setAttribute("ttnv",ttnv);
+          request.getRequestDispatcher("/views/admin/QLThongTinCaNhan/ThongTinCaNhan.jsp").forward(request,response);
 
     }
 }

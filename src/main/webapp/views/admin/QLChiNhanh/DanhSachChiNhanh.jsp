@@ -57,118 +57,16 @@
                                     <div class="table100-body js-pscroll">
                                         <table>
                                             <tbody>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
-                                            <tr class="row100 body dscn-table-tr">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4">24-11-2003</td>
-                                                <td class="cell100 column5">NV0001</td>
-                                            </tr>
+                                            <c:forEach items="${listcn}" var="cn">
+                                                <tr class="row100 body dscn-table-tr">
+                                                    <td class="cell100 column1">${cn.maCN}</td>
+                                                    <td class="cell100 column2">Chi nhánh 1</td>
+                                                    <td class="cell100 column3">Hà Nội</td>
+                                                    <td class="cell100 column4">24-11-2003</td>
+                                                    <td class="cell100 column5">NV0001</td>
+                                                </tr>
+                                            </c:forEach>
+
                                             </tbody>
                                         </table>
                                     </div>

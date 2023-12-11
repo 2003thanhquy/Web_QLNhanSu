@@ -22,6 +22,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PropertyResourceBundle;
 
 @WebServlet("/phongban/*")
 public class PhongBanController extends HttpServlet {
@@ -71,7 +72,7 @@ public class PhongBanController extends HttpServlet {
             throws SQLException, IOException, ServletException {
         UserService userService = new UserServiceImp();
         PhongbanService pbService = new PhongbanServiceImp();
-
+        System.out.println("xem phobng bnan");
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
         Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
@@ -212,22 +213,27 @@ public class PhongBanController extends HttpServlet {
 
     private void capnhatphongban(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException{
-        String kieucapnhat = request.getParameter("kieucapnhat");
-        try{
-            switch (kieucapnhat){
-                case "them":
-                    themphongban(request,response);
-                    break;
-                case "sua":
-                    suaphongban(request,response);
-                    break;
-                case "xoa":
-                    xoaphongban(request,response);
-                    break;
-            }
-        }catch (Exception ex){
-            System.out.print(ex);
-        }
+        System.out.print("day la kieu cap nhat");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>day la print</h1>");
+        return;
+//        String kieucapnhat = request.getParameter("kieucapnhat");
+//        try{
+//            switch (kieucapnhat){
+//                case "them":
+//                    themphongban(request,response);
+//                    break;
+//                case "sua":
+//                    suaphongban(request,response);
+//                    break;
+//                case "xoa":
+//                    xoaphongban(request,response);
+//                    break;
+//            }
+//        }catch (Exception ex){
+//            System.out.print(ex);
+//        }
 
     }
     private void themphongban(HttpServletRequest request, HttpServletResponse response)

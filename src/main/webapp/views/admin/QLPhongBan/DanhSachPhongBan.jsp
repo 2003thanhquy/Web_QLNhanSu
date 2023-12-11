@@ -85,7 +85,7 @@
                                 <h1 class = "thongtinphongban-text">Thông tin chi tiết</h1>
                             </div>
                             <div class="thongtinphongban-content">
-                                <form class="thongtinphongban-content-input--container">
+                                <form class="thongtinphongban-content-input--container" >
                                     <div class="thongtinphongban-content-input--item">
                                         <label for="maphong" class="thongtinphongban-content-input--lable">Mã phòng</label>
                                         <input id="maphong" type="text" name="maphong" class="thongtinphongban-input">
@@ -114,21 +114,21 @@
                                     </div>
                                     <div class="thongtin-content--button">
                                         <div class = "button-control button-container">
-                                            <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan">
+                                            <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
                                                 <p class="button-them--label">Thêm</p>
                                             </div>
-                                            <div class="button-capnhat btn btn-outline-info btn-lg button-thongtinphongban" onclick="SuaPhongBan">
+                                            <div class="button-capnhat btn btn-outline-info btn-lg button-thongtinphongban" onclick="SuaPhongBan()">
                                                 <p class="button-capnhat--label">Cập nhật</p>
                                             </div>
-                                            <div class="button-xoa btn btn-outline-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan">
+                                            <div class="button-xoa btn btn-outline-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan()">
                                                 <p class="button-xoa--label">Xóa</p>
                                             </div>
                                         </div>
                                         <div class="button-confirm button-container">
-                                            <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy">
+                                            <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy()">
                                                 <p class="button-huy--label">Hủy</p>
                                             </div>
-                                            <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" onclick="XacNhan">
+                                            <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" type="button" onclick="XacNhan()">
                                                 <p class=" button-xacnhan--label">Xác nhận</p>
                                             </button>
                                         </div>
@@ -351,19 +351,23 @@
         tencn.style.display = '';
     }
     function XacNhan(){
+        let dataObj = {
+            kieucapnhat : kieucapnhat,
+            maphong : maphong,
+            tenpb : tenpb,
+            mapbcha:mapbcha,
+            tenpbcha:tenpbcha,
+            macn:macn,
+            maql:maql,
+            ngaybd :ngaybd,
+        }
+        console.log(dataObj);
+        console.log(JSON.stringify(dataObj));
+
         jQuery.ajax({
             type: "GET",
-            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/capnhatphongban",
-            data: {
-                kieucapnhat : kieucapnhat,
-                maphong : maphong,
-                tenpb : tenpb,
-                mapbcha:mapbcha,
-                tenpbcha:tenpbcha,
-                macn:macn,
-                maql:maql,
-                ngaybd :ngaybd,
-            },
+            url: "${request.getContextPath()}/phongban/capnhatphongban",
+            data: JSON.stringify(dataObj),
             success: function (data) {
                 row.innerHTML=data;
                 document.querySelector('.phongban-item').onclick();

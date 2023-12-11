@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
                 ttnv.setCccd(rs.getString("CCCD"));
                 ttnv.setDiaChi(rs.getString("DiaChi"));
                 ttnv.setSoDienThoai(rs.getString("SDT"));
-                ttnv.setNamSinh(rs.getString("NamSinh"));
+                ttnv.setNamSinh(rs.getDate("NamSinh").toLocalDate());
                 ttnv.setTenChiNhanh(rs.getString("TenChiNhanh"));
                 byte[] hinhAnhBytes = rs.getBytes("HinhAnh");
 
@@ -98,7 +98,7 @@ public class UserDaoImpl implements UserDao {
             ps = conn.prepareStatement(sql);
             rs= ps.executeQuery();
             while(rs.next()){
-                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
             }
 
         }catch (Exception e){
@@ -123,7 +123,7 @@ public class UserDaoImpl implements UserDao {
             ps.setString(1,MaGiamDoc);
             rs= ps.executeQuery();
             while(rs.next()){
-                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
             }
 
         }catch (Exception e){
@@ -159,7 +159,7 @@ public class UserDaoImpl implements UserDao {
             ps.setString(2,MaTruongPhong);
             rs= ps.executeQuery();
             while(rs.next()){
-                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
             }
 
         }catch (Exception e){
@@ -179,7 +179,7 @@ public class UserDaoImpl implements UserDao {
             ps.setString(1,MaPB);
             rs= ps.executeQuery();
             while(rs.next()){
-                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
             }
 
         }catch (Exception e){
