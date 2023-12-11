@@ -1,25 +1,26 @@
 package com.qlns.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class HopDong {
     String maHopDong;
     String maNV;
-    Date ngayBD;
-    Date ngayKT;
+    LocalDate ngayBD;
+    LocalDate ngayKT;
     String noidung;
 
     public HopDong() {
     }
 
-    public HopDong(String maNV, Date ngayBD, Date ngayKT, String noidung) {
+    public HopDong(String maNV, LocalDate ngayBD, LocalDate ngayKT, String noidung) {
         this.maNV = maNV;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
         this.noidung = noidung;
     }
 
-    public HopDong(String maHopDong, String maNV, Date ngayBD, Date ngayKT, String noidung) {
+    public HopDong(String maHopDong, String maNV, LocalDate ngayBD, LocalDate ngayKT, String noidung) {
         this.maHopDong = maHopDong;
         this.maNV = maNV;
         this.ngayBD = ngayBD;
@@ -43,19 +44,19 @@ public class HopDong {
         this.maNV = maNV;
     }
 
-    public Date getNgayBD() {
+    public LocalDate getNgayBD() {
         return ngayBD;
     }
 
-    public void setNgayBD(Date ngayBD) {
+    public void setNgayBD(LocalDate ngayBD) {
         this.ngayBD = ngayBD;
     }
 
-    public Date getNgayKT() {
+    public LocalDate getNgayKT() {
         return ngayKT;
     }
 
-    public void setNgayKT(Date ngayKT) {
+    public void setNgayKT(LocalDate ngayKT) {
         this.ngayKT = ngayKT;
     }
 
