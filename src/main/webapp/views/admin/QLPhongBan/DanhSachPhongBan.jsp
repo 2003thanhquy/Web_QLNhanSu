@@ -56,7 +56,7 @@
                                     <div class="row dataphongban">
                                         <c:forEach items="${listpb}" var="phongban">
                                             <div class="col-6 phongban-item--container">
-                                                <div class="phongban-item" onclick="handleItemClick(event,'${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}','${phongban.maQuanLy}')">
+                                                <div class="phongban-item" onclick="handleItemClick(event,'${phongban.tenPB}', '${phongban.maPB}', '${phongban.tenChiNhanh}', '${phongban.tenQuanLy}', '${phongban.ngayBD}','${phongban.maQuanLy}','${phongban.maCN}')">
                                                     <h1 class="tenphong">${phongban.tenPB}</h1>
                                                     <div class="chitietphong">
                                                         <div class="maphong-container chitiet-container">
@@ -97,7 +97,8 @@
                                     <div class="thongtinphongban-content-input--item" >
                                         <label for="chinhanh" class="thongtinphongban-content-input--lable">Chi nhánh</label>
 <%--                                        <input id="chinhanh" type="text" name="chinhanh" class="thongtinphongban-input">--%>
-                                        <select id="chinhanh" type="text" name="chinhanh" class="thongtinphongban-input" >
+                                        <select id="chinhanh"  name="chinhanh" class="thongtinphongban-input" >
+                                            <option id="tenchinhanh"  ></option>
                                             <c:forEach items="${listcntoanbo}" var="chinhanh">
                                                 <option value="${chinhanh.maCN}">${chinhanh.maCN}</option>
                                             </c:forEach>
@@ -113,10 +114,10 @@
                                     </div>
                                     <div class="thongtin-content--button">
                                         <div class = "button-control button-container">
-                                            <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
+                                            <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan">
                                                 <p class="button-them--label">Thêm</p>
                                             </div>
-                                            <div class="button-capnhat btn btn-outline-info btn-lg button-thongtinphongban" onclick="SuaPhongBan()">
+                                            <div class="button-capnhat btn btn-outline-info btn-lg button-thongtinphongban" onclick="SuaPhongBan">
                                                 <p class="button-capnhat--label">Cập nhật</p>
                                             </div>
                                             <div class="button-xoa btn btn-outline-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan">
@@ -124,10 +125,10 @@
                                             </div>
                                         </div>
                                         <div class="button-confirm button-container">
-                                            <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy()">
+                                            <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy">
                                                 <p class="button-huy--label">Hủy</p>
                                             </div>
-                                            <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" onclick="GuiDuLieu">
+                                            <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" onclick="XacNhan">
                                                 <p class=" button-xacnhan--label">Xác nhận</p>
                                             </button>
                                         </div>
@@ -159,7 +160,6 @@
     buttonqlaiphongban.style.display = "none";
     buttonqly.style.display="none";
 
-    var them = "thempbcha";
     var kieucapnhat = "";
     var mapbcha="";
     var tenpbcha="";
@@ -171,27 +171,41 @@
 
     var maphong = document.getElementById('maphong');
     var tenpb = document.getElementById('tenphong');
-    var tencn = document.getElementById('chinhanh');
+    var tencn = document.getElementById('tenchinhanh');
+    var macn =document.getElementById('chinhanh')
     var tenql = document.getElementById('truongphong');
     var ngaybd = document.getElementById('ngaythanhlap');
     var maql;
+    var trangthai;
+    var macnCha;
 
     maphong.disabled = true;
     tenpb.disabled = true;
-    tencn.disabled = true;
+    macn.disabled = true;
     tenql.disabled = true;
     ngaybd.disabled = true;
     var phongbandangclick;
 
-    function handleItemClick(event,tenPB, maPB, tenCN,tenQL, ngayBD ,maQL) {
+    function handleItemClick(event,tenPB, maPB, tenCN,tenQL, ngayBD ,maQL,maCNCha) {
         maphong.value= maPB;
         tenpb.value= tenPB;
-        tencn.value=tenCN;
+
+        tencn.style.display = '';
+        tencn.innerText=tenCN;
+        tencn.click()
+
+
         tenql.value=tenQL;
         ngaybd.value=ngayBD;
         maql=maQL;
-        console.log(maQL);
-        phongbandangclick = event.target;
+        macnCha =  maCNCha;
+
+        // phongbandangclick = event.target;
+        maphong.disabled = true;
+        tenpb.disabled = true;
+        macn.disabled = true;
+        tenql.disabled = true;
+        ngaybd.disabled = true;
     }
     function xempbcon(MaPB,TenPB) {
         mapbcha= MaPB;
@@ -200,11 +214,11 @@
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancon",
             data: {
-                MaPB: MaPB
+                maphong: MaPB
             },
             success: function(data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').onclick();
+                document.querySelector('.phongban-item').click();
 
 
             },
@@ -212,10 +226,10 @@
                 console.log(error);
             }
         });
-        them = "thempbcon";
         buttonqlaiphongban.style.display = "";
         buttonkhongqly.style.display="none";
         buttonqly.style.display="none";
+        trangthai ="con";
 
     }
     function xempbcha() {
@@ -229,20 +243,21 @@
             success: function(data) {
 
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').onclick();
+                document.querySelector('.phongban-item').click();
 
             },
             error: function(error) {
                 console.log(error);
             }
         });
-        them = "thempbcha"
         buttonqlaiphongban.style.display = "none";
         buttonqly.style.display="none";
         buttonkhongqly.style.display="";
+        trangthai ="cha";
 
     }
     function xempbqly() {
+
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancha",
@@ -251,7 +266,7 @@
             success: function(data) {
 
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').onclick();
+                document.querySelector('.phongban-item').click();
 
             },
             error: function(error) {
@@ -288,7 +303,7 @@
 
     pbhienthidautien.click();
     function ThemPhongBan() {
-        kieucapnhat = them;
+        kieucapnhat = "them";
         maphong.value = '';
         tenpb.value = '';
         tencn.value = '';
@@ -298,27 +313,31 @@
         tencn.disabled = false;
         tenql.disabled = false;
         ngaybd.disabled = false;
+        document.querySelector(".button-capnhat--label").disabled = false;
         tenpb.focus();
+
+        tencn.style.display = 'none';
+        tencn.innerText='';
+        macn.disabled = false;
+        if (trangthai === "con") {
+            macn.value = macnCha;
+            tencn.innerText = macnCha;
+            macn.disabled =true;
+        }
+
     }
     function SuaPhongBan() {
         kieucapnhat = "sua";
         tenpb.disabled = false;
-        tencn.disabled = false;
         tenql.disabled = false;
         ngaybd.disabled = false;
         tenql.value=   maql
         tenpb.focus();
+
     }
     function XoaPhongBan() {
         kieucapnhat = "xoa";
-        if(them="thempbcha")
-        {
-
-        }
-        else
-        {
-
-        }
+        GuiDuLieu();
 
     }
     function Huy() {
@@ -328,33 +347,32 @@
         tencn.disabled = true;
         tenql.disabled = true;
         ngaybd.disabled = true;
-
-
+        document.querySelector(".button-capnhat--label").disabled = true;
+        tencn.style.display = '';
     }
-    function GuiDuLieu(){
+    function XacNhan(){
         jQuery.ajax({
-            type: "POST",
+            type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/capnhatphongban",
             data: {
                 kieucapnhat : kieucapnhat,
                 maphong : maphong,
                 tenpb : tenpb,
-
-                ngaybd :ngaybd,
-                mapbcha : mapbcha,
+                mapbcha:mapbcha,
                 tenpbcha:tenpbcha,
+                macn:macn,
+                maql:maql,
+                ngaybd :ngaybd,
             },
             success: function (data) {
                 row.innerHTML=data;
                 document.querySelector('.phongban-item').onclick();
-                // alert("Dữ liệu đã được gửi thành công" + maPhongQL.toString() + " a "+ response);
             },
             error: function (error) {
                 console.log(error);
             }
         });
     }
-
 
 </script>
 
