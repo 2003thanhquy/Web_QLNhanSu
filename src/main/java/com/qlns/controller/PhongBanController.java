@@ -2,10 +2,7 @@ package com.qlns.controller;
 
 import com.qlns.dao.UserDao;
 import com.qlns.dao.impl.UserDaoImpl;
-import com.qlns.model.ChiNhanh;
-import com.qlns.model.TaiKhoan;
-import com.qlns.model.ThongTinPhongBan;
-import com.qlns.model.Thongtinnhanvien;
+import com.qlns.model.*;
 import com.qlns.service.ChiNhanhService;
 import com.qlns.service.PhongbanService;
 import com.qlns.service.UserService;
@@ -21,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,16 +45,12 @@ public class PhongBanController extends HttpServlet {
                 case "/xemphongbancha":
                     xemphongbancha(request,response);
                     break;
-                case "/themphongban":
-                    break;
-                case "/suaphongban":
-                    break;
-                case "/xoaphongban":
+                case "/capnhatphongban":
+                    capnhatphongban(request,response);
                     break;
                 case "/xemphongbanchuacapnhatquanly":
                     xemphongbanchuacapnhatquanly(request,response);
                     break;
-
                 default:
                     response.sendRedirect(request.getContextPath()+"/error/error.jsp");
                     break;
@@ -67,6 +61,12 @@ public class PhongBanController extends HttpServlet {
 
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
     private void xemphongban(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         UserService userService = new UserServiceImp();
@@ -101,7 +101,7 @@ public class PhongBanController extends HttpServlet {
         request.getRequestDispatcher("/views/admin/QLPhongBan/DanhSachPhongBan.jsp").forward(request,response);
     }
     private void xemphongbancon(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
-        String MaPB = req.getParameter("MaPB");
+        String MaPB = req.getParameter("maphong");
         PhongbanService phongbanService = new PhongbanServiceImp();
         List<ThongTinPhongBan> listpbcon = new ArrayList<>();
         listpbcon = phongbanService.laydanhsachphongbancontuphongbancha(MaPB);
@@ -111,7 +111,7 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcon) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"')\">\n" +
+                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"','"+pb.getMaCN()+"')\">\n" +
                     "                                                <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
                     "                                                <div class=\"chitietphong\">\n" +
                     "                                                    <div class=\"maphong-container chitiet-container\">\n" +
@@ -140,7 +140,7 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbcha) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                                <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"')\">\n" +
+                    "                                                <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"','"+pb.getMaCN()+"')\">\n" +
                     "                                                    <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
                     "                                                    <div class=\"chitietphong\">\n" +
                     "                                                        <div class=\"maphong-container chitiet-container\">\n" +
@@ -169,7 +169,7 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (ThongTinPhongBan pb : listpbchuaql) {
             out.println("<div class=\"col-6 phongban-item--container\">\n" +
-                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"')\">\n" +
+                    "                                            <div class=\"phongban-item\" onclick=\"handleItemClick(event,'"+pb.getTenPB()+"', '"+pb.getMaPB()+"', '"+pb.getTenChiNhanh()+"', '"+pb.getTenQuanLy()+"', '"+pb.getNgayBD()+"','"+pb.getMaQuanLy()+"','"+pb.getMaCN()+"')\">\n" +
                     "                                                <h1 class=\"tenphong\">"+pb.getTenPB()+"</h1>\n" +
                     "                                                <div class=\"chitietphong\">\n" +
                     "                                                    <div class=\"maphong-container chitiet-container\">\n" +
@@ -209,6 +209,81 @@ public class PhongBanController extends HttpServlet {
 
         }
     }
+
+    private void capnhatphongban(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException{
+        String kieucapnhat = request.getParameter("kieucapnhat");
+        try{
+            switch (kieucapnhat){
+                case "them":
+                    themphongban(request,response);
+                    break;
+                case "sua":
+                    suaphongban(request,response);
+                    break;
+                case "xoa":
+                    xoaphongban(request,response);
+                    break;
+            }
+        }catch (Exception ex){
+            System.out.print(ex);
+        }
+
+    }
+    private void themphongban(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException{
+
+        PhongbanService pbservice = new PhongbanServiceImp();
+        PhongBan pb = new PhongBan();
+        pb.setMaPB(request.getParameter("maphong"));
+        pb.setTenPB(request.getParameter("tenpb"));;
+        pb.setMaCN(request.getParameter("macn"));
+        pb.setMaPBCha(request.getParameter("mapbcha"));
+        pb.setTenPBCha(request.getParameter("tenpbcha"));
+        pb.setMaQuanLy(request.getParameter("maql"));
+        pb.setNgayBD(Date.valueOf(request.getParameter("ngaybd")).toLocalDate());
+        pbservice.themphongban(pb);
+        if (pb.getMaPBCha().isEmpty()) {
+            xemphongbancha(request,response);
+        }
+        else
+            xemphongbancon(request, response);
+    }
+    private void suaphongban(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException{
+        PhongbanService pbservice = new PhongbanServiceImp();
+
+        PhongBan pb = new PhongBan();
+        pb.setMaPB(request.getParameter("maphong"));
+        pb.setTenPB(request.getParameter("tenpb"));;
+        pb.setMaCN(request.getParameter("macn"));
+        pb.setMaPBCha(request.getParameter("mapbcha"));
+        pb.setTenPBCha(request.getParameter("tenpbcha"));
+        pb.setMaQuanLy(request.getParameter("maql"));
+        pb.setNgayBD(Date.valueOf(request.getParameter("ngaybd")).toLocalDate());
+        pbservice.capnhatphongban(pb);
+        if (pb.getMaPBCha().isEmpty()) {
+            xemphongbancha(request,response);
+        }
+        else
+            xemphongbancon(request, response);
+
+
+    }
+    private void xoaphongban(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException{
+        String mapb =request.getParameter("maphong");
+        String mapbcha = request.getParameter("mapbcha");
+        PhongbanService pbservice = new PhongbanServiceImp();
+        pbservice.xoaphongban(mapb);
+        if (mapbcha.isEmpty()) {
+            xemphongbancha(request,response);
+        }
+        else
+            xemphongbancon(request, response);
+
+    }
+
 
 
 

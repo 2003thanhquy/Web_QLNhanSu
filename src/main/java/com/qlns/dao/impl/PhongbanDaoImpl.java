@@ -206,32 +206,19 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
     }
 
-    public void themphongbancha(String tenpb, String MaQuanLy,String MaCN, String NgayBD) {
-        String sql = "INSERT INTO `QuanLyNhanSu`.`phongban` (`MaPB`, `MaPBCha`, `TenPB`, `TenPBCha`, `MaCN`, `MaQuanLy`, `NgayBD`) "
-                + "VALUES (null, NULL, ?, NULL, ?, ?, ?)";
-        try{
-            conn = new DBConnection().getConnection();
-            ps = conn.prepareStatement(sql);
 
-            int rowsInserted = ps.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Thêm phòng ban thành công.");
-            } else {
-                System.out.println("Thêm phòng ban thất bại.");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-
-        }
-    }
-
-    public void themphongbancon(String tenpb, String MaPBCha, String TenPBCha,String MaCN, String MaQuanLy, String NgayBD) {
+    public void themphongban(PhongBan pb) {
         String sql = "INSERT INTO `QuanLyNhanSu`.`phongban` (`MaPB`, `MaPBCha`, `TenPB`, `TenPBCha`, `MaCN`, `MaQuanLy`, `NgayBD`) "
                 + "VALUES (null, ? , ?, ?, ?, ?, ?)";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-
+            ps.setString(1, pb.getMaPBCha());
+            ps.setString(2, pb.getTenPB());
+            ps.setString(3, pb.getTenPBCha());
+            ps.setString(4, pb.getMaCN());
+            ps.setString(5, pb.getMaQuanLy());
+            ps.setDate(6, java.sql.Date.valueOf(pb.getNgayBD()));
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Thêm phòng ban thành công.");
@@ -269,6 +256,49 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
         }
         return lstPhongBan;
+    }
+
+    @Override
+    public void capnhatphongban(PhongBan pb) {
+        String sql = "UPDATE `QuanLyNhanSu`.`phongban` SET `MaPBCha` = ?, `TenPB` = ?,`TenPBCha` = ?, `MaCN` = ?, `MaQuanLy` = ?, `NgayBD` = ? WHERE `MaPB` = ?";
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, pb.getMaPBCha());
+            ps.setString(2, pb.getTenPB());
+            ps.setString(3, pb.getTenPBCha());
+            ps.setString(4, pb.getMaCN());
+            ps.setString(5, pb.getMaQuanLy());
+            ps.setDate(6, java.sql.Date.valueOf(pb.getNgayBD()));
+            ps.setString(7, pb.getMaPB());
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật phòng ban thành công.");
+            } else {
+                System.out.println("Cập nhật phòng ban thất bại.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void xoaphongban(String mapb) {
+        String sql = "UPDATE `QuanLyNhanSu`.`phongban` SET `status` = 0 WHERE `MaPB` = ?";
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,mapb);
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật phòng ban thành công.");
+            } else {
+                System.out.println("Cập nhật phòng ban thất bại.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
