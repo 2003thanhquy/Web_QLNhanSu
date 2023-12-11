@@ -20,7 +20,7 @@ public interface PhongbanService {
     List<ThongTinPhongBan> laydanhsachphongbanchuacapnhatquanly();
 
 
-    void themphongban(PhongBan pb);
+    boolean  themphongban(PhongBan pb);
 
     void capnhatphongban(PhongBan pb);
 
