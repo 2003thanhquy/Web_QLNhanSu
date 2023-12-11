@@ -1,5 +1,6 @@
 package com.qlns.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ThongTinPhongBan {
@@ -9,13 +10,13 @@ public class ThongTinPhongBan {
     String maCN;
     String maQuanLy;
     String tenPBCha;
-    Date ngayBD;
+    LocalDate ngayBD;
     String tenQuanLy;
     String tenChiNhanh;
     public ThongTinPhongBan() {
     }
 
-    public ThongTinPhongBan(String maPB, String maPBCha, String tenPB, String maCN, String maQuanLy, String tenPBCha, Date ngayBD, String tenQuanLy, String tenChiNhanh) {
+    public ThongTinPhongBan(String maPB, String maPBCha, String tenPB, String maCN, String maQuanLy, String tenPBCha, LocalDate ngayBD, String tenQuanLy, String tenChiNhanh) {
         this.maPB = maPB;
         this.maPBCha = maPBCha;
         this.tenPB = tenPB;
@@ -75,11 +76,11 @@ public class ThongTinPhongBan {
         this.tenPBCha = tenPBCha;
     }
 
-    public Date getNgayBD() {
+    public LocalDate getNgayBD() {
         return ngayBD;
     }
 
-    public void setNgayBD(Date ngayBD) {
+    public void setNgayBD(LocalDate ngayBD) {
         this.ngayBD = ngayBD;
     }
 

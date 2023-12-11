@@ -14,13 +14,13 @@ public class Thongtinnhanvien {
     String soDienThoai;
     int bacLuong;
     String tenTrinhDo;
-    Byte[] hinhAnh;
+    String hinhAnh;
 
 
     public Thongtinnhanvien() {
     }
 
-    public Thongtinnhanvien(String hoTen, String namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo,  Byte[] hinhAnh) {
+    public Thongtinnhanvien(String hoTen, String namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo,  String hinhAnh) {
         this.hoTen = hoTen;
         this.namSinh = namSinh;
         this.gioiTinh = gioiTinh;
@@ -35,12 +35,12 @@ public class Thongtinnhanvien {
         this.hinhAnh = hinhAnh;
     }
 
-    public Byte[] getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
 
-    public Thongtinnhanvien(String maNV, String hoTen, String namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo, Byte[] hinhAnh) {
+    public Thongtinnhanvien(String maNV, String hoTen, String namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo, String hinhAnh) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.namSinh = namSinh;
@@ -165,7 +165,7 @@ public class Thongtinnhanvien {
     public void setTenTrinhDo(String tenTrinhDo) {
         this.tenTrinhDo = tenTrinhDo;
     }
-    public void setHinhAnh(Byte[] hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 

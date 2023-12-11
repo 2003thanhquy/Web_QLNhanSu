@@ -26,6 +26,8 @@ public interface PhongbanDao {
 
     void themphongbancon(String tenpb,String MaPBCha,String TenPBCha,String MaQuanLy,String MaCN,String NgayBD);
 
+    List<PhongBan> getPhongBan();
+
 
 
 

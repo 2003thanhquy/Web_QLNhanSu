@@ -2,9 +2,7 @@ package com.qlns.service.impl;
 
 import com.qlns.dao.UserDao;
 import com.qlns.dao.impl.UserDaoImpl;
-import com.qlns.model.ChucVu;
-import com.qlns.model.NhanVien;
-import com.qlns.model.Thongtinnhanvien;
+import com.qlns.model.*;
 import com.qlns.service.UserService;
 
 import java.util.List;
@@ -39,6 +37,26 @@ public class UserServiceImp implements  UserService {
     }
     public List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB){
         return userDao.laydanhsachnhanvientheophongban(MaPB);
+    }
+
+    @Override
+    public List<PhongBan> getPhongBan() {
+        return null;
+    }
+
+    @Override
+    public List<Luong> getLuong() {
+        return null;
+    }
+
+    @Override
+    public List<ChucVu> getChucVu() {
+        return null;
+    }
+
+    @Override
+    public List<TrinhDo> getTrinHDo() {
+        return null;
     }
 
 

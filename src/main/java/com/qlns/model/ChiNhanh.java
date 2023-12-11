@@ -1,17 +1,18 @@
 package com.qlns.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class ChiNhanh {
     String maCN;
     String maGiamDoc;
     String tenChiNhanh;
     String diaChi;
-    Date NgayBD;
+    LocalDate NgayBD;
     public ChiNhanh(){
 
     }
-    public ChiNhanh(String maCN, String maGiamDoc, String tenChiNhanh, String diaChi, Date ngayBD) {
+    public ChiNhanh(String maCN, String maGiamDoc, String tenChiNhanh, String diaChi, LocalDate ngayBD) {
         this.maCN = maCN;
         this.maGiamDoc = maGiamDoc;
         this.tenChiNhanh = tenChiNhanh;
@@ -19,7 +20,7 @@ public class ChiNhanh {
         NgayBD = ngayBD;
     }
 
-    public ChiNhanh(String maGiamDoc, String tenChiNhanh, String diaChi, Date ngayBD) {
+    public ChiNhanh(String maGiamDoc, String tenChiNhanh, String diaChi, LocalDate ngayBD) {
         this.maGiamDoc = maGiamDoc;
         this.tenChiNhanh = tenChiNhanh;
         this.diaChi = diaChi;
@@ -58,11 +59,11 @@ public class ChiNhanh {
         this.diaChi = diaChi;
     }
 
-    public Date getNgayBD() {
+    public LocalDate getNgayBD() {
         return NgayBD;
     }
 
-    public void setNgayBD(Date ngayBD) {
+    public void setNgayBD(LocalDate ngayBD) {
         NgayBD = ngayBD;
     }
 }
