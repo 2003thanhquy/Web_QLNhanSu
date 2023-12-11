@@ -9,7 +9,7 @@ public class DBConnection {
         String jdbcURL = "jdbc:mysql://localhost:3306/quanlynhansu?useSSL=false";
         String jdbcUsername = "root";
 
-        String jdbcPassword = "Huutan2k3@";
+        String jdbcPassword = "PhamHuuTuan258654@";
 
         Connection connection = null;
         try {
