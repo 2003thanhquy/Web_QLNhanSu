@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 
 public class ChiNhanh {
+
     String maCN;
     String maGiamDoc;
     String tenChiNhanh;
@@ -65,5 +66,9 @@ public class ChiNhanh {
 
     public void setNgayBD(LocalDate ngayBD) {
         NgayBD = ngayBD;
+    }
+
+    public void Validate(){
+
     }
 }
