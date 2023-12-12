@@ -14,6 +14,7 @@ public interface UserDao {
 
     List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB);
 
+    Boolean UpdateNV(NhanVien nv);
 
 
 

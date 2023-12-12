@@ -69,4 +69,9 @@ public class PhongbanServiceImp implements PhongbanService {
     }
 
 
+    @Override
+    public List<PhongBan> getPhongBan() {
+        return pbDao.getPhongBan();
+    }
+
 }

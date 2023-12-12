@@ -15,12 +15,11 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Map;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class LoginFilter implements Filter{
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.print("lan filter");
     }
 
     @Override

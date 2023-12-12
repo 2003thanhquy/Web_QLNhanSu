@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.qlns.model.PhongBan"%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -34,11 +35,15 @@
     <div id="content">
         <div id="main-content">
             <div class="themnhanvien-container container-md">
-                <div class="themnhanvien-excel--container">
+                <div class="themnhanvien-excel--container" onclick="openFileInput()">
                     <div class="themnhanvien-excel--content">
                         <img class="themnhanvien-excel--image" src="<%=request.getContextPath()%>/assets/image/excel-logo.png">
                     </div>
                 </div>
+                <form id="uploadForm" action="<%=request.getContextPath()%>/nhanvien/themnhanvien" method="post" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" name="fileexcel" style="display: none;" accept=".csv, .xlsx" onchange="handleFileSelect(this)" />
+                    <input type="submit" value="Submit" style="display: none;" />
+                </form>
                 <div class="themnhanvien-thucong--container">
                     <h1 class="themnhanvien-thucong--header">Thêm thủ công</h1>
                     <div class="themnhanvien-thucong--content">
@@ -48,6 +53,8 @@
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="input-element--container">
+                                            <div class="input-container">
+                                            </div>
                                             <div class="input-container">
                                                 <label class="input-text" for="tnv-hovaten">Họ và tên</label>
                                                 <input class="tnv-input" type="text" id="tnv-hovaten" name="tnv-hovaten">
@@ -72,36 +79,45 @@
                                                 <label class="input-text ">Giới tính</label>
                                                 <div class="gioitinh-radiobutton">
                                                     <label class="gioitinh-text">
-                                                        <input  type="radio" name="gender" value="male"> Nam
+                                                        <input  type="radio" name="gender" value="Nam"> Nam
                                                     </label>
                                                     <label class="gioitinh-text" style="margin-left: 8px">
-                                                        <input  type="radio" name="gender" value="female"> Nữ
+                                                        <input  type="radio" name="gender" value="Nữ"> Nữ
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="input-container">
-                                                <label class="input-text" for="tnv-idphongban">Mã phòng ban</label>
-                                                <input class="tnv-input" type="text" id="tnv-idphongban" name="tnv-maphongban">
+                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
+                                                <select class="tnv-input"   id="tnv-idphongban" name="tnv-maphongban">
+                                                    <c:forEach items="${lstPB}" var="pb">
+                                                        <option value="${pb.maPB}">${pb.tenPB}</option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                             <div class="input-container">
                                                 <label class="input-text" for="tnv-idbacluong">Mã bậc lương</label>
-                                                <input class="tnv-input" type="text" id="tnv-idbacluong" name="tnv-idbacluong">
+                                                <select class="tnv-input"   id="tnv-idbacluong" name="tnv-idbacluong">
+                                                    <c:forEach items="${lstLuong}" var="l">
+                                                        <option value="${l.idBacLuong}">${l.idBacLuong}</option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                             <div class="input-container">
                                                 <label class="input-text" for="tnv-idchucvu">Mã chức vụ</label>
-                                                <input class="tnv-input" type="text" id="tnv-idchucvu" name="tnv-idchucvu">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
-                                                <input class="tnv-input" type="text" id="tnv-idtrinhdo" name="tnv-idtrinhdo">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
-                                                <select class="tnv-input"  id="tnv-idtrinhdo" name="tnv-idtrinhdo">
-                                                    <c:forEach items="[1,2,3]" var="x">
-                                                        <option>${x}</option>
+                                                <select class="tnv-input"   id="tnv-idchucvu" name="tnv-idchucvu">
+                                                    <c:forEach items="${lstCV}" var="cv">
+                                                        <option value="${cv.idChucVu}">${cv.tenChucVu}</option>
                                                     </c:forEach>
                                                 </select>
+                                            </div>
+                                            <div class="input-container">
+                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
+                                                <select class="tnv-input"   id="tnv-idtrinhdo" name="tnv-idtrinhdo">
+                                                    <c:forEach items="${lstTD}" var="td">
+                                                        <option value="${td.idTrinhDo}">${td.tenTrinhDo}</option>
+                                                    </c:forEach>
+                                                </select>
+
                                             </div>
                                             <div class="input-container">
                                                 <label class="h2" for="fileInput-avatar">Chọn ảnh đại diện:</label>
@@ -129,7 +145,6 @@
         </div>
     </div>
 </div>
-</div>
 <%@include file="/component/all_javascript.jsp"%>
 <script>
     document.getElementById('fileInput-avatar').addEventListener('change', function(event) {
@@ -147,8 +162,31 @@
             reader.readAsDataURL(selectedImage);
         }
     });
+    function openFileInput() {
+        document.getElementById('fileInput').click();
+    }
+
+    function handleFileSelect(input) {
+        var file = input.files[0];
+        if (file) {
+            console.log('Selected file:', file.name);
+            submitForm();
+        }
+    }
+    function submitForm() {
+        document.getElementById('uploadForm').submit();
+    }
+</script>
 
 </script>
+<% if (request.getAttribute("alter") != null) { %>
+<script type="text/javascript">
+    alert('<%= request.getAttribute("alter") %>');
+
+</script>
+<%request.removeAttribute("alter"); } %>
+
+
 <%--<script>--%>
 <%--    $(document).ready(function() {--%>
 <%--        $("#myForm").submit(function(event) {--%>

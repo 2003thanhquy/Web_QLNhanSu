@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li class="nav-menu-item">
-                <a href="" class="nav-item-context nav-item--themnhanvien">
+                <a href="<%= request.getContextPath()%>/nhanvien/themnhanvien" class="nav-item-context nav-item--themnhanvien">
                     <i class="fa-solid fa-plus icon-menu"></i>
                     <p class="menu-item-text" item-tag="2">Thêm nhân viên</p>
                 </a>

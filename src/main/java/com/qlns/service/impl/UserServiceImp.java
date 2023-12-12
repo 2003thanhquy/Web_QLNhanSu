@@ -40,23 +40,8 @@ public class UserServiceImp implements  UserService {
     }
 
     @Override
-    public List<PhongBan> getPhongBan() {
-        return null;
-    }
-
-    @Override
-    public List<Luong> getLuong() {
-        return null;
-    }
-
-    @Override
-    public List<ChucVu> getChucVu() {
-        return null;
-    }
-
-    @Override
-    public List<TrinhDo> getTrinHDo() {
-        return null;
+    public Boolean UpdateNV(NhanVien nv) {
+        return userDao.UpdateNV(nv);
     }
 
 

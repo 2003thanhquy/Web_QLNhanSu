@@ -85,7 +85,7 @@
                                 <h1 class = "thongtinphongban-text">Thông tin chi tiết</h1>
                             </div>
                             <div class="thongtinphongban-content">
-                                <form class="thongtinphongban-content-input--container">
+                                <form class="thongtinphongban-content-input--container" >
                                     <div class="thongtinphongban-content-input--item">
                                         <label for="maphong" class="thongtinphongban-content-input--lable">Mã phòng</label>
                                         <input id="maphong" type="text" name="maphong" class="thongtinphongban-input">
@@ -343,6 +343,19 @@
 </script>
 <script>
     function XacNhan(){
+        let dataObj = {
+            kieucapnhat : kieucapnhat,
+            maphong : maphong,
+            tenpb : tenpb,
+            mapbcha:mapbcha,
+            tenpbcha:tenpbcha,
+            macn:macn,
+            maql:maql,
+            ngaybd :ngaybd,
+        }
+        console.log(dataObj);
+        console.log(JSON.stringify(dataObj));
+
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/capnhatphongban",

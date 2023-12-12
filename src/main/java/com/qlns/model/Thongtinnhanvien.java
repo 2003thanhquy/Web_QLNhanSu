@@ -1,10 +1,12 @@
 package com.qlns.model;
 
+import java.time.LocalDate;
+
 public class Thongtinnhanvien {
 
     String maNV;
     String hoTen;
-    String namSinh;
+    LocalDate namSinh;
     String gioiTinh;
     String cccd;
     String diaChi;
@@ -20,7 +22,7 @@ public class Thongtinnhanvien {
     public Thongtinnhanvien() {
     }
 
-    public Thongtinnhanvien(String hoTen, String namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo,  String hinhAnh) {
+    public Thongtinnhanvien(String hoTen, LocalDate namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo,  String hinhAnh) {
         this.hoTen = hoTen;
         this.namSinh = namSinh;
         this.gioiTinh = gioiTinh;
@@ -40,7 +42,7 @@ public class Thongtinnhanvien {
     }
 
 
-    public Thongtinnhanvien(String maNV, String hoTen, String namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo, String hinhAnh) {
+    public Thongtinnhanvien(String maNV, String hoTen, LocalDate namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo, String hinhAnh) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.namSinh = namSinh;
@@ -55,7 +57,7 @@ public class Thongtinnhanvien {
         this.tenTrinhDo = tenTrinhDo;
         this.hinhAnh = hinhAnh;
     }
-    public Thongtinnhanvien(String maNV, String hoTen, String namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo) {
+    public Thongtinnhanvien(String maNV, String hoTen, LocalDate namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.namSinh = namSinh;
@@ -86,11 +88,11 @@ public class Thongtinnhanvien {
         this.hoTen = hoTen;
     }
 
-    public String getNamSinh() {
+    public LocalDate getNamSinh() {
         return namSinh;
     }
 
-    public void setNamSinh(String namSinh) {
+    public void setNamSinh(LocalDate namSinh) {
         this.namSinh = namSinh;
     }
 

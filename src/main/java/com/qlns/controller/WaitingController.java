@@ -17,7 +17,7 @@ public class WaitingController extends HttpServlet {
             TaiKhoan acc = (TaiKhoan) session.getAttribute("account");
             request.setAttribute("username",acc.getUserName());
             if(acc.getUserRole().equals("admin")){
-                response.sendRedirect(request.getContextPath()+"/XemPhongBan");
+                response.sendRedirect(request.getContextPath()+"/phongban/");
             }
             else {
                 if (acc.getUserRole().equals("user")) {
