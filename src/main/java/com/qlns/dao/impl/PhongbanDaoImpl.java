@@ -209,16 +209,17 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
     public boolean themphongban(PhongBan pb) {
         String sql = "INSERT INTO `QuanLyNhanSu`.`phongban` (`MaPB`, `MaPBCha`, `TenPB`, `TenPBCha`, `MaCN`, `MaQuanLy`, `NgayBD`) "
-                + "VALUES (null, ? , ?, ?, ?, ?, null)";
+                + "VALUES (?, ? , ?, ?, ?, ?, ?)";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, pb.getMaPBCha());
-            ps.setString(2, pb.getTenPB());
-            ps.setString(3, pb.getTenPBCha());
-            ps.setString(4, pb.getMaCN());
-            ps.setString(5, pb.getMaQuanLy());
-//            ps.setDate(6, java.sql.Date.valueOf(pb.getNgayBD()));
+            ps.setString(1, pb.getMaPB());
+            ps.setString(2, pb.getMaPBCha());
+            ps.setString(3, pb.getTenPB());
+            ps.setString(4, pb.getTenPBCha());
+            ps.setString(5, pb.getMaCN());
+            ps.setString(6, pb.getMaQuanLy());
+            ps.setDate(7, java.sql.Date.valueOf(pb.getNgayBD()));
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
                 return true;
@@ -300,6 +301,29 @@ public class PhongbanDaoImpl implements PhongbanDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<ThongTinPhongBan> laydanhsachphongbantheomacn(String MaCN) {
+        List<ThongTinPhongBan> list = new ArrayList<>();
+        String sql =  "SELECT * FROM  ThongTinPhongBan WHERE status = 1 and MaCN=?";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,MaCN);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
+                list.add(new ThongTinPhongBan(rs.getString(1),
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
     }
 
 

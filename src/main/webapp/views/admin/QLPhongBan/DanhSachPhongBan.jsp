@@ -96,12 +96,7 @@
                                     </div>
                                     <div class="thongtinphongban-content-input--item" >
                                         <label for="chinhanh" class="thongtinphongban-content-input--lable">Chi nhánh</label>
-                                        <select id="chinhanh"  name="chinhanh" class="thongtinphongban-input" >
-                                            <option id="tenchinhanh"  ></option>
-                                            <c:forEach items="${listcntoanbo}" var="chinhanh">
-                                                <option value="${chinhanh.maCN}">${chinhanh.maCN}</option>
-                                            </c:forEach>
-                                        </select>
+                                        <input id="chinhanh"  type="text" name="chinhanh" class="thongtinphongban-input" >
                                     </div>
                                     <div class="thongtinphongban-content-input--item">
                                         <label for="truongphong" class="thongtinphongban-content-input--lable">Quản lý</label>
@@ -171,39 +166,33 @@
 
     var maphong = document.getElementById('maphong');
     var tenpb = document.getElementById('tenphong');
-    var tencn = document.getElementById('tenchinhanh');
-    var macn =document.getElementById('chinhanh')
+    var tencn =document.getElementById('chinhanh')
     var tenql = document.getElementById('truongphong');
     var ngaybd = document.getElementById('ngaythanhlap');
     var maql;
+    var macn;
     var trangthai;
-    var macnCha;
 
     maphong.disabled = true;
     tenpb.disabled = true;
-    macn.disabled = true;
+    tencn.disabled = true;
     tenql.disabled = true;
     ngaybd.disabled = true;
     var phongbandangclick;
 
-    function handleItemClick(event,tenPB, maPB, tenCN,tenQL, ngayBD ,maQL,maCNCha) {
+    function handleItemClick(event,tenPB, maPB, tenCN,tenQL, ngayBD ,maQL,maCN) {
         maphong.value= maPB;
         tenpb.value= tenPB;
-
-        tencn.style.display = '';
-        tencn.innerText=tenCN;
-        tencn.click()
-
-
+        tencn.value=tenCN;
         tenql.value=tenQL;
         ngaybd.value=ngayBD;
-        maql=maQL;
-        macnCha =  maCNCha;
+        maql =maQL;
+        macn = maCN;
 
         phongbandangclick = event.target;
         maphong.disabled = true;
         tenpb.disabled = true;
-        macn.disabled = true;
+        tencn.disabled = true;
         tenql.disabled = true;
         ngaybd.disabled = true;
     }
@@ -217,7 +206,6 @@
                 maphong: MaPB
             },
             success: function(data) {
-                console.log(data);
                 row.innerHTML=data;
                 document.querySelector('.phongban-item').click();
 
@@ -236,6 +224,7 @@
     function xempbcha() {
         mapbcha= "";
         tenpbcha = "";
+
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancha",
@@ -258,13 +247,13 @@
     }
     function xempbqly() {
 
+
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancha",
             data: {
             },
             success: function(data) {
-
                 row.innerHTML=data;
                 document.querySelector('.phongban-item').click();
 
@@ -307,20 +296,17 @@
         tencn.value = '';
         tenql.value = '';
         ngaybd.value = '';
+        maphong.disabled=false;
         tenpb.disabled = false;
         tencn.disabled = false;
         tenql.disabled = false;
         ngaybd.disabled = false;
         document.querySelector(".button-capnhat--label").disabled = false;
-        tenpb.focus();
+        maphong.focus();
 
-        tencn.style.display = 'none';
-        tencn.innerText='';
-        macn.disabled = false;
         if (trangthai === "con") {
-            macn.value = macnCha;
-            tencn.innerText = macnCha;
-            macn.disabled =true;
+            tencn.value=macn;
+            tencn.disabled=true;
         }
 
     }
@@ -330,6 +316,10 @@
         tenql.disabled = false;
         ngaybd.disabled = false;
         tenql.value=   maql
+        if (trangthai === "con") {
+            tencn.value=macn;
+            tencn.disabled=true;
+        }
         tenpb.focus();
 
     }
@@ -360,14 +350,14 @@
                 kieucapnhat : kieucapnhat,
                 maphong : maphong.value,
                 tenpb : tenpb.value,
-                mapbcha:mapbcha.value,
-                tenpbcha:tenpbcha.value,
+                mapbcha:mapbcha,
+                tenpbcha:tenpbcha,
                 macn:macn.value,
-                maql:maql.value,
+                maql: tenql.value,
                 mgaybd :ngaybd.value,
             },
             success: function (data) {
-                row.innerHTML=data;
+                window.location.href ="${request.getContextPath()}/QLNhanSu_war_exploded/phongban/"
             },
             error: function (error) {
                 console.log(error);
