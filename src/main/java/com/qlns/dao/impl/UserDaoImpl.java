@@ -177,16 +177,17 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
+
     @Override
     public Boolean UpdateNV(NhanVien nv) {
         String sql = "UPDATE NhanVien SET maPB=?, idbacluong=?, idchucvu=?, " +
                 "idtrinhdo=?, hoten=?, cccd=?, diachi=?, hinhanh=?, sdt=?, namsinh=?, gioitinh=? " +
                 "WHERE MaNV=?";
-        try{
+        try {
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1,nv.getMaPB());
-            ps.setInt(2,nv.getIdBacLuong());
+            ps.setString(1, nv.getMaPB());
+            ps.setInt(2, nv.getIdBacLuong());
             ps.setInt(3, nv.getIdChucVu());
             ps.setInt(4, nv.getIdTrinhDo());
             ps.setString(5, nv.getHoTen());
@@ -194,31 +195,37 @@ public class UserDaoImpl implements UserDao {
             ps.setString(7, nv.getDiaChi());
             ps.setString(8, nv.getHinhAnh());
             ps.setString(9, nv.getSdt());
-            ps.setDate(10,java.sql.Date.valueOf(nv.getNamSinh()) );
+            ps.setDate(10, java.sql.Date.valueOf(nv.getNamSinh()));
             ps.setString(11, nv.getGioiTinh());
             ps.setString(12, nv.getMaNV());
             int rowsUpdated = ps.executeUpdate();
-            return rowsUpdated >0;
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
 
-
-    public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu) {
+        }
+        return false;
+    }
+    public boolean capnhatnhanvientruockhilenchuc (String manv, String mapb,int bacluong, int chucvu){
         String sql = "UPDATE nhanvien SET MaPB=?, IDBacLuong=? , IDChucVu=? WHERE MaNV=?";
-        try{
+        try {
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, mapb);
             ps.setInt(2, bacluong);
             ps.setInt(3, chucvu);
-            ps.setString(4,manv);
+            ps.setString(4, manv);
             int rowsAffected = ps.executeUpdate();
-            return rowsAffected>0;
-        }catch (Exception e){
+            return rowsAffected > 0;
+
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
         return false;
-
     }
+
+
 
 
 }

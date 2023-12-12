@@ -284,12 +284,18 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
     @Override
     public void xoaphongban(String mapb) {
-        String sql = "{CALL Capnhattrangthaixoa(?)}";
+        String sql = "UPDATE `QuanLyNhanSu`.`phongban` SET `status` = 0 WHERE `MaPB` = ?";
         try {
             conn = new DBConnection().getConnection();
-            CallableStatement cstmt = conn.prepareCall(sql);
-            cstmt.setString(1, mapb);
-            cstmt.execute();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,mapb);
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật phòng ban thành công.");
+            } else {
+                System.out.println("Cập nhật phòng ban thất bại.");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

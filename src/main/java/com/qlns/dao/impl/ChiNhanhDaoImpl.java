@@ -41,21 +41,19 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
 
     @Override
     public void themchinhanh(ChiNhanh cn) {
-        String sql = "INSERT INTO `QuanLyNhanSu`.`chinhanh` (`MaCN`, `MaGiamDoc`, `TenChiNhanh`, `DiaChi`, `NgayBD`) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `QuanLyNhanSu`.`chinhanh` (`MaCN`, `MaGiamDoc`, `TenChiNhanh`, `DiaChi`, `NgayBD`) VALUES (null, ?, ?, ?, ?)";
         try {
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, cn.getMaCN());
-            ps.setString(2, cn.getMaGiamDoc());
-            ps.setString(2, cn.getMaGiamDoc());
-            ps.setString(3, cn.getTenChiNhanh());
-            ps.setString(4, cn.getDiaChi());
-            ps.setDate(5, java.sql.Date.valueOf(cn.getNgayBD()));
+            ps.setString(1, cn.getMaGiamDoc());
+            ps.setString(2, cn.getTenChiNhanh());
+            ps.setString(3, cn.getDiaChi());
+            ps.setDate(4, java.sql.Date.valueOf(cn.getNgayBD()));
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("Cập nhật phòng ban thành công.");
+                System.out.println("Cập nhật chi nhanh thành công.");
             } else {
-                System.out.println("Cập nhật phòng ban thất bại.");
+                System.out.println("Cập nhật chi nhanh thất bại.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +62,6 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
 
     @Override
     public void capnhatchinhanh(ChiNhanh cn) {
-
 
         String sql = "UPDATE `QuanLyNhanSu`.`chinhanh` SET `MaGiamDoc` = ?, `TenChiNhanh` = ?, `DiaChi` = ?, `NgayBD` = ? WHERE `MaCN` = ?";
             try {
@@ -77,9 +74,9 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
                 ps.setString(5,cn.getMaCN());
                 int rowsUpdated = ps.executeUpdate();
                 if (rowsUpdated > 0) {
-                    System.out.println("Cập nhật phòng ban thành công.");
+                    System.out.println("Cập nhật chi nhanh thành công.");
                 } else {
-                    System.out.println("Cập nhật phòng ban thất bại.");
+                    System.out.println("Cập nhật chi nahnh thất bại.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
