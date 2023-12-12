@@ -11,7 +11,6 @@ import java.io.IOException;
 public class WaitingController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.print("waitting");
         HttpSession session = request.getSession();
         if(session != null && session.getAttribute("account")!=null){
             TaiKhoan acc = (TaiKhoan) session.getAttribute("account");
@@ -20,11 +19,10 @@ public class WaitingController extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/phongban/");
             }
             else {
-                if (acc.getUserRole().equals("user")) {
-                    response.sendRedirect(request.getContextPath()+"/thongtincanhan");
-                } else {
-                    response.sendRedirect(request.getContextPath() + "/XemPhongBan");
+                if(acc.getUserRole().equals("nhanvien")){
+                    response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+acc.getMaNV());
                 }
+                else response.sendRedirect(request.getContextPath()+"/nhanvien/");
             }
 
         }else{

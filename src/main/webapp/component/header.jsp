@@ -25,12 +25,12 @@
                             </a>
                         </li>
                         <li class="header-detail-item">
-                            <a href="" class="detail-item--context">
+                            <a href="<%=request.getContextPath()%>/taikhoan/" class="detail-item--context">
                                 Quản lý tài khoản
                             </a>
                         </li>
                         <li class="header-detail-item">
-                            <a href="" class="detail-item--context">
+                            <a href="<%=request.getContextPath()%>/logout" class="detail-item--context">
                                 Đăng xuất
                             </a>
                         </li>
