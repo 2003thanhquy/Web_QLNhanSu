@@ -76,7 +76,6 @@
                                                 <th class="cell100 column1">Mã phòng ban</th>
                                                 <th class="cell100 column2">Tên phòng ban</th>
                                                 <th class="cell100 column3">Chi nhánh</th>
-                                                <th class="cell100 column4">Xóa</th>
                                             </tr>
                                             </thead>
                                         </table>

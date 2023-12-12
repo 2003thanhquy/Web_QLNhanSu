@@ -12,6 +12,7 @@ public class DBConnection {
         String jdbcPassword = "PhamHuuTuan258654@";
 
 
+
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");

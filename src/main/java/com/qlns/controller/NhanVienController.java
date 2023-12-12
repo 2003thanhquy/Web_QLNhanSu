@@ -59,7 +59,7 @@ public class NhanVienController extends HttpServlet {
                 case "/":
                     XemDanhSach(request,response);
                     break;
-                case "/thekmnhanvien":
+                case "/themnhanvien":
                     ThemNhanVien(request,response);
                     break;
                 case "/thongtin":

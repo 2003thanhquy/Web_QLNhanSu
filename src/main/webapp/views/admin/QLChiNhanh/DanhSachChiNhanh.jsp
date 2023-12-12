@@ -132,6 +132,13 @@
     var magiamdoc = document.getElementById("dscn--ttcn-idgiamdoc");
 
 
+    macn.disabled = true;
+    tencn.disabled = true;
+    diachi.disabled = true;
+    ngaythanhlap.disabled = true;
+    magiamdoc.disabled = true;
+
+
     var kieucapnhat;
     var dulieu = document.getElementById("bodydata");
 
@@ -142,20 +149,47 @@
          diachi.value = DiaChi;
          ngaythanhlap.value = NgayThanhLap;
          magiamdoc.value = Magd;
+         macn.disabled = true;
+         tencn.disabled = true;
+         diachi.disabled = true;
+         ngaythanhlap.disabled = true;
+         magiamdoc.disabled = true;
 
      }
      function  themcn(){
          kieucapnhat = "them";
+         macn.value = '';
+         tencn.value = '';
+         diachi.value = '';
+         ngaythanhlap.value = '';
+         magiamdoc.value = '';
+
+
+         macn.disabled = true;
+         tencn.disabled = false;
+         diachi.disabled = false;
+         ngaythanhlap.disabled = false;
+         magiamdoc.disabled = false;
 
      }
      function  capnhatcn(){
          kieucapnhat = "capnhat";
+         macn.disabled = true;
+         tencn.disabled = false;
+         diachi.disabled = false;
+         ngaythanhlap.disabled = false;
+         magiamdoc.disabled = false;
      }
      function  xoacn(){
          kieucapnhat = "xoa";
      }
     function  huy(){
 
+        macn.disabled = true;
+        tencn.disabled = true;
+        diachi.disabled = true;
+        ngaythanhlap.disabled = true;
+        magiamdoc.disabled = true;
     }
     function  xacnhan(){
         jQuery.ajax({
@@ -172,7 +206,6 @@
             success: function (data) {
                 console.log(data);
                 alert("Dữ liệu đã được gửi thành công");
-
                 dulieu.innerHTML=data;
             },
             error: function (error) {

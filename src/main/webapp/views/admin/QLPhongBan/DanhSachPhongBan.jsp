@@ -145,6 +145,10 @@
 <% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
 
 <script>
+    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
+    if (!isUserRoleAdmin) {
+        document.querySelector(".thongtin-content--button").style.display = "none";
+    }
 
 
     var buttonqlaiphongban = document.querySelector(".button-quaylaiphongcha--container");
@@ -317,6 +321,7 @@
         kieucapnhat = sua;
         tenpb.disabled = false;
         ngaybd.disabled = false;
+        tenql.disabled = false;
         tenql.value=   maql
         if (trangthai === "con") {
             tencn.value=macn;
