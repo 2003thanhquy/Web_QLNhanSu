@@ -16,5 +16,7 @@ public interface UserService {
 
 
     Boolean UpdateNV(NhanVien nv);
+    List<KThuongKLuc> getKThuongKLuat();
+    List<KThuongKLuc> getKThuongKLuat(String manv);
 
 }

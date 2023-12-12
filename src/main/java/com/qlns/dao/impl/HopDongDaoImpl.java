@@ -36,7 +36,7 @@ public class HopDongDaoImpl implements HopDongDao {
 
     @Override
     public List<HopDong> findAll() {
-        String sql = "SELECT * FROM HopDong";
+        String sql = "SELECT * FROM HopDong WHERE Status=1";
 
         try {
             conn = new DBConnection().getConnection();
@@ -74,7 +74,40 @@ public class HopDongDaoImpl implements HopDongDao {
     }
 
     @Override
+    public int updateByMaHopDong(String maHopDong, HopDong hopDong) {
+        String sql = "UPDATE HopDong SET MaHopDong=?, MaNV=?, NgayBD=?, NgayKT=?, NoiDung=?  WHERE MaHopDong = ?";
+
+        try {
+            conn = new DBConnection().getConnection();
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, hopDong.getMaHopDong());
+            preparedStatement.setString(2, hopDong.getMaNV());
+            preparedStatement.setDate(3, Date.valueOf(hopDong.getNgayBD()));
+            preparedStatement.setDate(4, Date.valueOf(hopDong.getNgayKT()));
+            preparedStatement.setString(5, hopDong.getNoidung());
+            preparedStatement.setString(6, maHopDong);
+
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
     public int deleteByMaHopDong(String maHopDong) {
+        String sql = "UPDATE HopDong SET Status=0 WHERE MaHopDong = ?";
+
+        try {
+            conn = new DBConnection().getConnection();
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, maHopDong);
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
         return 0;
     }
 
