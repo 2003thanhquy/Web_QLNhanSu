@@ -1,6 +1,8 @@
 package com.qlns.service.impl;
 
+import com.qlns.dao.KThuongKLuatDao;
 import com.qlns.dao.UserDao;
+import com.qlns.dao.impl.KThuongKLuatDaoImpl;
 import com.qlns.dao.impl.UserDaoImpl;
 import com.qlns.model.*;
 import com.qlns.service.UserService;
@@ -10,7 +12,7 @@ import java.util.List;
 public class UserServiceImp implements  UserService {
 
     UserDao userDao = new UserDaoImpl();
-
+    KThuongKLuatDao ktkl = new KThuongKLuatDaoImpl();
     @Override
     public Thongtinnhanvien laythongtincanhan(String MaNV) {
         return userDao.laythongtincanhan(MaNV);
@@ -42,6 +44,16 @@ public class UserServiceImp implements  UserService {
     @Override
     public Boolean UpdateNV(NhanVien nv) {
         return userDao.UpdateNV(nv);
+    }
+
+    @Override
+    public List<KThuongKLuc> getKThuongKLuat() {
+        return ktkl.getKThuongKLuat();
+    }
+
+    @Override
+    public List<KThuongKLuc> getKThuongKLuat(String manv) {
+        return ktkl.getKThuongKLuat(manv);
     }
 
 

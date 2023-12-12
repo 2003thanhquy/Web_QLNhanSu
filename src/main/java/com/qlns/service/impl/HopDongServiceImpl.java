@@ -24,12 +24,12 @@ public class HopDongServiceImpl implements HopDongService {
     }
 
     @Override
-    public int suaHopDong() {
-        return 0;
+    public int suaHopDong(String id, HopDong hopDong) {
+        return hopDongDao.updateByMaHopDong(id, hopDong);
     }
 
     @Override
-    public int xoaHopDong() {
-        return 0;
+    public int xoaHopDong(String id) {
+        return hopDongDao.deleteByMaHopDong(id);
     }
 }
