@@ -62,13 +62,16 @@ public class NhanVienController extends HttpServlet {
                     XemDanhSach(request, response);
                     break;
                 case "/themnhanvien":
-                    ThemNhanVien(request, response);
+
+                    ThemNhanVien(request,response);
                     break;
                 case "/thongtin":
                     XemNhanVien(request, response);
                     break;
-                case "/khenthuongkyluat":
-                    KThuongKLuc(request, response);
+
+                case "/Khenthuongkyluat":
+                    KThuongKLuc(request,response);
+
                     break;
                 case "/duan":
                     XemDuAn(request, response);
