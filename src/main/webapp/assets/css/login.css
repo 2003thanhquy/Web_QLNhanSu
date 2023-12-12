@@ -10,11 +10,26 @@
     align-items: center;
     overflow: hidden;
 }
+.image-avatar {
+    background-image: url(https://sangkienvicongdong.vn/upload/img/personnel/ong-tuan-ha.png);
+    padding-top: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 .login-content {
     width: 400px;
     height: 650px;
     background-color: #01022f;
     border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-heading--container {
+    margin-top: -30px;
+    margin-bottom: 30px;
 }
 .login-image--container {
     width: 75px;

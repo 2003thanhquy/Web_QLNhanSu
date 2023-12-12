@@ -6,9 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<%--    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">--%>
     <style>
+
         <%@include file="/assets/css/login.css"%>
         <%@include file="/assets/css/bootstrap.min.css"%>
     </style>
@@ -20,38 +19,40 @@
 
 <div class="login-container">
     <div class="login-content">
-        <div class="login-heading--container">
-            <div class="login-image--container">
-                <img src="/assets/image/userlogin.png">
+        <div>
+            <div class="login-heading--container">
+                <div class="login-image--container">
+                    <div class="image-avatar"></div>
+                </div>
+                <div class="login-heading--text">
+                    <h4>WELCOME</h4>
+                    <p>Sign in by entering the information below</p>
+                </div>
             </div>
-            <div class="login-heading--text">
-                <h4>WELCOME</h4>
-                <p>Sign in by entering the information below</p>
+            <div class="login-content--container container-sm">
+                <%if(request.getAttribute("alter")!=null){%>
+                <div class="alert alert-danger center" role="alert">
+                    <p>${alter}</p>
+                </div>
+                <%}%>
+                <form class="form-login"  action="<%=request.getContextPath()%>/login" method="post">
+                    <div class="container-sm">
+                        <div class="input-element--container">
+                            <i class="fa-solid fa-user login-icon"></i>
+                            <input type="text" name="username" id="username" placeholder="Username" class="input--element" />
+                        </div>
+                        <div class="input-element--container">
+                            <i class="fa-solid fa-lock login-icon"></i>
+                            <input type="password" name="pwd" id="pwd" placeholder="Password" class="input--element " />
+                        </div>
+                        <div class="login-button--container">
+                            <button class="login-button"  type="submit">Get Started</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
-        <div class="login-content--container container-sm">
-            <%if(request.getAttribute("alter")!=null){%>
-            <div class="alert alert-danger center" role="alert">
-                <p>${alter}</p>
-            </div>
-            <%}%>
-            <form class="form-login"  action="<%=request.getContextPath()%>/login" method="post">
-                <div class="container-sm">
-                    <div class="input-element--container">
-                        <i class="fa-solid fa-user login-icon"></i>
-                        <input type="text" name="username" id="username" placeholder="Username" class="input--element" />
-                    </div>
-                    <div class="input-element--container">
-                        <i class="fa-solid fa-lock login-icon"></i>
-                        <input type="password" name="pwd" id="pwd" placeholder="Password" class="input--element " />
-                    </div>
-                    <div class="login-button--container">
-                        <button class="login-button"  type="submit">Get Started</button>
-                    </div>
-                </div>
-            </form>
-        </div>
     </div>
 </div>
 
