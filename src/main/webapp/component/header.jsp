@@ -46,17 +46,17 @@
         <img src="<%=request.getContextPath()%>/assets/image/close-button.png" alt="" class="close-button">
         <ul class="list-items--more-managing">
             <li class="item--more-managing">
-                <a href="" class="more-managing--context">
+                <a href="<%=request.getContextPath()%>/nhanvien/duan" class="more-managing--context">
                     Quản lý dự án
                 </a>
             </li>
             <li class="item--more-managing">
-                <a href="" class="more-managing--context">
+                <a href="<%=request.getContextPath()%>/nhanvien/hopdong" class="more-managing--context">
                     Quản lý hợp đồng
                 </a>
             </li>
             <li class="item--more-managing">
-                <a href="" class="more-managing--context">
+                <a href="<%=request.getContextPath()%>/nhanvien/Khenthuongkyluat" class="more-managing--context">
                     Khen thưởng & Kỷ luật
                 </a>
             </li>

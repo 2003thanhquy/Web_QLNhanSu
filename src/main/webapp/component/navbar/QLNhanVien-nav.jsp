@@ -1,12 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
+
 <nav id="nav">
     <div class="nav-human-infor">
         <div class="" style="text-align: center; z-index: 1;">
             <div class="avatar-container">
                 <div class="avatar-nav"></div>
             </div>
-            <p class="nav-human-name">Phạm Hữu Tuấn</p>
+            <p class="nav-human-name"></p>
         </div>
     </div>
     <div class="brand-nav">
