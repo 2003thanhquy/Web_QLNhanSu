@@ -32,17 +32,19 @@ public class NhanVienController extends HttpServlet {
     private PhongbanService pb;
     private LuongSerrvice luong;
     private ChucVuService cv;
-    private TrinhDoService td ;
+    private TrinhDoService td;
     private DuAnService duAnService;
+
     @Override
-    public void init(){
+    public void init() {
         pb = new PhongbanServiceImp();
         luong = new LuongServiceImpl();
         cv = new ChucVuServiceImlp();
         td = new TrinhDoServiceImpl();
         userService = new UserServiceImp();
-        duAnService = new DuAnServiceImpl() ;
+        duAnService = new DuAnServiceImpl();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,46 +59,48 @@ public class NhanVienController extends HttpServlet {
             return;
         }
 
-        try{
-            switch (relativePath){
+        try {
+            switch (relativePath) {
                 case "/":
-                    XemDanhSach(request,response);
+                    XemDanhSach(request, response);
                     break;
                 case "/themnhanvien":
+
                     ThemNhanVien(request,response);
                     break;
                 case "/thongtin":
-                    XemNhanVien(request,response);
+                    XemNhanVien(request, response);
                     break;
                 case "/duan":
-                    XemDuAn(request,response);
+                    XemDuAn(request, response);
                     break;
                 case "/duan/chitiet":
-                    DuAnChitiet(request,response);
+                    DuAnChitiet(request, response);
                     break;
                 default:
-                    response.sendRedirect(request.getContextPath()+"/error/error.jsp");
+                    response.sendRedirect(request.getContextPath() + "/error/error.jsp");
                     break;
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.print(ex);
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        doGet(request, response);
     }
-    public void XemDanhSach(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
+
+    public void XemDanhSach(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
         Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
         request.setAttribute("user", user);
         List<Thongtinnhanvien> listnv = null;
-        if(tk.getUserRole().equals("admin")){
+        if (tk.getUserRole().equals("admin")) {
             listnv = userService.laydanhsachnhanvienadmin();
-        }
-        else {
+        } else {
             if (tk.getUserRole().equals("giamdoc")) {
                 listnv = userService.laydanhsachnhanviengiamdoc(tk.getMaNV());
             } else {
@@ -108,10 +112,11 @@ public class NhanVienController extends HttpServlet {
                 }
             }
         }
-        request.setAttribute("listnv",listnv);
-        request.getRequestDispatcher("/views/admin/QLNhanVien/XemNhanVien.jsp").forward(request,response);
+        request.setAttribute("listnv", listnv);
+        request.getRequestDispatcher("/views/admin/QLNhanVien/XemNhanVien.jsp").forward(request, response);
     }
-    public void UpLoadFile(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException{
+
+    public void UpLoadFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 
         Part part = request.getPart("fileexcel");
         try (InputStream fileContent = part.getInputStream();
@@ -133,18 +138,18 @@ public class NhanVienController extends HttpServlet {
                 nv.setSdt(row[8]);
                 String dateString = row[9];
                 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                nv.setNamSinh( LocalDate.parse(dateString, dateFormatter));
+                nv.setNamSinh(LocalDate.parse(dateString, dateFormatter));
                 nv.setGioiTinh(row[10]);
                 lstNV.add(nv);
             }
             List<Boolean> lstCheck = new ArrayList<>();
             UserService user = new UserServiceImp();
-            for(NhanVien nv : lstNV){
+            for (NhanVien nv : lstNV) {
                 lstCheck.add(user.themnhanvien(nv));
             }
 
             String alter = "Thêm thành công!!!";
-            if(lstCheck.contains(false)){
+            if (lstCheck.contains(false)) {
                 StringBuilder alertMessage = new StringBuilder("Không thêm được các dòng. Dòng không thành công: ");
                 for (int i = 0; i < lstCheck.size(); i++) {
                     if (!lstCheck.get(i)) {
@@ -155,7 +160,7 @@ public class NhanVienController extends HttpServlet {
                     alertMessage.setLength(alertMessage.length() - 2);
                 }
             }
-            request.setAttribute("alter",alter);
+            request.setAttribute("alter", alter);
             request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request, response);
             // response.setContentType();
         } catch (Exception e) {
@@ -163,44 +168,47 @@ public class NhanVienController extends HttpServlet {
             // Xử lý lỗi khi đọc CSV
         }
     }
-    public void ThemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException {
+
+    public void ThemNhanVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         if (request.getMethod().equals("GET")) {
-            request.setAttribute("lstPB",pb.getPhongBan());
-            request.setAttribute("lstLuong",luong.getLuong());
-            request.setAttribute("lstCV",cv.getChucVu());
-            request.setAttribute("lstTD",td.getTrinhDo());
+            request.setAttribute("lstPB", pb.getPhongBan());
+            request.setAttribute("lstLuong", luong.getLuong());
+            request.setAttribute("lstCV", cv.getChucVu());
+            request.setAttribute("lstTD", td.getTrinhDo());
             request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request, response);
         } else {
-                Part upload =request.getPart("fileexcel");
-                if(upload!= null){
-                    String fileName = getFileName(upload);
-                    if (fileName != null && (fileName.endsWith(".csv") || fileName.endsWith(".xlsx"))) {
-                        UpLoadFile(request, response);
-                        return;
-                    } else {
-                        response.getWriter().write("Invalid file format. Please upload an Excel file.");
-                        return;
-                    }
+            Part upload = request.getPart("fileexcel");
+            if (upload != null) {
+                String fileName = getFileName(upload);
+                if (fileName != null && (fileName.endsWith(".csv") || fileName.endsWith(".xlsx"))) {
+                    UpLoadFile(request, response);
+                    return;
+                } else {
+                    response.getWriter().write("Invalid file format. Please upload an Excel file.");
+                    return;
                 }
-                Part part = request.getPart("image");
-                NhanVien nv = getNV(request,response);
-                UserService user = new UserServiceImp();
-                if(user.themnhanvien(nv)){
-                    String realpath = request.getServletContext().getRealPath("/uploads");
-                    if(!Files.exists(Paths.get(realpath))){
-                        System.out.println("khoi  tao thanh cong"+ realpath);
-                        Files.createDirectories(Paths.get(realpath));
-                    }
-                    part.write(realpath+"/"+nv.getHinhAnh());
-                    response.setContentType("text/html");
-                    PrintWriter out = response.getWriter();
-                    out.println("<h1>day la file</h1>");
-                    try{
-                        out.println("<img src='"+request.getContextPath()+"/uploads/"+nv.getHinhAnh()+"'>");
-                    }catch (Exception e){}
+            }
+            Part part = request.getPart("image");
+            NhanVien nv = getNV(request, response);
+            UserService user = new UserServiceImp();
+            if (user.themnhanvien(nv)) {
+                String realpath = request.getServletContext().getRealPath("/uploads");
+                if (!Files.exists(Paths.get(realpath))) {
+                    System.out.println("khoi  tao thanh cong" + realpath);
+                    Files.createDirectories(Paths.get(realpath));
                 }
+                part.write(realpath + "/" + nv.getHinhAnh());
+                response.setContentType("text/html");
+                PrintWriter out = response.getWriter();
+                out.println("<h1>day la file</h1>");
+                try {
+                    out.println("<img src='" + request.getContextPath() + "/uploads/" + nv.getHinhAnh() + "'>");
+                } catch (Exception e) {
+                }
+            }
         }
     }
+
     private String getFileName(Part part) {
         for (String contentDisposition : part.getHeader("content-disposition").split(";")) {
             if (contentDisposition.trim().startsWith("filename")) {
@@ -209,12 +217,13 @@ public class NhanVienController extends HttpServlet {
         }
         return null;
     }
+
     private String convertStreamToString(InputStream is) {
         Scanner scanner = new Scanner(is, "UTF-8").useDelimiter("\\A");
         return scanner.hasNext() ? scanner.next() : "";
     }
 
-    public void XemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException {
+    public void XemNhanVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
@@ -223,26 +232,27 @@ public class NhanVienController extends HttpServlet {
         UserService user = new UserServiceImp();
         if (request.getMethod().equals("GET")) {
             Thongtinnhanvien ttnv = user.laythongtincanhan(manv);
-            request.setAttribute("lstPB",pb.getPhongBan());
-            request.setAttribute("lstLuong",luong.getLuong());
-            request.setAttribute("lstCV",cv.getChucVu());
-            request.setAttribute("lstTD",td.getTrinhDo());
+            request.setAttribute("lstPB", pb.getPhongBan());
+            request.setAttribute("lstLuong", luong.getLuong());
+            request.setAttribute("lstCV", cv.getChucVu());
+            request.setAttribute("lstTD", td.getTrinhDo());
             request.setAttribute("ttnv", ttnv);
             request.getRequestDispatcher("/views/admin/QLThongTinCaNhan/ThongTinCaNhan.jsp").forward(request, response);
-        }else{
+        } else {
             Part part = request.getPart("image");
-            NhanVien nv = getNV(request,response);
+            NhanVien nv = getNV(request, response);
             nv.setMaNV(manv);
-            if(user.UpdateNV(nv)){
-                    response.setContentType("text/html");
-                    PrintWriter out = response.getWriter();
-                    out.println("<h1>Them thanh cong</h1>");
+            if (user.UpdateNV(nv)) {
+                response.setContentType("text/html");
+                PrintWriter out = response.getWriter();
+                out.println("<h1>Them thanh cong</h1>");
 
             }
         }
 
     }
-    private NhanVien getNV(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException{
+
+    private NhanVien getNV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 
         String hoten = request.getParameter("tnv-hovaten");
         String cmnd = request.getParameter("tnv-cmnd");
@@ -256,7 +266,18 @@ public class NhanVienController extends HttpServlet {
         int idtrinhdo = Integer.parseInt(request.getParameter("tnv-idtrinhdo"));
         Part part = request.getPart("image");
         String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-        return new NhanVien(maphongban,idbacluong,idchucvu,idtrinhdo,hoten,cmnd,diachi,filename,sdt,namsinh,gioitinh);
+        return new NhanVien(maphongban, idbacluong, idchucvu, idtrinhdo, hoten, cmnd, diachi, filename, sdt, namsinh, gioitinh);
+    }
+    public void KThuongKLuc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+        // String maNV = request.getParameter("manv");
+        HttpSession session = request.getSession();
+        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
+        List<KThuongKLuc> lstKtkl = null;
+        if (tk != null && tk.getUserRole().equals("admin")) {
+            lstKtkl = userService.getKThuongKLuat();
+        }
+        request.setAttribute("lstKtkl", lstKtkl);
+        request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request, response);
     }
     public void XuLyHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String startRoute = "/hopdong";
@@ -327,8 +348,7 @@ public class NhanVienController extends HttpServlet {
         int status = hopDongService.themHopDong(hopDong);
         if (status != 0) {
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
-        }
-        else {
+        } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
@@ -345,8 +365,7 @@ public class NhanVienController extends HttpServlet {
         int status = hopDongService.suaHopDong(maHopDong, hopDong);
         if (status != 0) {
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
-        }
-        else {
+        } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
@@ -358,8 +377,7 @@ public class NhanVienController extends HttpServlet {
 
         if (status != 0) {
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
-        }
-        else {
+        } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
@@ -371,16 +389,16 @@ public class NhanVienController extends HttpServlet {
         String soKTKL = request.getParameter("soKTKL");
         int loaiCT = Integer.parseInt(request.getParameter("loaiCT"));
         String maNV = request.getParameter("maNV");
-        KThuongKLuc ktkl = new KThuongKLuc(id,maNV , noiDung, ngay, soKTKL,loaiCT);
+        KThuongKLuc ktkl = new KThuongKLuc(id, maNV, noiDung, ngay, soKTKL, loaiCT);
         KThuongKyLuatService ktklservice = new KThuongKyLuatServiceImpl();
         int status = ktklservice.ThemChuongTrinh(ktkl);
         if (status != 0) {
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
-        }
-        else {
+        } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
+
     public void CapNhatChuongTrinh(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("Id"));
         LocalDate ngay = LocalDate.parse(request.getParameter("ngayApDung"));
@@ -388,16 +406,16 @@ public class NhanVienController extends HttpServlet {
         String soKTKL = request.getParameter("soKTKL");
         int loaiCT = Integer.parseInt(request.getParameter("loaiCT"));
         String maNV = request.getParameter("maNV");
-        KThuongKLuc ktkl = new KThuongKLuc(id,maNV , noiDung, ngay, soKTKL,loaiCT);
+        KThuongKLuc ktkl = new KThuongKLuc(id, maNV, noiDung, ngay, soKTKL, loaiCT);
         KThuongKyLuatService ktklservice = new KThuongKyLuatServiceImpl();
         int status = ktklservice.CapNhatChuongTrin(ktkl);
         if (status != 0) {
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
-        }
-        else {
+        } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
+
     public void XoaChuongTrinh(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("Id"));
         LocalDate ngay = LocalDate.parse(request.getParameter("ngayApDung"));
@@ -405,13 +423,12 @@ public class NhanVienController extends HttpServlet {
         String soKTKL = request.getParameter("soKTKL");
         int loaiCT = Integer.parseInt(request.getParameter("loaiCT"));
         String maNV = request.getParameter("maNV");
-        KThuongKLuc ktkl = new KThuongKLuc(id,maNV , noiDung, ngay, soKTKL,loaiCT);
+        KThuongKLuc ktkl = new KThuongKLuc(id, maNV, noiDung, ngay, soKTKL, loaiCT);
         KThuongKyLuatService ktklservice = new KThuongKyLuatServiceImpl();
         int status = ktklservice.XoaChuongTrinh(ktkl);
         if (status != 0) {
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
-        }
-        else {
+        } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
@@ -462,7 +479,7 @@ public class NhanVienController extends HttpServlet {
             jsonString.append("\"soKT_KL\": \"").append(kt.getSoKT_KL()).append("\",");
             jsonString.append("\"loai\": \"").append(kt.getLoai()).append("\"");
             jsonString.append("},");
-        }
+    }
 
         if (!lstKtkl.isEmpty()) {
             jsonString.deleteCharAt(jsonString.length() - 1); // Remove the last comma

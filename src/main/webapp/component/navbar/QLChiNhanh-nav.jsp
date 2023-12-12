@@ -1,12 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
+
 <nav id="nav">
     <div class="nav-human-infor">
         <div class="" style="text-align: center; z-index: 1;">
             <div class="avatar-container">
                 <div class="avatar-nav"></div>
             </div>
-            <p class="nav-human-name">Phạm Hữu Tuấn</p>
+            <p class="nav-human-name"></p>
         </div>
     </div>
     <div class="brand-nav">
@@ -27,13 +28,13 @@
     <div class="menu-nav">
         <ul class="nav-list-items">
             <li class="nav-menu-item">
-                <a href="" class="nav-item-context nav-item--xemchinhanh">
+                <a href="<%=request.getContextPath()%>/chinhanh/" class="nav-item-context nav-item--xemchinhanh">
                     <i class="fa-solid fa-list icon-menu"></i>
                     <p class="menu-item-text" item-tag="1">Xem Chi Nhánh</p>
                 </a>
             </li>
             <li class="nav-menu-item">
-                <a href="" class="nav-item-context nav-item--phongban">
+                <a href="<%=request.getContextPath()%>/chinhanh/dachsachphongbanchinhanh" class="nav-item-context nav-item--phongban">
                     <i class="fa-solid fa-plus icon-menu"></i>
                     <p class="menu-item-text" item-tag="2">Phòng Ban</p>
                 </a>

@@ -61,5 +61,4 @@ public class UserServiceImp implements  UserService {
         return userDao.capnhatnhanvientruockhilenchuc(manv,mapb,bacluong,chucvu);
     }
 
-
 }

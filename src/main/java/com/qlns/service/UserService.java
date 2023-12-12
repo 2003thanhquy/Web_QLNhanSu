@@ -11,11 +11,6 @@ public interface UserService {
     List<Thongtinnhanvien> laydanhsachnhanvienadmin();
     List<Thongtinnhanvien> laydanhsachnhanviengiamdoc(String MaGiamDoc);
     List<Thongtinnhanvien> laydanhsachnhanvientruongphong(String MaTruongPhong);
-
-    List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB);
-
-
-
     Boolean UpdateNV(NhanVien nv);
     List<KThuongKLuc> getKThuongKLuat();
     List<KThuongKLuc> getKThuongKLuat(String manv);

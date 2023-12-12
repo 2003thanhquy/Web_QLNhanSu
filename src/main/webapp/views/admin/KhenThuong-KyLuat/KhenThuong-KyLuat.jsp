@@ -97,7 +97,11 @@
                                         <div class="ktkl-dsct-button--control">
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-primary" id="them" onclick="ThemChuongTrinh()">Thêm</button>
                                             <div class="ktkl-dsct--button btn btn-outline-warning" id="capnhat" onclick="CapNhat()">Cập nhật</div>
+<<<<<<< HEAD
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa" onclick="handleXoaClicked()">Xóa</button>
+=======
+                                            <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa" onclick="XoaChuongTrinh()">Xóa</button>
+>>>>>>> 129c81535d7aa2cb7725a07d5a00f99e9e2a30d1
                                         </div>
                                         <div class="ktkl-dsct-button--confirm">
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-secondary" id="huy" onclick="handleHuyClicked()">Hủy</button>
@@ -168,21 +172,10 @@
     }
 
     function XacNhanChuongTrinh(){
-        var dataObj = getData();
-        let url = window.location.href + kieucapnhat;
-        jQuery.ajax({
-            url: url,
-            method: "GET",
-            data:dataObj,
-            success: getDanhSachChuongTrinh,
-            error: function(){
-                console.error("Adding failed!")
-            }
-        })
-        enableInputElement(true);
-        clearTextInput();
+
     }
     function getDanhSachChuongTrinh() {
+<<<<<<< HEAD
         jQuery.ajax({
             url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat/danhsach",
             method:"GET",
@@ -220,6 +213,9 @@
                 });
 
             });
+=======
+
+>>>>>>> 129c81535d7aa2cb7725a07d5a00f99e9e2a30d1
     }
     function ThemChuongTrinh() {
         enableInputElement(false);
@@ -235,9 +231,26 @@
         manv.disabled = false;
         huy.disabled =false;
         xacnhan.disabled = false;
+<<<<<<< HEAD
         kieucapnhat = "/sua"
     }
 
+=======
+        kieuxacnhan="/sua";
+    }
+    function XoaChuongTrinh(){
+        kieuxacnhan="/xoa";
+    }
+    function  handleItemClick(Id,noiDung,Ngay,soKT_KL,Loai,Manv){
+        id.value = Id ;
+        noidung.value = noiDung;
+        ngay.value = Ngay;
+        soktkl.value = soKT_KL
+        loai.value  = Loai
+        manv.value = Manv
+
+    }
+>>>>>>> 129c81535d7aa2cb7725a07d5a00f99e9e2a30d1
     function enableInputElement(type) {
         id.disabled = type;
         ngay.disabled = type;

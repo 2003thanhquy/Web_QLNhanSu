@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
+<%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="com.qlns.model.TaiKhoan" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,8 @@
         <div id="main-content">
             <div class="tk-container container-lg">
                 <div class="row">
-                    <div class="col-sm-12 col-xl-8">
+
+                    <div class="container-left col-sm-12 col-xl-8">
                         <div class="tk-dstk--container">
                             <h2 style="text-align: center">Danh sách tài khoản</h2>
                             <div class="tk-dstk--content">
@@ -57,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-xl-4">
+                    <div class="container-right col-sm-12 col-xl-4">
                         <div class="tk-tttk--container">
                             <h2 style="text-align: center">Thông tin tài khoản</h2>
                             <div class="tk-tttk--content">
@@ -106,6 +109,13 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
-
+<script>
+    var left_container = document.querySelector(".container-left");
+    var right_container = document.querySelector(".container-right");
+    <%TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");  %>
+    if(!<%=tkdangnhap.getUserRole().equals("admin")%>){
+        left_container.style.display = "none";
+    }
+</script>
 </body>
 </html>
