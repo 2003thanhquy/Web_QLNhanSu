@@ -45,7 +45,7 @@
                                         <table>
                                             <tbody>
                                             <c:forEach items="${lstKtkl}" var="ktkl">
-                                                <tr class="row100 body" onclick="handleItemClick('${ktkl.id}','${ktkl.maNV}','${ktkl.noiDung}','${ktkl.getNgay()}','${ktkl.soKT_KL}','${ktkl.loai}')">
+                                                <tr class="row100 body" onclick="handleItemClick('${ktkl.id}','${ktkl.noiDung}','${ktkl.getNgay()}','${ktkl.soKT_KL}','${ktkl.loai}','${ktkl.maNV}')">
                                                     <td class="cell100 column1">${ktkl.id}</td>
                                                     <td class="cell100 column3">${ktkl.noiDung}</td>
                                                     <td class="cell100 column3">${ktkl.getNgay()}</td>
@@ -65,7 +65,7 @@
                         <div class="ktkl-dsct--container">
                             <h2 style="text-align: center">Thông tin chi tiết</h2>
                             <div class="ktkl-dsct--content">
-                                <form action="" method="post">
+                                <form action="" >
                                     <div class="ktkl-dsct-inputs">
                                         <div class="ktkl-dsct--input">
                                             <label class="ktkl-dsct--label" for="ktkl-dsct--id">ID</label>
@@ -94,13 +94,13 @@
                                     </div>
                                     <div class="ktkl-dsct-buttons">
                                         <div class="ktkl-dsct-button--control">
-                                            <button class="ktkl-dsct--button btn btn-outline-primary" id="them">Thêm</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-outline-primary" id="them" onclick="ThemChuongTrinh()">Thêm</button>
                                             <div class="ktkl-dsct--button btn btn-outline-warning" id="capnhat" onclick="CapNhat()">Cập nhật</div>
-                                            <button class="ktkl-dsct--button btn btn-outline-danger" id="xoa">Xóa</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa">Xóa</button>
                                         </div>
                                         <div class="ktkl-dsct-button--confirm">
-                                            <button class="ktkl-dsct--button btn btn-outline-secondary" id="huy">Hủy</button>
-                                            <button type="submit" class="ktkl-dsct--button btn btn-outline-success" id="xacnhan">Xác nhận</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-outline-secondary" id="huy">Hủy</button>
+                                            <button type="submit" class="ktkl-dsct--button btn btn-outline-success" id="xacnhan" onclick="XacNhanChuongTrinh()">Xác nhận</button>
                                         </div>
                                     </div>
                                 </form>
@@ -127,7 +127,7 @@
     var xoa = document.getElementById('xoa')
     var huy = document.getElementById('huy')
     var xacnhan = document.getElementById('xacnhan')
-
+    var kieuxacnhan = "";
 
     id.disabled = true;
     ngay.disabled = true;
@@ -137,7 +137,51 @@
     manv.disabled = true;
     huy.disabled =true;
     xacnhan.disabled = true;
+    function getData() {
+        let userID = id.value;
+        let ngayApDung = ngay.value;
+        let noiDung = noidung.value;
+        let soKTKL = soktkl.value;
+        let loaiCT = loai.value;
+        let maNV = manv.value;
+        return {
+            userId: userID,
+            ngayApDung: ngayApDung,
+            noiDung: noiDung,
+            soKTKL: soKTKL,
+            loaiCT:loaiCT,
+            maNV:maNV
+        }
+    }
+    function XacNhanChuongTrinh(){
+        var dataObj = getData();
+        let url = window.location.href + kieucapnhat;
+        jQuery.ajax({
+            url: url,
+            method: "GET",
+            data:dataObj,
+            success: getDanhSachChuongTrinh,
+            error: function(){
+                console.error("Adding failed!")
+            }
+        })
+        enableInputElement(true);
+        clearTextInput();
+    }
+    function getDanhSachChuongTrinh() {
+        jQuery.ajax({
+            url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat",
+            method:"GET",
+            success: function(data){
 
+            }
+        })
+    }
+    function ThemChuongTrinh() {
+        enableInputElement(false);
+        clearTextInput();
+        kieuxacnhan = "/them";
+    }
     function CapNhat(){
         id.disabled = false;
         ngay.disabled = false;
@@ -157,6 +201,26 @@
         loai.value  = Loai
         manv.value = Manv
 
+    }
+    function enableInputElement(type) {
+        id.disabled = type;
+        ngay.disabled = type;
+        noidung.disabled = type;
+        soktkl.disabled = type;
+        loai.disabled = type;
+        manv.disabled = type;
+        huy.disabled =type;
+        xacnhan.disabled = type;
+    }
+    function clearTextInput(){
+        id.value = null;
+        ngay.value = null;
+        noidung.value = null;
+        soktkl.value = null;
+        loai.value = null;
+        manv.value = null;
+        huy.value =null;
+        xacnhan.value = null;
     }
 </script>
 </body>

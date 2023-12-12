@@ -5,10 +5,7 @@ import com.qlns.dao.KThuongKLuatDao;
 import com.qlns.model.ChucVu;
 import com.qlns.model.KThuongKLuc;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,5 +63,24 @@ public class KThuongKLuatDaoImpl implements KThuongKLuatDao {
             ex.printStackTrace();
         }
         return lstKtkl;
+    }
+    @Override
+    public boolean ThemChuongTrinh(KThuongKLuc ktkl) {
+        String sql = "INSERT INTO kthuong_kluc(ID, MaNV, NoiDung, Ngay, soKT_KL, Loai) VALUES (?,?,?,?,?,?)";
+        try {
+            conn = new DBConnection().getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, ktkl.getId());
+
+            preparedStatement.setString(2, ktkl.getMaNV());
+            preparedStatement.setString(3, ktkl.getNoiDung());
+            preparedStatement.setDate(4,Date.valueOf( ktkl.getNgay()));
+            preparedStatement.setString(5,ktkl.getSoKT_KL());
+            preparedStatement.setInt(6,ktkl.getLoai());
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 }
