@@ -41,69 +41,15 @@
                                     <div class="table100-body js-pscroll">
                                         <table>
                                             <tbody>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">admin</td>
-                                                <td class="cell100 column3">1234</td>
-                                                <td class="cell100 column4">admin</td>
-                                                <td class="cell100 column5">21110713</td>
-                                            </tr>
+                                            <c:forEach items="${listtk}" var ="tk">
+                                                <tr class="row100 body">
+                                                    <td class="cell100 column1">ddd</td>
+                                                    <td class="cell100 column2">admin</td>
+                                                    <td class="cell100 column3">1234</td>
+                                                    <td class="cell100 column4">admin</td>
+                                                    <td class="cell100 column5">21110713</td>
+                                                </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
