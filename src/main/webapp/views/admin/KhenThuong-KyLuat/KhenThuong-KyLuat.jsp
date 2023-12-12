@@ -180,7 +180,29 @@
     }
 
     function XacNhanChuongTrinh(){
-
+        var dataObj = getData();
+        let url = window.location.href + kieucapnhat;
+        jQuery.ajax({
+            url: url,
+            method: "GET",
+            data:dataObj,
+            success: getDanhSachChuongTrinh,
+            error: function(){
+                console.error("Adding failed!")
+            }
+        }).done(function (){
+            if(kieucapnhat==='/xoa'){
+                alert("Xóa thành công")
+            }
+            if(kieucapnhat==='/them'){
+                alert("Thêm thành công")
+            }
+            if(kieucapnhat==='/sua'){
+                alert("sửa thành công")
+            }
+        })
+        enableInputElement(true);
+        clearTextInput();
     }
     function getDanhSachChuongTrinh() {
 
@@ -228,29 +250,16 @@
         clearTextInput();
         kieucapnhat = "/them";
     }
-    function CapNhat(){
+    function CapNhat() {
         id.disabled = false;
         ngay.disabled = false;
         noidung.disabled = false;
         soktkl.disabled = false;
         loai.disabled = false;
         manv.disabled = false;
-        huy.disabled =false;
+        huy.disabled = false;
         xacnhan.disabled = false;
-
-        kieuxacnhan="/sua";
-    }
-    function XoaChuongTrinh(){
-        kieuxacnhan="/xoa";
-    }
-    function  handleItemClick(Id,noiDung,Ngay,soKT_KL,Loai,Manv){
-        id.value = Id ;
-        noidung.value = noiDung;
-        ngay.value = Ngay;
-        soktkl.value = soKT_KL
-        loai.value  = Loai
-        manv.value = Manv
-
+        kieucapnhat = "/sua"
     }
 
     function enableInputElement(type) {

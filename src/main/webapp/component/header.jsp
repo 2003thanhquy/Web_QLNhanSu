@@ -25,7 +25,7 @@
                             </a>
                         </li>
                         <li class="header-detail-item">
-                            <a href="<%=request.getContextPath()%>/taikhoan/" class="detail-item--context">
+                            <a href="<%=request.getContextPath()%>/taikhoan/thongtin" class="detail-item--context">
                                 Quản lý tài khoản
                             </a>
                         </li>
@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li class="item--more-managing">
-                <a href="<%=request.getContextPath()%>/nhanvien/Khenthuongkyluat" class="more-managing--context">
+                <a href="<%=request.getContextPath()%>/nhanvien/khenthuongkyluat" class="more-managing--context">
                     Khen thưởng & Kỷ luật
                 </a>
             </li>
