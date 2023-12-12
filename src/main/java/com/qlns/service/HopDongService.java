@@ -7,6 +7,6 @@ public interface HopDongService {
     int themHopDong(HopDong hopDong);
     List<HopDong> findAll();
     HopDong find();
-    int suaHopDong();
-    int xoaHopDong();
+    int suaHopDong(String id, HopDong hopDong);
+    int xoaHopDong(String id);
 }

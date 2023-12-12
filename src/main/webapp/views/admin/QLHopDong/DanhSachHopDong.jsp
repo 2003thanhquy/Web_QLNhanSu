@@ -12,6 +12,13 @@
     <style>
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+        .column5 {
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
 <div id="main-web" >
@@ -76,7 +83,7 @@
                                             <button class="hd-tthd--button hd-tthd--xoabutton btn btn-outline-danger" type="button" onclick="handleXoaClicked()">Xóa</button>
                                         </div>
                                         <div class="hd-tthd--confirmbuttons">
-                                            <button class="hd-tthd--button hd-tthd--huybutton btn btn-outline-secondary" type="button" onclick="handleHuyClicked">Hủy</button>
+                                            <button class="hd-tthd--button hd-tthd--huybutton btn btn-outline-secondary" type="button" onclick="handleHuyClicked()">Hủy</button>
                                             <button type="button" class="hd-tthd--button hd-tthd--xacnhanbutton btn btn-outline-success" onclick="XacNhan()">Xác nhận</button>
                                         </div>
                                     </div>
@@ -109,7 +116,7 @@
                 tblHopDong.empty();
                 tblHopDong.append("<tbody>");
                 jQuery(data).each(function (index, element) {
-                    tblHopDong.append(`<tr class="row100 body"><td class="cell100 column1">\${element.maHopDong}</td><td class="cell100 column2">\${element.ngayBD}</td><td class="cell100 column3">\${element.ngayKT}</td><td class="cell100 column4">\${element.maNV}</td></tr>`);
+                    tblHopDong.append(`<tr class="row100 body"><td class="cell100 column1">\${element.maHopDong}</td><td class="cell100 column2">\${element.ngayBD}</td><td class="cell100 column3">\${element.ngayKT}</td><td class="cell100 column4">\${element.maNV}</td><td class="cell100 column5">\${element.noiDung}</td></tr>`);
                 });
                 tblHopDong.append("</tbody>");
             },
@@ -126,6 +133,7 @@
                     jQuery("#hd-tthd-ngaybatdau").val(clickedRow.find(".column2").text());
                     jQuery("#hd-tthd-ngayketthuc").val(clickedRow.find(".column3").text());
                     jQuery("#hd-tthd-idnhanvien").val(clickedRow.find(".column4").text());
+                    jQuery("#hd-tthd-noidung").val(clickedRow.find(".column5").text());
                 });
             });
     }
@@ -148,21 +156,23 @@
 
     function handleThemClicked() {
         kieucapnhat = "/them";
-        removeDisabledInput();
+        editDisabledInput(false);
+        clearInput();
         $("#hd-tthd-idhopdong").focus();
     }
 
     function handleCapNhatClicked() {
         kieucapnhat = "/sua";
-        removeDisabledInput();
+        editDisabledInput(false);
         $("#hd-tthd-idhopdong").focus();
     }
 
     function handleXoaClicked() {
-
+        kieucapnhat="/xoa";
     }
     function handleHuyClicked() {
-
+        clearInput();
+        editDisabledInput(true);
     }
 
     //Handle button "XacNhan" clicked
@@ -178,11 +188,18 @@
                 console.error("Adding failed!")
             }
         })
+        editDisabledInput(true);
+        clearInput();
     }
 
-    function removeDisabledInput() {
-        $('.hd-tthd--form input').removeAttr('disabled');
-        $('.hd-tthd--form textarea').removeAttr('disabled');
+    function clearInput() {
+        jQuery(".hd-tthd--form input").val("");
+        jQuery(".hd-tthd--form textarea").val("");
+    }
+
+    function editDisabledInput(value) {
+        jQuery(".hd-tthd--form input").prop("disabled", value);
+        jQuery(".hd-tthd--form textarea").prop("disabled", value);
     }
 </script>
 

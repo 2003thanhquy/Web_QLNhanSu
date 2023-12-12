@@ -10,6 +10,8 @@ public interface HopDongDao {
     HopDong findByMaHopDong(String maHopDong);
     HopDong findByMaNhanVien(String maNhanVien);
 
+    int updateByMaHopDong(String maHopDong, HopDong hopDong);
+
     int deleteByMaHopDong(String maHopDong);
     int deleteByMaNhanVien(String maNhanVien);
 }

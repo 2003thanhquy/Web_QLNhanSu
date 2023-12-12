@@ -251,13 +251,17 @@ public class NhanVienController extends HttpServlet {
         return new NhanVien(maphongban,idbacluong,idchucvu,idtrinhdo,hoten,cmnd,diachi,filename,sdt,namsinh,gioitinh);
     }
     public void KThuongKLuc(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException, ParseException{
-        String maNV = request.getParameter("manv");
-        System.out.println("hello");
-
+       // String maNV = request.getParameter("manv");
+        HttpSession session = request.getSession();
+        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        List<KThuongKLuc> lstKtkl = null;
+        if(tk!= null && tk.getUserRole().equals("admin")){
+            lstKtkl = userService.getKThuongKLuat();
+        }
+        request.setAttribute("lstKtkl",lstKtkl);
         request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request,response);
 
     }
-
     public void XuLyHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String startRoute = "/hopdong";
         String action = request.getPathInfo().substring(startRoute.length());
@@ -274,8 +278,10 @@ public class NhanVienController extends HttpServlet {
                 ThemHopDong(request, response);
                 break;
             case "/sua":
+                CapNhathopDong(request, response);
                 break;
             case "/xoa":
+                XoaHopDong(request, response);
                 break;
             default:
         }
@@ -284,7 +290,6 @@ public class NhanVienController extends HttpServlet {
     public void XemDanhSachHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HopDongService hopDongService = new HopDongServiceImpl();
         List<HopDong> lstHopDong = hopDongService.findAll();
-        System.out.println(lstHopDong);
 
         //Parse to JSON
         StringBuilder jsonString = new StringBuilder();
@@ -295,7 +300,8 @@ public class NhanVienController extends HttpServlet {
             jsonString.append("\"maHopDong\": \"").append(hopDong.getMaHopDong()).append("\",");
             jsonString.append("\"maNV\": \"").append(hopDong.getMaNV()).append("\",");
             jsonString.append("\"ngayBD\": \"").append(hopDong.getNgayBD()).append("\",");
-            jsonString.append("\"ngayKT\": \"").append(hopDong.getNgayKT()).append("\"");
+            jsonString.append("\"ngayKT\": \"").append(hopDong.getNgayKT()).append("\",");
+            jsonString.append("\"noiDung\": \"").append(hopDong.getNoidung()).append("\"");
             jsonString.append("},");
         }
 
@@ -327,8 +333,36 @@ public class NhanVienController extends HttpServlet {
         else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
-
     }
 
+    public void CapNhathopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maHopDong = request.getParameter("maHopDong");
+        String maNV = request.getParameter("maNV");
+        LocalDate ngayBD = LocalDate.parse(request.getParameter("ngayBD"));
+        LocalDate ngayKT = LocalDate.parse(request.getParameter("ngayKT"));
+        String noiDung = request.getParameter("noiDung");
 
+        HopDong hopDong = new HopDong(maHopDong, maNV, ngayBD, ngayKT, noiDung);
+        HopDongService hopDongService = new HopDongServiceImpl();
+        int status = hopDongService.suaHopDong(maHopDong, hopDong);
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        }
+        else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    public void XoaHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maHopDong = request.getParameter("maHopDong");
+        HopDongService hopDongService = new HopDongServiceImpl();
+        int status = hopDongService.xoaHopDong(maHopDong);
+
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        }
+        else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
 }
