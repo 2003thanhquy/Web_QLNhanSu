@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,14 +44,16 @@
                                     <div class="table100-body js-pscroll">
                                         <table>
                                             <tbody>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">1</td>
-                                                <td class="cell100 column2">Khen thưởng nhân viên xuất sắc</td>
-                                                <td class="cell100 column3">24-11-2003</td>
-                                                <td class="cell100 column4">2</td>
-                                                <td style="text-align: center" class="cell100 column5">1</td>
-                                                <td class="cell100 column6">21110713</td>
-                                            </tr>
+                                            <c:forEach items="${lstKtkl}" var="ktkl">
+                                                <tr class="row100 body" onclick="handleItemClick('${ktkl.id}','${ktkl.maNV}','${ktkl.noiDung}','${ktkl.getNgay()}','${ktkl.soKT_KL}','${ktkl.loai}')">
+                                                    <td class="cell100 column1">${ktkl.id}</td>
+                                                    <td class="cell100 column3">${ktkl.noiDung}</td>
+                                                    <td class="cell100 column3">${ktkl.getNgay()}</td>
+                                                    <td class="cell100 column4">${ktkl.soKT_KL}</td>
+                                                    <td class="cell100 column5">${ktkl.loai}</td>
+                                                    <td class="cell100 column5">${ktkl.maNV}</td>
+                                                </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -90,13 +94,13 @@
                                     </div>
                                     <div class="ktkl-dsct-buttons">
                                         <div class="ktkl-dsct-button--control">
-                                            <button class="ktkl-dsct--button btn btn-outline-primary">Thêm</button>
-                                            <button class="ktkl-dsct--button btn btn-outline-warning">Cập nhật</button>
-                                            <button class="ktkl-dsct--button btn btn-outline-danger">Xóa</button>
+                                            <button class="ktkl-dsct--button btn btn-outline-primary" id="them">Thêm</button>
+                                            <div class="ktkl-dsct--button btn btn-outline-warning" id="capnhat" onclick="CapNhat()">Cập nhật</div>
+                                            <button class="ktkl-dsct--button btn btn-outline-danger" id="xoa">Xóa</button>
                                         </div>
                                         <div class="ktkl-dsct-button--confirm">
-                                            <button class="ktkl-dsct--button btn btn-outline-secondary">Hủy</button>
-                                            <button type="submit" class="ktkl-dsct--button btn btn-outline-success">Xác nhận</button>
+                                            <button class="ktkl-dsct--button btn btn-outline-secondary" id="huy">Hủy</button>
+                                            <button type="submit" class="ktkl-dsct--button btn btn-outline-success" id="xacnhan">Xác nhận</button>
                                         </div>
                                     </div>
                                 </form>
@@ -110,6 +114,50 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+<script>
+    var id = document.getElementById('ktkl-dsct--id')
+    var noidung = document.getElementById('ktkl-dsct--noidung')
+    var ngay = document.getElementById('ktkl-dsct--ngayapdung')
+    var soktkl = document.getElementById('ktkl-dsct--sokt_kl')
+    var loai = document.getElementById('ktkl-dsct--phanloai')
+    var manv = document.getElementById('ktkl-dsct--idnhanvien')
 
+    var them = document.getElementById('them')
+    var capnhat = document.getElementById('capnhat')
+    var xoa = document.getElementById('xoa')
+    var huy = document.getElementById('huy')
+    var xacnhan = document.getElementById('xacnhan')
+
+
+    id.disabled = true;
+    ngay.disabled = true;
+    noidung.disabled = true;
+    soktkl.disabled = true;
+    loai.disabled = true;
+    manv.disabled = true;
+    huy.disabled =true;
+    xacnhan.disabled = true;
+
+    function CapNhat(){
+        id.disabled = false;
+        ngay.disabled = false;
+        noidung.disabled = false;
+        soktkl.disabled = false;
+        loai.disabled = false;
+        manv.disabled = false;
+        huy.disabled =false;
+        xacnhan.disabled = false;
+    }
+
+    function  handleItemClick(Id,noiDung,Ngay,soKT_KL,Loai,Manv){
+        id.value = Id ;
+        noidung.value = noiDung;
+        ngay.value = Ngay;
+        soktkl.value = soKT_KL
+        loai.value  = Loai
+        manv.value = Manv
+
+    }
+</script>
 </body>
 </html>
