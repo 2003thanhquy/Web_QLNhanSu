@@ -175,7 +175,6 @@
 
     }
     function getDanhSachChuongTrinh() {
-<<<<<<< HEAD
         jQuery.ajax({
             url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat/danhsach",
             method:"GET",
@@ -213,9 +212,6 @@
                 });
 
             });
-=======
-
->>>>>>> 129c81535d7aa2cb7725a07d5a00f99e9e2a30d1
     }
     function ThemChuongTrinh() {
         enableInputElement(false);
@@ -231,26 +227,10 @@
         manv.disabled = false;
         huy.disabled =false;
         xacnhan.disabled = false;
-<<<<<<< HEAD
         kieucapnhat = "/sua"
     }
 
-=======
-        kieuxacnhan="/sua";
-    }
-    function XoaChuongTrinh(){
-        kieuxacnhan="/xoa";
-    }
-    function  handleItemClick(Id,noiDung,Ngay,soKT_KL,Loai,Manv){
-        id.value = Id ;
-        noidung.value = noiDung;
-        ngay.value = Ngay;
-        soktkl.value = soKT_KL
-        loai.value  = Loai
-        manv.value = Manv
 
-    }
->>>>>>> 129c81535d7aa2cb7725a07d5a00f99e9e2a30d1
     function enableInputElement(type) {
         id.disabled = type;
         ngay.disabled = type;
