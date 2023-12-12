@@ -56,5 +56,10 @@ public class UserServiceImp implements  UserService {
         return ktkl.getKThuongKLuat(manv);
     }
 
+    @Override
+    public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu) {
+        return userDao.capnhatnhanvientruockhilenchuc(manv,mapb,bacluong,chucvu);
+    }
+
 
 }

@@ -67,6 +67,14 @@ public class PhongbanServiceImp implements PhongbanService {
     public List<ThongTinPhongBan> laydanhsachphongbantheomacn(String MaCN){
         return pbDao.laydanhsachphongbantheomacn(MaCN);
     }
+    public void capnhatphongbankhichuyenchuc(String MaPB){
+        pbDao.capnhatphongbankhichuyenchuc(MaPB);
+    }
+
+    public void capnhatphongbanchuaquanly(PhongBan pb){
+        pbDao.capnhatphongbanchuaquanly(pb);
+    }
+
 
 
     @Override
