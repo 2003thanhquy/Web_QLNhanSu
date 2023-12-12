@@ -88,4 +88,47 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
     public void xoachinhanh(String macn) {
 
     }
+    public ChiNhanh laychinhanhgiamdocquanly(String MaGiamDoc)
+    {
+        String sql= " SELECT * FROM QuanLyNhanSu.chinhanh  where `MaGiamDoc` = ?";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, MaGiamDoc);
+            rs= ps.executeQuery();
+
+            while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(5).toLocalDate());
+                ChiNhanh cn = new ChiNhanh(rs.getString(1),rs.getString(2),
+                        rs.getString(3),rs.getString(4),dateValue.toLocalDate());
+                return cn;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return null;
+
+    }
+
+    public void capnhatgiamdocchinhanh(String macn) {
+        String sql = "UPDATE `QuanLyNhanSu`.`chinhanh` SET `MaGiamDoc` = null WHERE `MaCN` = ?";
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, macn);
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật chi nhanh thành công.");
+            } else {
+                System.out.println("Cập nhật chi nahnh thất bại.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

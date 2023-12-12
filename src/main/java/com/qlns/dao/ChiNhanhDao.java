@@ -9,5 +9,7 @@ public interface ChiNhanhDao {
     void themchinhanh(ChiNhanh cn);
     void capnhatchinhanh(ChiNhanh cn);
     void xoachinhanh(String macn);
+     void capnhatgiamdocchinhanh(String macn);
+     ChiNhanh laychinhanhgiamdocquanly(String MaGiamDoc);
 
 }
