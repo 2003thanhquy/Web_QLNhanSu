@@ -54,6 +54,9 @@ public class NhanVienController extends HttpServlet {
         if (relativePath.startsWith("/hopdong")) {
             XuLyHopDong(request, response);
             return;
+        }if (relativePath.startsWith("/khenthuongkyluat")) {
+            XuLyKTKL(request, response);
+            return;
         }
 
         try {
@@ -67,11 +70,6 @@ public class NhanVienController extends HttpServlet {
                     break;
                 case "/thongtin":
                     XemNhanVien(request, response);
-                    break;
-
-                case "/Khenthuongkyluat":
-                    KThuongKLuc(request,response);
-
                     break;
                 case "/duan":
                     XemDuAn(request, response);
@@ -270,7 +268,6 @@ public class NhanVienController extends HttpServlet {
         String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
         return new NhanVien(maphongban, idbacluong, idchucvu, idtrinhdo, hoten, cmnd, diachi, filename, sdt, namsinh, gioitinh);
     }
-
     public void KThuongKLuc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         // String maNV = request.getParameter("manv");
         HttpSession session = request.getSession();
@@ -282,7 +279,6 @@ public class NhanVienController extends HttpServlet {
         request.setAttribute("lstKtkl", lstKtkl);
         request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request, response);
     }
-
     public void XuLyHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String startRoute = "/hopdong";
         String action = request.getPathInfo().substring(startRoute.length());
@@ -305,6 +301,8 @@ public class NhanVienController extends HttpServlet {
                 XoaHopDong(request, response);
                 break;
             default:
+                response.sendRedirect(request.getContextPath()+"/error/error.jsp");
+                break;
         }
     }
 
@@ -384,8 +382,8 @@ public class NhanVienController extends HttpServlet {
         }
     }
 
-    public void ThemChuongTrinh(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("ID"));
+    public void ThemChuongTrinh(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("Id"));
         LocalDate ngay = LocalDate.parse(request.getParameter("ngayApDung"));
         String noiDung = request.getParameter("noiDung");
         String soKTKL = request.getParameter("soKTKL");
@@ -402,7 +400,7 @@ public class NhanVienController extends HttpServlet {
     }
 
     public void CapNhatChuongTrinh(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("ID"));
+        int id = Integer.parseInt(request.getParameter("Id"));
         LocalDate ngay = LocalDate.parse(request.getParameter("ngayApDung"));
         String noiDung = request.getParameter("noiDung");
         String soKTKL = request.getParameter("soKTKL");
@@ -419,7 +417,7 @@ public class NhanVienController extends HttpServlet {
     }
 
     public void XoaChuongTrinh(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("ID"));
+        int id = Integer.parseInt(request.getParameter("Id"));
         LocalDate ngay = LocalDate.parse(request.getParameter("ngayApDung"));
         String noiDung = request.getParameter("noiDung");
         String soKTKL = request.getParameter("soKTKL");
@@ -434,15 +432,17 @@ public class NhanVienController extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
-
-    public void XuLyKTKL(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final String startRoute = "/hopdong";
+    public void XuLyKTKL(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        final String startRoute = "/khenthuongkyluat";
         String action = request.getPathInfo().substring(startRoute.length());
         System.out.println(action);
 
         switch (action) {
             case "":
-                request.getRequestDispatcher("/views/admin/QLHopDong/DanhSachHopDong.jsp").forward(request, response);
+                request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request, response);
+                break;
+            case "/danhsach":
+                XemKThuongKLuc(request, response);
                 break;
             case "/them":
                 ThemChuongTrinh(request, response);
@@ -457,15 +457,50 @@ public class NhanVienController extends HttpServlet {
         }
     }
 
-    public void XemDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void XemKThuongKLuc(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
+        // String maNV = request.getParameter("manv");
+        HttpSession session = request.getSession();
+        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        List<KThuongKLuc> lstKtkl = null;
+        if(tk!= null && tk.getUserRole().equals("admin")){
+            lstKtkl = userService.getKThuongKLuat();
+        }else{
+            lstKtkl = userService.getKThuongKLuat();
+        }
+        StringBuilder jsonString = new StringBuilder();
+        jsonString.append("[");
+
+        for (KThuongKLuc kt : lstKtkl) {
+            jsonString.append("{");
+            jsonString.append("\"id\": \"").append(kt.getId()).append("\",");
+            jsonString.append("\"maNV\": \"").append(kt.getMaNV()).append("\",");
+            jsonString.append("\"noiDung\": \"").append(kt.getNoiDung()).append("\",");
+            jsonString.append("\"Ngay\": \"").append(kt.getNgay()).append("\",");
+            jsonString.append("\"soKT_KL\": \"").append(kt.getSoKT_KL()).append("\",");
+            jsonString.append("\"loai\": \"").append(kt.getLoai()).append("\"");
+            jsonString.append("},");
+    }
+
+        if (!lstKtkl.isEmpty()) {
+            jsonString.deleteCharAt(jsonString.length() - 1); // Remove the last comma
+        }
+
+        jsonString.append("]");
+
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        response.getWriter().println(jsonString);
+        response.setStatus(HttpServletResponse.SC_ACCEPTED);
+    }
+    public void XemDuAn (HttpServletRequest request, HttpServletResponse response) throws
+    ServletException, IOException {
 
         List<DuAn> lstDA = duAnService.getDuAn();
         request.setAttribute("lstDA", lstDA);
         request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request, response);
     }
-
-    public void DuAnChitiet(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException {
+    public void DuAnChitiet (HttpServletRequest request, HttpServletResponse response) throws
+    ServletException, IOException {
         String mada = request.getParameter("maduan");
         if (mada == null) {
             response.sendRedirect("/error/error.jsp");
