@@ -42,76 +42,17 @@
                                             <div class="table100-body js-pscroll">
                                                 <table>
                                                     <tbody>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
-                                                    <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr> <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr> <tr class="row100 body dscn-table-tr">
-                                                        <td class="cell100 column1">DA0001</td>
-                                                        <td class="cell100 column2">BBBBBB</td>
-                                                        <td class="cell100 column3">HOÀN THÀNH</td>
-                                                        <td style="text-align: center" class="cell100 column3"><i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i></td>
-                                                    </tr>
+                                                    <c:forEach items="${lstDA}" var="da">
+                                                        <tr class="row100 body" onclick="handleItemClick('${da.maDuAn}','${da.tenDuAn}','${da.trangThai}')">
+                                                            <td class="cell100 column1">${da.maDuAn}</td>
+                                                            <td class="cell100 column3">${da.tenDuAn}</td>
+                                                            <td class="cell100 column3">${da.trangThai}</td>
+                                                            <td style="text-align: center" class="cell100 column3">
+                                                                <a href="<%=request.getContextPath()%>/nhanvien/duan/chitiet?maduan=${da.maDuAn}">
+                                                                <i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i>
+                                                            </a></td>
+                                                        </tr>
+                                                    </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -142,13 +83,13 @@
                                     </div>
                                     <div class="dsda-button--container">
                                         <div class="dsda-thaotac-button--container">
-                                            <button class="dsda-button dsda-them-button btn btn-outline-primary">Thêm</button>
-                                            <button class="dsda-button dsda-sua-button btn btn-outline-warning">Cập nhật</button>
-                                            <button class="dsda-button dsda-xoa-button btn btn-outline-danger">Xóa</button>
+                                            <button class="dsda-button dsda-them-button btn btn-outline-primary" id="them" function="Them()">Thêm</button>
+                                            <div class="dsda-button dsda-sua-button btn btn-outline-warning" id="capnhat" function="CapNhat()">Cập nhật</div>
+                                            <button class="dsda-button dsda-xoa-button btn btn-outline-danger" id="xoa" function="Xoa()">Xóa</button>
                                         </div>
                                         <div class="dsda-confirm-button--container">
-                                            <button class="dsda-button dsda-huy-button btn btn-outline-secondary">Hủy</button>
-                                            <button class="dsda-button dsda-xacnhan-button btn btn-outline-success">Xác nhận</button>
+                                            <button class="dsda-button dsda-huy-button btn btn-outline-secondary" id="huy" function="Huy()">Hủy</button>
+                                            <button class="dsda-button dsda-xacnhan-button btn btn-outline-success" id="xacnhan" function="XacNhan()">Xác nhận</button>
                                         </div>
                                     </div>
                                 </form>
@@ -162,6 +103,36 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+<script>
+    var maduan = document.getElementById("dsda-input--idduan")
+    var tenduan = document.getElementById("dsda-input--tenduan")
+    var ttlamviec = document.getElementById("dsda-input--ttlamviec")
 
+    var them = document.getElementById('them')
+    var capnhat = document.getElementById('capnhat')
+    var xoa = document.getElementById('xoa')
+    var huy = document.getElementById('huy')
+    var xacnhan = document.getElementById('xacnhan')
+
+    maduan.disabled = true;
+    tenduan.disabled = true;
+    ttlamviec.disabled = true;
+    huy.disabled =true;
+    xacnhan.disabled = true;
+
+    function handleItemClick(ma,ten,tt){
+        maduan.value = ma;
+        tenduan.value = ten;
+        ttlamviec.value = tt;
+    }
+    function CapNhat(){
+        maduan.disabled = false;
+        tenduan.disabled = false;
+        ttlamviec.disabled = false;
+        huy.disabled =false;
+        xacnhan.disabled = false;
+    }
+    
+</script>
 </body>
 </html>
