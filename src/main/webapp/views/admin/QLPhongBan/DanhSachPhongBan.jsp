@@ -179,6 +179,7 @@
     tenql.disabled = true;
     ngaybd.disabled = true;
     var phongbandangclick;
+    var sua="sua";
 
     function handleItemClick(event,tenPB, maPB, tenCN,tenQL, ngayBD ,maQL,maCN) {
         maphong.value= maPB;
@@ -189,7 +190,7 @@
         maql =maQL;
         macn = maCN;
 
-        phongbandangclick = event.target;
+
         maphong.disabled = true;
         tenpb.disabled = true;
         tencn.disabled = true;
@@ -207,7 +208,7 @@
             },
             success: function(data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').click();
+                document.querySelector('.phongban-item').onclick();
 
 
             },
@@ -232,7 +233,7 @@
             },
             success: function(data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').click();
+                document.querySelector('.phongban-item').onclick();
 
             },
             error: function(error) {
@@ -246,8 +247,7 @@
 
     }
     function xempbqly() {
-
-
+        sua = "sua";
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbancha",
@@ -255,7 +255,7 @@
             },
             success: function(data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').click();
+                document.querySelector('.phongban-item').onclick();
 
             },
             error: function(error) {
@@ -268,6 +268,8 @@
 
     }
     function xempbkhongqly() {
+        sua = "suapbchuaquanly";
+
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/xemphongbanchuacapnhatquanly",
@@ -291,6 +293,7 @@
     pbhienthidautien.click();
     function ThemPhongBan() {
         kieucapnhat = "them";
+
         maphong.value = '';
         tenpb.value = '';
         tencn.value = '';
@@ -299,7 +302,6 @@
         maphong.disabled=false;
         tenpb.disabled = false;
         tencn.disabled = false;
-        tenql.disabled = false;
         ngaybd.disabled = false;
         document.querySelector(".button-capnhat--label").disabled = false;
         maphong.focus();
@@ -311,9 +313,9 @@
 
     }
     function SuaPhongBan() {
-        kieucapnhat = "sua";
+
+        kieucapnhat = sua;
         tenpb.disabled = false;
-        tenql.disabled = false;
         ngaybd.disabled = false;
         tenql.value=   maql
         if (trangthai === "con") {
@@ -325,18 +327,18 @@
     }
     function XoaPhongBan() {
         kieucapnhat = "xoa";
-        GuiDuLieu();
 
     }
     function Huy() {
         phongbandangclick.click();
+
+
         maphong.disabled = true;
         tenpb.disabled = true;
         tencn.disabled = true;
         tenql.disabled = true;
         ngaybd.disabled = true;
-        document.querySelector(".button-capnhat--label").disabled = true;
-        tencn.style.display = '';
+
     }
 
 
@@ -365,7 +367,7 @@
                 tenpb : tenpb.value,
                 mapbcha:mapbcha,
                 tenpbcha:tenpbcha,
-                macn:macn.value,
+                macn: macn,
                 maql: tenql.value,
                 mgaybd :ngaybd.value,
             },

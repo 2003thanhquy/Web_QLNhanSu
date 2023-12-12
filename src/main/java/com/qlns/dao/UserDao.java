@@ -13,6 +13,7 @@ public interface UserDao {
     List<Thongtinnhanvien> laydanhsachnhanvientruongphong(String MaTruongPhong);
 
     List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB);
+    public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu);
 
     Boolean UpdateNV(NhanVien nv);
 

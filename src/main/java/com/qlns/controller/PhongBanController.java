@@ -82,10 +82,6 @@ public class PhongBanController extends HttpServlet {
         List<ThongTinPhongBan> listpb = new ArrayList<>();
         if(tk.getUserRole().equals("admin")){
             listpb = pbService.laydanhsachphongbanchaquyenadmin();
-            ChiNhanhService cnservice = new ChiNhanhServiceImp();
-            List<ChiNhanh> listcntoanbo = new ArrayList<>();
-            listcntoanbo = cnservice.danhsachchinhanh();
-            session.setAttribute("listcntoanbo", listcntoanbo);
         }
         else {
             if (tk.getUserRole().equals("giamdoc")) {
@@ -214,27 +210,25 @@ public class PhongBanController extends HttpServlet {
 
     private void capnhatphongban(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException{
-        System.out.print("day la kieu cap nhat");
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<h1>day la print</h1>");
-        return;
-//        String kieucapnhat = request.getParameter("kieucapnhat");
-//        try{
-//            switch (kieucapnhat){
-//                case "them":
-//                    themphongban(request,response);
-//                    break;
-//                case "sua":
-//                    suaphongban(request,response);
-//                    break;
-//                case "xoa":
-//                    xoaphongban(request,response);
-//                    break;
-//            }
-//        }catch (Exception ex){
-//            System.out.print(ex);
-//        }
+        String kieucapnhat = request.getParameter("kieucapnhat");
+        try{
+            switch (kieucapnhat){
+                case "them":
+                    themphongban(request,response);
+                    break;
+                case "sua":
+                    suaphongban(request,response);
+                    break;
+                case "xoa":
+                    xoaphongban(request,response);
+                    break;
+                case "suapbchuaquanly":
+                    suaphongbanpbchuaquanly(request,response);
+                    break;
+            }
+        }catch (Exception ex){
+            System.out.print(ex);
+        }
 
     }
     private void themphongban(HttpServletRequest request, HttpServletResponse response)
@@ -245,34 +239,38 @@ public class PhongBanController extends HttpServlet {
         pb.setMaPB(request.getParameter("maphong").isEmpty() ? null : request.getParameter("maphong"));
         pb.setTenPB(request.getParameter("tenpb").isEmpty() ? null : request.getParameter("tenpb"));
         pb.setMaCN(request.getParameter("macn"));
-        pb.setMaCN("CN0001");
         pb.setMaPBCha(request.getParameter("mapbcha").isEmpty() ? null : request.getParameter("mapbcha"));
         pb.setTenPBCha(request.getParameter("tenpbcha").isEmpty() ? null : request.getParameter("tenpbcha"));
         pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
         LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
         pb.setNgayBD(ngaythanhlap);
-        if(phongbanService.themphongban(pb))
-        {
-            System.out.println("Thêm phòng ban thành công");
-        }
+        UserService userService = new UserServiceImp();
 
+        phongbanService.themphongban(pb);
 
     }
     private void suaphongban(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException{
-        System.out.println("Thêm phòng ban thành công");
         PhongBan pb = new PhongBan();
-
+        UserService userService = new UserServiceImp();
         PhongbanService  phongbanService = new PhongbanServiceImp();
         pb.setMaPB(request.getParameter("maphong").isEmpty() ? null : request.getParameter("maphong"));
         pb.setTenPB(request.getParameter("tenpb").isEmpty() ? null : request.getParameter("tenpb"));
         pb.setMaCN(request.getParameter("macn"));
-        pb.setMaCN("CN0001");
         pb.setMaPBCha(request.getParameter("mapbcha").isEmpty() ? null : request.getParameter("mapbcha"));
         pb.setTenPBCha(request.getParameter("tenpbcha").isEmpty() ? null : request.getParameter("tenpbcha"));
         pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
         LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
+        if (pb.getMaPB().substring(0, 3).equals("PBC"))
+        {
+            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
+
+        }
+        else {
+            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
+        }
         pb.setNgayBD(ngaythanhlap);
+        phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
         phongbanService.capnhatphongban(pb);
 
 
@@ -283,6 +281,30 @@ public class PhongBanController extends HttpServlet {
         PhongbanService pbservice = new PhongbanServiceImp();
         pbservice.xoaphongban(mapb);
 
+    }
+    private void suaphongbanpbchuaquanly(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException{
+        PhongBan pb = new PhongBan();
+        UserService userService = new UserServiceImp();
+        PhongbanService  phongbanService = new PhongbanServiceImp();
+        pb.setMaPB(request.getParameter("maphong").isEmpty() ? null : request.getParameter("maphong"));
+        pb.setTenPB(request.getParameter("tenpb").isEmpty() ? null : request.getParameter("tenpb"));
+        pb.setMaCN(request.getParameter("macn"));
+        pb.setMaPBCha(request.getParameter("mapbcha").isEmpty() ? null : request.getParameter("mapbcha"));
+        pb.setTenPBCha(request.getParameter("tenpbcha").isEmpty() ? null : request.getParameter("tenpbcha"));
+        pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
+        LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
+        pb.setNgayBD(ngaythanhlap);
+        if (pb.getMaPB().substring(0, 3).equals("PBC"))
+        {
+            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
+        }
+        else {
+            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
+        }
+
+        phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
+        phongbanService.capnhatphongbanchuaquanly(pb);
 
     }
 
