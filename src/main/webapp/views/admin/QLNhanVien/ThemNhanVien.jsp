@@ -27,6 +27,7 @@
             background-color: var(--backcolor-menu-selected) ;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <div id="main-web" >
@@ -40,10 +41,7 @@
                         <img class="themnhanvien-excel--image" src="<%=request.getContextPath()%>/assets/image/excel-logo.png">
                     </div>
                 </div>
-                <form id="uploadForm" action="<%=request.getContextPath()%>/nhanvien/themnhanvien" method="post" enctype="multipart/form-data">
-                    <input type="file" id="fileInput" name="fileexcel" style="display: none;" accept=".csv, .xlsx" onchange="handleFileSelect(this)" />
-                    <input type="submit" value="Submit" style="display: none;" />
-                </form>
+                <input type="file" id="fileInput" name="fileexcel" style="display: none;" accept=".csv, .xlsx" onchange="handleFileSelect(this)" />
                 <div class="themnhanvien-thucong--container">
                     <h1 class="themnhanvien-thucong--header">Thêm thủ công</h1>
                     <div class="themnhanvien-thucong--content">
@@ -170,7 +168,25 @@
         var file = input.files[0];
         if (file) {
             console.log('Selected file:', file.name);
-            submitForm();
+            // submitForm();
+            var formData = new FormData();
+            formData.append('fileexcel', file);
+            console.log(formData)
+            jQuery.ajax({
+                url: '<%=request.getContextPath()%>/nhanvien/themnhanvien',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                enctype: 'multipart/form-data',
+                success: function(response) {
+                   alert(response)
+
+                },
+                error: function(error) {
+                   alert(error)
+                }
+            });
         }
     }
     function submitForm() {
