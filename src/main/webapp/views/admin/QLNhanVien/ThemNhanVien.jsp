@@ -202,34 +202,5 @@
 </script>
 <%request.removeAttribute("alter"); } %>
 
-
-<%--<script>--%>
-<%--    $(document).ready(function() {--%>
-<%--        $("#myForm").submit(function(event) {--%>
-<%--            // Ngăn chặn sự kiện mặc định của form--%>
-<%--            event.preventDefault();--%>
-
-<%--            // Lấy dữ liệu từ form--%>
-<%--            var formData = new FormData($("#myForm")[0]);--%>
-
-<%--            // Gửi dữ liệu bằng Ajax--%>
-<%--            $.ajax({--%>
-<%--                url: "<%=request.getContextPath()%>/themnhanvien",--%>
-<%--                type: "POST",--%>
-<%--                data: formData,--%>
-<%--                processData: false,--%>
-<%--                contentType: false,--%>
-<%--                success: function(response) {--%>
-<%--                    // Xử lý kết quả thành công--%>
-<%--                    alert("Thêm nhân viên thành công");--%>
-<%--                },--%>
-<%--                error: function(xhr, status, error) {--%>
-<%--                    // Xử lý lỗi--%>
-<%--                    alert("Thêm nhân viên không thành công");--%>
-<%--                }--%>
-<%--            });--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
 </body>
 </html>

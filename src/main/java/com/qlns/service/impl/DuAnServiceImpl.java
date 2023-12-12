@@ -19,4 +19,34 @@ public class DuAnServiceImpl implements DuAnService {
     public List<DANhanVien> getChiTietDA(String maDA) {
         return daDao.getChiTietDA(maDA);
     }
+
+    @Override
+    public int themDuAn(DuAn duAn) {
+        return daDao.create(duAn);
+    }
+
+    @Override
+    public int xoaByMaDuAn(String maDuAn) {
+        return daDao.delete(maDuAn);
+    }
+
+    @Override
+    public int suaByMaDuAn(String maDuAn, DuAn duAn) {
+        return daDao.update(maDuAn, duAn);
+    }
+
+    @Override
+    public int themNhanVienVaoDuAn(String maDuAn, DANhanVien daNhanVien) {
+        return daDao.themNhanVienVaoDuAn(maDuAn, daNhanVien);
+    }
+
+    @Override
+    public int capnhatNhanVienTrongDuAn(String maDuAn, String maNV, DANhanVien daNhanVien) {
+        return daDao.capnhatNhanVienTrongDuAn(maDuAn, maNV, daNhanVien);
+    }
+
+    @Override
+    public int xoaNhanVienKhoiDuAn(String maDuAn, String maNhanVien) {
+        return daDao.xoaNhanVienKhoiDuAn(maDuAn, maNhanVien);
+    }
 }

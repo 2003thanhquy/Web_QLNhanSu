@@ -1,4 +1,3 @@
-<%@ page import="com.qlns.model.TaiKhoan" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
@@ -28,8 +27,8 @@
                                     <h2  style="text-align: center;" class="dsda-da--heading ">Danh sách dự án</h2>
                                     <div class="dsda-da--content">
                                         <div class="dsda-da-table table100 ver1 m-b-110">
-                                            <div class="table100-head ">
-                                                <table>
+                                            <div class="table100-body js-pscroll">
+                                                <table id="tbl-duan">
                                                     <thead>
                                                     <tr class="row100 head ">
                                                         <th class="cell100 column1">Mã dự án</th>
@@ -38,22 +37,7 @@
                                                         <th class="cell100 column4">Danh sách nhân viên</th>
                                                     </tr>
                                                     </thead>
-                                                </table>
-                                            </div>
-                                            <div class="table100-body js-pscroll">
-                                                <table>
                                                     <tbody>
-                                                    <c:forEach items="${lstDA}" var="da">
-                                                        <tr class="row100 body" onclick="handleItemClick('${da.maDuAn}','${da.tenDuAn}','${da.trangThai}')">
-                                                            <td class="cell100 column1">${da.maDuAn}</td>
-                                                            <td class="cell100 column3">${da.tenDuAn}</td>
-                                                            <td class="cell100 column3">${da.trangThai}</td>
-                                                            <td style="text-align: center" class="cell100 column3">
-                                                                <a href="<%=request.getContextPath()%>/nhanvien/duan/chitiet?maduan=${da.maDuAn}">
-                                                                <i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i>
-                                                            </a></td>
-                                                        </tr>
-                                                    </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -67,30 +51,30 @@
                         <div class="dsda-ttct--container">
                             <h2 style="text-align: center">Thông tin dự án</h2>
                             <div class="dsda-ttct--content">
-                                <form action="" method="post">
+                                <form class="da-dsdu--form" action="" method="post">
                                     <div class="dsda-ttct-inputs--container">
                                         <div class="dsda-input--container">
                                             <label class="dsda-input--label" for="dsda-input--idduan" >Mã dự án</label>
-                                            <input class="dsda-input--element " id="dsda-input--idduan" name="dsda-input--idduan">
+                                            <input class="dsda-input--element " id="dsda-input--idduan" name="dsda-input--idduan" value-old="" disabled>
                                         </div>
                                         <div class="dsda-input--container">
                                             <label class="dsda-input--label" for="dsda-input--tenduan" >Tên dự án</label>
-                                            <input class="dsda-input--element " id="dsda-input--tenduan" name="dsda-input--tenduan">
+                                            <input class="dsda-input--element " id="dsda-input--tenduan" name="dsda-input--tenduan" disabled>
                                         </div>
                                         <div class="dsda-input--container">
                                             <label class="dsda-input--label" for="dsda-input--ttlamviec" >Trạng thái </label>
-                                            <input class="dsda-input--element " id="dsda-input--ttlamviec" name="dsda-input--ttlamviec">
+                                            <input class="dsda-input--element " id="dsda-input--ttlamviec" name="dsda-input--ttlamviec" disabled>
                                         </div>
                                     </div>
                                     <div class="dsda-button--container">
                                         <div class="dsda-thaotac-button--container">
-                                            <button class="dsda-button dsda-them-button btn btn-outline-primary" id="them" function="Them()">Thêm</button>
-                                            <div class="dsda-button dsda-sua-button btn btn-outline-warning" id="capnhat" function="CapNhat()">Cập nhật</div>
-                                            <button class="dsda-button dsda-xoa-button btn btn-outline-danger" id="xoa" function="Xoa()">Xóa</button>
+                                            <button type="button" class="dsda-button dsda-them-button btn btn-outline-primary" id="them" onclick="handleThemClicked()">Thêm</button>
+                                            <div class="dsda-button dsda-sua-button btn btn-outline-warning" id="capnhat" onclick="handleCapNhatClicked()">Cập nhật</div>
+                                            <button type="button" class="dsda-button dsda-xoa-button btn btn-outline-danger" id="xoa" onclick="handleXoaClicked()">Xóa</button>
                                         </div>
                                         <div class="dsda-confirm-button--container">
-                                            <button class="dsda-button dsda-huy-button btn btn-outline-secondary" id="huy" function="Huy()">Hủy</button>
-                                            <button class="dsda-button dsda-xacnhan-button btn btn-outline-success" id="xacnhan" function="XacNhan()">Xác nhận</button>
+                                            <button type="button" class="dsda-button dsda-huy-button btn btn-outline-secondary" id="huy" onclick="handleHuyClicked()">Hủy</button>
+                                            <button type="button" class="dsda-button dsda-xacnhan-button btn btn-outline-success" id="xacnhan" onclick="XacNhan()">Xác nhận</button>
                                         </div>
                                     </div>
                                 </form>
@@ -104,44 +88,123 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
-
-
-<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
-
 <script>
-    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
-    if (!isUserRoleAdmin) {
-        document.querySelector(".dsda-button--container").style.display = "none";
-    }
-    var maduan = document.getElementById("dsda-input--idduan")
-    var tenduan = document.getElementById("dsda-input--tenduan")
-    var ttlamviec = document.getElementById("dsda-input--ttlamviec")
+    var kieucapnhat = "";
 
-    var them = document.getElementById('them')
-    var capnhat = document.getElementById('capnhat')
-    var xoa = document.getElementById('xoa')
-    var huy = document.getElementById('huy')
-    var xacnhan = document.getElementById('xacnhan')
+    jQuery(document).ready(function() {
+        getDanhSachDuAn();
+    });
 
-    maduan.disabled = true;
-    tenduan.disabled = true;
-    ttlamviec.disabled = true;
-    huy.disabled =true;
-    xacnhan.disabled = true;
+    function getDanhSachDuAn() {
+        jQuery.ajax({
+            url: "${pageContext.request.getContextPath()}/nhanvien/duan/danhsach",
+            method: "GET",
+            dateType: "json",
+            success: function (data) {
+                var tblbodyDuAn = jQuery("#tbl-duan tbody");
+                tblbodyDuAn.empty();
+                jQuery(data).each(function (index, element) {
+                    tblbodyDuAn.append(
+                        `<tr class="row100 body">
+                            <td class="cell100 column1">\${element.maDuAn}</td>
+                            <td class="cell100 column2">\${element.tenDuAn}</td>
+                            <td class="cell100 column3">\${element.trangThai}</td>
+                            <td style="text-align: center" class="cell100 column3">
+                                <a href="${pageContext.request.getContextPath()}/nhanvien/duan/chitiet?maduan=\${element.maDuAn}">
+                                    <i style="color: #0d6efd;" class="fa-solid fa-users-viewfinder"></i>
+                                </a>
+                            </td>
+                        </tr>`);
+                });
+            },
+            error: function (data) {
+                console.error("Can't get projects list");
+            },
+        })
+            .done(function () {
+                //fill clicked data to form
+                jQuery(".row100").on("click", function () {
+                    var clickedRow = jQuery(this);
 
-    function handleItemClick(ma,ten,tt){
-        maduan.value = ma;
-        tenduan.value = ten;
-        ttlamviec.value = tt;
+                    jQuery("#dsda-input--idduan").val(clickedRow.find(".column1").text());
+                    jQuery("#dsda-input--idduan").attr("value-old", clickedRow.find(".column1").text());
+                    jQuery("#dsda-input--tenduan").val(clickedRow.find(".column2").text());
+                    jQuery("#dsda-input--ttlamviec").val(clickedRow.find(".column3").text());
+                });
+            });
     }
-    function CapNhat(){
-        maduan.disabled = false;
-        tenduan.disabled = false;
-        ttlamviec.disabled = false;
-        huy.disabled =false;
-        xacnhan.disabled = false;
+
+    function getData() {
+        let maDuAnMoi = jQuery("#dsda-input--idduan").val();
+        let tenDuAn = jQuery("#dsda-input--tenduan").val();
+        let trangThai = jQuery("#dsda-input--ttlamviec").val();
+        //Update DuAn có thay đổi maDuAn
+        if (kieucapnhat === "/sua") {
+            let maDuAnCu = jQuery("#dsda-input--idduan").attr("value-old");
+
+            return {
+                maDuAnMoi: maDuAnMoi,
+                maDuAnCu: maDuAnCu,
+                tenDuAn: tenDuAn,
+                trangThai: trangThai,
+            }
+        }
+
+        return {
+            maDuAn: maDuAnMoi,
+            tenDuAn: tenDuAn,
+            trangThai: trangThai,
+        }
     }
-    
+
+    function handleThemClicked() {
+        kieucapnhat = "/them";
+        jQuery("#dsda-input--idduan").attr("value-old", "");
+        editDisabledInput(false);
+        clearInput();
+        $("#dsda-input--idduan").focus();
+    }
+
+    function handleCapNhatClicked() {
+        kieucapnhat = "/sua";
+        editDisabledInput(false);
+        $("#dsda-input--idduan").focus();
+    }
+
+    function handleXoaClicked() {
+        kieucapnhat="/xoa";
+        jQuery("#dsda-input--idduan").attr("value-old", "");
+        XacNhan();
+    }
+    function handleHuyClicked() {
+        clearInput();
+        editDisabledInput(true);
+    }
+
+    //Handle button "XacNhan" clicked
+    function XacNhan() {
+        var dataObj = getData();
+        let url = window.location.href + kieucapnhat;
+        jQuery.ajax({
+            url: url,
+            method: "GET",
+            data: dataObj,
+            success: getDanhSachDuAn,
+            error: function () {
+                console.error("Call ajax ailed!")
+            }
+        })
+        editDisabledInput(true);
+        clearInput();
+    }
+
+    function clearInput() {
+        jQuery(".da-dsdu--form input").val("");
+    }
+
+    function editDisabledInput(value) {
+        jQuery(".da-dsdu--form input").prop("disabled", value);
+    }
 </script>
 </body>
 </html>
