@@ -10,4 +10,7 @@ public interface KThuongKLuatDao {
     public int ThemChuongTrinh(KThuongKLuc ktkl);
     public int CapNhatChuongTrin(KThuongKLuc ktkl);
     public int XoaChuongTrinh(KThuongKLuc ktkl);
+    public List<KThuongKLuc> getKThuongKLuatgiamdoc(String MaGD);
+    public List<KThuongKLuc> getKThuongKLuattruongphong(String MaTruongPhong);
+    public List<KThuongKLuc> getKThuongKLuattotruong(String MaToTruong);
 }

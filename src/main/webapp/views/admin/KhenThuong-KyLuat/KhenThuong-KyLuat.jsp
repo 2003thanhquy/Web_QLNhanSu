@@ -2,6 +2,7 @@
 <%@include file="/common/taglib.jsp"%>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDate" %>
+<%@ page import="com.qlns.model.TaiKhoan" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,10 +120,19 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
+
 <script>
+
     jQuery(document).ready(function () {
         getDanhSachChuongTrinh()
     })
+
+    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
+    if (!isUserRoleAdmin) {
+        document.querySelector(".ktkl-dsct-buttons").style.display = "none";
+    }
+
     var id = document.getElementById('ktkl-dsct--id')
     var noidung = document.getElementById('ktkl-dsct--noidung')
     var ngay = document.getElementById('ktkl-dsct--ngayapdung')
@@ -175,7 +185,7 @@
 
     }
     function getDanhSachChuongTrinh() {
-<<<<<<< HEAD
+
         jQuery.ajax({
             url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat/danhsach",
             method:"GET",
@@ -213,9 +223,7 @@
                 });
 
             });
-=======
 
->>>>>>> 129c81535d7aa2cb7725a07d5a00f99e9e2a30d1
     }
     function ThemChuongTrinh() {
         enableInputElement(false);
@@ -231,11 +239,7 @@
         manv.disabled = false;
         huy.disabled =false;
         xacnhan.disabled = false;
-<<<<<<< HEAD
-        kieucapnhat = "/sua"
-    }
 
-=======
         kieuxacnhan="/sua";
     }
     function XoaChuongTrinh(){
@@ -250,7 +254,7 @@
         manv.value = Manv
 
     }
->>>>>>> 129c81535d7aa2cb7725a07d5a00f99e9e2a30d1
+
     function enableInputElement(type) {
         id.disabled = type;
         ngay.disabled = type;
