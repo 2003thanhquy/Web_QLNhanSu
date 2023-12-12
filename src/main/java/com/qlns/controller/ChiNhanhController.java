@@ -1,5 +1,7 @@
 package com.qlns.controller;
 
+import com.qlns.dao.PhongbanDao;
+import com.qlns.dao.impl.PhongbanDaoImpl;
 import com.qlns.model.*;
 import com.qlns.service.ChiNhanhService;
 import com.qlns.service.PhongbanService;
@@ -63,8 +65,6 @@ public class ChiNhanhController extends HttpServlet {
         }catch (Exception ex){
             System.out.print(ex);
         }
-
-
     }
 
     @Override
@@ -102,14 +102,10 @@ public class ChiNhanhController extends HttpServlet {
                     "                                                <td class=\"cell100 column1\">"+pb.getMaPB()+"</td>\n" +
                     "                                                <td class=\"cell100 column2\">"+pb.getTenPB()+"</td>\n" +
                     "                                                <td class=\"cell100 column3\">"+pb.getTenChiNhanh()+"<td>\n" +
-                    "                                                <td class=\"cell100 column4\"><i class=\"fa-solid fa-trash\" style=\"color: #dc3546\"></i></td>\n" +
                     "                                            </tr>");
         }
 
     }
-
-
-
 
     private void CapNhatChiNhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -128,7 +124,6 @@ public class ChiNhanhController extends HttpServlet {
             default:
                 resp.sendRedirect(req.getContextPath() + "/error/error.jsp");
                 break;
-
 
         }
     }
@@ -155,12 +150,22 @@ public class ChiNhanhController extends HttpServlet {
         }
     }
     private void themchinhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+        LocalDate ngaythanhlap = LocalDate.parse(req.getParameter("ngaythanhlap").isEmpty() ? null : req.getParameter("ngaythanhlap"));
+
+        String Magiamdoc =req.getParameter("magiamdoc").isEmpty() ? null : req.getParameter("magiamdoc");
+        if(Magiamdoc!=null) {
+            ChiNhanhService cnser = new ChiNhanhServiceImp();
+            PhongbanDao phongbanService = new PhongbanDaoImpl();
+            UserDao userService = new UserDaoImpl();
+            userService.capnhatnhanvientruockhilenchuc(Magiamdoc, null, 1, 1);
+            cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
+        }
         ChiNhanhService chiNhanhService = new ChiNhanhServiceImp();
-
-        LocalDate ngaythanhlap = LocalDate.parse(req.getParameter("ngaythanhlap"));
-        ChiNhanh cn = new ChiNhanh(req.getParameter("macn"),req.getParameter("magiamdoc"),req.getParameter("tencn"),req.getParameter("diachi"), ngaythanhlap);
-
+        ChiNhanh cn = new ChiNhanh(req.getParameter("macn").isEmpty() ? null : req.getParameter("macn"),req.getParameter("magiamdoc").isEmpty() ? null : req.getParameter("magiamdoc"),req.getParameter("tencn").isEmpty() ? null : req.getParameter("tencn"),req.getParameter("diachi").isEmpty() ? null : req.getParameter("diachi"), ngaythanhlap);
         chiNhanhService.themchinhanh(cn);
+
         List<ChiNhanh> listcn = new ArrayList<>();
         listcn = chiNhanhService.danhsachchinhanh();
         resp.setContentType("text/html");

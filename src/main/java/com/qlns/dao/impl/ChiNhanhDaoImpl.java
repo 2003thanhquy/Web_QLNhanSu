@@ -41,21 +41,19 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
 
     @Override
     public void themchinhanh(ChiNhanh cn) {
-        String sql = "INSERT INTO `QuanLyNhanSu`.`chinhanh` (`MaCN`, `MaGiamDoc`, `TenChiNhanh`, `DiaChi`, `NgayBD`) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `QuanLyNhanSu`.`chinhanh` (`MaCN`, `MaGiamDoc`, `TenChiNhanh`, `DiaChi`, `NgayBD`) VALUES (null, ?, ?, ?, ?)";
         try {
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, cn.getMaCN());
-            ps.setString(2, cn.getMaGiamDoc());
-            ps.setString(2, cn.getMaGiamDoc());
-            ps.setString(3, cn.getTenChiNhanh());
-            ps.setString(4, cn.getDiaChi());
-            ps.setDate(5, java.sql.Date.valueOf(cn.getNgayBD()));
+            ps.setString(1, cn.getMaGiamDoc());
+            ps.setString(2, cn.getTenChiNhanh());
+            ps.setString(3, cn.getDiaChi());
+            ps.setDate(4, java.sql.Date.valueOf(cn.getNgayBD()));
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("Cập nhật phòng ban thành công.");
+                System.out.println("Cập nhật chi nhanh thành công.");
             } else {
-                System.out.println("Cập nhật phòng ban thất bại.");
+                System.out.println("Cập nhật chi nhanh thất bại.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +62,6 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
 
     @Override
     public void capnhatchinhanh(ChiNhanh cn) {
-
 
         String sql = "UPDATE `QuanLyNhanSu`.`chinhanh` SET `MaGiamDoc` = ?, `TenChiNhanh` = ?, `DiaChi` = ?, `NgayBD` = ? WHERE `MaCN` = ?";
             try {
@@ -77,9 +74,9 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
                 ps.setString(5,cn.getMaCN());
                 int rowsUpdated = ps.executeUpdate();
                 if (rowsUpdated > 0) {
-                    System.out.println("Cập nhật phòng ban thành công.");
+                    System.out.println("Cập nhật chi nhanh thành công.");
                 } else {
-                    System.out.println("Cập nhật phòng ban thất bại.");
+                    System.out.println("Cập nhật chi nahnh thất bại.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -89,6 +86,49 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
 
     @Override
     public void xoachinhanh(String macn) {
+
+    }
+    public ChiNhanh laychinhanhgiamdocquanly(String MaGiamDoc)
+    {
+        String sql= " SELECT * FROM QuanLyNhanSu.chinhanh  where `MaGiamDoc` = ?";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, MaGiamDoc);
+            rs= ps.executeQuery();
+
+            while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(5).toLocalDate());
+                ChiNhanh cn = new ChiNhanh(rs.getString(1),rs.getString(2),
+                        rs.getString(3),rs.getString(4),dateValue.toLocalDate());
+                return cn;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return null;
+
+    }
+
+    public void capnhatgiamdocchinhanh(String macn) {
+        String sql = "UPDATE `QuanLyNhanSu`.`chinhanh` SET `MaGiamDoc` = null WHERE `MaCN` = ?";
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, macn);
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật chi nhanh thành công.");
+            } else {
+                System.out.println("Cập nhật chi nahnh thất bại.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

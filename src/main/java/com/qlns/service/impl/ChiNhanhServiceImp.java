@@ -33,4 +33,15 @@ public class ChiNhanhServiceImp implements ChiNhanhService {
     public void xoachinhanh(String macn) {
         cnDao.xoachinhanh(macn);
     }
+
+    @Override
+    public void capnhatgiamdocchinhanh(String macn) {
+        cnDao.capnhatgiamdocchinhanh(macn);
+
+    }
+
+    @Override
+    public ChiNhanh laychinhanhgiamdocquanly(String MaGiamDoc) {
+        return cnDao.laychinhanhgiamdocquanly(MaGiamDoc);
+    }
 }

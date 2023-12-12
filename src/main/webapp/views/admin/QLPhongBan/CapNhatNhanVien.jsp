@@ -56,7 +56,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <c:forEach items="${listpb}" var="phongban">
+                                                    <c:forEach items="${listpbtheouser}" var="phongban">
                                                     <tr onclick="hienthongtinnhanvienphongban('${phongban.maPB}')">
                                                         <td>${phongban.maPB}</td>
                                                         <td>${phongban.tenPB} </td>
@@ -113,7 +113,7 @@
         tbody.innerHTML="";
         jQuery.ajax({
             type: "GET",
-            url: "${request.getContextPath()}/QLNhanSu_war_exploded/danhsachnhanvientheophongban",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/danhsachnhanvientheophongban",
             data: {
                 MaPB: MaPB
             },
