@@ -256,12 +256,11 @@ public class NhanVienController extends HttpServlet {
        // String maNV = request.getParameter("manv");
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
-        List<KThuongKLuc> ktkl = null;
+        List<KThuongKLuc> lstKtkl = null;
         if(tk!= null && tk.getUserRole().equals("admin")){
-            ktkl = userService.getKThuongKLuat();
-        }else{
-            ktkl = userService.getKThuongKLuat(tk.getMaNV());
+            lstKtkl = userService.getKThuongKLuat();
         }
+        request.setAttribute("lstKtkl",lstKtkl);
         request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request,response);
 
     }
