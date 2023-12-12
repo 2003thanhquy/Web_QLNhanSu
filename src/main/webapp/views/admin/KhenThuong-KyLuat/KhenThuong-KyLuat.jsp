@@ -28,7 +28,7 @@
                             <div class="ktkl--content">
                                 <div class="table100 ver4 m-b-110">
                                     <div class="table100-head">
-                                        <table>
+                                        <table id="tbl-ktkl">
                                             <thead>
                                             <tr class="row100 head">
                                                 <th class="cell100 column1">Id</th>
@@ -42,7 +42,7 @@
                                         </table>
                                     </div>
                                     <div class="table100-body js-pscroll">
-                                        <table>
+                                        <table >
                                             <tbody>
                                             <c:forEach items="${lstKtkl}" var="ktkl">
                                                 <tr class="row100 body" onclick="handleItemClick('${ktkl.id}','${ktkl.noiDung}','${ktkl.getNgay()}','${ktkl.soKT_KL}','${ktkl.loai}','${ktkl.maNV}')">
@@ -138,14 +138,14 @@
     huy.disabled =true;
     xacnhan.disabled = true;
     function getData() {
-        let userID = id.value;
+        let ID = id.value;
         let ngayApDung = ngay.value;
         let noiDung = noidung.value;
         let soKTKL = soktkl.value;
         let loaiCT = loai.value;
         let maNV = manv.value;
         return {
-            userId: userID,
+            Id: ID,
             ngayApDung: ngayApDung,
             noiDung: noiDung,
             soKTKL: soKTKL,
@@ -173,7 +173,7 @@
             url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat",
             method:"GET",
             success: function(data){
-
+                var tblKTKL = jQuery("#tbl-ktkl")
             }
         })
     }
