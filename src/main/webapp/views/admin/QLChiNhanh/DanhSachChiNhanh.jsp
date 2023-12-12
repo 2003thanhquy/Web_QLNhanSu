@@ -105,13 +105,13 @@
                                </form>
                                    <div class="button-container">
                                         <div class="dscn-ttcn--thaotac-button">
-                                            <button class="btn btn-outline-primary dscn-ttcn-thembutton dscn-ttcn--button" onclick="themcn">Thêm</button>
-                                            <button class="btn btn-outline-warning dscn-ttcn-capnhatbutton dscn-ttcn--button" onclick="capnhatcn">Cập nhật</button>
-                                            <button class="btn btn-outline-danger dscn-ttcn-xoatbutton dscn-ttcn--button" onclick="xoacn">Xóa</button>
+                                            <button class="btn btn-outline-primary dscn-ttcn-thembutton dscn-ttcn--button" onclick="themcn()">Thêm</button>
+                                            <button class="btn btn-outline-warning dscn-ttcn-capnhatbutton dscn-ttcn--button" onclick="capnhatcn()">Cập nhật</button>
+                                            <button class="btn btn-outline-danger dscn-ttcn-xoatbutton dscn-ttcn--button" onclick="xoacn()">Xóa</button>
                                         </div>
                                        <div class="dscn-ttcn--confirm-button">
                                            <button class="btn btn-outline-secondary dscn-ttcn-huytbutton dscn-ttcn--button" onclick="huy()">Hủy</button>
-                                           <button class="btn btn-outline-success dscn-ttcn-xacnhantbutton dscn-ttcn--button" onclick="xacnhan">Xác nhận</button>
+                                           <button class="btn btn-outline-success dscn-ttcn-xacnhantbutton dscn-ttcn--button" onclick="xacnhan()">Xác nhận</button>
                                        </div>
                                    </div>
                             </div>
@@ -130,6 +130,8 @@
     var diachi = document.getElementById("dscn--ttcn-diachi");
     var ngaythanhlap = document.getElementById("dscn--ttcn-ngaythanhlap");
     var magiamdoc = document.getElementById("dscn--ttcn-idgiamdoc");
+
+
     var kieucapnhat;
     var dulieu = document.getElementById("bodydata");
 
@@ -161,13 +163,16 @@
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/chinhanh/capnhatchinhanh",
             data: {
                 kieucapnhat: kieucapnhat,
-                macn  : macn,
-                tencn : tencn,
-                diachi : diachi,
-                ngaythanhlap  :ngaythanhlap,
-                magiamdoc : magiamdoc,
+                macn  : macn.value,
+                tencn : tencn.value,
+                diachi : diachi.value,
+                ngaythanhlap  :ngaythanhlap.value,
+                magiamdoc : magiamdoc.value,
             },
             success: function (data) {
+                console.log(data);
+                alert("Dữ liệu đã được gửi thành công");
+
                 dulieu.innerHTML=data;
             },
             error: function (error) {

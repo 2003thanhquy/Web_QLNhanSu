@@ -1,7 +1,8 @@
 package com.qlns.controller;
 
-import com.qlns.model.ChiNhanh;
+import com.qlns.model.*;
 import com.qlns.service.ChiNhanhService;
+import com.qlns.service.PhongbanService;
 import com.qlns.service.impl.ChiNhanhServiceImp;
 
 import javax.servlet.ServletException;
@@ -10,10 +11,8 @@ import javax.servlet.http.HttpServlet;
 
 import com.qlns.dao.UserDao;
 import com.qlns.dao.impl.UserDaoImpl;
-import com.qlns.model.NhanVien;
-import com.qlns.model.TaiKhoan;
-import com.qlns.model.Thongtinnhanvien;
 import com.qlns.service.UserService;
+import com.qlns.service.impl.PhongbanServiceImp;
 import com.qlns.service.impl.UserServiceImp;
 
 import javax.servlet.*;
@@ -49,10 +48,13 @@ public class ChiNhanhController extends HttpServlet {
                     XemDanhSachChiNhanh(request,response);
                     break;
                 case "/dachsachphongbanchinhanh":
-                    XemDanhSachChiNhanh(request,response);
+                    XemDanhSachPhongBan(request,response);
                     break;
                 case "/capnhatchinhanh":
-                    XemDanhSachChiNhanh(request,response);
+                    CapNhatChiNhanh(request,response);
+                    break;
+                case "/xemphongbantheochinhanh":
+                    XemPhongBanTheoChiNhanh(request,response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath()+"/error/error.jsp");
@@ -74,7 +76,7 @@ public class ChiNhanhController extends HttpServlet {
         List<ChiNhanh> listcn = new ArrayList<>();
         listcn = chiNhanhService.danhsachchinhanh();
         HttpSession session = req.getSession();
-        req.setAttribute("listcn",listcn);
+        session.setAttribute("listcn",listcn);
         req.getRequestDispatcher("/views/admin/QLChiNhanh/DanhSachChiNhanh.jsp").forward(req,resp);
 
     }
@@ -82,20 +84,42 @@ public class ChiNhanhController extends HttpServlet {
         ChiNhanhService chiNhanhService = new ChiNhanhServiceImp();
         List<ChiNhanh> listcn = new ArrayList<>();
         listcn = chiNhanhService.danhsachchinhanh();
-        HttpSession session = req.getSession();
         req.setAttribute("listcn",listcn);
-        req.getRequestDispatcher("/views/admin/QLChiNhanh/DanhSachChiNhanh.jsp").forward(req,resp);
+        req.getRequestDispatcher("/views/admin/QLChiNhanh/Chinhanh-PhongBan.jsp").forward(req,resp);
 
     }
+
+    private void XemPhongBanTheoChiNhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PhongbanService phongbanService = new PhongbanServiceImp();
+        String macn =  req.getParameter("macn");
+        List<ThongTinPhongBan> listpbcn = new ArrayList<>();
+        listpbcn = phongbanService.laydanhsachphongbantheomacn(macn);
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        PrintWriter out = resp.getWriter();
+        for (ThongTinPhongBan pb : listpbcn) {
+            out.println(" <tr class=\"row100 body \">\n" +
+                    "                                                <td class=\"cell100 column1\">"+pb.getMaPB()+"</td>\n" +
+                    "                                                <td class=\"cell100 column2\">"+pb.getTenPB()+"</td>\n" +
+                    "                                                <td class=\"cell100 column3\">"+pb.getTenChiNhanh()+"<td>\n" +
+                    "                                                <td class=\"cell100 column4\"><i class=\"fa-solid fa-trash\" style=\"color: #dc3546\"></i></td>\n" +
+                    "                                            </tr>");
+        }
+
+    }
+
+
+
+
     private void CapNhatChiNhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String kieucapnhat = req.getParameter("kieucapnhat");
 
         switch (kieucapnhat) {
             case "them":
-                themchinhnah(req, resp);
+                themchinhanh(req, resp);
                 break;
-            case "sua":
+            case "capnhat":
                 suachinhanh(req, resp);
                 break;
             case "xoa":
@@ -110,28 +134,70 @@ public class ChiNhanhController extends HttpServlet {
     }
     private void suachinhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ChiNhanhService chiNhanhService = new ChiNhanhServiceImp();
+
+        LocalDate ngaythanhlap = LocalDate.parse(req.getParameter("ngaythanhlap"));
+        ChiNhanh cn = new ChiNhanh(req.getParameter("macn"),req.getParameter("magiamdoc"),req.getParameter("tencn"),req.getParameter("diachi"), ngaythanhlap);
+
+        chiNhanhService.capnhatchinhanh(cn);
         List<ChiNhanh> listcn = new ArrayList<>();
         listcn = chiNhanhService.danhsachchinhanh();
-        HttpSession session = req.getSession();
-        req.setAttribute("listcn",listcn);
-        req.getRequestDispatcher("/views/admin/QLChiNhanh/DanhSachChiNhanh.jsp").forward(req,resp);
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        PrintWriter out = resp.getWriter();
+        for (ChiNhanh CN : listcn) {
+            out.println("<tr class=\"row100 body dscn-table-tr\" onclick=\"handleItemClick('"+CN.getMaCN()+"','"+CN.getTenChiNhanh()+"','"+CN.getDiaChi()+"','"+CN.getNgayBD()+"','"+cn.getMaGiamDoc()+"')\">\n" +
+                    "                                                <td class=\"cell100 column1\">"+CN.getMaCN()+"</td>\n" +
+                    "                                                <td class=\"cell100 column2\">"+CN.getTenChiNhanh()+"</td>\n" +
+                    "                                                <td class=\"cell100 column3\">"+CN.getDiaChi()+"</td>\n" +
+                    "                                                <td class=\"cell100 column4\">"+CN.getNgayBD()+"</td>\n" +
+                    "                                                <td class=\"cell100 column5\">"+CN.getMaGiamDoc()+"</td>\n" +
+                    "                                            </tr>");
+        }
     }
-    private void themchinhnah(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void themchinhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ChiNhanhService chiNhanhService = new ChiNhanhServiceImp();
-        ChiNhanh cn = new ChiNhanh(req.getParameter("macn"),req.getParameter("magiamdoc"),req.getParameter("tencn"),req.getParameter("diachi"), Date.valueOf(req.getParameter("ngaythanhlap")).toLocalDate());
+
+        LocalDate ngaythanhlap = LocalDate.parse(req.getParameter("ngaythanhlap"));
+        ChiNhanh cn = new ChiNhanh(req.getParameter("macn"),req.getParameter("magiamdoc"),req.getParameter("tencn"),req.getParameter("diachi"), ngaythanhlap);
 
         chiNhanhService.themchinhanh(cn);
-
-        req.getRequestDispatcher("/views/admin/QLChiNhanh/DanhSachChiNhanh.jsp").forward(req,resp);
+        List<ChiNhanh> listcn = new ArrayList<>();
+        listcn = chiNhanhService.danhsachchinhanh();
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        PrintWriter out = resp.getWriter();
+        for (ChiNhanh CN : listcn) {
+            out.println("<tr class=\"row100 body dscn-table-tr\" onclick=\"handleItemClick('"+CN.getMaCN()+"','"+CN.getTenChiNhanh()+"','"+CN.getDiaChi()+"','"+CN.getNgayBD()+"','"+cn.getMaGiamDoc()+"')\">\n" +
+                    "                                                <td class=\"cell100 column1\">"+CN.getMaCN()+"</td>\n" +
+                    "                                                <td class=\"cell100 column2\">"+CN.getTenChiNhanh()+"</td>\n" +
+                    "                                                <td class=\"cell100 column3\">"+CN.getDiaChi()+"</td>\n" +
+                    "                                                <td class=\"cell100 column4\">"+CN.getNgayBD()+"</td>\n" +
+                    "                                                <td class=\"cell100 column5\">"+CN.getMaGiamDoc()+"</td>\n" +
+                    "                                            </tr>");
+        }
 
     }
     private void xoachinhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ChiNhanhService chiNhanhService = new ChiNhanhServiceImp();
+
+        LocalDate ngaythanhlap = LocalDate.parse(req.getParameter("ngaythanhlap"));
+        ChiNhanh cn = new ChiNhanh(req.getParameter("macn"),req.getParameter("magiamdoc"),req.getParameter("tencn"),req.getParameter("diachi"), ngaythanhlap);
+
+        chiNhanhService.capnhatchinhanh(cn);
         List<ChiNhanh> listcn = new ArrayList<>();
         listcn = chiNhanhService.danhsachchinhanh();
-        HttpSession session = req.getSession();
-        req.setAttribute("listcn",listcn);
-        req.getRequestDispatcher("/views/admin/QLChiNhanh/DanhSachChiNhanh.jsp").forward(req,resp);
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        PrintWriter out = resp.getWriter();
+        for (ChiNhanh CN : listcn) {
+            out.println("<tr class=\"row100 body dscn-table-tr\" onclick=\"handleItemClick('"+CN.getMaCN()+"','"+CN.getTenChiNhanh()+"','"+CN.getDiaChi()+"','"+CN.getNgayBD()+"','"+cn.getMaGiamDoc()+"')\">\n" +
+                    "                                                <td class=\"cell100 column1\">"+CN.getMaCN()+"</td>\n" +
+                    "                                                <td class=\"cell100 column2\">"+CN.getTenChiNhanh()+"</td>\n" +
+                    "                                                <td class=\"cell100 column3\">"+CN.getDiaChi()+"</td>\n" +
+                    "                                                <td class=\"cell100 column4\">"+CN.getNgayBD()+"</td>\n" +
+                    "                                                <td class=\"cell100 column5\">"+CN.getMaGiamDoc()+"</td>\n" +
+                    "                                            </tr>");
+        }
 
     }
 

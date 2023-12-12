@@ -32,6 +32,8 @@ public interface PhongbanDao {
 
     void xoaphongban(String mapb);
 
+    List<ThongTinPhongBan> laydanhsachphongbantheomacn(String MaCN);
+
 
 
 

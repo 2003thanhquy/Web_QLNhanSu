@@ -236,56 +236,47 @@ public class PhongBanController extends HttpServlet {
 
         PhongbanService  phongbanService = new PhongbanServiceImp();
         PhongBan pb = new PhongBan();
-        pb.setMaPB(request.getParameter("maphong"));
-        pb.setTenPB(request.getParameter("tenpb"));;
+        pb.setMaPB(request.getParameter("maphong").isEmpty() ? null : request.getParameter("maphong"));
+        pb.setTenPB(request.getParameter("tenpb").isEmpty() ? null : request.getParameter("tenpb"));
         pb.setMaCN(request.getParameter("macn"));
-        pb.setMaPBCha(request.getParameter("mapbcha"));
-        pb.setTenPBCha(request.getParameter("tenpbcha"));
-        pb.setMaQuanLy(request.getParameter("maql"));
-
+        pb.setMaCN("CN0001");
+        pb.setMaPBCha(request.getParameter("mapbcha").isEmpty() ? null : request.getParameter("mapbcha"));
+        pb.setTenPBCha(request.getParameter("tenpbcha").isEmpty() ? null : request.getParameter("tenpbcha"));
+        pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
+        LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
+        pb.setNgayBD(ngaythanhlap);
         if(phongbanService.themphongban(pb))
         {
             System.out.println("Thêm phòng ban thành công");
         }
-       String maPBCha = pb.getMaPBCha();
-      if (maPBCha != null && !maPBCha.isEmpty()) {
-           xemphongbancha(request,response);
-       }
-       else
-           xemphongbancon(request, response);
+
+
     }
     private void suaphongban(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException{
-        PhongbanService pbservice = new PhongbanServiceImp();
-
+        System.out.println("Thêm phòng ban thành công");
         PhongBan pb = new PhongBan();
-        pb.setMaPB(request.getParameter("maphong"));
-        pb.setTenPB(request.getParameter("tenpb"));;
+
+        PhongbanService  phongbanService = new PhongbanServiceImp();
+        pb.setMaPB(request.getParameter("maphong").isEmpty() ? null : request.getParameter("maphong"));
+        pb.setTenPB(request.getParameter("tenpb").isEmpty() ? null : request.getParameter("tenpb"));
         pb.setMaCN(request.getParameter("macn"));
-        pb.setMaPBCha(request.getParameter("mapbcha"));
-        pb.setTenPBCha(request.getParameter("tenpbcha"));
-        pb.setMaQuanLy(request.getParameter("maql"));
-        pb.setNgayBD(Date.valueOf(request.getParameter("ngaybd")).toLocalDate());
-        pbservice.capnhatphongban(pb);
-        if (pb.getMaPBCha().isEmpty()) {
-            xemphongbancha(request,response);
-        }
-        else
-            xemphongbancon(request, response);
+        pb.setMaCN("CN0001");
+        pb.setMaPBCha(request.getParameter("mapbcha").isEmpty() ? null : request.getParameter("mapbcha"));
+        pb.setTenPBCha(request.getParameter("tenpbcha").isEmpty() ? null : request.getParameter("tenpbcha"));
+        pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
+        LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
+        pb.setNgayBD(ngaythanhlap);
+        phongbanService.capnhatphongban(pb);
 
 
     }
     private void xoaphongban(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException{
         String mapb =request.getParameter("maphong");
-        String mapbcha = request.getParameter("mapbcha");
         PhongbanService pbservice = new PhongbanServiceImp();
         pbservice.xoaphongban(mapb);
-        if (mapbcha.isEmpty()) {
-            xemphongbancha(request,response);
-        }
-        else
-            xemphongbancon(request, response);
+
 
     }
 
