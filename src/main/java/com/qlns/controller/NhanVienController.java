@@ -33,6 +33,7 @@ public class NhanVienController extends HttpServlet {
     private LuongSerrvice luong;
     private ChucVuService cv;
     private TrinhDoService td ;
+    private DuAnService duAnService;
     @Override
     public void init(){
         pb = new PhongbanServiceImp();
@@ -40,6 +41,7 @@ public class NhanVienController extends HttpServlet {
         cv = new ChucVuServiceImlp();
         td = new TrinhDoServiceImpl();
         userService = new UserServiceImp();
+        duAnService = new DuAnServiceImpl() ;
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,12 +53,13 @@ public class NhanVienController extends HttpServlet {
             XuLyHopDong(request, response);
             return;
         }
+
         try{
             switch (relativePath){
                 case "/":
                     XemDanhSach(request,response);
                     break;
-                case "/themnhanvien":
+                case "/thekmnhanvien":
                     ThemNhanVien(request,response);
                     break;
                 case "/thongtin":
@@ -64,6 +67,12 @@ public class NhanVienController extends HttpServlet {
                     break;
                 case "/khenthuongkyluat":
                     KThuongKLuc(request,response);
+                    break;
+                case "/duan":
+                    XemDuAn(request,response);
+                    break;
+                case "/duan/chitiet":
+                    DuAnChitiet(request,response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath()+"/error/error.jsp");
@@ -152,8 +161,6 @@ public class NhanVienController extends HttpServlet {
             e.printStackTrace();
             // Xử lý lỗi khi đọc CSV
         }
-
-
     }
     public void ThemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException {
         if (request.getMethod().equals("GET")) {
@@ -260,7 +267,6 @@ public class NhanVienController extends HttpServlet {
         }
         request.setAttribute("lstKtkl",lstKtkl);
         request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request,response);
-
     }
     public void XuLyHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String startRoute = "/hopdong";
@@ -364,5 +370,96 @@ public class NhanVienController extends HttpServlet {
         else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
+    }
+
+    public void ThemChuongTrinh(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("ID"));
+        LocalDate ngay = LocalDate.parse(request.getParameter("ngayApDung"));
+        String noiDung = request.getParameter("noiDung");
+        String soKTKL = request.getParameter("soKTKL");
+        int loaiCT = Integer.parseInt(request.getParameter("loaiCT"));
+        String maNV = request.getParameter("maNV");
+        KThuongKLuc ktkl = new KThuongKLuc(id,maNV , noiDung, ngay, soKTKL,loaiCT);
+        KThuongKyLuatService ktklservice = new KThuongKyLuatServiceImpl();
+        int status = ktklservice.ThemChuongTrinh(ktkl);
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        }
+        else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+    public void CapNhatChuongTrinh(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("ID"));
+        LocalDate ngay = LocalDate.parse(request.getParameter("ngayApDung"));
+        String noiDung = request.getParameter("noiDung");
+        String soKTKL = request.getParameter("soKTKL");
+        int loaiCT = Integer.parseInt(request.getParameter("loaiCT"));
+        String maNV = request.getParameter("maNV");
+        KThuongKLuc ktkl = new KThuongKLuc(id,maNV , noiDung, ngay, soKTKL,loaiCT);
+        KThuongKyLuatService ktklservice = new KThuongKyLuatServiceImpl();
+        int status = ktklservice.CapNhatChuongTrin(ktkl);
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        }
+        else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+    public void XoaChuongTrinh(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("ID"));
+        LocalDate ngay = LocalDate.parse(request.getParameter("ngayApDung"));
+        String noiDung = request.getParameter("noiDung");
+        String soKTKL = request.getParameter("soKTKL");
+        int loaiCT = Integer.parseInt(request.getParameter("loaiCT"));
+        String maNV = request.getParameter("maNV");
+        KThuongKLuc ktkl = new KThuongKLuc(id,maNV , noiDung, ngay, soKTKL,loaiCT);
+        KThuongKyLuatService ktklservice = new KThuongKyLuatServiceImpl();
+        int status = ktklservice.XoaChuongTrinh(ktkl);
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        }
+        else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+    public void XuLyKTKL(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        final String startRoute = "/hopdong";
+        String action = request.getPathInfo().substring(startRoute.length());
+        System.out.println(action);
+
+        switch (action) {
+            case "":
+                request.getRequestDispatcher("/views/admin/QLHopDong/DanhSachHopDong.jsp").forward(request, response);
+                break;
+            case "/them":
+                ThemChuongTrinh(request, response);
+                break;
+            case "/sua":
+                CapNhatChuongTrinh(request, response);
+                break;
+            case "/xoa":
+                XoaChuongTrinh(request, response);
+                break;
+            default:
+        }
+
+
+    public void XemDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        List<DuAn> lstDA = duAnService.getDuAn();
+        request.setAttribute("lstDA",lstDA);
+        request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request,response);
+    }
+    public void DuAnChitiet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String mada = request.getParameter("maduan");
+        if(mada==null){
+                response.sendRedirect("/error/error.jsp");
+                return;
+        }
+        List<DANhanVien> lstDanv = duAnService.getChiTietDA(mada);
+        request.setAttribute("lstDanv",lstDanv);
+        request.getRequestDispatcher("/views/admin/QLDuAn/NhanVien_DuAn.jsp").forward(request,response);
+
     }
 }

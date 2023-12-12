@@ -8,6 +8,7 @@ import com.qlns.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -200,8 +201,11 @@ public class UserDaoImpl implements UserDao {
             ps.setString(12, nv.getMaNV());
             int rowsUpdated = ps.executeUpdate();
             return rowsUpdated > 0;
-        } catch (Exception e) {
+        }catch (SQLException e){
             e.printStackTrace();
+        }
+        return false;
+    }
 
         }
         return false;
