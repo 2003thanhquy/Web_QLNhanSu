@@ -19,11 +19,6 @@ public interface UserService {
     Boolean UpdateNV(NhanVien nv);
     List<KThuongKLuc> getKThuongKLuat();
     List<KThuongKLuc> getKThuongKLuat(String manv);
-
-    List<PhongBan> getPhongBan();
-    List<Luong> getLuong();
-    List<ChucVu> getChucVu();
-    List<TrinhDo> getTrinHDo();
     public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu);
 
 

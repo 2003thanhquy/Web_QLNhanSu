@@ -8,6 +8,7 @@ import com.qlns.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,11 +183,11 @@ public class UserDaoImpl implements UserDao {
         String sql = "UPDATE NhanVien SET maPB=?, idbacluong=?, idchucvu=?, " +
                 "idtrinhdo=?, hoten=?, cccd=?, diachi=?, hinhanh=?, sdt=?, namsinh=?, gioitinh=? " +
                 "WHERE MaNV=?";
-        try{
+        try {
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1,nv.getMaPB());
-            ps.setInt(2,nv.getIdBacLuong());
+            ps.setString(1, nv.getMaPB());
+            ps.setInt(2, nv.getIdBacLuong());
             ps.setInt(3, nv.getIdChucVu());
             ps.setInt(4, nv.getIdTrinhDo());
             ps.setString(5, nv.getHoTen());
@@ -194,12 +195,16 @@ public class UserDaoImpl implements UserDao {
             ps.setString(7, nv.getDiaChi());
             ps.setString(8, nv.getHinhAnh());
             ps.setString(9, nv.getSdt());
-            ps.setDate(10,java.sql.Date.valueOf(nv.getNamSinh()) );
+            ps.setDate(10, java.sql.Date.valueOf(nv.getNamSinh()));
             ps.setString(11, nv.getGioiTinh());
             ps.setString(12, nv.getMaNV());
             int rowsUpdated = ps.executeUpdate();
-            return rowsUpdated >0;
-
+            return rowsUpdated > 0;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu) {
         String sql = "UPDATE nhanvien SET MaPB=?, IDBacLuong=? , IDChucVu=? WHERE MaNV=?";

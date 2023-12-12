@@ -33,6 +33,7 @@ public class NhanVienController extends HttpServlet {
     private LuongSerrvice luong;
     private ChucVuService cv;
     private TrinhDoService td ;
+    private DuAnService duAnService;
     @Override
     public void init(){
         pb = new PhongbanServiceImp();
@@ -40,6 +41,7 @@ public class NhanVienController extends HttpServlet {
         cv = new ChucVuServiceImlp();
         td = new TrinhDoServiceImpl();
         userService = new UserServiceImp();
+        duAnService = new DuAnServiceImpl() ;
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -64,6 +66,12 @@ public class NhanVienController extends HttpServlet {
                     break;
                 case "/khenthuongkyluat":
                     KThuongKLuc(request,response);
+                    break;
+                case "/duan":
+                    XemDuAn(request,response);
+                    break;
+                case "/duan/chitiet":
+                    DuAnChitiet(request,response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath()+"/error/error.jsp");
@@ -364,5 +372,22 @@ public class NhanVienController extends HttpServlet {
         else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
+    }
+
+    public void XemDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        List<DuAn> lstDA = duAnService.getDuAn();
+        request.setAttribute("lstDA",lstDA);
+        request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request,response);
+    }
+    public void DuAnChitiet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String mada = request.getParameter("maduan");
+        if(mada==null){
+                response.sendRedirect("/error/error.jsp");
+                return;
+        }
+        List<DANhanVien> lstDanv = duAnService.getChiTietDA(mada);
+        request.setAttribute("lstDanv",lstDanv);
+        request.getRequestDispatcher("/views/admin/QLDuAn/NhanVien_DuAn.jsp").forward(request,response);
     }
 }
