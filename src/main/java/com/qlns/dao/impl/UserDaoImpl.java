@@ -207,9 +207,6 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
-        }
-        return false;
-    }
     public boolean capnhatnhanvientruockhilenchuc (String manv, String mapb,int bacluong, int chucvu){
         String sql = "UPDATE nhanvien SET MaPB=?, IDBacLuong=? , IDChucVu=? WHERE MaNV=?";
         try {
