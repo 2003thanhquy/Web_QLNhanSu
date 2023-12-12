@@ -21,6 +21,7 @@ public class TaiKhoanController extends HttpServlet {
     private TaiKhoanService taiKhoanService;
     @Override
     public void init() {
+
         taiKhoanService = new TaiKhoanServiceImpl();
     }
     @Override
@@ -32,7 +33,7 @@ public class TaiKhoanController extends HttpServlet {
         try {
             switch (relativePath){
                 case "/":
-                    this.XemDanhSachTaiKhoan(request,response);
+                    XemDanhSachTaiKhoan(request,response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath()+"/error/error.jsp");
@@ -44,13 +45,12 @@ public class TaiKhoanController extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
     public void XemDanhSachTaiKhoan(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
-        Thongtinnhanvien user = (Thongtinnhanvien)  session.getAttribute("user");
-        List<TaiKhoan> listtk = taiKhoanService.getTaiKhoan(tk.getUserRole(),user.getMaNV());
+        List<TaiKhoan> listtk = taiKhoanService.getTaiKhoan(tk.getUserRole(),tk.getMaNV());
         request.setAttribute("listtk",listtk);
         request.getRequestDispatcher("/views/admin/QLTaiKhoan/TaiKhoan.jsp").forward(request,response);
     }
