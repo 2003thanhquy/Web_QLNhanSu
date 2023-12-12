@@ -42,18 +42,7 @@
                                         </table>
                                     </div>
                                     <div class="table100-body js-pscroll">
-                                        <table>
-                                            <tbody>
-                                            <c:forEach items="${listtk}" var ="tk">
-                                                <tr class="row100 body">
-                                                    <td class="cell100 column1">ddd</td>
-                                                    <td class="cell100 column2">admin</td>
-                                                    <td class="cell100 column3">1234</td>
-                                                    <td class="cell100 column4">admin</td>
-                                                    <td class="cell100 column5">21110713</td>
-                                                </tr>
-                                            </c:forEach>
-                                            </tbody>
+                                        <table id="tbl-taikhoan">
                                         </table>
                                     </div>
                                 </div>
@@ -67,35 +56,35 @@
                                 <form action="" method="post">
                                     <div class="tk-tttk-inputs">
                                         <div class="tk-tttl--input">
-                                            <label class="tk-tttk--label" for="tk-tttk--userid">UserID</label>
-                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--userid" name="tk-tttk--userid">
+                                            <label class="tk-tttk--label" for="tk-tttk--userid" >UserID</label>
+                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--userid" name="tk-tttk--userid" disabled>
                                         </div>
                                         <div class="tk-tttl--input">
                                             <label class="tk-tttk--label" for="tk-tttk--username">Username</label>
-                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--username" name="tk-tttk--username">
+                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--username" name="tk-tttk--username" disabled>
                                         </div>
                                         <div class="tk-tttl--input">
                                             <label class="tk-tttk--label" for="tk-tttk--password">Password</label>
-                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--password" name="tk-tttk--password">
+                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--password" name="tk-tttk--password" disabled>
                                         </div>
                                         <div class="tk-tttl--input">
                                             <label class="tk-tttk--label" for="tk-tttk--userrole">Userrole</label>
-                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--userrole" name="tk-tttk--userrole">
+                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--userrole" name="tk-tttk--userrole" disabled>
                                         </div>
                                         <div class="tk-tttl--input">
                                             <label class="tk-tttk--label" for="tk-tttk--idnhanvien">Mã nhân viên</label>
-                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--idnhanvien" name="tk-tttk--idnhanvien">
+                                            <input type="text" class="tk-tttk--input_element" id="tk-tttk--idnhanvien" name="tk-tttk--idnhanvien" disabled>
                                         </div>
                                     </div>
                                     <div class="tk-tttk-buttons">
                                         <div class="tk-tttk-button--control">
-                                            <button class="tk-tttk--button btn btn-outline-primary">Thêm</button>
-                                            <button class="tk-tttk--button btn btn-outline-warning">Cập nhật</button>
-                                            <button class="tk-tttk--button btn btn-outline-danger">Xóa</button>
+                                            <button  type="button" class="tk-tttk--button btn btn-outline-primary" onclick="handleThemClicked()" >Thêm</button>
+                                            <button type="button" class="tk-tttk--button btn btn-outline-warning" onclick="handleCapNhatClicked()" >Cập nhật</button>
+                                            <button  type="button" class="tk-tttk--button btn btn-outline-danger" onclick="handleXoaClicked()" >Xóa</button>
                                         </div>
                                         <div class="tk-tttk-button--confirm">
-                                            <button class="tk-tttk--button btn btn-outline-secondary">Hủy</button>
-                                            <button type="submit" class="tk-tttk--button btn btn-outline-success">Xác nhận</button>
+                                            <button  type="button" class="tk-tttk--button btn btn-outline-secondary" onclick="handleHuyClicked()" >Hủy</button>
+                                            <button type="button" class="tk-tttk--button btn btn-outline-success" onclick="XacNhan()">Xác nhận</button>
                                         </div>
                                     </div>
                                 </form>
@@ -117,5 +106,119 @@
         left_container.style.display = "none";
     }
 </script>
+<script>
+    var kieucapnhat = "";
+
+    jQuery(document).ready(function() {
+        getDanhSachTaiKhoan();
+    });
+    function getDanhSachTaiKhoan() {
+        console.log('data')
+        jQuery.ajax({
+            url: "${pageContext.request.getContextPath()}/taikhoan/thongtin/danhsach",
+            method: "GET",
+            dateType: "json",
+            success: function (data) {
+                var tblTaiKhoan = jQuery("#tbl-taikhoan");
+                tblTaiKhoan.empty();
+                tblTaiKhoan.append("<tbody>");
+                jQuery(data).each(function (index, element) {
+                    tblTaiKhoan.append(`<tr class="row100 body"><td class="cell100 column1">\${element.userID}</td><td class="cell100 column2">\${element.userName}</td><td class="cell100 column3">\${element.password}</td><td class="cell100 column4">\${element.userRole}</td><td class="cell100 column5">\${element.maNV}</td></tr>`);
+                });
+                tblTaiKhoan.append("</tbody>");
+            },
+            error: function (data) {
+                console.error("Can't get contracts list");
+            },
+        })
+            .done(function () {
+                //fill clicked data to form
+                jQuery(".row100").on("click", function () {
+                    var clickedRow = jQuery(this);
+
+                    jQuery("#tk-tttk--userid").val(clickedRow.find(".column1").text());
+                    jQuery("#tk-tttk--username").val(clickedRow.find(".column2").text());
+                    jQuery("#tk-tttk--password").val(clickedRow.find(".column3").text());
+                    jQuery("#tk-tttk--userrole").val(clickedRow.find(".column4").text());
+                    jQuery("#tk-tttk--idnhanvien").val(clickedRow.find(".column5").text());
+                });
+            });
+    }
+
+    function getData() {
+        let userID = jQuery("#tk-tttk--userid").val();
+        let userName = jQuery("#tk-tttk--username").val();
+        let password = jQuery("#tk-tttk--password").val();
+        let userRole = jQuery("#tk-tttk--userrole").val();
+        let maNV = jQuery("#tk-tttk--idnhanvien").val();
+
+        return {
+            userID: userID,
+            userName: userName,
+            password: password,
+            userRole: userRole,
+            maNV: maNV,
+        }
+    }
+
+    function handleThemClicked() {
+        kieucapnhat = "/them";
+        editDisabledInput(false);
+        clearInput();
+        $("#tk-tttk--userid").focus();
+    }
+
+    function handleCapNhatClicked() {
+        kieucapnhat = "/sua";
+        editDisabledInput(false);
+        $("#tk-tttk--userid").focus();
+    }
+    function XacNhan() {
+        var dataObj = getData();
+        let url = window.location.href + kieucapnhat;
+        jQuery.ajax({
+            url: url,
+            method: "GET",
+            data: dataObj,
+            success: getDanhSachTaiKhoan,
+            error: function () {
+                console.error("Adding failed!")
+            }
+        }).done(function (){
+            if(kieucapnhat==='/xoa'){
+                alert("Xóa thành công")
+            }
+            if(kieucapnhat==='/them'){
+                alert("Thêm thành công")
+            }
+            if(kieucapnhat==='/sua'){
+                alert("sửa thành công")
+            }
+        })
+        editDisabledInput(true);
+        clearInput();
+    }
+
+    function handleXoaClicked() {
+        kieucapnhat="/xoa";
+        XacNhan();
+    }
+    function handleHuyClicked() {
+        clearInput();
+        editDisabledInput(true);
+    }
+
+    //Handle button "XacNhan" clicked
+
+
+    function clearInput() {
+        jQuery(".tk-tttk--input_element").val("");
+    }
+
+    function editDisabledInput(value) {
+        jQuery(".tk-tttk--input_element").prop("disabled", value);
+    }
+</script>
+
 </body>
 </html>

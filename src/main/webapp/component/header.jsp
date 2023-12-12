@@ -25,7 +25,7 @@
                             </a>
                         </li>
                         <li class="header-detail-item">
-                            <a href="<%=request.getContextPath()%>/taikhoan/" class="detail-item--context">
+                            <a href="<%=request.getContextPath()%>/taikhoan/thongtin" class="detail-item--context">
                                 Quản lý tài khoản
                             </a>
                         </li>

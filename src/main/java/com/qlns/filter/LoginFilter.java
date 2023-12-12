@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Map;
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class LoginFilter implements Filter{
 
     @Override

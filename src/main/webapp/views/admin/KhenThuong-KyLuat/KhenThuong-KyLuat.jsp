@@ -230,7 +230,6 @@
         kieucapnhat = "/sua"
     }
 
-
     function enableInputElement(type) {
         id.disabled = type;
         ngay.disabled = type;
