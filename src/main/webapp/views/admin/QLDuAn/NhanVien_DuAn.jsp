@@ -24,11 +24,18 @@
                         <div class="nvda-ttda--container">
                             <div class="nvda-ttda--maduan">
                                 <h3 class="nvda-ttda--label">Mã dự án:</h3>
-                                <h2 class="nvda-ttda--content">DA0001</h2>
+                                <c:if test="${not empty lstDanv}">
+                                    <c:set var="mada" value="${lstDanv[0].maDA}" />
+                                    <h2 class="nvda-ttda--content">${mada}</h2>
+                                </c:if>
                             </div>
                             <div class="nvda-ttda--tenduan">
                                 <h3 class="nvda-ttda--label">Tên dự án:</h3>
-                                <h2 class="nvda-ttda--content">Quần què</h2>
+                                <c:if test="${not empty lstDanv}">
+                                    <c:set var="tenda" value="${lstDanv[0].tenDA}" />
+                                    <h2 class="nvda-ttda--content">${tenda}</h2>
+                                </c:if>
+
                             </div>
                         </div>
 
@@ -51,56 +58,13 @@
                                     <div class="table100-body js-pscroll">
                                         <table>
                                             <tbody>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">DA0001</td>
-                                                <td class="cell100 column2">21110713</td>
-                                                <td class="cell100 column3">Làm tốt</td>
-                                            </tr>
+                                            <c:forEach items="${lstDanv}" var="da">
+                                                <tr class="row100 body" onclick="handleItemClick('${da.maNV}','${da.maDA}','${da.trangThaiLamViec}')">
+                                                    <td class="cell100 column1">${da.maNV}</td>
+                                                    <td class="cell100 column3">${da.maDA}</td>
+                                                    <td class="cell100 column3">${da.trangThaiLamViec}</td>
+                                                </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -118,19 +82,15 @@
                                         <label class="nvda-ttnv--label">Mã nhân viên</label>
                                         <input class="nvda-ttnv-input--element" type="text" id="nvda-ttnv--idnhanvien" name="nvda-ttnv--idnhanvien">
                                     </div>
-                                    <div class="nvda-ttnv-input--container">
-                                        <label class="nvda-ttnv--label">Tên nhân viên</label>
-                                        <input class="nvda-ttnv-input--element" type="text" id="nvda-ttnv--tennhanvien" name="nvda-ttnv--tennhanvien">
-                                    </div>
                                 </div>
                                 <div class= "nvda-ttnv--button">
                                     <div class="nvda-ttnv--controlbutton">
-                                        <button class="nvda-ttnv--thembutton nvda-ttnv--button btn btn-outline-primary">Thêm vào dự án</button>
-                                        <button class="nvda-ttnv--xoabutton nvda-ttnv--button btn btn-outline-danger">Xóa khỏi dự án</button>
+                                        <button class="nvda-ttnv--thembutton nvda-ttnv--button btn btn-outline-primary" id="them" function="Them()">Thêm vào dự án</button>
+                                        <button class="nvda-ttnv--xoabutton nvda-ttnv--button btn btn-outline-danger" id="xoa" function="Xoa()">Xóa khỏi dự án</button>
                                     </div>
                                     <div class="nvd-ttnv--confirmbutton">
-                                        <button class="nvda-ttnv--huybutton nvda-ttnv--button btn btn-outline-secondary">Hủy</button>
-                                        <button type="submit" class="nvda-ttnv--xacnhanbutton nvda-ttnv--button btn btn-outline-success">Xác nhận</button>
+                                        <button class="nvda-ttnv--huybutton nvda-ttnv--button btn btn-outline-secondary" id="huy" function="Huy()>Hủy</button>
+                                        <button type="submit" class="nvda-ttnv--xacnhanbutton nvda-ttnv--button btn btn-outline-success" id="xacnhan" function="XacNhan()"  >Xác nhận</button>
                                     </div>
                                 </div>
                             </form>
@@ -145,6 +105,15 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
-
+<script>
+    var manv = document.getElementById('nvda-ttnv--idnhanvien')
+    manv.disabled = true;
+    function Them(){
+       manv.disabled = false;
+    }
+    function handleItemClick(ma,ten,tt){
+        manv.value = ma;
+    }
+</script>
 </body>
 </html>
