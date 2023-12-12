@@ -25,6 +25,7 @@ public interface PhongbanService {
     void capnhatphongban(PhongBan pb);
 
     void xoaphongban(String mapb);
+    List<ThongTinPhongBan> laydanhsachphongbantheomacn(String MaCN);
 
     List<PhongBan> getPhongBan();
 

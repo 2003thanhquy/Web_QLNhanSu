@@ -20,7 +20,7 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
     @Override
     public List<ChiNhanh> danhsachchinhanh() {
         List<ChiNhanh> list = new ArrayList<>();
-        String sql= "   select * from chinhanh where status =1";
+        String sql= " SELECT * FROM QuanLyNhanSu.chinhanh ";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
@@ -41,14 +41,16 @@ public class ChiNhanhDaoImpl implements ChiNhanhDao {
 
     @Override
     public void themchinhanh(ChiNhanh cn) {
-        String sql = "INSERT INTO `QuanLyNhanSu`.`chinhanh` (`MaCN`, `MaGiamDoc`, `TenChiNhanh`, `DiaChi`, `NgayBD`) VALUES (null, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `QuanLyNhanSu`.`chinhanh` (`MaCN`, `MaGiamDoc`, `TenChiNhanh`, `DiaChi`, `NgayBD`) VALUES (?, ?, ?, ?, ?)";
         try {
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, cn.getMaGiamDoc());
-            ps.setString(2, cn.getTenChiNhanh());
-            ps.setString(3, cn.getDiaChi());
-            ps.setDate(4, java.sql.Date.valueOf(cn.getNgayBD()));
+            ps.setString(1, cn.getMaCN());
+            ps.setString(2, cn.getMaGiamDoc());
+            ps.setString(2, cn.getMaGiamDoc());
+            ps.setString(3, cn.getTenChiNhanh());
+            ps.setString(4, cn.getDiaChi());
+            ps.setDate(5, java.sql.Date.valueOf(cn.getNgayBD()));
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Cập nhật phòng ban thành công.");
