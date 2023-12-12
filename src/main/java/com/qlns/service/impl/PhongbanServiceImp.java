@@ -62,6 +62,7 @@ public class PhongbanServiceImp implements PhongbanService {
 
     @Override
     public void xoaphongban(String mapb) {
+
         pbDao.xoaphongban(mapb);
     }
     public List<ThongTinPhongBan> laydanhsachphongbantheomacn(String MaCN){
@@ -74,7 +75,6 @@ public class PhongbanServiceImp implements PhongbanService {
     public void capnhatphongbanchuaquanly(PhongBan pb){
         pbDao.capnhatphongbanchuaquanly(pb);
     }
-
 
 
     @Override
