@@ -94,6 +94,7 @@ public class KThuongKLuatDaoImpl implements KThuongKLuatDao {
             preparedStatement.setDate(3,Date.valueOf( ktkl.getNgay()));
             preparedStatement.setString(4,ktkl.getSoKT_KL());
             preparedStatement.setInt(5,ktkl.getLoai());
+            preparedStatement.setInt(6,ktkl.getId());
             return preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -29,7 +29,7 @@
                             <div class="ktkl--content">
                                 <div class="table100 ver4 m-b-110">
                                     <div class="table100-head">
-                                        <table id="tbl-ktkl">
+                                        <table>
                                             <thead>
                                             <tr class="row100 head">
                                                 <th class="cell100 column1">Id</th>
@@ -43,19 +43,19 @@
                                         </table>
                                     </div>
                                     <div class="table100-body js-pscroll">
-                                        <table >
-                                            <tbody>
-                                            <c:forEach items="${lstKtkl}" var="ktkl">
-                                                <tr class="row100 body" onclick="handleItemClick('${ktkl.id}','${ktkl.noiDung}','${ktkl.getNgay()}','${ktkl.soKT_KL}','${ktkl.loai}','${ktkl.maNV}')">
-                                                    <td class="cell100 column1">${ktkl.id}</td>
-                                                    <td class="cell100 column3">${ktkl.noiDung}</td>
-                                                    <td class="cell100 column3">${ktkl.getNgay()}</td>
-                                                    <td class="cell100 column4">${ktkl.soKT_KL}</td>
-                                                    <td class="cell100 column5">${ktkl.loai}</td>
-                                                    <td class="cell100 column5">${ktkl.maNV}</td>
-                                                </tr>
-                                            </c:forEach>
-                                            </tbody>
+                                        <table id="tbl-ktkl">
+<%--                                            <tbody>--%>
+<%--                                            <c:forEach items="${lstKtkl}" var="ktkl">--%>
+<%--                                                <tr class="row100 body" onclick="handleItemClick('${ktkl.id}','${ktkl.noiDung}','${ktkl.getNgay()}','${ktkl.soKT_KL}','${ktkl.loai}','${ktkl.maNV}')">--%>
+<%--                                                    <td class="cell100 column1">${ktkl.id}</td>--%>
+<%--                                                    <td class="cell100 column3">${ktkl.noiDung}</td>--%>
+<%--                                                    <td class="cell100 column3">${ktkl.getNgay()}</td>--%>
+<%--                                                    <td class="cell100 column4">${ktkl.soKT_KL}</td>--%>
+<%--                                                    <td class="cell100 column5">${ktkl.loai}</td>--%>
+<%--                                                    <td class="cell100 column5">${ktkl.maNV}</td>--%>
+<%--                                                </tr>--%>
+<%--                                            </c:forEach>--%>
+<%--                                            </tbody>--%>
                                         </table>
                                     </div>
                                 </div>
@@ -97,11 +97,11 @@
                                         <div class="ktkl-dsct-button--control">
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-primary" id="them" onclick="ThemChuongTrinh()">Thêm</button>
                                             <div class="ktkl-dsct--button btn btn-outline-warning" id="capnhat" onclick="CapNhat()">Cập nhật</div>
-                                            <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa">Xóa</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa" onclick="handleXoaClicked()">Xóa</button>
                                         </div>
                                         <div class="ktkl-dsct-button--confirm">
-                                            <button type="button" class="ktkl-dsct--button btn btn-outline-secondary" id="huy">Hủy</button>
-                                            <button type="submit" class="ktkl-dsct--button btn btn-outline-success" id="xacnhan" onclick="XacNhanChuongTrinh()">Xác nhận</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-outline-secondary" id="huy" onclick="handleHuyClicked()">Hủy</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-outline-success" id="xacnhan" onclick="XacNhanChuongTrinh()">Xác nhận</button>
                                         </div>
                                     </div>
                                 </form>
@@ -116,6 +116,9 @@
 
 <%@include file="/component/all_javascript.jsp"%>
 <script>
+    jQuery(document).ready(function () {
+        getDanhSachChuongTrinh()
+    })
     var id = document.getElementById('ktkl-dsct--id')
     var noidung = document.getElementById('ktkl-dsct--noidung')
     var ngay = document.getElementById('ktkl-dsct--ngayapdung')
@@ -128,7 +131,7 @@
     var xoa = document.getElementById('xoa')
     var huy = document.getElementById('huy')
     var xacnhan = document.getElementById('xacnhan')
-    var kieuxacnhan = "";
+    var kieucapnhat = "";
 
     id.disabled = true;
     ngay.disabled = true;
@@ -154,6 +157,16 @@
             maNV:maNV
         }
     }
+    function handleXoaClicked() {
+        kieucapnhat="/xoa";
+        XacNhanChuongTrinh();
+    }
+    function handleHuyClicked() {
+        clearInput();
+        editDisabledInput(true);
+        console.log('huy')
+    }
+
     function XacNhanChuongTrinh(){
         var dataObj = getData();
         let url = window.location.href + kieucapnhat;
@@ -171,17 +184,47 @@
     }
     function getDanhSachChuongTrinh() {
         jQuery.ajax({
-            url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat",
+            url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat/danhsach",
             method:"GET",
+            dataType:'json',
             success: function(data){
+                console.log( 'data'+ data)
                 var tblKTKL = jQuery("#tbl-ktkl")
-            }
+                tblKTKL.empty();
+                tblKTKL.append("<tbody>");
+                jQuery(data).each(function (index, ktkl) {
+                    tblKTKL.append(`<tr class="row100 body"><td class="cell100 column1">\${ktkl.id}</td>
+                                                    <td class="cell100 column2">\${ktkl.noiDung}</td>
+                                                    <td class="cell100 column3">\${ktkl.Ngay}</td>
+                                                    <td class="cell100 column4">\${ktkl.soKT_KL}</td>
+                                                    <td class="cell100 column5">\${ktkl.loai}</td>
+                                                    <td class="cell100 column6">\${ktkl.maNV}</td></tr>
+                    `);
+                });
+                tblKTKL.append("</tbody>");
+            },error: function (data) {
+                console.error("Can't get contracts list");
+            },
         })
+            .done(function () {
+                //fill clicked data to form
+                jQuery(".row100").on("click", function () {
+                    var clickedRow = jQuery(this);
+
+                    jQuery("#ktkl-dsct--id").val(clickedRow.find(".column1").text());
+                    jQuery("#ktkl-dsct--noidung").val(clickedRow.find(".column2").text());
+                    jQuery("#ktkl-dsct--ngayapdung").val(clickedRow.find(".column3").text());
+                    jQuery("#ktkl-dsct--sokt_kl").val(clickedRow.find(".column4").text());
+                    jQuery("#ktkl-dsct--phanloai").val(clickedRow.find(".column5").text());
+                    jQuery("#ktkl-dsct--idnhanvien").val(clickedRow.find(".column6").text());
+                });
+
+            });
     }
     function ThemChuongTrinh() {
         enableInputElement(false);
         clearTextInput();
-        kieuxacnhan = "/them";
+        kieucapnhat = "/them";
     }
     function CapNhat(){
         id.disabled = false;
@@ -192,17 +235,9 @@
         manv.disabled = false;
         huy.disabled =false;
         xacnhan.disabled = false;
+        kieucapnhat = "/sua"
     }
 
-    function  handleItemClick(Id,noiDung,Ngay,soKT_KL,Loai,Manv){
-        id.value = Id ;
-        noidung.value = noiDung;
-        ngay.value = Ngay;
-        soktkl.value = soKT_KL
-        loai.value  = Loai
-        manv.value = Manv
-
-    }
     function enableInputElement(type) {
         id.disabled = type;
         ngay.disabled = type;
@@ -222,6 +257,14 @@
         manv.value = null;
         huy.value =null;
         xacnhan.value = null;
+    }
+    function clearInput() {
+        jQuery(".ktkl-dsct--input_element").val("");
+        jQuery(".ktkl-dsct--input_element").val("");
+    }
+    function editDisabledInput(value) {
+        jQuery(".ktkl-dsct--input_element").prop("disabled", value);
+        jQuery(".ktkl-dsct--input_element").prop("disabled", value);
     }
 </script>
 </body>
