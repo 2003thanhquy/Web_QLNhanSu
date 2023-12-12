@@ -131,8 +131,15 @@ public class ChiNhanhController extends HttpServlet {
         ChiNhanhService chiNhanhService = new ChiNhanhServiceImp();
 
         LocalDate ngaythanhlap = LocalDate.parse(req.getParameter("ngaythanhlap"));
-        ChiNhanh cn = new ChiNhanh(req.getParameter("macn"),req.getParameter("magiamdoc"),req.getParameter("tencn"),req.getParameter("diachi"), ngaythanhlap);
-
+        ChiNhanh cn = new ChiNhanh(req.getParameter("macn").isEmpty() ? null : req.getParameter("macn"),req.getParameter("magiamdoc").isEmpty() ? null : req.getParameter("magiamdoc"),req.getParameter("tencn").isEmpty() ? null : req.getParameter("tencn"),req.getParameter("diachi").isEmpty() ? null : req.getParameter("diachi"), ngaythanhlap);
+        String Magiamdoc =req.getParameter("magiamdoc").isEmpty() ? null : req.getParameter("magiamdoc");
+        if(Magiamdoc!=null) {
+            ChiNhanhService cnser = new ChiNhanhServiceImp();
+            PhongbanDao phongbanService = new PhongbanDaoImpl();
+            UserDao userService = new UserDaoImpl();
+            userService.capnhatnhanvientruockhilenchuc(Magiamdoc, null, 1, 1);
+            cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
+        }
         chiNhanhService.capnhatchinhanh(cn);
         List<ChiNhanh> listcn = new ArrayList<>();
         listcn = chiNhanhService.danhsachchinhanh();

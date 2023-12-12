@@ -161,7 +161,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB) {
         List<Thongtinnhanvien> list = new ArrayList<>();
-        String sql = "SELECT nv.* FROM  ThongTinNhanVien nv inner join PhongBan pb on nv.MaPB = pb.MaPB WHERE nv.status = 1 and pb.MaPB = ? ";
+        String sql = "SELECT nv.* FROM  ThongTinNhanVien nv inner join \n" +
+                "PhongBan pb on nv.MaPB = pb.MaPB \n" +
+                "inner join PhongBan pbcha on pb.MaPBCha = pbcha.MaPB\n" +
+                "WHERE nv.status = 1 and pb.MaPB = ? ";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
@@ -206,6 +209,7 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
+
     public boolean capnhatnhanvientruockhilenchuc (String manv, String mapb,int bacluong, int chucvu){
         String sql = "UPDATE nhanvien SET MaPB=?, IDBacLuong=? , IDChucVu=? WHERE MaNV=?";
         try {

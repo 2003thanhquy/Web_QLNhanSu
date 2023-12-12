@@ -155,6 +155,11 @@
          ngaythanhlap.disabled = true;
          magiamdoc.disabled = true;
 
+
+         if (magiamdoc.value === null) {
+             magiamdoc.value = "";
+         }
+
      }
      function  themcn(){
          kieucapnhat = "them";
@@ -205,7 +210,7 @@
             },
             success: function (data) {
                 console.log(data);
-                alert("Dữ liệu đã được gửi thành công");
+                alert(kieucapnhat+ " thành công");
                 dulieu.innerHTML=data;
             },
             error: function (error) {

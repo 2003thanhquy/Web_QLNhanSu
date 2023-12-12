@@ -11,4 +11,5 @@ public interface ChiNhanhService {
     void xoachinhanh(String macn);
     void capnhatgiamdocchinhanh(String macn);
     ChiNhanh laychinhanhgiamdocquanly(String MaGiamDoc);
+
 }

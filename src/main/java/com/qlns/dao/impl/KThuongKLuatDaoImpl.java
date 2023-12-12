@@ -37,6 +37,92 @@ public class KThuongKLuatDaoImpl implements KThuongKLuatDao {
         }
         return lstKtkl;
     }
+    public List<KThuongKLuc> getKThuongKLuatgiamdoc(String MaGD) {
+        String sql = "SELECT kk.*\n" +
+                "FROM ThongTinNhanVien nv\n" +
+                "INNER JOIN chinhanh cn ON nv.MaCN = cn.MaCN\n" +
+                "INNER JOIN kthuong_kluc kk ON nv.MaNV = kk.MaNV\n" +
+                "WHERE cn.MaGiamDoc = ?";
+        List<KThuongKLuc> lstKtkl = new ArrayList<>();
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,MaGD);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                KThuongKLuc ktkl = new KThuongKLuc();
+                ktkl.setId(rs.getInt("ID"));
+                ktkl.setMaNV(rs.getString("MaNV"));
+                ktkl.setNoiDung(rs.getString("NoiDung"));
+                ktkl.setNgay(rs.getDate("Ngay").toLocalDate());
+                ktkl.setSoKT_KL(rs.getString("soKT_KL"));
+                ktkl.setLoai(rs.getInt("Loai"));
+                lstKtkl.add(ktkl);
+            }
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return lstKtkl;
+    }
+    public List<KThuongKLuc> getKThuongKLuattotruong(String MaToTruong) {
+        String sql = "SELECT kk.*\n" +
+                "FROM ThongTinNhanVien nv\n" +
+                "INNER JOIN phongban pb ON nv.MaPB = pb.MaPB\n" +
+                "INNER JOIN kthuong_kluc kk ON nv.MaNV = kk.MaNV\n" +
+                "WHERE pb.MaQuanLy = ?";
+        List<KThuongKLuc> lstKtkl = new ArrayList<>();
+        try{
+            conn = new DBConnection().getConnection();
+            ps.setString(1,MaToTruong);
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                KThuongKLuc ktkl = new KThuongKLuc();
+                ktkl.setId(rs.getInt("ID"));
+                ktkl.setMaNV(rs.getString("MaNV"));
+                ktkl.setNoiDung(rs.getString("NoiDung"));
+                ktkl.setNgay(rs.getDate("Ngay").toLocalDate());
+                ktkl.setSoKT_KL(rs.getString("soKT_KL"));
+                ktkl.setLoai(rs.getInt("Loai"));
+                lstKtkl.add(ktkl);
+            }
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return lstKtkl;
+    }
+    public List<KThuongKLuc> getKThuongKLuattruongphong(String MaTruongPhong) {
+        String sql = "SELECT kk.* " +
+                "FROM ThongTinNhanVien nv " +
+                "INNER JOIN phongban pb ON nv.MaPB = pb.MaPB " +
+                "INNER JOIN kthuong_kluc kk ON nv.MaNV = kk.MaNV " +
+                "INNER JOIN phongban pbcha ON pb.MaPBCha = pbcha.MaPB " +
+                "WHERE pbcha.MaQuanLy = ?";
+        List<KThuongKLuc> lstKtkl = new ArrayList<>();
+        try{
+            conn = new DBConnection().getConnection();
+            ps.setString(1,MaTruongPhong);
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                KThuongKLuc ktkl = new KThuongKLuc();
+                ktkl.setId(rs.getInt("ID"));
+                ktkl.setMaNV(rs.getString("MaNV"));
+                ktkl.setNoiDung(rs.getString("NoiDung"));
+                ktkl.setNgay(rs.getDate("Ngay").toLocalDate());
+                ktkl.setSoKT_KL(rs.getString("soKT_KL"));
+                ktkl.setLoai(rs.getInt("Loai"));
+                lstKtkl.add(ktkl);
+            }
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return lstKtkl;
+    }
+
 
     @Override
     public List<KThuongKLuc> getKThuongKLuat(String manv) {

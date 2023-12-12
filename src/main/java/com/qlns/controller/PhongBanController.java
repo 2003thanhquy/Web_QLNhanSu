@@ -303,16 +303,16 @@ public class PhongBanController extends HttpServlet {
         pb.setTenPBCha(request.getParameter("tenpbcha").isEmpty() ? null : request.getParameter("tenpbcha"));
         pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
         LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
-        if (pb.getMaPB().substring(0, 3).equals("PBC"))
-        {
-            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
-
-        }
-        else {
-            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
-        }
         pb.setNgayBD(ngaythanhlap);
-        phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
+//        if (pb.getMaPB().substring(0, 3).equals("PBC"))
+//        {
+//            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
+//        }
+//        else {
+//            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
+//        }
+//
+//        phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
         phongbanService.capnhatphongban(pb);
 
 

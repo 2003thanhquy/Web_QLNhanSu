@@ -5,6 +5,8 @@ import com.qlns.dao.impl.KThuongKLuatDaoImpl;
 import com.qlns.model.KThuongKLuc;
 import com.qlns.service.KThuongKyLuatService;
 
+import java.util.List;
+
 public class KThuongKyLuatServiceImpl implements KThuongKyLuatService {
     KThuongKLuatDao ktkldao = new KThuongKLuatDaoImpl();
     @Override
@@ -17,4 +19,6 @@ public class KThuongKyLuatServiceImpl implements KThuongKyLuatService {
     public int XoaChuongTrinh(KThuongKLuc ktkl) {
         return ktkldao.XoaChuongTrinh(ktkl);
     }
+
+
 }

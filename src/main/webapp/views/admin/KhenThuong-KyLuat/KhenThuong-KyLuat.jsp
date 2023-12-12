@@ -2,6 +2,7 @@
 <%@include file="/common/taglib.jsp"%>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDate" %>
+<%@ page import="com.qlns.model.TaiKhoan" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,11 +98,9 @@
                                         <div class="ktkl-dsct-button--control">
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-primary" id="them" onclick="ThemChuongTrinh()">Thêm</button>
                                             <div class="ktkl-dsct--button btn btn-outline-warning" id="capnhat" onclick="CapNhat()">Cập nhật</div>
-<<<<<<< HEAD
+
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa" onclick="handleXoaClicked()">Xóa</button>
-=======
-                                            <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa" onclick="XoaChuongTrinh()">Xóa</button>
->>>>>>> 129c81535d7aa2cb7725a07d5a00f99e9e2a30d1
+
                                         </div>
                                         <div class="ktkl-dsct-button--confirm">
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-secondary" id="huy" onclick="handleHuyClicked()">Hủy</button>
@@ -119,10 +118,19 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
+
 <script>
+
     jQuery(document).ready(function () {
         getDanhSachChuongTrinh()
     })
+
+    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
+    if (!isUserRoleAdmin) {
+        document.querySelector(".ktkl-dsct-buttons").style.display = "none";
+    }
+
     var id = document.getElementById('ktkl-dsct--id')
     var noidung = document.getElementById('ktkl-dsct--noidung')
     var ngay = document.getElementById('ktkl-dsct--ngayapdung')
@@ -172,9 +180,32 @@
     }
 
     function XacNhanChuongTrinh(){
-
+        var dataObj = getData();
+        let url = window.location.href + kieucapnhat;
+        jQuery.ajax({
+            url: url,
+            method: "GET",
+            data:dataObj,
+            success: getDanhSachChuongTrinh,
+            error: function(){
+                console.error("Adding failed!")
+            }
+        }).done(function (){
+            if(kieucapnhat==='/xoa'){
+                alert("Xóa thành công")
+            }
+            if(kieucapnhat==='/them'){
+                alert("Thêm thành công")
+            }
+            if(kieucapnhat==='/sua'){
+                alert("sửa thành công")
+            }
+        })
+        enableInputElement(true);
+        clearTextInput();
     }
     function getDanhSachChuongTrinh() {
+
         jQuery.ajax({
             url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat/danhsach",
             method:"GET",
@@ -212,20 +243,21 @@
                 });
 
             });
+
     }
     function ThemChuongTrinh() {
         enableInputElement(false);
         clearTextInput();
         kieucapnhat = "/them";
     }
-    function CapNhat(){
+    function CapNhat() {
         id.disabled = false;
         ngay.disabled = false;
         noidung.disabled = false;
         soktkl.disabled = false;
         loai.disabled = false;
         manv.disabled = false;
-        huy.disabled =false;
+        huy.disabled = false;
         xacnhan.disabled = false;
         kieucapnhat = "/sua"
     }

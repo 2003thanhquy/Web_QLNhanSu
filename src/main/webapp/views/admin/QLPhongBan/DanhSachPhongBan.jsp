@@ -193,6 +193,9 @@
         ngaybd.value=ngayBD;
         maql =maQL;
         macn = maCN;
+        if (tenql.value === null) {
+            tenql.value = "";
+        }
 
 
         maphong.disabled = true;
@@ -350,19 +353,6 @@
 </script>
 <script>
     function XacNhan(){
-        let dataObj = {
-            kieucapnhat : kieucapnhat,
-            maphong : maphong,
-            tenpb : tenpb,
-            mapbcha:mapbcha,
-            tenpbcha:tenpbcha,
-            macn:macn,
-            maql:maql,
-            ngaybd :ngaybd,
-        }
-        console.log(dataObj);
-        console.log(JSON.stringify(dataObj));
-
         jQuery.ajax({
             type: "GET",
             url: "${request.getContextPath()}/QLNhanSu_war_exploded/phongban/capnhatphongban",

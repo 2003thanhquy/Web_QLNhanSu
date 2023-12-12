@@ -276,8 +276,27 @@ public class NhanVienController extends HttpServlet {
         if (tk != null && tk.getUserRole().equals("admin")) {
             lstKtkl = userService.getKThuongKLuat();
         }
-        request.setAttribute("lstKtkl", lstKtkl);
-        request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request, response);
+        else {
+            if (tk != null && tk.getUserRole().equals("giamdoc")) {
+                lstKtkl= userService.getKThuongKLuatgiamdoc(tk.getMaNV());
+            }
+            else {
+                if (tk != null && tk.getUserRole().equals("truongphong"))
+                {
+                    lstKtkl= userService.getKThuongKLuattruongphong(tk.getMaNV());
+                    if (tk != null && tk.getUserRole().equals("totruong"))
+                    {
+                        lstKtkl= userService.getKThuongKLuattotruong(tk.getMaNV());
+
+                    }
+                    else  lstKtkl=null;
+                }
+
+            }
+        }
+
+        request.setAttribute("lstKtkl",lstKtkl);
+        request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request,response);
     }
     public void XuLyHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String startRoute = "/hopdong";
@@ -305,10 +324,14 @@ public class NhanVienController extends HttpServlet {
                 break;
         }
     }
-
     public void XemDanhSachHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HopDongService hopDongService = new HopDongServiceImpl();
-        List<HopDong> lstHopDong = hopDongService.findAll();
+        HttpSession session = request.getSession();
+        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        List<HopDong> lstHopDong = new ArrayList<>();
+        if(tk.getUserRole().equals("admin")){
+            lstHopDong = hopDongService.findAll();;
+        }
 
         //Parse to JSON
         StringBuilder jsonString = new StringBuilder();
@@ -432,8 +455,10 @@ public class NhanVienController extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
+
     public void XuLyKTKL(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         final String startRoute = "/khenthuongkyluat";
+
         String action = request.getPathInfo().substring(startRoute.length());
         System.out.println(action);
 
