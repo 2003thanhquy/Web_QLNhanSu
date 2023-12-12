@@ -35,11 +35,15 @@
     <div id="content">
         <div id="main-content">
             <div class="themnhanvien-container container-md">
-                <div class="themnhanvien-excel--container">
+                <div class="themnhanvien-excel--container" onclick="openFileInput()">
                     <div class="themnhanvien-excel--content">
                         <img class="themnhanvien-excel--image" src="<%=request.getContextPath()%>/assets/image/excel-logo.png">
                     </div>
                 </div>
+                <form id="uploadForm" action="<%=request.getContextPath()%>/nhanvien/themnhanvien" method="post" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" name="fileexcel" style="display: none;" accept=".csv, .xlsx" onchange="handleFileSelect(this)" />
+                    <input type="submit" value="Submit" style="display: none;" />
+                </form>
                 <div class="themnhanvien-thucong--container">
                     <h1 class="themnhanvien-thucong--header">Thêm thủ công</h1>
                     <div class="themnhanvien-thucong--content">
@@ -141,7 +145,6 @@
         </div>
     </div>
 </div>
-</div>
 <%@include file="/component/all_javascript.jsp"%>
 <script>
     document.getElementById('fileInput-avatar').addEventListener('change', function(event) {
@@ -159,8 +162,31 @@
             reader.readAsDataURL(selectedImage);
         }
     });
+    function openFileInput() {
+        document.getElementById('fileInput').click();
+    }
+
+    function handleFileSelect(input) {
+        var file = input.files[0];
+        if (file) {
+            console.log('Selected file:', file.name);
+            submitForm();
+        }
+    }
+    function submitForm() {
+        document.getElementById('uploadForm').submit();
+    }
+</script>
 
 </script>
+<% if (request.getAttribute("alter") != null) { %>
+<script type="text/javascript">
+    alert('<%= request.getAttribute("alter") %>');
+
+</script>
+<%request.removeAttribute("alter"); } %>
+
+
 <%--<script>--%>
 <%--    $(document).ready(function() {--%>
 <%--        $("#myForm").submit(function(event) {--%>

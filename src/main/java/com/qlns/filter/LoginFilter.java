@@ -20,7 +20,6 @@ public class LoginFilter implements Filter{
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.print("lan filter");
     }
 
     @Override

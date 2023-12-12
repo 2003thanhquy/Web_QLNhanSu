@@ -1,5 +1,7 @@
 package com.qlns.controller;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import com.qlns.dao.UserDao;
 import com.qlns.dao.impl.UserDaoImpl;
 import com.qlns.model.*;
@@ -9,10 +11,7 @@ import com.qlns.service.impl.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,8 +20,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 @WebServlet("/nhanvien/*")
 @MultipartConfig
@@ -46,6 +47,10 @@ public class NhanVienController extends HttpServlet {
         String uri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String relativePath = uri.substring(contextPath.length() + "/nhanvien".length());
+        if (relativePath.startsWith("/hopdong")) {
+            XuLyHopDong(request, response);
+            return;
+        }
         try{
             switch (relativePath){
                 case "/":
@@ -56,6 +61,9 @@ public class NhanVienController extends HttpServlet {
                     break;
                 case "/thongtin":
                     XemNhanVien(request,response);
+                    break;
+                case "/khenthuongkyluat":
+                    KThuongKLuc(request,response);
                     break;
                 default:
                     response.sendRedirect(request.getContextPath()+"/error/error.jsp");
@@ -95,6 +103,60 @@ public class NhanVienController extends HttpServlet {
         request.setAttribute("listnv",listnv);
         request.getRequestDispatcher("/views/admin/QLNhanVien/XemNhanVien.jsp").forward(request,response);
     }
+    public void UpLoadFile(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException{
+
+        Part part = request.getPart("fileexcel");
+        try (InputStream fileContent = part.getInputStream();
+             CSVReader csvReader = new CSVReaderBuilder(new StringReader(convertStreamToString(fileContent)))
+                     .withSkipLines(1)
+                     .build()) {
+            List<String[]> allData = csvReader.readAll();
+            List<NhanVien> lstNV = new ArrayList<>();
+            for (String[] row : allData) {
+                NhanVien nv = new NhanVien();
+                nv.setMaPB(row[0]);
+                nv.setIdBacLuong(Integer.parseInt(row[1]));
+                nv.setIdChucVu(Integer.parseInt(row[2]));
+                nv.setIdTrinhDo(Integer.parseInt(row[3]));
+                nv.setHoTen(row[4]);
+                nv.setCCCD(row[5]);
+                nv.setDiaChi(row[6]);
+                nv.setHinhAnh(row[7].isEmpty() ? null : row[7]);
+                nv.setSdt(row[8]);
+                String dateString = row[9];
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                nv.setNamSinh( LocalDate.parse(dateString, dateFormatter));
+                nv.setGioiTinh(row[10]);
+                lstNV.add(nv);
+            }
+            List<Boolean> lstCheck = new ArrayList<>();
+            UserService user = new UserServiceImp();
+            for(NhanVien nv : lstNV){
+                lstCheck.add(user.themnhanvien(nv));
+            }
+
+            String alter = "Thêm thành công!!!";
+            if(lstCheck.contains(false)){
+                StringBuilder alertMessage = new StringBuilder("Không thêm được các dòng. Dòng không thành công: ");
+                for (int i = 0; i < lstCheck.size(); i++) {
+                    if (!lstCheck.get(i)) {
+                        alertMessage.append(i).append(", ");
+                    }
+                }
+                if (alertMessage.length() > 0) {
+                    alertMessage.setLength(alertMessage.length() - 2);
+                }
+            }
+            request.setAttribute("alter",alter);
+            request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request, response);
+            // response.setContentType();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Xử lý lỗi khi đọc CSV
+        }
+
+
+    }
     public void ThemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException {
         if (request.getMethod().equals("GET")) {
             request.setAttribute("lstPB",pb.getPhongBan());
@@ -103,6 +165,17 @@ public class NhanVienController extends HttpServlet {
             request.setAttribute("lstTD",td.getTrinhDo());
             request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request, response);
         } else {
+                Part upload =request.getPart("fileexcel");
+                if(upload!= null){
+                    String fileName = getFileName(upload);
+                    if (fileName != null && (fileName.endsWith(".csv") || fileName.endsWith(".xlsx"))) {
+                        UpLoadFile(request, response);
+                        return;
+                    } else {
+                        response.getWriter().write("Invalid file format. Please upload an Excel file.");
+                        return;
+                    }
+                }
                 Part part = request.getPart("image");
                 NhanVien nv = getNV(request,response);
                 UserService user = new UserServiceImp();
@@ -121,6 +194,18 @@ public class NhanVienController extends HttpServlet {
                     }catch (Exception e){}
                 }
         }
+    }
+    private String getFileName(Part part) {
+        for (String contentDisposition : part.getHeader("content-disposition").split(";")) {
+            if (contentDisposition.trim().startsWith("filename")) {
+                return contentDisposition.substring(contentDisposition.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
+    private String convertStreamToString(InputStream is) {
+        Scanner scanner = new Scanner(is, "UTF-8").useDelimiter("\\A");
+        return scanner.hasNext() ? scanner.next() : "";
     }
 
     public void XemNhanVien(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException {
@@ -167,5 +252,85 @@ public class NhanVienController extends HttpServlet {
         String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
         return new NhanVien(maphongban,idbacluong,idchucvu,idtrinhdo,hoten,cmnd,diachi,filename,sdt,namsinh,gioitinh);
     }
+    public void KThuongKLuc(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException, ParseException{
+        String maNV = request.getParameter("manv");
+        System.out.println("hello");
+
+        request.getRequestDispatcher("/views/admin/KhenThuong-KyLuat/KhenThuong-KyLuat.jsp").forward(request,response);
+
+    }
+
+    public void XuLyHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final String startRoute = "/hopdong";
+        String action = request.getPathInfo().substring(startRoute.length());
+        System.out.println(action);
+
+        switch (action) {
+            case "":
+                request.getRequestDispatcher("/views/admin/QLHopDong/DanhSachHopDong.jsp").forward(request, response);
+                break;
+            case "/danhsach":
+                XemDanhSachHopDong(request, response);
+                break;
+            case "/them":
+                ThemHopDong(request, response);
+                break;
+            case "/sua":
+                break;
+            case "/xoa":
+                break;
+            default:
+        }
+    }
+
+    public void XemDanhSachHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HopDongService hopDongService = new HopDongServiceImpl();
+        List<HopDong> lstHopDong = hopDongService.findAll();
+        System.out.println(lstHopDong);
+
+        //Parse to JSON
+        StringBuilder jsonString = new StringBuilder();
+        jsonString.append("[");
+
+        for (HopDong hopDong : lstHopDong) {
+            jsonString.append("{");
+            jsonString.append("\"maHopDong\": \"").append(hopDong.getMaHopDong()).append("\",");
+            jsonString.append("\"maNV\": \"").append(hopDong.getMaNV()).append("\",");
+            jsonString.append("\"ngayBD\": \"").append(hopDong.getNgayBD()).append("\",");
+            jsonString.append("\"ngayKT\": \"").append(hopDong.getNgayKT()).append("\"");
+            jsonString.append("},");
+        }
+
+        if (!lstHopDong.isEmpty()) {
+            jsonString.deleteCharAt(jsonString.length() - 1); // Remove the last comma
+        }
+
+        jsonString.append("]");
+
+        response.setContentType("application/json");
+        response.getWriter().println(jsonString);
+        response.setStatus(HttpServletResponse.SC_ACCEPTED);
+
+    }
+
+    public void ThemHopDong(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maHopDong = request.getParameter("maHopDong");
+        String maNV = request.getParameter("maNV");
+        LocalDate ngayBD = LocalDate.parse(request.getParameter("ngayBD"));
+        LocalDate ngayKT = LocalDate.parse(request.getParameter("ngayKT"));
+        String noiDung = request.getParameter("noiDung");
+
+        HopDong hopDong = new HopDong(maHopDong, maNV, ngayBD, ngayKT, noiDung);
+        HopDongService hopDongService = new HopDongServiceImpl();
+        int status = hopDongService.themHopDong(hopDong);
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        }
+        else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+
+    }
+
 
 }

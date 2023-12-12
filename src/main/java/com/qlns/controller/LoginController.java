@@ -1,9 +1,11 @@
 package com.qlns.controller;
 
 import com.qlns.model.TaiKhoan;
+import com.qlns.model.Thongtinnhanvien;
 import com.qlns.service.LoginService;
 import com.qlns.service.UserService;
 import com.qlns.service.impl.LoginServiceImp;
+import com.qlns.service.impl.UserServiceImp;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -20,7 +22,6 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.print("day la post");
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -36,8 +37,14 @@ public class LoginController extends HttpServlet {
         LoginService service = new LoginServiceImp();
         TaiKhoan acc = service.Login(username,password);
         if(acc != null){
+            UserService user = new  UserServiceImp();
             HttpSession session = request.getSession(true);
             session.setAttribute("account",acc);
+            if (acc.getMaNV() != null && !acc.getMaNV().isEmpty()) {
+                Thongtinnhanvien ttnv = user.laythongtincanhan(acc.getMaNV());
+                session.setAttribute("user", ttnv);
+            }
+
             response.sendRedirect(request.getContextPath()+"/waiting");
         }else {
             alterMsg = "Tài khoản hoặc mật khẩu không đúng!!!";
