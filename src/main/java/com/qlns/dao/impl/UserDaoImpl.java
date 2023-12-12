@@ -178,6 +178,7 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
+
     @Override
     public Boolean UpdateNV(NhanVien nv) {
         String sql = "UPDATE NhanVien SET maPB=?, idbacluong=?, idchucvu=?, " +
@@ -206,24 +207,29 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
-    public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu) {
+        }
+        return false;
+    }
+    public boolean capnhatnhanvientruockhilenchuc (String manv, String mapb,int bacluong, int chucvu){
         String sql = "UPDATE nhanvien SET MaPB=?, IDBacLuong=? , IDChucVu=? WHERE MaNV=?";
-        try{
+        try {
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, mapb);
             ps.setInt(2, bacluong);
             ps.setInt(3, chucvu);
-            ps.setString(4,manv);
+            ps.setString(4, manv);
             int rowsAffected = ps.executeUpdate();
-            return rowsAffected>0;
-        }catch (Exception e){
+            return rowsAffected > 0;
+
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
         return false;
-
     }
+
+
 
 
 }

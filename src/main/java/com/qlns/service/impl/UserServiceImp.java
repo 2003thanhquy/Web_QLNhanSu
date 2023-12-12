@@ -57,6 +57,26 @@ public class UserServiceImp implements  UserService {
     }
 
     @Override
+    public List<PhongBan> getPhongBan() {
+        return null;
+    }
+
+    @Override
+    public List<Luong> getLuong() {
+        return null;
+    }
+
+    @Override
+    public List<ChucVu> getChucVu() {
+        return null;
+    }
+
+    @Override
+    public List<TrinhDo> getTrinHDo() {
+        return null;
+    }
+
+    @Override
     public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu) {
         return userDao.capnhatnhanvientruockhilenchuc(manv,mapb,bacluong,chucvu);
     }

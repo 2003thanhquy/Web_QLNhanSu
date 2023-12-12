@@ -41,6 +41,9 @@ public class PhongBanController extends HttpServlet {
                 case "/danhsachnhanvientheophongban":
                     danhsachnhanvientheophongban(request, response);
                     break;
+                case "/danhsachnhanvienphongban":
+                    danhsachphongbannv(request, response);
+                    break;
                 case "/xemphongbancon":
                     xemphongbancon(request, response);
                     break;
@@ -64,9 +67,48 @@ public class PhongBanController extends HttpServlet {
 
     }
 
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
+    }
+    private void danhsachphongbannv(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserService userService = new UserServiceImp();
+        PhongbanService pbService = new PhongbanServiceImp();
+        System.out.println("xem phobng bnan");
+        HttpSession session = request.getSession();
+        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
+        session.setAttribute("user", user);
+
+        List<ThongTinPhongBan> listpb = new ArrayList<>();
+        if(tk.getUserRole().equals("admin")){
+            listpb = pbService.layhetdanhsachphongban();
+        }
+        else {
+            if (tk.getUserRole().equals("giamdoc")) {
+                listpb =  pbService.layhetdanhsachphongbangiamdoc(tk.getMaNV());
+            } else {
+                if (tk.getUserRole().equals("truongphong")) {
+                    listpb = pbService.layhetdanhsachphongbantruongphong(tk.getMaNV());
+                } else {
+                    if (tk.getUserRole().equals("totruong"))
+                    {
+                        listpb.add(pbService.layhetphongbanthanquanly(tk.getMaNV()));
+                    }
+                    else
+                    {
+                        listpb= null;
+                    }
+
+                }
+            }
+        }
+
+        session.setAttribute("listpbtheouser",listpb);
+        //response.sendRedirect(request.getContextPath()+"/views/admin/QLPhongBan/DanhSachPhongBan.jsp");
+        request.getRequestDispatcher("/views/admin/QLPhongBan/CapNhatNhanVien.jsp").forward(request,response);
     }
 
     private void xemphongban(HttpServletRequest request, HttpServletResponse response)
