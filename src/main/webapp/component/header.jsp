@@ -9,7 +9,7 @@
             <a href="<%= request.getContextPath()%>/phongban/" class="header-item-context header-item-context--phongban">Phòng ban</a>
         </li>
         <li class="header-item header-item-withHover">
-            <a href="<%= request.getContextPath()%>/chinhanh//" class="header-item-context header-item-context--chinhanh">Chi nhánh</a>
+            <a href="<%= request.getContextPath()%>/chinhanh/" class="header-item-context header-item-context--chinhanh">Chi nhánh</a>
         </li>
         <li class="header-item header-item-account" >
             <div class="header-item-account--container " >
@@ -20,17 +20,17 @@
                 <div class="header-deltail-container" tabindex="0">
                     <ul class="header-deltail-list-tiems">
                         <li class="header-detail-item">
-                            <a href="" class="detail-item--context">
+                            <a href="<%=request.getContextPath()%>/nhanvien/thongtin" class="detail-item--context">
                                 Quản lý thông tin cá nhân
                             </a>
                         </li>
                         <li class="header-detail-item">
-                            <a href="" class="detail-item--context">
+                            <a href="<%=request.getContextPath()%>/taikhoan/" class="detail-item--context">
                                 Quản lý tài khoản
                             </a>
                         </li>
                         <li class="header-detail-item">
-                            <a href="" class="detail-item--context">
+                            <a href="<%=request.getContextPath()%>/logout" class="detail-item--context">
                                 Đăng xuất
                             </a>
                         </li>

@@ -97,7 +97,7 @@
                                         <div class="ktkl-dsct-button--control">
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-primary" id="them" onclick="ThemChuongTrinh()">Thêm</button>
                                             <div class="ktkl-dsct--button btn btn-outline-warning" id="capnhat" onclick="CapNhat()">Cập nhật</div>
-                                            <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa">Xóa</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa" onclick="XoaChuongTrinh()">Xóa</button>
                                         </div>
                                         <div class="ktkl-dsct-button--confirm">
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-secondary" id="huy">Hủy</button>
@@ -155,28 +155,10 @@
         }
     }
     function XacNhanChuongTrinh(){
-        var dataObj = getData();
-        let url = window.location.href + kieucapnhat;
-        jQuery.ajax({
-            url: url,
-            method: "GET",
-            data:dataObj,
-            success: getDanhSachChuongTrinh,
-            error: function(){
-                console.error("Adding failed!")
-            }
-        })
-        enableInputElement(true);
-        clearTextInput();
+
     }
     function getDanhSachChuongTrinh() {
-        jQuery.ajax({
-            url: "${pageContext.request.getContextPath()}/nhanvien/khenthuongkyluat",
-            method:"GET",
-            success: function(data){
-                var tblKTKL = jQuery("#tbl-ktkl")
-            }
-        })
+
     }
     function ThemChuongTrinh() {
         enableInputElement(false);
@@ -192,8 +174,11 @@
         manv.disabled = false;
         huy.disabled =false;
         xacnhan.disabled = false;
+        kieuxacnhan="/sua";
     }
-
+    function XoaChuongTrinh(){
+        kieuxacnhan="/xoa";
+    }
     function  handleItemClick(Id,noiDung,Ngay,soKT_KL,Loai,Manv){
         id.value = Id ;
         noidung.value = noiDung;

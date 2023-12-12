@@ -13,6 +13,10 @@ public interface UserService {
     List<Thongtinnhanvien> laydanhsachnhanvientruongphong(String MaTruongPhong);
 
     List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB);
+    public List<TrinhDo> getTrinHDo();
+    public List<ChucVu> getChucVu();
+    public List<Luong> getLuong();
+    public List<PhongBan> getPhongBan();
 
 
 
