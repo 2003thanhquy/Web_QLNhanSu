@@ -37,7 +37,7 @@ public interface PhongbanDao {
     void capnhatphongbankhichuyenchuc(String MaPB);
 
     void capnhatphongbanchuaquanly(PhongBan phongBan);
-
+    public List<ThongTinPhongBan> laydanhsachphongbanchatheomacn(String MaCN);
 
 
 

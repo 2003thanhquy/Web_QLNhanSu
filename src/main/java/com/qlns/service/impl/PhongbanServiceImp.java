@@ -81,5 +81,8 @@ public class PhongbanServiceImp implements PhongbanService {
     public List<PhongBan> getPhongBan() {
         return pbDao.getPhongBan();
     }
+    public List<ThongTinPhongBan> laydanhsachphongbanchatheomacn(String MaCN){
+        return pbDao.laydanhsachphongbanchatheomacn(MaCN);
+    }
 
 }

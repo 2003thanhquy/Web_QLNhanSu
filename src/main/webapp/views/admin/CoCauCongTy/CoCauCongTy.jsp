@@ -70,8 +70,9 @@
             <div class="cocaucongty--container">
                 <div class="cocaucongty--heading"> <h1>Cơ cấu công ty</h1></div>
                 <div class="cocaucongty--content">
+                    <c:forEach items="${listcncc}" var="chinhanh" >
                     <div class="cocaucongty--chinhanh">
-                        <h2><i class="fa-solid fa-arrow-right icon-arrow icon-1"></i>Chi nhánh1</h2>
+                            <h2><i class="fa-solid fa-arrow-right icon-arrow icon-1"></i>${chinhanh.tenChiNhanh}</h2>
                         <div class="cocaucongty--phongcha">
                             <h3><i class="fa-solid fa-arrow-right icon-arrow icon-2"></i>Phòng ban cha</h3>
                             <div class="cocaucongty--phongcon">
@@ -82,6 +83,7 @@
                             </div>
                         </div>
                     </div>
+                    </c:forEach>
                 </div>
             </div>
 
@@ -90,13 +92,13 @@
 </div>
 <%@include file="/component/all_javascript.jsp"%>
 <script>
-    var chinhanh = document.querySelector(".cocaucongty--chinhanh");
-    var phongcha = document.querySelector(".cocaucongty--phongcha");
-    var phongcon = document.querySelector(".cocaucongty--phongcon");
-    var nhanvien = document.querySelector(".cocaucongty--nhanvien");
-    var icon_1 = document.querySelector(".icon-1");
-    var icon_2 = document.querySelector(".icon-2");
-    var icon_3 = document.querySelector(".icon-3");
+    var chinhanh = document.getElementsByClassName(".cocaucongty--chinhanh");
+    var phongcha = document.getElementsByClassName(".cocaucongty--phongcha");
+    var phongcon = document.getElementsByClassName(".cocaucongty--phongcon");
+    var nhanvien = document.getElementsByClassName(".cocaucongty--nhanvien");
+    var icon_1 = document.getElementsByClassName(".icon-1");
+    var icon_2 = document.getElementsByClassName(".icon-2");
+    var icon_3 = document.getElementsByClassName(".icon-3");
     chinhanh.addEventListener('click',e=>{
         e.stopPropagation();
         phongcha.classList.toggle("appear");
@@ -116,6 +118,29 @@
         e.stopPropagation();
 
     })
+
+    function xempbcha(MaCN) {
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/cocaucongty/phongbancha",
+            data: {
+                MaCN : MaCN
+            },
+            success: function(data) {
+                row.innerHTML=data;
+                document.querySelector('.phongban-item').onclick();
+
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        buttonqlaiphongban.style.display = "none";
+        buttonqly.style.display="none";
+        buttonkhongqly.style.display="";
+        trangthai ="cha";
+
+    }
 </script>
 </body>
 </html>

@@ -31,5 +31,6 @@ public interface PhongbanService {
 
 
     List<PhongBan> getPhongBan();
+    public List<ThongTinPhongBan> laydanhsachphongbanchatheomacn(String MaCN);
 
 }

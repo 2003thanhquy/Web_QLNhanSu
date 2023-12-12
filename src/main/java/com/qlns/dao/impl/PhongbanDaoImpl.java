@@ -365,5 +365,28 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
     }
 
+    public List<ThongTinPhongBan> laydanhsachphongbanchatheomacn(String MaCN) {
+        List<ThongTinPhongBan> list = new ArrayList<>();
+        String sql =  "SELECT * FROM ThongTinPhongBan WHERE status = 1 and MaCN = 'CN0001' and MaPBCha IS NULL";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,MaCN);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
+                list.add(new ThongTinPhongBan(rs.getString(1),
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+
+
 
 }
