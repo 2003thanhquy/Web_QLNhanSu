@@ -424,7 +424,7 @@ public class NhanVienController extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
-    public void XuLyKTKL(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public void XuLyKTKL(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String startRoute = "/hopdong";
         String action = request.getPathInfo().substring(startRoute.length());
         System.out.println(action);
@@ -444,23 +444,26 @@ public class NhanVienController extends HttpServlet {
                 break;
             default:
         }
-
-
-    public void XemDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
-        List<DuAn> lstDA = duAnService.getDuAn();
-        request.setAttribute("lstDA",lstDA);
-        request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request,response);
     }
-    public void DuAnChitiet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String mada = request.getParameter("maduan");
-        if(mada==null){
+
+        public void XemDuAn (HttpServletRequest request, HttpServletResponse response) throws
+        ServletException, IOException {
+
+            List<DuAn> lstDA = duAnService.getDuAn();
+            request.setAttribute("lstDA", lstDA);
+            request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request, response);
+        }
+        public void DuAnChitiet (HttpServletRequest request, HttpServletResponse response) throws
+        ServletException, IOException {
+            String mada = request.getParameter("maduan");
+            if (mada == null) {
                 response.sendRedirect("/error/error.jsp");
                 return;
-        }
-        List<DANhanVien> lstDanv = duAnService.getChiTietDA(mada);
-        request.setAttribute("lstDanv",lstDanv);
-        request.getRequestDispatcher("/views/admin/QLDuAn/NhanVien_DuAn.jsp").forward(request,response);
+            }
+            List<DANhanVien> lstDanv = duAnService.getChiTietDA(mada);
+            request.setAttribute("lstDanv", lstDanv);
+            request.getRequestDispatcher("/views/admin/QLDuAn/NhanVien_DuAn.jsp").forward(request, response);
 
-    }
+        }
+
 }
