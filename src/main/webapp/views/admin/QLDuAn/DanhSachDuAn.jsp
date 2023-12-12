@@ -1,3 +1,4 @@
+<%@ page import="com.qlns.model.TaiKhoan" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
@@ -103,7 +104,15 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+
+
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
+
 <script>
+    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
+    if (!isUserRoleAdmin) {
+        document.querySelector(".dsda-button--container").style.display = "none";
+    }
     var maduan = document.getElementById("dsda-input--idduan")
     var tenduan = document.getElementById("dsda-input--tenduan")
     var ttlamviec = document.getElementById("dsda-input--ttlamviec")
