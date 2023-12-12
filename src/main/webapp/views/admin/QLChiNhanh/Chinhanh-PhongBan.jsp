@@ -47,102 +47,16 @@
                                     </div>
                                     <div class="table100-body js-pscroll">
                                         <table>
-                                            <tbody>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr><tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr><tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr><tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr><tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr><tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                            </tr>
+                                            <tbody >
+                                            <c:forEach items="${listcn}" var="chinhanh" >
+                                                <tr class="row100 body dscn-table-tr" onclick="xacnhan('${chinhanh.maCN}')">
+                                                    <td class="cell100 column1">${chinhanh.maCN}</td>
+                                                    <td class="cell100 column2">${chinhanh.tenChiNhanh}</td>
+                                                    <td class="cell100 column3">${chinhanh.diaChi}</td>
+                                                    <td class="cell100 column4">${chinhanh.ngayBD}</td>
+                                                    <td class="cell100 column5">${chinhanh.maGiamDoc}</td>
+                                                </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -169,91 +83,7 @@
                                     </div>
                                     <div class="table100-body js-pscroll">
                                         <table>
-                                            <tbody>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
-                                            <tr class="row100 body ">
-                                                <td class="cell100 column1">CN0001</td>
-                                                <td class="cell100 column2">Chi nhánh 1</td>
-                                                <td class="cell100 column3">Hà Nội</td>
-                                                <td class="cell100 column4"><i class="fa-solid fa-trash" style="color: #dc3546"></i></td>
-                                            </tr>
+                                            <tbody id="bodydata">
                                             </tbody>
                                         </table>
                                     </div>
@@ -268,6 +98,32 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+
+<script>
+    var dulieu = document.getElementById("bodydata");
+
+    function  xacnhan(MaCN){
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/chinhanh/xemphongbantheochinhanh",
+            data: {
+                macn  : MaCN,
+            },
+            success: function (data) {
+                console.log(data);
+
+                dulieu.innerHTML=data;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+
+
+</script>
 
 </body>
 </html>
