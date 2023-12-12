@@ -34,6 +34,11 @@ public interface PhongbanDao {
 
     List<ThongTinPhongBan> laydanhsachphongbantheomacn(String MaCN);
 
+    void capnhatphongbankhichuyenchuc(String MaPB);
+
+    void capnhatphongbanchuaquanly(PhongBan phongBan);
+
+
 
 
 

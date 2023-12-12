@@ -5,6 +5,7 @@ import com.qlns.dao.PhongbanDao;
 import com.qlns.model.PhongBan;
 import com.qlns.model.ThongTinPhongBan;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -112,7 +113,7 @@ public class PhongbanDaoImpl implements PhongbanDao {
     public List<ThongTinPhongBan> laydanhsachphongbanchaquyenadmin() {
         List<ThongTinPhongBan> list = new ArrayList<>();
         String sql ="   select pb.MaPB,pb.MaPBCha,pb.TenPB,TenPBCha,pb.MaCN,MaQuanLy,pb.NgayBD,pb.TenQuanLy,pb.TenChiNhanh from\n" +
-                "QuanLyNhanSu.chinhanh cn inner join QuanLyNhanSu.ThongTinPhongBan pb \n" +
+                "QuanLyNhanSu.chinhanh cn inner join QuanLyNhanSu.ThongTinPhongBan pb on pb.MaCN = cn.MaCN \n" +
                 "  where  pb.status = 1 and pb.MaPBCha is null";
         try{
             conn = new DBConnection().getConnection();
@@ -135,7 +136,7 @@ public class PhongbanDaoImpl implements PhongbanDao {
     public List<ThongTinPhongBan> laydanhsachphongbangiamdoc(String MaGiamDoc) {
         List<ThongTinPhongBan> list = new ArrayList<>();
         String sql ="   select pb.MaPB,pb.MaPBCha,pb.TenPB,TenPBCha,pb.MaCN,MaQuanLy,pb.NgayBD,pb.TenQuanLy,pb.TenChiNhanh from\n" +
-                "QuanLyNhanSu.chinhanh cn inner join QuanLyNhanSu.ThongTinPhongBan pb \n" +
+                "QuanLyNhanSu.chinhanh cn inner join QuanLyNhanSu.ThongTinPhongBan pb on pb.MaCN = cn.MaCN\n" +
                 "  where MaGiamDoc = ? and pb.status = 1 and pb.MaPBCha is null";
         try{
             conn = new DBConnection().getConnection();
@@ -283,18 +284,12 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
     @Override
     public void xoaphongban(String mapb) {
-        String sql = "UPDATE `QuanLyNhanSu`.`phongban` SET `status` = 0 WHERE `MaPB` = ?";
+        String sql = "{CALL Capnhattrangthaixoa(?)}";
         try {
             conn = new DBConnection().getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1,mapb);
-
-            int rowsUpdated = ps.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("Cập nhật phòng ban thành công.");
-            } else {
-                System.out.println("Cập nhật phòng ban thất bại.");
-            }
+            CallableStatement cstmt = conn.prepareCall(sql);
+            cstmt.setString(1, mapb);
+            cstmt.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -321,6 +316,47 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
         }
         return list;
+    }
+
+    @Override
+    public void capnhatphongbankhichuyenchuc(String MaPB) {
+        String sql = "UPDATE `QuanLyNhanSu`.`phongban` SET `MaQuanLy` = null WHERE `MaPB` = ?";
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,MaPB);
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật phòng ban thành công.");
+            } else {
+                System.out.println("Cập nhật phòng ban thất bại.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void capnhatphongbanchuaquanly(PhongBan pb) {
+        String sql = "UPDATE `QuanLyNhanSu`.`phongban` SET  `TenPB` = ?,  `MaQuanLy` = ?, `NgayBD` = ? WHERE `MaPB` = ?";
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, pb.getTenPB());
+            ps.setString(2, pb.getMaQuanLy());
+            ps.setDate(3, java.sql.Date.valueOf(pb.getNgayBD()));
+            ps.setString(4, pb.getMaPB());
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật phòng ban thành công.");
+            } else {
+                System.out.println("Cập nhật phòng ban thất bại.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
