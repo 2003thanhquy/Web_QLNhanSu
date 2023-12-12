@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li class="item--more-managing">
-                <a href="<%=request.getContextPath()%>/nhanvien/khenthuongkyluat" class="more-managing--context">
+                <a href="<%=request.getContextPath()%>/nhanvien/Khenthuongkyluat" class="more-managing--context">
                     Khen thưởng & Kỷ luật
                 </a>
             </li>
