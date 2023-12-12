@@ -68,4 +68,111 @@ public class DuAnDaoImpl implements DuAnDao {
     public List<DuAn> getDuAn(String maDA) {
         return null;
     }
+
+    @Override
+    public int create(DuAn duAn) {
+        String sql = "INSERT INTO DuAn(MaDuAn, TenDuAn, TrangThaiLamViec) VALUES (?, ?, ?)";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, duAn.getMaDuAn());
+            ps.setString(2, duAn.getTenDuAn());
+            ps.setString(3, duAn.getTrangThai());
+
+            return ps.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int delete(String id) {
+        String sql = "UPDATE DuAn SET Status=0 WHERE MaDuAn=?";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+
+            return ps.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int update(String id, DuAn duAn) {
+        String sql = "UPDATE DuAn SET MaDuAN=?, TenDuAn=?, TrangThaiLamViec=? WHERE MaDuAn=?";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, duAn.getMaDuAn());
+            ps.setString(2, duAn.getTenDuAn());
+            ps.setString(3, duAn.getTrangThai());
+            ps.setString(4, id);
+
+            return ps.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int themNhanVienVaoDuAn(String maDuAn, DANhanVien daNhanVien) {
+        String sql = "INSERT INTO nhanvien_duan(MaNV, TrangThaiLamViec, MaDA) VALUES (?, ?, ?)";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, daNhanVien.getMaNV());
+            ps.setString(2, daNhanVien.getTrangThaiLamViec());
+            ps.setString(3, maDuAn);
+
+            return ps.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int capnhatNhanVienTrongDuAn(String maDuAn, String maNV, DANhanVien daNhanVien) {
+        String sql = "UPDATE nhanvien_duan SET MaNV=?, TrangThaiLamViec=? WHERE MaDA=? AND MaNV=?";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, daNhanVien.getMaNV());
+            ps.setString(2, daNhanVien.getTrangThaiLamViec());
+            ps.setString(3, maDuAn);
+            ps.setString(4, maNV);
+
+            return ps.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int xoaNhanVienKhoiDuAn(String maDuAn, String maNhanVien) {
+        String sql = "UPDATE nhanvien_duan SET Status=0 WHERE MaDA=? AND MaNV=?";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maDuAn);
+            ps.setString(2, maNhanVien);
+
+            return ps.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
 }

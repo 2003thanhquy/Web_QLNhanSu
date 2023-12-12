@@ -54,7 +54,12 @@ public class NhanVienController extends HttpServlet {
         if (relativePath.startsWith("/hopdong")) {
             XuLyHopDong(request, response);
             return;
-        }if (relativePath.startsWith("/khenthuongkyluat")) {
+        }
+        if (relativePath.startsWith("/duan")) {
+            XuLyDuAn(request, response);
+            return;
+        }
+        if (relativePath.startsWith("/khenthuongkyluat")) {
             XuLyKTKL(request, response);
             return;
         }
@@ -529,17 +534,216 @@ public class NhanVienController extends HttpServlet {
         request.setAttribute("lstDA", lstDA);
         request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request, response);
     }
-    public void DuAnChitiet (HttpServletRequest request, HttpServletResponse response) throws
-    ServletException, IOException {
-        String mada = request.getParameter("maduan");
-        if (mada == null) {
-            response.sendRedirect("/error/error.jsp");
+    public void XuLyDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final String startRoute = "/duan";
+        String action = request.getPathInfo().substring(startRoute.length());
+        System.out.println(action);
+
+        if (action.startsWith("/chitiet")) {
+            XuLyChiTietDuAn(request, response);
             return;
         }
-        List<DANhanVien> lstDanv = duAnService.getChiTietDA(mada);
-        request.setAttribute("lstDanv", lstDanv);
-        request.getRequestDispatcher("/views/admin/QLDuAn/NhanVien_DuAn.jsp").forward(request, response);
 
+        switch (action) {
+            case "":
+                request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request, response);
+                break;
+            case "/danhsach":
+                XemDanhSachDuAn(request, response);
+                break;
+            case "/them":
+                ThemDuAn(request, response);
+                break;
+            case "/sua":
+                CapNhatDuAn(request, response);
+                break;
+            case "/xoa":
+                XoaDuAn(request, response);
+                break;
+            default:
+        }
+    }
+
+    public void ThemDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maDuAn = request.getParameter("maDuAn");
+        String tenDuAn = request.getParameter("tenDuAn");
+        String trangThai = request.getParameter("trangThai");
+
+        DuAn duAn = new DuAn(maDuAn, tenDuAn, trangThai);
+        int status = duAnService.themDuAn(duAn);
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    public void CapNhatDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maDuAnOld = request.getParameter("maDuAnCu");
+        String maDuAnNew = request.getParameter("maDuAnMoi");
+        String tenDuAn = request.getParameter("tenDuAn");
+        String trangThai = request.getParameter("trangThai");
+
+        DuAn duAn = new DuAn(maDuAnNew, tenDuAn, trangThai);
+
+        int status = duAnService.suaByMaDuAn(maDuAnOld, duAn);
+
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    public void XoaDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maDuAn = request.getParameter("maDuAn");
+
+        int status = duAnService.xoaByMaDuAn(maDuAn);
+
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    public void XemDanhSachDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        List<DuAn> lstDA = duAnService.getDuAn();
+
+        //Parse to JSON
+        StringBuilder jsonString = new StringBuilder();
+        jsonString.append("[");
+
+        for (DuAn duAn : lstDA) {
+            jsonString.append("{");
+            jsonString.append("\"maDuAn\": \"").append(duAn.getMaDuAn()).append("\",");
+            jsonString.append("\"tenDuAn\": \"").append(duAn.getTenDuAn()).append("\",");
+            jsonString.append("\"trangThai\": \"").append(duAn.getTrangThai()).append("\"");
+            jsonString.append("},");
+        }
+
+        if (!lstDA.isEmpty()) {
+            jsonString.deleteCharAt(jsonString.length() - 1); // Remove the last comma
+        }
+
+        jsonString.append("]");
+
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        response.getWriter().println(jsonString);
+        response.setStatus(HttpServletResponse.SC_ACCEPTED);
+    }
+
+    public void XuLyChiTietDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final String startRoute = "/duan/chitiet";
+        System.out.println(request.getPathInfo());
+        String action = request.getPathInfo().substring(startRoute.length());
+        System.out.println(action);
+
+        switch (action) {
+            case "":
+                request.getRequestDispatcher("/views/admin/QLDuAn/NhanVien_DuAn.jsp").forward(request, response);
+                break;
+            case "/danhsach":
+                DuAnChitiet(request, response);
+                break;
+            case "/them":
+                ThemNhanVienVaoDuAn(request, response);
+                break;
+            case "/sua":
+                CapNhatNhanVienTrongDuAn(request, response);
+                break;
+            case "/xoa":
+                XoaNhanVienKhoiDuAn(request, response);
+                break;
+            default:
+        }
+    }
+
+    public void DuAnChitiet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maDA = request.getParameter("maduan");
+        if (maDA == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        List<DANhanVien> lstDanv = duAnService.getChiTietDA(maDA);
+
+
+
+        //Parse to JSON
+        StringBuilder jsonString = new StringBuilder();
+        jsonString.append("[");
+
+        for (DANhanVien daNhanVien : lstDanv) {
+            jsonString.append("{");
+            jsonString.append("\"maDuAn\": \"").append(daNhanVien.getMaDA()).append("\",");
+            jsonString.append("\"tenDuAn\": \"").append(daNhanVien.getTenDA()).append("\",");
+            jsonString.append("\"maNV\": \"").append(daNhanVien.getMaNV()).append("\",");
+            jsonString.append("\"trangThaiLamViec\": \"").append(daNhanVien.getTrangThaiLamViec()).append("\"");
+            jsonString.append("},");
+        }
+
+        if (!lstDanv.isEmpty()) {
+            jsonString.deleteCharAt(jsonString.length() - 1); // Remove the last comma
+        }
+
+        jsonString.append("]");
+
+        System.out.println(jsonString);
+
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        response.getWriter().println(jsonString);
+        response.setStatus(HttpServletResponse.SC_ACCEPTED);
+
+    }
+    public void ThemNhanVienVaoDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maDuAn = request.getParameter("maDuAn");
+        String maNV = request.getParameter("maNV");
+        String trangThaiLamViec = request.getParameter("trangThaiLamViec");
+
+        DANhanVien daNhanVien = new DANhanVien();
+        daNhanVien.setMaNV(maNV);
+        daNhanVien.setTrangThaiLamViec(trangThaiLamViec);
+
+        int status = duAnService.themNhanVienVaoDuAn(maDuAn, daNhanVien);
+
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+    public void CapNhatNhanVienTrongDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maDuAn = request.getParameter("maDuAn");
+        String maNV = request.getParameter("maNV");
+        String trangThaiLamViec = request.getParameter("trangThaiLamViec");
+
+        DANhanVien daNhanVien = new DANhanVien();
+        daNhanVien.setMaNV(maNV);
+        daNhanVien.setTrangThaiLamViec(trangThaiLamViec);
+
+        int status = duAnService.capnhatNhanVienTrongDuAn(maDuAn, maNV, daNhanVien);
+
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+    public void XoaNhanVienKhoiDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String maDuAn = request.getParameter("maDuAn");
+        String maNV = request.getParameter("maNV");
+
+        int status = duAnService.xoaNhanVienKhoiDuAn(maDuAn, maNV);
+
+        if (status != 0) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 
 }
