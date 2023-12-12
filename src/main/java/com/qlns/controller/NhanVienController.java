@@ -148,7 +148,7 @@ public class NhanVienController extends HttpServlet {
                 lstCheck.add(user.themnhanvien(nv));
             }
 
-            String alter = "Thêm thành công!!!";
+            String alert = "Thêm thành công!!!";
             if (lstCheck.contains(false)) {
                 StringBuilder alertMessage = new StringBuilder("Không thêm được các dòng. Dòng không thành công: ");
                 for (int i = 0; i < lstCheck.size(); i++) {
@@ -160,10 +160,15 @@ public class NhanVienController extends HttpServlet {
                     alertMessage.setLength(alertMessage.length() - 2);
                 }
             }
-            request.setAttribute("alter", alter);
-            request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request, response);
+            response.setContentType("text/plain");
+            response.getWriter().println(alert);
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+
             // response.setContentType();
         } catch (Exception e) {
+            response.setContentType("text/plain");
+            response.getWriter().println("them khong thanh cong");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             e.printStackTrace();
             // Xử lý lỗi khi đọc CSV
         }
