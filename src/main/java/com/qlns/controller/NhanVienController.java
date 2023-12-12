@@ -102,7 +102,8 @@ public class NhanVienController extends HttpServlet {
                 if (tk.getUserRole().equals("truongphong")) {
                     listnv = userService.laydanhsachnhanvientruongphong(tk.getMaNV());
                 } else {
-//                    listpb = (List<PhongBan>) pbService.layphongbanthanquanly(tk.getMaNV());
+                    //totruong
+                    listnv = userService.laydanhsachnhanvientruongphong(tk.getMaNV());
                 }
             }
         }
