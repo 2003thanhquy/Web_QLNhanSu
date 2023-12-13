@@ -80,12 +80,18 @@
                                                <table id="nhanvien-table" class="capnhatnv-dnvdc-table">
                                                    <thead>
                                                    <tr>
-                                                       <th class='column1'><span class="text">Mã Nhân viên</span></th>
-                                                       <th class='column1'><span class="text">Họ và tên</span></th>
-                                                       <th class='column1'><span class="text">Chức vụ</span></th>
+                                                       <th class='column-1'><span class="text">Mã Nhân viên</span></th>
+                                                       <th class='column-2'><span class="text">Họ và tên</span></th>
+                                                       <th class='column-3'><span class="text">Chức vụ</span></th>
+                                                       <th class='column-4'><span class="text">Chi tiết</span></th>
                                                    </tr>
                                                    </thead>
-                                                   <tbody id="nhanvien-tbody">
+<%--                                                   <tbody id="nhanvien-tbody">--%>
+                                                   <tbody >
+                                                        <td class="column-1">21110713</td>
+                                                        <td class="column-2">21110713</td>
+                                                        <td class="column-3">21110713</td>
+                                                        <td class="column-4"><i class="fa-solid fa-eye eye-icon"></i></td>
                                                    </tbody>
                                                </table>
                                            </div>
