@@ -1,127 +1,167 @@
-    <%--
-  Created by IntelliJ IDEA.
-  User: Dell
-  Date: 12/7/2023
-  Time: 2:35 PM
-  To change this template use File | Settings | File Templates.
+<%--
+Created by IntelliJ IDEA.
+User: Dell
+Date: 12/7/2023
+Time: 2:35 PM
+To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@include file="/common/taglib.jsp"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@include file="/common/taglib.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%@ include file = "/component/all_css.jsp"%>
+    <%@ include file="/component/all_css.jsp" %>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/thongtincanhan.css">
     <title>Quản lý nhân sự</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-<div id="main-web" >
-    <%@include file="/component/navbar/NoneMenu-nav.jsp"%>
-    <%@include file="/component/header.jsp"%>
+<div id="main-web">
+    <%@include file="/component/navbar/NoneMenu-nav.jsp" %>
+    <%@include file="/component/header.jsp" %>
     <div id="content">
         <div id="main-content">
-            <div class="container-sm">
+            <div class="container-sm content-container">
                 <div class="thongtin-container">
-                    <h1 class="h1">Thông tin cá nhân</h1>
+                    <h1 class="thongtin-header">THÔNG TIN CÁ NHÂN</h1>
                     <div class="thongtin-content">
                         <div class="formthongtin-container">
                             <form class="formthongtin" action="" method="post" enctype="multipart/form-data">
-                                <div class="thongtin-input-element--container">
-                                    <div class = "thongtin-avatar-container ">
+                                <div class="thongtin-input-element--container container">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="thongtin-avatar-container ">
 
-                                        <div id="thongtin-imageContainer-avatar">
-                                            <c:if test="${!empty ttnv.hinhAnh}">
-                                            <img class ="thongtin-image-avatar" src="<%= request.getContextPath()%>/uploads/${ttnv.hinhAnh}"/>
-                                        </c:if>
-                                        </div>
-                                        <label class="h2" for="thongtin-fileInput-avatar">Đổi ảnh đại diện:</label>
-                                        <input class="btn btn-outline-info" type="file" id="thongtin-fileInput-avatar" name="image" accept="image/*">
-                                    </div>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-12">
-                                                <div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-hoten" >Họ và tên</label>
-                                                        <input class="thongtin-input--element" value="${ttnv.hoTen}" name="tnv-hovaten" id="thongtin-input-hoten">
-                                                    </div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-cccd" >CCCD/CMND</label>
-                                                        <input class="thongtin-input--element" value="${ttnv.cccd}" name="tnv-cmnd" id="thongtin-input-cccd">
-                                                    </div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-diachi" >Địa chỉ</label>
-                                                        <input class="thongtin-input--element" value="${ttnv.diaChi}" name="tnv-diachi" id="thongtin-input-diachi">
-                                                    </div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-sdt" >Số điện thoại</label>
-                                                        <input class="thongtin-input--element" value="${ttnv.soDienThoai}"  name="tnv-sdt" id="thongtin-input-sdt">
-                                                    </div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-ngaysinh" >Ngày sinh</label>
-                                                        <input class="thongtin-input--element" type="date" value="${ttnv.namSinh}"  name="tnv-ngaysinh" id="thongtin-input-ngaysinh">
-                                                    </div>
+                                                <div id="thongtin-imageContainer-avatar">
+                                                    <c:if test="${!empty ttnv.hinhAnh}">
+                                                        <img class="thongtin-image-avatar"
+                                                             src="<%= request.getContextPath()%>/uploads/${ttnv.hinhAnh}"/>
+                                                    </c:if>
                                                 </div>
+                                                <label class="thongtin-avatar--label" for="thongtin-fileInput-avatar">Đổi ảnh đại diện</label>
+                                                <input class="btn btn-outline-info" type="file"
+                                                       id="thongtin-fileInput-avatar" name="image" accept="image/*">
                                             </div>
-                                            <div class="col-lg-6 col-12">
-                                                <div>
-                                                    <div class="thongtin-input--container">
-                                                        <label class="thongtin-input-text ">Giới tính</label>
-                                                        <div class="thongtin-gioitinh-radiobutton">
-                                                            <label class="thongtin-gioitinh-text">
-                                                                <input  type="radio" name="gender" id="nam" value="Nam" <c:if test="${ttnv.gioiTinh eq 'Nam'}">checked</c:if>> Nam
-                                                            </label>
-                                                            <label class="thongtin-gioitinh-text" style="margin-left: 8px">
-                                                                <input  type="radio" name="gender" id="nu" value="Nữ" <c:if test="${ttnv.gioiTinh eq 'Nữ'}">checked</c:if> > Nữ
-                                                            </label>
+                                        </div>
+                                        <div class="col-8 container">
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <div class="cntt-container">
+                                                        <div class="thongtin-input-elements">
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label" for="thongtin-input-hoten">Họ
+                                                                    và tên</label>
+                                                                <input class="thongtin-input--element" value="${ttnv.hoTen}"
+                                                                       name="tnv-hovaten" id="thongtin-input-hoten">
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label"
+                                                                       for="thongtin-input-cccd">CCCD/CMND</label>
+                                                                <input class="thongtin-input--element" value="${ttnv.cccd}"
+                                                                       name="tnv-cmnd" id="thongtin-input-cccd">
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label"
+                                                                       for="thongtin-input-diachi">Địa chỉ</label>
+                                                                <input class="thongtin-input--element" value="${ttnv.diaChi}"
+                                                                       name="tnv-diachi" id="thongtin-input-diachi">
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label" for="thongtin-input-sdt">Số
+                                                                    điện thoại</label>
+                                                                <input class="thongtin-input--element"
+                                                                       value="${ttnv.soDienThoai}" name="tnv-sdt"
+                                                                       id="thongtin-input-sdt">
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label"
+                                                                       for="thongtin-input-ngaysinh">Ngày sinh</label>
+                                                                <input class="thongtin-input--element" type="date"
+                                                                       value="${ttnv.namSinh}" name="tnv-ngaysinh"
+                                                                       id="thongtin-input-ngaysinh">
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input-text ">Giới tính</label>
+                                                                <div class="thongtin-gioitinh-radiobutton">
+                                                                    <label class="thongtin-gioitinh-text">
+                                                                        <input type="radio" name="gender" id="nam" value="Nam"
+                                                                               <c:if test="${ttnv.gioiTinh eq 'Nam'}">checked</c:if>>
+                                                                        Nam
+                                                                    </label>
+                                                                    <label class="thongtin-gioitinh-text"
+                                                                           style="margin-left: 8px">
+                                                                        <input type="radio" name="gender" id="nu" value="Nữ"
+                                                                               <c:if test="${ttnv.gioiTinh eq 'Nữ'}">checked</c:if> >
+                                                                        Nữ
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label"
+                                                                       for="thongtin-input-phongban">Phòng ban</label>
+                                                                <select class="thongtin-input--element"
+                                                                        id="thongtin-input-phongban" name="tnv-maphongban">
+                                                                    <c:forEach items="${lstPB}" var="pb">
+                                                                        <option value="${pb.maPB}"
+                                                                                <c:if test="${pb.tenPB eq ttnv.tenPhongBan}">selected</c:if>>${pb.tenPB}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label"
+                                                                       for="thongtin-input-bacluong">Bậc lương</label>
+                                                                <select class="thongtin-input--element"
+                                                                        id="thongtin-input-bacluong" name="tnv-idbacluong">
+                                                                    <c:forEach items="${lstLuong}" var="l">
+                                                                        <option value="${l.idBacLuong}"
+                                                                                <c:if test="${l.idBacLuong eq ttnv.bacLuong}">selected</c:if>>${l.idBacLuong}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label"
+                                                                       for="thongtin-input-chucvu">Chức vụ</label>
+                                                                <select class="thongtin-input--element"
+                                                                        id="thongtin-input-chucvu" name="tnv-idchucvu">
+                                                                    <c:forEach items="${lstCV}" var="cv">
+                                                                        <option value="${cv.idChucVu}"
+                                                                                <c:if test="${cv.tenChucVu eq ttnv.tenChucVu}">selected</c:if>>${cv.tenChucVu}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                            <div class="thongtin-input--container">
+                                                                <label class="thongtin-input--label"
+                                                                       for="thongtin-input-trinhdo">Trình độ</label>
+                                                                <select class="thongtin-input--element"
+                                                                        id="thongtin-input-trinhdo" name="tnv-idtrinhdo">
+                                                                    <c:forEach items="${lstTD}" var="td">
+                                                                        <option value="${td.idTrinhDo}"
+                                                                                <c:if test="${td.tenTrinhDo eq ttnv.tenTrinhDo}">selected</c:if>>${td.tenTrinhDo}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="  btn btn-warning" id="btnUpdate"
+                                                             onclick="UpdateNV()">Chỉnh sửa thông tin
                                                         </div>
                                                     </div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-phongban" >Phòng ban</label>
-                                                        <select class="thongtin-input--element" id="thongtin-input-phongban" name="tnv-maphongban">
-                                                            <c:forEach items="${lstPB}" var="pb">
-                                                                <option value="${pb.maPB}" <c:if test="${pb.tenPB eq ttnv.tenPhongBan}">selected</c:if>>${pb.tenPB}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-bacluong" >Bậc lương</label>
-                                                        <select class="thongtin-input--element"   id="thongtin-input-bacluong" name="tnv-idbacluong">
-                                                            <c:forEach items="${lstLuong}" var="l">
-                                                                <option value="${l.idBacLuong}" <c:if test="${l.idBacLuong eq ttnv.bacLuong}">selected</c:if>>${l.idBacLuong}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-chucvu" >Chức vụ</label>
-                                                        <select class="thongtin-input--element"   id="thongtin-input-chucvu" name="tnv-idchucvu">
-                                                            <c:forEach items="${lstCV}" var="cv">
-                                                                <option value="${cv.idChucVu}" <c:if test="${cv.tenChucVu eq ttnv.tenChucVu}">selected</c:if>>${cv.tenChucVu}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-                                                    <div  class="thongtin-input--container">
-                                                        <label class="thongtin-input--label" for="thongtin-input-trinhdo" >Trình độ</label>
-                                                        <select class="thongtin-input--element"   id="thongtin-input-trinhdo" name="tnv-idtrinhdo">
-                                                            <c:forEach items="${lstTD}" var="td">
-                                                                <option value="${td.idTrinhDo}" <c:if test="${td.tenTrinhDo eq ttnv.tenTrinhDo}">selected</c:if>>${td.tenTrinhDo}</option>
-                                                            </c:forEach>
-                                                        </select>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="thongtin-button--container">
+                                                        <button class="thongtin-button btn btn-danger" id="btnCancel"
+                                                                onclick="CancelNV()">Hủy
+                                                        </button>
+                                                        <button type="submit" class="thongtin-button btn btn-success"
+                                                                id="btnConfirm">Xác nhận
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="thongtin-button--container">
-                                    <div class="thongtin-button btn btn-outline-warning" id="btnUpdate" onclick="UpdateNV()">Cập nhật</div>
-                                    <button class="thongtin-button btn btn-outline-danger" id="btnCancel" onclick="CancelNV()">Hủy</button>
-                                    <button type="submit" class="thongtin-button btn btn-outline-success" id="btnConfirm">Xác nhận</button>
                                 </div>
                             </form>
                         </div>
@@ -133,7 +173,7 @@
 
 </div>
 
-<%@include file="/component/all_javascript.jsp"%>
+<%@include file="/component/all_javascript.jsp" %>
 <script>
     var hinhanh = document.getElementById("thongtin-fileInput-avatar")
     var hoten = document.getElementById("thongtin-input-hoten")
@@ -144,9 +184,9 @@
     var gerder_nam = document.getElementById("nam");
     var gender_nu = document.getElementById("nu");
     var phongbang = document.getElementById("thongtin-input-phongban")
-    var bacluong =  document.getElementById("thongtin-input-bacluong")
+    var bacluong = document.getElementById("thongtin-input-bacluong")
     var chucvu = document.getElementById("thongtin-input-chucvu")
-    var trinhdo =  document.getElementById("thongtin-input-trinhdo")
+    var trinhdo = document.getElementById("thongtin-input-trinhdo")
 
 
     var btnUpdate = document.getElementById("btnUpdate")
@@ -167,7 +207,7 @@
     trinhdo.disabled = true
     btnConfirm.disabled = true;
 
-    function UpdateNV(){
+    function UpdateNV() {
         hinhanh.disabled = false;
         hoten.disabled = false
         cccd.disabled = false
@@ -182,11 +222,12 @@
         trinhdo.disabled = false
         btnConfirm.disabled = false;
     }
-    document.getElementById('thongtin-fileInput-avatar').addEventListener('change', function(event) {
+
+    document.getElementById('thongtin-fileInput-avatar').addEventListener('change', function (event) {
         const selectedImage = event.target.files[0];
         if (selectedImage) {
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 const imageElement = document.createElement('img');
                 imageElement.classList.add("thongtin-image-avatar");
                 imageElement.src = e.target.result;

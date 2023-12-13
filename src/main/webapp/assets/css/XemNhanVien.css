@@ -58,8 +58,10 @@
     color: #ff253a;
     cursor: pointer;
 }
+
 .danhsachnhanvien-table-wrapper tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #5372c9;
+    color: #fff;
 }
 .dsnv-container {
     margin-top: 20px ;
