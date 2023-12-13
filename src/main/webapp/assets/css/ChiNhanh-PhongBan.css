@@ -1,3 +1,6 @@
+.cnpb-container{
+    padding: 30px;
+}
 .cnpb-cn--content .js-pscroll {
     position: relative;
     overflow: hidden
@@ -137,7 +140,6 @@ tr {
 }
 
 .cnpb-cn--content .table100.ver1 {
-    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
     -moz-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
@@ -302,7 +304,7 @@ tr {
 }
 
 .cnpb-pb--content  .table100.ver1 {
-    border-radius: 10px;
+
     overflow: hidden;
     box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
     -moz-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);

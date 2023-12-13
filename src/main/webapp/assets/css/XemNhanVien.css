@@ -61,8 +61,8 @@
 }
 
 .danhsachnhanvien-table-wrapper tr:nth-child(even) {
-    background-color: #5372c9;
-    color: #fff;
+    background-color: #e6e6e6;
+
 }
 .dsnv-container {
     margin-top: 20px ;
