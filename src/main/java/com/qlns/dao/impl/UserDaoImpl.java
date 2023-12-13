@@ -158,6 +158,31 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
+    public List<Thongtinnhanvien> laydanhsachtotruong(String MaToTruong) {
+        List<Thongtinnhanvien> list = new ArrayList<>();
+        String sql ="SELECT *\n" +
+                "FROM (\n" +
+                "    SELECT nv.*\n" +
+                "    FROM ThongTinNhanVien nv\n" +
+                "    INNER JOIN phongban pb ON nv.MaPB = pb.MaPB OR pb.MaPBCha = nv.MaPB\n" +
+                "    WHERE pb.MaQuanLy = ?\n";
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,MaToTruong);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                list.add(new Thongtinnhanvien(rs.getString(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+
+
     @Override
     public List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB) {
         List<Thongtinnhanvien> list = new ArrayList<>();

@@ -132,7 +132,11 @@ public class PhongBanController extends HttpServlet {
                 if (tk.getUserRole().equals("truongphong")) {
                     listpb.add(pbService.layhetphongbanthanquanly(tk.getMaNV()));
                 } else {
-                    listpb = null;
+                    if(tk.getUserRole().equals("totruong")) {
+                        listpb.add(pbService.layhetphongbanthanquanly(tk.getMaNV()));
+                    }
+                   else
+                        request.getRequestDispatcher("/nhanvien/thongtin?manv="+tk.getMaNV()+"/").forward(request,response);
                 }
             }
         }

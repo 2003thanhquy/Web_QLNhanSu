@@ -104,6 +104,11 @@
     <%TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");  %>
     if(!<%=tkdangnhap.getUserRole().equals("admin")%>){
         left_container.style.display = "none";
+        document.getElementById("tk-tttk--userid").value = '<%= tkdangnhap.getUserID() %>';
+        document.getElementById("tk-tttk--username").value = '<%= tkdangnhap.getUserName() %>';
+        document.getElementById("tk-tttk--password").value = '<%= tkdangnhap.getPassword() %>';
+        document.getElementById("tk-tttk--userrole").value = '<%= tkdangnhap.getUserRole() %>';
+        document.getElementById("tk-tttk--idnhanvien").value = '<%= tkdangnhap.getMaNV() %>';
     }
 </script>
 <script>

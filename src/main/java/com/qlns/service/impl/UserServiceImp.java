@@ -60,6 +60,9 @@ public class UserServiceImp implements  UserService {
     public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu) {
         return userDao.capnhatnhanvientruockhilenchuc(manv,mapb,bacluong,chucvu);
     }
+    public List<Thongtinnhanvien> laydanhsachtotruong(String MaToTruong){
+        return userDao.laydanhsachtotruong(MaToTruong);
+    }
     @Override
     public List<KThuongKLuc> getKThuongKLuatgiamdoc(String MaGD) {
         return ktkl.getKThuongKLuatgiamdoc(MaGD);
