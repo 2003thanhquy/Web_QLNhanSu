@@ -146,8 +146,15 @@ public class ChiNhanhController extends HttpServlet {
             ChiNhanhService cnser = new ChiNhanhServiceImp();
             PhongbanDao phongbanService = new PhongbanDaoImpl();
             UserDao userService = new UserDaoImpl();
+
+            if(phongbanService.layhetphongbanthanquanly(Magiamdoc)!=null)
+                phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(Magiamdoc).getMaPB());
             userService.capnhatnhanvientruockhilenchuc(Magiamdoc, null, 1, 1);
-            cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
+
+            if(cnser.laychinhanhgiamdocquanly(Magiamdoc)!=null)
+                cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
+
+
         }
         chiNhanhService.capnhatchinhanh(cn);
         List<ChiNhanh> listcn = new ArrayList<>();
@@ -164,6 +171,7 @@ public class ChiNhanhController extends HttpServlet {
                     "                                                <td class=\"cell100 column5\">"+CN.getMaGiamDoc()+"</td>\n" +
                     "                                            </tr>");
         }
+
     }
     private void themchinhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
