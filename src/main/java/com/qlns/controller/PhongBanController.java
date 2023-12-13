@@ -1,6 +1,8 @@
 package com.qlns.controller;
 
+import com.qlns.dao.PhongbanDao;
 import com.qlns.dao.UserDao;
+import com.qlns.dao.impl.PhongbanDaoImpl;
 import com.qlns.dao.impl.UserDaoImpl;
 import com.qlns.model.*;
 import com.qlns.service.ChiNhanhService;
@@ -298,6 +300,23 @@ public class PhongBanController extends HttpServlet {
         LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
         pb.setNgayBD(ngaythanhlap);
         UserService userService = new UserServiceImp();
+        ChiNhanhService cnser = new ChiNhanhServiceImp();
+        if(pb.getMaQuanLy()!=null)
+        {
+            if (pb.getMaPB().substring(0, 3).equals("PBC"))
+            {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),null,2,2);
+            }
+            else {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), null, 3, 3);
+            }
+            if(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy())!=null)
+                phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
+
+            if(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy())!=null)
+                cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy()).getMaCN());
+        }
+
 
         phongbanService.themphongban(pb);
 
@@ -315,15 +334,23 @@ public class PhongBanController extends HttpServlet {
         pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
         LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
         pb.setNgayBD(ngaythanhlap);
-//        if (pb.getMaPB().substring(0, 3).equals("PBC"))
-//        {
-//            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
-//        }
-//        else {
-//            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
-//        }
-//
-//        phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
+        ChiNhanhService cnser = new ChiNhanhServiceImp();
+        if(pb.getMaQuanLy()!=null)
+        {
+            if (pb.getMaPB().substring(0, 3).equals("PBC"))
+            {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),null,2,2);
+            }
+            else {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), null, 3, 3);
+            }
+            if(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy())!=null)
+                phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
+
+            if(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy())!=null)
+                cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy()).getMaCN());
+        }
+
         phongbanService.capnhatphongban(pb);
 
 
@@ -348,15 +375,41 @@ public class PhongBanController extends HttpServlet {
         pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
         LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
         pb.setNgayBD(ngaythanhlap);
-        if (pb.getMaPB().substring(0, 3).equals("PBC"))
+
+//
+//        String Magiamdoc = "";
+//        if(Magiamdoc!=null) {
+//
+//            PhongbanDao phongbanService = new PhongbanDaoImpl();
+//            UserDao userService = new UserDaoImpl();
+//
+//            if(phongbanService.layhetphongbanthanquanly(Magiamdoc)!=null) // quan ly null
+//                phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(Magiamdoc).getMaPB());
+//            userService.capnhatnhanvientruockhilenchuc(Magiamdoc, null, 1, 1); // phongban null
+//
+//            if(cnser.laychinhanhgiamdocquanly(Magiamdoc)!=null) // giam doc null
+//                cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
+//
+//        }
+        ChiNhanhService cnser = new ChiNhanhServiceImp();
+        if(pb.getMaQuanLy()!=null)
         {
-            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
-        }
-        else {
-            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
+            if (pb.getMaPB().substring(0, 3).equals("PBC"))
+            {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),null,2,2);
+            }
+            else {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), null, 3, 3);
+            }
+            if(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy())!=null)
+                phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
+
+            if(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy())!=null)
+                cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy()).getMaCN());
         }
 
-        phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
+
+
         phongbanService.capnhatphongbanchuaquanly(pb);
 
     }
