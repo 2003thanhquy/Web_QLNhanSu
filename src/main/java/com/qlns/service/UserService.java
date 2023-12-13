@@ -22,6 +22,8 @@ public interface UserService {
     boolean xoaNV(String manv);
 
     public List<Thongtinnhanvien> laydanhsachtotruong(String MaToTruong);
+    public List<Thongtinnhanvien> laydanhsachnhanvientheophongbancha(String MaPB);
+    List<Thongtinnhanvien> laydanhsachnhanvientheophongban(String MaPB);;
 
 
 }

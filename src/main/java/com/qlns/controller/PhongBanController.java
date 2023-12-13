@@ -234,8 +234,14 @@ public class PhongBanController extends HttpServlet {
     private void danhsachnhanvientheophongban(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String MaPB = req.getParameter("MaPB");
-        UserDao userDao = new UserDaoImpl();
-        List<Thongtinnhanvien> listnv = userDao.laydanhsachnhanvientheophongban(MaPB);
+        UserService userService = new UserServiceImp();
+
+        List<Thongtinnhanvien> listnv =  new ArrayList<>();
+        if (MaPB.substring(0, 3).equals("PBC"))
+            listnv = userService.laydanhsachnhanvientheophongbancha(MaPB);
+        else
+            listnv = userService.laydanhsachnhanvientheophongban(MaPB);
+
         HttpSession session = req.getSession();
         session.setAttribute("listnvcuapb", listnv);
 

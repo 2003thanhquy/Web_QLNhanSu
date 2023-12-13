@@ -99,6 +99,11 @@
 
 <%@include file="/component/all_javascript.jsp"%>
 
+
+
+
+
+
 <script>
     var kieucapnhat = "";
 
