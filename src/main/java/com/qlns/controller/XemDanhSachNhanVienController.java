@@ -54,8 +54,9 @@ public class XemDanhSachNhanVienController extends HttpServlet {
                 if (tk.getUserRole().equals("truongphong")) {
                     listnv = userService.laydanhsachnhanvientruongphong(tk.getMaNV());
                 } else {
-//                    listpb = (List<PhongBan>) pbService.layphongbanthanquanly(tk.getMaNV());
+                    listnv = userService.laydanhsachnhanvientruongphong(tk.getMaNV());
                 }
+                request.getRequestDispatcher("/nhanvien/thongtin?manv="+tk.getMaNV()+"/").forward(request,response);
             }
         }
         session.setAttribute("listnv",listnv);

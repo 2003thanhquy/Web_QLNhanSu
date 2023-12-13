@@ -191,7 +191,17 @@
             data: dataObj,
             success: getDanhSachDuAn,
             error: function () {
-                console.error("Call ajax ailed!")
+               alert("Loiiii")
+            }
+        }).done(function (){
+            if(kieucapnhat==='/xoa'){
+                alert("Xóa thành công")
+            }
+            if(kieucapnhat==='/them'){
+                alert("Thêm thành công")
+            }
+            if(kieucapnhat==='/sua'){
+                alert("sửa thành công")
             }
         })
         editDisabledInput(true);

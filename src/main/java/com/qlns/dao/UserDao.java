@@ -16,8 +16,10 @@ public interface UserDao {
     public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu);
 
     Boolean UpdateNV(NhanVien nv);
+
     Boolean XoaNV(String manv);
 
+    public List<Thongtinnhanvien> laydanhsachtotruong(String MaToTruong);
 
 
 
