@@ -1,14 +1,29 @@
+h1 {
+    margin: 0;
+}
+::-webkit-scrollbar {
+    width: 10px; /* Chiều rộng thanh cuộn */
+}
 
+::-webkit-scrollbar-thumb {
+    background-color: #949494; /* Màu nền của thanh cuộn */
+    border-radius: 6px; /* Bo tròn góc của thanh cuộn */
+}
 
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Màu nền của khu vực chứa nội dung thanh cuộn */
+}
 
 .js-pscroll {
     position: relative;
     overflow: hidden
 }
-
+.dscn-cn--content {
+    padding: 0 15px 15px 15px;
+}
 .dscn-cn--content .table100 .ps__rail-y {
     width: 9px;
-    background-color: transparent;
+    background-color: #fff;
     opacity: 1!important;
     right: 5px
 }
@@ -64,7 +79,7 @@
 }
 
 .dscn-cn--content .table100 {
-    background-color: #fff
+    background-color: #fff;
 }
 
 .dscn-cn--content table {
@@ -82,19 +97,19 @@
 }
 
 .dscn-cn--content .column2 {
-    width: 26%
+    width: 20%
 }
 
 .dscn-cn--content .column3 {
-    width: 22%
+    width: 20%
 }
 
 .dscn-cn--content .column4 {
-    width: 19%
+    width: 20%
 }
 
 .dscn-cn--content .column5 {
-    width: 13%
+    width: 20%
 }
 
 .dscn-cn--content .table100-head th {
@@ -124,68 +139,24 @@
     overflow: auto
 }
 
-.dscn-cn--content .table100.ver1 th {
-    font-family: Lato-Bold;
-    font-size: 18px;
-    color: #fff;
-    line-height: 1.4;
-    background-color: #6c7ae0
-}
 
-.dscn-cn--content .table100.ver1 td {
-    font-family: Lato-Regular;
-    font-size: 15px;
-    color: gray;
-    line-height: 1.4
-}
-
-.dscn-cn--content .table100.ver1 .table100-body tr:nth-child(even) {
-    background-color: #f8f6ff
-}
-
-.dscn-cn--content .table100.ver1 {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -moz-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -webkit-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -o-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -ms-box-shadow: 0 0 40px 0 rgba(0,0,0,.15)
-}
-
-.dscn-cn--content .table100.ver1 .ps__rail-y {
-    right: 5px
-}
-
-.dscn-cn--content .table100.ver1 .ps__rail-y::before {
-    background-color: #ebebeb
-}
-
-.dscn-cn--content .table100.ver1 .ps__rail-y .ps__thumb-y::before {
-    background-color: #ccc
-}
 
 .dscn-cn--content .table100.ver2 .table100-head {
-    box-shadow: 0 5px 20px 0 rgba(0,0,0,.1);
-    -moz-box-shadow: 0 5px 20px 0 rgba(0,0,0,.1);
-    -webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,.1);
-    -o-box-shadow: 0 5px 20px 0 rgba(0,0,0,.1);
-    -ms-box-shadow: 0 5px 20px 0 rgba(0,0,0,.1)
+
 }
 
 .dscn-cn--content .table100.ver2 th {
-    font-family: Lato-Bold;
+    font-family: 'Roboto', sans-serif;
     font-size: 18px;
-    color: #fa4251;
-    line-height: 1.4;
-    background-color: transparent
+    color: #fff;
+    background-color: #1a4978;
+
 }
 
 .dscn-cn--content .table100.ver2 td {
-    font-family: Lato-Regular;
-    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
     color: gray;
-    line-height: 1.4
 }
 
 .dscn-cn--content .table100.ver2 .table100-body tr {
@@ -193,13 +164,8 @@
 }
 
 .dscn-cn--content .table100.ver2 {
-    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -moz-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -webkit-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -o-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -ms-box-shadow: 0 0 40px 0 rgba(0,0,0,.15)
+
 }
 
 .dscn-cn--content .table100.ver2 .ps__rail-y {
@@ -242,6 +208,8 @@
     border: solid 0.5px #5e5e5e;
     border-radius: 20px;
     padding-left: 10px;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 .dscn-ttcn--thaotac-button, .dscn-ttcn--confirm-button {
     display: flex;
@@ -253,5 +221,37 @@
     height: 40px;
     font-size: 1.4rem;
     font-weight: 400;
-
+}
+.dscn-container {
+    margin-top: 30px;
+    padding: 0 30px;
+}
+.dscn-cn--container {
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #1a4978;
+}
+.dscn-cn--heading {
+    font-weight: 800;
+    background-color: #1a4978;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 0;
+}
+.dscn--ttcn--heading {
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+    color: #1a4978;
+    background-color: #fff;
+    box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
+    margin-bottom: 10px;
+    padding: 20px 0;
+}
+.dscn-ttcn--container {
+    border: solid 4px #1a4978;
+    padding: 20px;
+}
+.dscn-ttcn--button{
+    background-color: #1a4978;
+    color: #fff;
 }

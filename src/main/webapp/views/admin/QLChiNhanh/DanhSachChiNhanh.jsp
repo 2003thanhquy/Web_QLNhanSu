@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-xl-6">
                         <div class="dscn-cn--container">
-                            <h1 class="dscn-cn--heading" style="text-align: center">Danh sách chi nhánh</h1>
+                            <h1 class="dscn-cn--heading" style="text-align: center">DANH SÁCH CHI NHÁNH</h1>
                             <div class="dscn-cn--content">
                                 <div class="dscn-cn-table table100 ver2 m-b-110">
                                     <div class="table100-head ">
@@ -77,7 +77,7 @@
                     </div>
                     <div class="col-sm-12 col-xl-6">
                         <div class="dscn-ttcn--container">
-                            <h1 class="dscn--ttcn--heading" style="text-align: center">Thao tác</h1>
+                            <h1 class="dscn--ttcn--heading" style="text-align: center">THAO TÁC</h1>
                             <div class="dscn-ttcn--content">
                                <form action="" method="post" class="dscn-ttcn--form">
                                    <div class="dscn-ttnv--main-input">
@@ -105,12 +105,12 @@
                                </form>
                                    <div class="button-container">
                                         <div class="dscn-ttcn--thaotac-button">
-                                            <button class="btn btn-outline-primary dscn-ttcn-thembutton dscn-ttcn--button" onclick="themcn()">Thêm</button>
-                                            <button class="btn btn-outline-warning dscn-ttcn-capnhatbutton dscn-ttcn--button" onclick="capnhatcn()">Cập nhật</button>
+                                            <button class="btn btn-primary dscn-ttcn-thembutton dscn-ttcn--button" onclick="themcn()">Thêm</button>
+                                            <button class="btn btn-warning dscn-ttcn-capnhatbutton dscn-ttcn--button" onclick="capnhatcn()">Cập nhật</button>
                                         </div>
                                        <div class="dscn-ttcn--confirm-button">
-                                           <button class="btn btn-outline-secondary dscn-ttcn-huytbutton dscn-ttcn--button" onclick="huy()">Hủy</button>
-                                           <button class="btn btn-outline-success dscn-ttcn-xacnhantbutton dscn-ttcn--button" onclick="xacnhan()">Xác nhận</button>
+                                           <button class="btn btn-secondary dscn-ttcn-huytbutton dscn-ttcn--button" onclick="huy()">Hủy</button>
+                                           <button class="btn btn-success dscn-ttcn-xacnhantbutton dscn-ttcn--button" onclick="xacnhan()">Xác nhận</button>
                                        </div>
                                    </div>
                             </div>
