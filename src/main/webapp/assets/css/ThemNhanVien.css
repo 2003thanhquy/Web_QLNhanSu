@@ -126,6 +126,6 @@ h1 {
 .element-input--container {
     border:solid 1px #0033c4;
     border-radius: 4px;
-    padding: 20px 0;
+    padding: 20px 30px;
     height: 100%;
 }
