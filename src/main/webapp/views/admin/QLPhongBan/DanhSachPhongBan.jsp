@@ -307,6 +307,7 @@
         tenpb.disabled = false;
         tencn.disabled = false;
         ngaybd.disabled = false;
+        tenql.disabled = false;
 
         maphong.focus();
 
