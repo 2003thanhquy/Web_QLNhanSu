@@ -37,23 +37,23 @@
                                 <table class="danhsachnhanvien-table">
                                     <thead>
                                     <tr>
-                                        <th><span class="text">Mã nhân viên</span></th>
-                                        <th><span class="text">Họ và tên</span></th>
-                                        <th><span class="text">Chức vụ</span></th>
-                                        <th><span class="text">Phòng ban</span></th>
-                                        <th><span class="text">Chi tiết</span></th>
-                                        <th><span class="text">Xóa</span></th>
+                                        <th class="column-1"><span class="text ">Mã nhân viên</span></th>
+                                        <th class="column-2"><span class="text">Họ và tên</span></th>
+                                        <th class="column-3"><span class="text">Chức vụ</span></th>
+                                        <th class="column-4"><span class="text">Phòng ban</span></th>
+                                        <th class="column-5"><span class="text chitiet-text">Chi tiết</span></th>
+                                        <th class="column-6"><span class="text">Xóa</span></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${listnv}" var="nhanVien">
                                         <tr>
-                                            <td>${nhanVien.maNV}</td>
-                                            <td>${nhanVien.hoTen}</td>
-                                            <td>${nhanVien.tenChucVu}</td>
-                                            <td>${nhanVien.tenPhongBan}</td>
-                                            <td><a href="thongtin?manv=<c:out value='${nhanVien.maNV}' />"><i class="fa-solid fa-eye thongtinnhanvien-icon" data-nhanvien="${nhanVien}"></i></a></td>
-                                            <td><i class="fa-solid fa-trash xoanhanvien-icon" data-user-id="<c:out value='${nhanVien.maNV}'/>" onclick="deleteUser('<c:out value='${nhanVien.maNV}'/>')"></i></td>
+                                            <td class="column-1">${nhanVien.maNV}</td>
+                                            <td class="column-2" >${nhanVien.hoTen}</td>
+                                            <td class="column-3" >${nhanVien.tenChucVu}</td>
+                                            <td class="column-4">${nhanVien.tenPhongBan}</td>
+                                            <td class="column-5"><a href="thongtin?manv=<c:out value='${nhanVien.maNV}' />"><i class="fa-solid fa-eye thongtinnhanvien-icon" data-nhanvien="${nhanVien}"></i></a></td>
+                                            <td class="column-6"><i class="fa-solid fa-trash xoanhanvien-icon" data-user-id="<c:out value='${nhanVien.maNV}'/>" onclick="deleteUser('<c:out value='${nhanVien.maNV}'/>')"></i></td>
 
                                         </tr>
                                     </c:forEach>

@@ -43,24 +43,24 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="capnhatnv-dspb--container">
-                                    <h1 class="heading-content">Danh sách phòng ban</h1>
+                                    <h1 class="heading-content">DANH SÁCH PHÒNG BAN</h1>
                                     <div class="capnhatnv-dspb--content">
                                         <div class="capnhatnv-dspb-table--wrapper">
                                             <div class="table-scroll">
                                                 <table class="capnhatnv-dspb-table">
                                                     <thead>
                                                     <tr>
-                                                        <th><span class="text">Mã phòng</span></th>
-                                                        <th><span class="text">Tên phòng</span></th>
-                                                        <th><span class="text">Chi nhánh</span></th>
+                                                        <th class="column1"><span class="text">Mã phòng</span></th>
+                                                        <th class="column2"><span class="text">Tên phòng</span></th>
+                                                        <th class="column3"><span class="text">Chi nhánh</span></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <c:forEach items="${listpbtheouser}" var="phongban">
                                                     <tr onclick="hienthongtinnhanvienphongban('${phongban.maPB}')">
-                                                        <td>${phongban.maPB}</td>
-                                                        <td>${phongban.tenPB} </td>
-                                                        <td>${phongban.tenChiNhanh}</td>
+                                                        <td class="column1">${phongban.maPB}</td>
+                                                        <td class="column2">${phongban.tenPB} </td>
+                                                        <td class="column3">${phongban.tenChiNhanh}</td>
                                                     </tr>
                                                     </c:forEach>
                                                     </tbody>
@@ -74,15 +74,15 @@
                             <div class="col-6">
                                <div class="capnhatnv-dsnvdc--container">
                                    <div class="capnhatnv-dnvdc--content">
-                                        <h1 class="heading-content">Danh sách nhân viên đã có</h1>
+                                        <h1 class="heading-content">DANH SÁCH NHÂN VIÊN</h1>
                                        <div class="capnhatnv-dnvdc-table--wrapper">
                                            <div class="table-scroll">
                                                <table id="nhanvien-table" class="capnhatnv-dnvdc-table">
                                                    <thead>
                                                    <tr>
-                                                       <th><span class="text">Mã Nhân viên</span></th>
-                                                       <th><span class="text">Họ và tên</span></th>
-                                                       <th><span class="text">Chức vụ</span></th>
+                                                       <th class='column1'><span class="text">Mã Nhân viên</span></th>
+                                                       <th class='column1'><span class="text">Họ và tên</span></th>
+                                                       <th class='column1'><span class="text">Chức vụ</span></th>
                                                    </tr>
                                                    </thead>
                                                    <tbody id="nhanvien-tbody">
