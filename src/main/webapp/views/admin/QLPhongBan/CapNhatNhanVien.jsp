@@ -86,12 +86,7 @@
                                                        <th class='column-4'><span class="text">Chi tiết</span></th>
                                                    </tr>
                                                    </thead>
-<%--                                                   <tbody id="nhanvien-tbody">--%>
-                                                   <tbody >
-                                                        <td class="column-1">21110713</td>
-                                                        <td class="column-2">21110713</td>
-                                                        <td class="column-3">21110713</td>
-                                                        <td class="column-4"><i class="fa-solid fa-eye eye-icon"></i></td>
+                                                   <tbody id="nhanvien-tbody">
                                                    </tbody>
                                                </table>
                                            </div>
