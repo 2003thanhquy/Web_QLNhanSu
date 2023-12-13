@@ -56,20 +56,28 @@ a{
 
     /* font sizes */
     --font-size-5xl: 24px;
-
     /* Colors */
     --color-white: #fff;
     --color-crimson: #ed2f2f;
     --color-mediumspringgreen: #2fed8f;
     --color-gray: #292828;
     --color-whitesmoke: #eee;
-
     /* Border radiuses */
     --br-9xl: 28px;
     --br-2xl: 21px;
     --br-3xs: 10px;
     --br-lg: 18px;
-
-
 }
 
+::-webkit-scrollbar {
+    width: 10px; /* Chiều rộng thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #949494; /* Màu nền của thanh cuộn */
+    border-radius: 6px; /* Bo tròn góc của thanh cuộn */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Màu nền của khu vực chứa nội dung thanh cuộn */
+}
