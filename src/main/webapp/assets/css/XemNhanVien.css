@@ -50,6 +50,7 @@
     font-weight: 800;
     font-family: 'Roboto', sans-serif;
 }
+
 .thongtinnhanvien-icon {
     color: #0a58ca;
     cursor: pointer;
@@ -86,4 +87,21 @@
     margin-top: 40px;
     padding: 0 10px;
 }
-
+.column-1 {
+    width: 15%;
+}
+.column-2 {
+    width: 25%;
+}
+.column-3 {
+    width: 15%;
+}
+.column-4 {
+    width: 25%;
+}
+.column-5 {
+    width: 10%;
+}
+.column-6 {
+    width: 10%;
+}

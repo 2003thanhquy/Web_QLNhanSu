@@ -251,9 +251,10 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (Thongtinnhanvien nv : listnv) {
             out.println("<tr onclick=\"chitietnhanvien('" + nv + "')\">\n" +
-                    "                                                     <td>" + nv.getMaNV() + "</td>\n" +
-                    "                                                       <td>" + nv.getHoTen() + "</td>\n" +
-                    "                                                       <td>" + nv.getTenChucVu() + "</td>\n" +
+                    "                                                     <td class='column-1'>" + nv.getMaNV() + "</td>\n" +
+                    "                                                       <td class='column-2'>" + nv.getHoTen() + "</td>\n" +
+                    "                                                       <td class='column-3'>" + nv.getTenChucVu() + "</td>\n" +
+                    "                                                       <td class='column-4'>" + "<i class='fa-solid fa-eye'></i>" + "</td>\n"+
                     "                                                   </tr>");
 
 

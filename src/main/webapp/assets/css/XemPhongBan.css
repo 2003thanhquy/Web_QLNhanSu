@@ -79,6 +79,7 @@ h1,h2,h3 {
     justify-content: center;
     font-weight: 600;
     font-size: 1.4rem;
+    background-color: #1a4978;
 }
 .button-chuyennoidung {
     box-sizing: border-box;
@@ -142,11 +143,15 @@ h1,h2,h3 {
     height: 40px;
     margin-top: 6px;
     margin-bottom: -6px;
+
 }
 .phongban-menu--container.selected {
     background-color: #6ea8fe;
     color: #fff;
 }
 .button-capnhat--label {
+    color: #fff;
+}
+.button-huy--label {
     color: #fff;
 }
