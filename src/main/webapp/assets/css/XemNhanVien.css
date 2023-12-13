@@ -1,18 +1,31 @@
 
+::-webkit-scrollbar {
+    width: 10px; /* Chiều rộng thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #949494; /* Màu nền của thanh cuộn */
+    border-radius: 6px; /* Bo tròn góc của thanh cuộn */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Màu nền của khu vực chứa nội dung thanh cuộn */
+}
 .danhsachnhanvien-table-wrapper {
     position: relative;
     text-align: center;
+    border: solid 3px #0033c4;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
 }
 .table-scroll {
     background:#fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);*/
     max-height:500px;
     overflow:auto;
-    margin-top:70px;
 }
 .danhsachnhanvien-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
 
 }
 .danhsachnhanvien-table-wrapper table {
@@ -22,7 +35,9 @@
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-
+    height: 50px;
+    font-size: 1.6rem;
+    font-weight: 500;
 }
 
 .danhsachnhanvien-table-wrapper table thead th .text {
@@ -30,6 +45,10 @@
     top:-30px;
     z-index:0;
     height:20px;
+    color: #2e2e2e;
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
 }
 .thongtinnhanvien-icon {
     color: #0a58ca;
@@ -42,3 +61,27 @@
 .danhsachnhanvien-table-wrapper tr:nth-child(even) {
     background-color: #dddddd;
 }
+.dsnv-container {
+    margin-top: 20px ;
+    padding: 20px 60px;
+}
+.dsnv--main-container {
+    border-radius: 5px;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+.dsnv--heading {
+    background-color: #0033c4;
+    color: #fff;
+    font-weight: 800;
+    padding: 20px;
+    text-align: center;
+}
+.dsnv--main-container {
+    border: solid 1.5px #0033c4;
+}
+.dsnv--table {
+    margin-top: 40px;
+    padding: 0 10px;
+}
+

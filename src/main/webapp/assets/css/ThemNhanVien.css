@@ -42,7 +42,7 @@
 .tnv-input {
     width: 50%;
     height: 30px;
-    padding: 10px;
+    padding-left: 10px;
     border-radius: 10px;
 }
 .btnHuy, .btnXacNhan {

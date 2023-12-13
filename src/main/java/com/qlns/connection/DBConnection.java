@@ -10,7 +10,7 @@ public class DBConnection {
         String jdbcUsername = "root";
 
 
-        String jdbcPassword = "12345";
+        String jdbcPassword = "PhamHuuTuan258654@";
 
         Connection connection = null;
         try {
