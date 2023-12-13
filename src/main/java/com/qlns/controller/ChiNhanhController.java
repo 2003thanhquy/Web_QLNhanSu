@@ -175,8 +175,15 @@ public class ChiNhanhController extends HttpServlet {
             ChiNhanhService cnser = new ChiNhanhServiceImp();
             PhongbanDao phongbanService = new PhongbanDaoImpl();
             UserDao userService = new UserDaoImpl();
+
+            if(phongbanService.layhetphongbanthanquanly(Magiamdoc)!=null)
+                phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(Magiamdoc).getMaPB());
             userService.capnhatnhanvientruockhilenchuc(Magiamdoc, null, 1, 1);
-            cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
+
+            if(cnser.laychinhanhgiamdocquanly(Magiamdoc)!=null)
+                cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
+
+
         }
         ChiNhanhService chiNhanhService = new ChiNhanhServiceImp();
         ChiNhanh cn = new ChiNhanh(req.getParameter("macn").isEmpty() ? null : req.getParameter("macn"),req.getParameter("magiamdoc").isEmpty() ? null : req.getParameter("magiamdoc"),req.getParameter("tencn").isEmpty() ? null : req.getParameter("tencn"),req.getParameter("diachi").isEmpty() ? null : req.getParameter("diachi"), ngaythanhlap);
