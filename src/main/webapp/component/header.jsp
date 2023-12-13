@@ -15,7 +15,7 @@
             <div class="header-item-account--container " >
                 <div class="header-account" >
                     <p class="account-text">Tài khoản</p>
-                    <img src="<%= request.getContextPath()%>/assets/image/Ellipse%201.png" alt="" class = "account-image">
+                    <img src="<%= request.getContextPath()%>/assets/image/userlogin.png" alt="" class = "account-image">
                 </div>
                 <div class="header-deltail-container" tabindex="0">
                     <ul class="header-deltail-list-tiems">
@@ -26,7 +26,7 @@
                         </li>
                         <li class="header-detail-item">
                             <a href="<%=request.getContextPath()%>/taikhoan/thongtin" class="detail-item--context">
-                                Quản lý tài khoản
+                                Đổi mật khẩu
                             </a>
                         </li>
                         <li class="header-detail-item">

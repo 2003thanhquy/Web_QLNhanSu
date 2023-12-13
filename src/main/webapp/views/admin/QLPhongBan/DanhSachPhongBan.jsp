@@ -82,7 +82,7 @@
                     <div class ="col-xl-6 col-sm-12">
                         <div class="thongtinphongban-container">
                             <div class="thongtinphongban-header">
-                                <h1 class = "thongtinphongban-text">Thông tin chi tiết</h1>
+                                <h1 class = "thongtinphongban-text">THÔNG TIN CHI TIẾT</h1>
                             </div>
                             <div class="thongtinphongban-content">
                                 <form class="thongtinphongban-content-input--container" >
@@ -109,26 +109,25 @@
                                 </form>
                                 <div class="thongtin-content--button">
                                     <div class = "button-control button-container">
-                                        <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
-                                            <p class="button-them--label">Thêm</p>
+                                        <div class="button-them btn btn-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
+                                            <p class="button-them--label">Tạo phòng ban</p>
                                         </div>
-                                        <div class="button-capnhat btn btn-outline-info btn-lg button-thongtinphongban" onclick="SuaPhongBan()">
-                                            <p class="button-capnhat--label">Cập nhật</p>
+                                        <div class="button-capnhat btn btn-info btn-lg button-thongtinphongban" onclick="SuaPhongBan()">
+                                            <p class="button-capnhat--label">Cập nhật thông tin</p>
                                         </div>
-                                        <div class="button-xoa btn btn-outline-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan()">
-                                            <p class="button-xoa--label">Xóa</p>
+                                        <div class="button-xoa btn btn-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan()">
+                                            <p class="button-xoa--label">Xóa phòng ban</p>
                                         </div>
                                     </div>
                                     <div class="button-confirm button-container">
-                                        <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy()">
+                                        <div class="button-huy btn btn-warning btn-lg button-thongtinphongban" onclick="Huy()">
                                             <p class="button-huy--label">Hủy</p>
                                         </div>
-                                        <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" onclick="XacNhan()">
+                                        <button class="button-xacnhan btn btn-success btn-lg button-thongtinphongban" onclick="XacNhan()">
                                             <p class=" button-xacnhan--label">Xác nhận</p>
                                         </button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
