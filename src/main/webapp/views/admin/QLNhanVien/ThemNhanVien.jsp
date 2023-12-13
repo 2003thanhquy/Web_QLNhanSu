@@ -37,106 +37,117 @@
         <div id="main-content">
             <div class="themnhanvien-container container-md">
                 <div class="themnhanvien-excel--container" onclick="openFileInput()">
+                    <h1 class="tnv-excel--label">THÊM NHÂN VIÊN-EXCEL</h1>
                     <div class="themnhanvien-excel--content">
                         <img class="themnhanvien-excel--image" src="<%=request.getContextPath()%>/assets/image/excel-logo.png">
                     </div>
                 </div>
                 <input type="file" id="fileInput" name="fileexcel" style="display: none;" accept=".csv, .xlsx" onchange="handleFileSelect(this)" />
                 <div class="themnhanvien-thucong--container">
-                    <h1 class="themnhanvien-thucong--header">Thêm thủ công</h1>
-                    <div class="themnhanvien-thucong--content">
-                        <div class="themnhanvien-thucong-form--container container">
+                    <h1 class="themnhanvien-thucong--header">THÊM NHÂN VIÊN-THỦ CÔNG</h1>
+                    <div class="themnhanvien-thucong--content container">
+                                <div class="themnhanvien-thucong-form--container container">
+                                    <form action="<%=request.getContextPath()%>/nhanvien/themnhanvien" method="post" class="form-tnv container" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-4" style="padding-bottom: 20px; ">
+                                                <div class="tnv-avatar--container">
+                                                    <label class="h2 tnv-avatar--label" for="fileInput-avatar">Chọn ảnh đại diện</label>
+                                                    <input class="btn btn-outline-info tnv-btn--avatar" type="file" id="fileInput-avatar" name="image" accept="image/*">
+                                                    <div id="imageContainer-avatar">
 
-                            <form action="<%=request.getContextPath()%>/nhanvien/themnhanvien" method="post" class="form-tnv container" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-10">
-                                        <div class="input-element--container">
-                                            <div class="input-container">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-hovaten">Họ và tên</label>
-                                                <input class="tnv-input" type="text" id="tnv-hovaten" name="tnv-hovaten">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-cmnd">CMND/CCCD</label>
-                                                <input class="tnv-input" type="text" id="tnv-cmnd" name="tnv-cmnd">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-diachi">Địa chỉ</label>
-                                                <input class="tnv-input" type="text" id="tnv-diachi" name="tnv-diachi">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-sdt">Số điện thoại</label>
-                                                <input class="tnv-input" type="text" id="tnv-sdt" name="tnv-sdt">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-ngaysinh">Ngày sinh</label>
-                                                <input class="tnv-input" type="date" id="tnv-ngaysinh" name="tnv-ngaysinh">
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text ">Giới tính</label>
-                                                <div class="gioitinh-radiobutton">
-                                                    <label class="gioitinh-text">
-                                                        <input  type="radio" name="gender" value="Nam"> Nam
-                                                    </label>
-                                                    <label class="gioitinh-text" style="margin-left: 8px">
-                                                        <input  type="radio" name="gender" value="Nữ"> Nữ
-                                                    </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
-                                                <select class="tnv-input"   id="tnv-idphongban" name="tnv-maphongban">
-                                                    <c:forEach items="${lstPB}" var="pb">
-                                                        <option value="${pb.maPB}">${pb.tenPB}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-idbacluong">Mã bậc lương</label>
-                                                <select class="tnv-input"   id="tnv-idbacluong" name="tnv-idbacluong">
-                                                    <c:forEach items="${lstLuong}" var="l">
-                                                        <option value="${l.idBacLuong}">${l.idBacLuong}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-idchucvu">Mã chức vụ</label>
-                                                <select class="tnv-input"   id="tnv-idchucvu" name="tnv-idchucvu">
-                                                    <c:forEach items="${lstCV}" var="cv">
-                                                        <option value="${cv.idChucVu}">${cv.tenChucVu}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="input-text" for="tnv-idtrinhdo">Mã trình độ</label>
-                                                <select class="tnv-input"   id="tnv-idtrinhdo" name="tnv-idtrinhdo">
-                                                    <c:forEach items="${lstTD}" var="td">
-                                                        <option value="${td.idTrinhDo}">${td.tenTrinhDo}</option>
-                                                    </c:forEach>
-                                                </select>
+                                            <div class="col-8 " style="padding-bottom: 20px;">
+                                                <div class="element-input--container container">
+                                                    <div class="row">
+                                                        <div class="col-10">
+                                                            <div class="input-element--container">
+                                                                <div class="input-container">
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-hovaten">Họ và tên</label>
+                                                                    <input class="tnv-input" type="text" id="tnv-hovaten" name="tnv-hovaten">
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-cmnd">CMND/CCCD</label>
+                                                                    <input class="tnv-input" type="text" id="tnv-cmnd" name="tnv-cmnd">
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-diachi">Địa chỉ</label>
+                                                                    <input class="tnv-input" type="text" id="tnv-diachi" name="tnv-diachi">
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-sdt">Số điện thoại</label>
+                                                                    <input class="tnv-input" type="text" id="tnv-sdt" name="tnv-sdt">
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-ngaysinh">Ngày sinh</label>
+                                                                    <input class="tnv-input" type="date" id="tnv-ngaysinh" name="tnv-ngaysinh">
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text ">Giới tính</label>
+                                                                    <div class="gioitinh-radiobutton">
+                                                                        <label class="gioitinh-text">
+                                                                            <input  type="radio" name="gender" value="Nam"> Nam
+                                                                        </label>
+                                                                        <label class="gioitinh-text" style="margin-left: 8px">
+                                                                            <input  type="radio" name="gender" value="Nữ"> Nữ
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-idtrinhdo">Phòng ban</label>
+                                                                    <select class="tnv-input"   id="tnv-idphongban" name="tnv-maphongban">
+                                                                        <c:forEach items="${lstPB}" var="pb">
+                                                                            <option value="${pb.maPB}">${pb.tenPB}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-idbacluong">Bậc lương</label>
+                                                                    <select class="tnv-input"   id="tnv-idbacluong" name="tnv-idbacluong">
+                                                                        <c:forEach items="${lstLuong}" var="l">
+                                                                            <option value="${l.idBacLuong}">${l.idBacLuong}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-idchucvu">Chức vụ</label>
+                                                                    <select class="tnv-input"   id="tnv-idchucvu" name="tnv-idchucvu">
+                                                                        <c:forEach items="${lstCV}" var="cv">
+                                                                            <option value="${cv.idChucVu}">${cv.tenChucVu}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="input-container">
+                                                                    <label class="input-text" for="tnv-idtrinhdo">Trình độ</label>
+                                                                    <select class="tnv-input"   id="tnv-idtrinhdo" name="tnv-idtrinhdo">
+                                                                        <c:forEach items="${lstTD}" var="td">
+                                                                            <option value="${td.idTrinhDo}">${td.tenTrinhDo}</option>
+                                                                        </c:forEach>
+                                                                    </select>
 
-                                            </div>
-                                            <div class="input-container">
-                                                <label class="h2" for="fileInput-avatar">Chọn ảnh đại diện:</label>
-                                                <input class="btn btn-outline-info" type="file" id="fileInput-avatar" name="image" accept="image/*">
-                                                <div id="imageContainer-avatar">
+                                                                </div>
+                                                                <div class="input-container">
 
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-2" >
+                                                            <div class="button-container">
+                                                                <button  class="btn btn-danger btnHuy">Hủy</button>
+                                                                <button type="submit" class="btn btn-success btnXacNhan">Xác nhận</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="button-container">
-                                            <button  class="btn btn-outline-danger btnHuy">Hủy</button>
-                                            <button type="submit" class="btn btn-outline-success btnXacNhan">Xác nhận</button>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
