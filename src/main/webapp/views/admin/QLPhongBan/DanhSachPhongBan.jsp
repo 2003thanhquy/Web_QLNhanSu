@@ -147,6 +147,8 @@
     var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
     if (!isUserRoleAdmin) {
         document.querySelector(".thongtin-content--button").style.display = "none";
+        document.querySelector(".phongchuacoquanly-container").style.display="none";
+
     }
 
 
@@ -181,7 +183,6 @@
     tencn.disabled = true;
     tenql.disabled = true;
     ngaybd.disabled = true;
-    var phongbandangclick;
     var sua="sua";
 
     function handleItemClick(event,tenPB, maPB, tenCN,tenQL, ngayBD ,maQL,maCN) {
@@ -306,7 +307,7 @@
         tenpb.disabled = false;
         tencn.disabled = false;
         ngaybd.disabled = false;
-        document.querySelector(".button-capnhat--label").disabled = false;
+
         maphong.focus();
 
         if (trangthai === "con") {

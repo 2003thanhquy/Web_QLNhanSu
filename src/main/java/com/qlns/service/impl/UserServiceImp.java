@@ -68,6 +68,12 @@ public class UserServiceImp implements  UserService {
     public List<Thongtinnhanvien> laydanhsachtotruong(String MaToTruong){
         return userDao.laydanhsachtotruong(MaToTruong);
     }
+
+    @Override
+    public List<Thongtinnhanvien> laydanhsachnhanvientheophongbancha(String MaPB) {
+        return userDao.laydanhsachnhanvientheophongbancha(MaPB);
+    }
+
     @Override
     public List<KThuongKLuc> getKThuongKLuatgiamdoc(String MaGD) {
         return ktkl.getKThuongKLuatgiamdoc(MaGD);

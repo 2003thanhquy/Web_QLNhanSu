@@ -20,6 +20,8 @@ public interface UserDao {
     Boolean XoaNV(String manv);
 
     public List<Thongtinnhanvien> laydanhsachtotruong(String MaToTruong);
+    public List<Thongtinnhanvien> laydanhsachnhanvientheophongbancha(String MaPB);
+
 
 
 
