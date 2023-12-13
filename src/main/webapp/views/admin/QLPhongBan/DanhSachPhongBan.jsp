@@ -107,27 +107,27 @@
                                         <input id="ngaythanhlap" type="text" name="ngaythanhlap" class="thongtinphongban-input">
                                     </div>
                                 </form>
-                                    <div class="thongtin-content--button">
-                                        <div class = "button-control button-container">
-                                            <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
-                                                <p class="button-them--label">Thêm</p>
-                                            </div>
-                                            <div class="button-capnhat btn btn-outline-info btn-lg button-thongtinphongban" onclick="SuaPhongBan()">
-                                                <p class="button-capnhat--label">Cập nhật</p>
-                                            </div>
-                                            <div class="button-xoa btn btn-outline-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan()">
-                                                <p class="button-xoa--label">Xóa</p>
-                                            </div>
+                                <div class="thongtin-content--button">
+                                    <div class = "button-control button-container">
+                                        <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
+                                            <p class="button-them--label">Thêm</p>
                                         </div>
-                                        <div class="button-confirm button-container">
-                                            <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy()">
-                                                <p class="button-huy--label">Hủy</p>
-                                            </div>
-                                            <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" onclick="XacNhan()">
-                                                <p class=" button-xacnhan--label">Xác nhận</p>
-                                            </button>
+                                        <div class="button-capnhat btn btn-outline-info btn-lg button-thongtinphongban" onclick="SuaPhongBan()">
+                                            <p class="button-capnhat--label">Cập nhật</p>
+                                        </div>
+                                        <div class="button-xoa btn btn-outline-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan()">
+                                            <p class="button-xoa--label">Xóa</p>
                                         </div>
                                     </div>
+                                    <div class="button-confirm button-container">
+                                        <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy()">
+                                            <p class="button-huy--label">Hủy</p>
+                                        </div>
+                                        <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" onclick="XacNhan()">
+                                            <p class=" button-xacnhan--label">Xác nhận</p>
+                                        </button>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -215,7 +215,6 @@
             },
             success: function(data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').onclick();
 
 
             },
@@ -240,7 +239,7 @@
             },
             success: function(data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').onclick();
+
 
             },
             error: function(error) {
@@ -262,7 +261,6 @@
             },
             success: function(data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').onclick();
 
             },
             error: function(error) {
@@ -284,7 +282,6 @@
             },
             success: function(data) {
                 row.innerHTML=data;
-                document.querySelector('.phongban-item').onclick();
 
             },
             error: function(error) {

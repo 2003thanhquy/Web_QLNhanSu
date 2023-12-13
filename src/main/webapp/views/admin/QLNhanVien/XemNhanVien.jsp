@@ -28,33 +28,40 @@
     <%@include file="/component/header.jsp"%>
     <div id="content">
         <div id="main-content">
-            <div class="danhsachnhanvien-table-wrapper container-md">
-                <div class="table-scroll">
-                    <table class="danhsachnhanvien-table">
-                        <thead>
-                            <tr>
-                                <th><span class="text">Mã nhân viên</span></th>
-                                <th><span class="text">Họ và tên</span></th>
-                                <th><span class="text">Chức vụ</span></th>
-                                <th><span class="text">Phòng ban</span></th>
-                                <th><span class="text">Chi tiết Nhân Viên</span></th>
-                                <th><span class="text">Xóa</span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${listnv}" var="nhanVien">
-                            <tr>
-                                <td>${nhanVien.maNV}</td>
-                                <td>${nhanVien.hoTen}</td>
-                                <td>${nhanVien.tenChucVu}</td>
-                                <td>${nhanVien.tenPhongBan}</td>
-                                <td><a href="thongtin?manv=<c:out value='${nhanVien.maNV}' />"><i class="fa-solid fa-eye thongtinnhanvien-icon" data-nhanvien="${nhanVien}"></i></a></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon" data-user-id="<c:out value='${nhanVien.maNV}'/>" onclick="deleteUser('<c:out value='${nhanVien.maNV}'/>')"></i></td>
+            <div class="dsnv-container container-sm">
+                <div class="dsnv--main-container">
+                    <h2 class="dsnv--heading">DANH SÁCH NHÂN VIÊN</h2>
+                    <div class="dsnv--table">
+                        <div class="danhsachnhanvien-table-wrapper ">
+                            <div class="table-scroll">
+                                <table class="danhsachnhanvien-table">
+                                    <thead>
+                                    <tr>
+                                        <th><span class="text">Mã nhân viên</span></th>
+                                        <th><span class="text">Họ và tên</span></th>
+                                        <th><span class="text">Chức vụ</span></th>
+                                        <th><span class="text">Phòng ban</span></th>
+                                        <th><span class="text">Chi tiết</span></th>
+                                        <th><span class="text">Xóa</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${listnv}" var="nhanVien">
+                                        <tr>
+                                            <td>${nhanVien.maNV}</td>
+                                            <td>${nhanVien.hoTen}</td>
+                                            <td>${nhanVien.tenChucVu}</td>
+                                            <td>${nhanVien.tenPhongBan}</td>
+                                            <td><a href="thongtin?manv=<c:out value='${nhanVien.maNV}' />"><i class="fa-solid fa-eye thongtinnhanvien-icon" data-nhanvien="${nhanVien}"></i></a></td>
+                                            <td><i class="fa-solid fa-trash xoanhanvien-icon" data-user-id="<c:out value='${nhanVien.maNV}'/>" onclick="deleteUser('<c:out value='${nhanVien.maNV}'/>')"></i></td>
 
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
