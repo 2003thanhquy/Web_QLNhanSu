@@ -73,9 +73,18 @@ public class ChiNhanhController extends HttpServlet {
     }
     private void XemDanhSachChiNhanh(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ChiNhanhService chiNhanhService = new ChiNhanhServiceImp();
-        List<ChiNhanh> listcn = new ArrayList<>();
-        listcn = chiNhanhService.danhsachchinhanh();
         HttpSession session = req.getSession();
+        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+
+        List<ChiNhanh> listcn = new ArrayList<>();
+
+        if(tk.getUserRole().equals("admin")){
+            listcn = chiNhanhService.danhsachchinhanh();
+        }
+        else
+            req.getRequestDispatcher("/nhanvien/thongtin?manv="+tk.getMaNV()+"/").forward(req,resp);
+
+
         session.setAttribute("listcn",listcn);
         req.getRequestDispatcher("/views/admin/QLChiNhanh/DanhSachChiNhanh.jsp").forward(req,resp);
 
