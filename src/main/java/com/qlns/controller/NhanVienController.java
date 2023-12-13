@@ -69,6 +69,8 @@ public class NhanVienController extends HttpServlet {
                 case "/":
                     XemDanhSach(request, response);
                     break;
+                case "/xoa":
+                    XoaNhanhVien(request, response);
                 case "/themnhanvien":
 
                     ThemNhanVien(request,response);
@@ -121,6 +123,29 @@ public class NhanVienController extends HttpServlet {
         request.getRequestDispatcher("/views/admin/QLNhanVien/XemNhanVien.jsp").forward(request, response);
     }
 
+    public void XoaNhanhVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        HttpSession session = request.getSession(false);
+        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
+        if(tk == null){
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return ;
+        }
+        if(!tk.getUserRole().equals("admin")){
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return ;
+        }
+        String manv = request.getParameter("manv");
+        if (manv == null || manv.isEmpty()){
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        boolean  status = userService.xoaNV(manv);
+        if (status) {
+            response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
     public void UpLoadFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 
         Part part = request.getPart("fileexcel");
