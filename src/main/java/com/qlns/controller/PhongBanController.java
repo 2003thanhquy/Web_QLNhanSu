@@ -1,6 +1,8 @@
 package com.qlns.controller;
 
+import com.qlns.dao.PhongbanDao;
 import com.qlns.dao.UserDao;
+import com.qlns.dao.impl.PhongbanDaoImpl;
 import com.qlns.dao.impl.UserDaoImpl;
 import com.qlns.model.*;
 import com.qlns.service.ChiNhanhService;
@@ -347,15 +349,35 @@ public class PhongBanController extends HttpServlet {
         pb.setMaQuanLy(request.getParameter("maql").isEmpty() ? null : request.getParameter("maql"));
         LocalDate ngaythanhlap =LocalDate.parse(request.getParameter("mgaybd").isEmpty() ? null : request.getParameter("mgaybd"));
         pb.setNgayBD(ngaythanhlap);
-        if (pb.getMaPB().substring(0, 3).equals("PBC"))
+
+//        String Magiamdoc = "";
+//        if(Magiamdoc!=null) {
+//            ChiNhanhService cnser = new ChiNhanhServiceImp();
+//            PhongbanDao phongbanService = new PhongbanDaoImpl();
+//            UserDao userService = new UserDaoImpl();
+//
+//            if(phongbanService.layhetphongbanthanquanly(Magiamdoc)!=null)
+//                phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(Magiamdoc).getMaPB());
+//            userService.capnhatnhanvientruockhilenchuc(Magiamdoc, null, 1, 1);
+//
+//            if(cnser.laychinhanhgiamdocquanly(Magiamdoc)!=null)
+//                cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
+//
+//        }
+        if(pb.getMaQuanLy()!=null)
         {
-            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
-        }
-        else {
-            userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
+            if (pb.getMaPB().substring(0, 3).equals("PBC"))
+            {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),null,2,2);
+            }
+            else {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), null, 3, 3);
+            }
+            phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
         }
 
-        phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
+
+
         phongbanService.capnhatphongbanchuaquanly(pb);
 
     }
