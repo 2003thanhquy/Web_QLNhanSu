@@ -253,14 +253,16 @@ public class PhongBanController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         for (Thongtinnhanvien nv : listnv) {
             out.println("<tr onclick=\"chitietnhanvien('" + nv + "')\">\n" +
-                    "                                                     <td class='column-1'>" + nv.getMaNV() + "</td>\n" +
-                    "                                                       <td class='column-2'>" + nv.getHoTen() + "</td>\n" +
-                    "                                                       <td class='column-3'>" + nv.getTenChucVu() + "</td>\n" +
-                    "                                                       <td class='column-4'>" + "<i class='fa-solid fa-eye'></i>" + "</td>\n"+
-                    "                                                   </tr>");
-
-
+                    "    <td class='column-1'>" + nv.getMaNV() + "</td>\n" +
+                    "    <td class='column-2'>" + nv.getHoTen() + "</td>\n" +
+                    "    <td class='column-3'>" + nv.getTenChucVu() + "</td>\n" +
+                    "    <td class=\"column-4\"><a href=\"thongtin?manv=" + nv.getMaNV() + "\"><i class=\"fa-solid fa-eye\" data-nhanvien=\"" + nv + "\"></i></a></td>\n" +
+                    "</tr>");
         }
+
+
+
+
     }
 
     private void capnhatphongban(HttpServletRequest request, HttpServletResponse response)
@@ -303,22 +305,27 @@ public class PhongBanController extends HttpServlet {
         ChiNhanhService cnser = new ChiNhanhServiceImp();
         if(pb.getMaQuanLy()!=null)
         {
-            if (pb.getMaPB().substring(0, 3).equals("PBC"))
-            {
-                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),null,2,2);
-            }
-            else {
-                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), null, 3, 3);
-            }
+
             if(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy())!=null)
                 phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
 
             if(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy())!=null)
                 cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy()).getMaCN());
+            phongbanService.themphongban(pb);
+            if (pb.getMaPB().substring(0, 3).equals("PBC"))
+            {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
+
+            }
+            else {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
+            }
         }
-
-
         phongbanService.themphongban(pb);
+
+
+
+
 
     }
     private void suaphongban(HttpServletRequest request, HttpServletResponse response)
@@ -337,18 +344,21 @@ public class PhongBanController extends HttpServlet {
         ChiNhanhService cnser = new ChiNhanhServiceImp();
         if(pb.getMaQuanLy()!=null)
         {
-            if (pb.getMaPB().substring(0, 3).equals("PBC"))
-            {
-                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),null,2,2);
-            }
-            else {
-                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), null, 3, 3);
-            }
+
             if(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy())!=null)
                 phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
 
             if(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy())!=null)
                 cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy()).getMaCN());
+            phongbanService.capnhatphongban(pb);
+            if (pb.getMaPB().substring(0, 3).equals("PBC"))
+            {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
+
+            }
+            else {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
+            }
         }
 
         phongbanService.capnhatphongban(pb);
@@ -377,37 +387,26 @@ public class PhongBanController extends HttpServlet {
         pb.setNgayBD(ngaythanhlap);
 
 //
-//        String Magiamdoc = "";
-//        if(Magiamdoc!=null) {
 //
-//            PhongbanDao phongbanService = new PhongbanDaoImpl();
-//            UserDao userService = new UserDaoImpl();
-//
-//            if(phongbanService.layhetphongbanthanquanly(Magiamdoc)!=null) // quan ly null
-//                phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(Magiamdoc).getMaPB());
-//            userService.capnhatnhanvientruockhilenchuc(Magiamdoc, null, 1, 1); // phongban null
-//
-//            if(cnser.laychinhanhgiamdocquanly(Magiamdoc)!=null) // giam doc null
-//                cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(Magiamdoc).getMaCN());
-//
-//        }
         ChiNhanhService cnser = new ChiNhanhServiceImp();
         if(pb.getMaQuanLy()!=null)
         {
-            if (pb.getMaPB().substring(0, 3).equals("PBC"))
-            {
-                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),null,2,2);
-            }
-            else {
-                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), null, 3, 3);
-            }
+
             if(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy())!=null)
                 phongbanService.capnhatphongbankhichuyenchuc(phongbanService.layhetphongbanthanquanly(pb.getMaQuanLy()).getMaPB());
 
             if(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy())!=null)
                 cnser.capnhatgiamdocchinhanh(cnser.laychinhanhgiamdocquanly(pb.getMaQuanLy()).getMaCN());
-        }
+            phongbanService.capnhatphongbanchuaquanly(pb);
+            if (pb.getMaPB().substring(0, 3).equals("PBC"))
+            {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(),pb.getMaPB(),2,2);
 
+            }
+            else {
+                userService.capnhatnhanvientruockhilenchuc(pb.getMaQuanLy(), pb.getMaPB(), 3, 3);
+            }
+        }
 
 
         phongbanService.capnhatphongbanchuaquanly(pb);
