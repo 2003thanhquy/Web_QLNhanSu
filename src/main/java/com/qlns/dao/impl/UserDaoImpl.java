@@ -235,6 +235,22 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
+    @Override
+    public Boolean XoaNV(String manv) {
+        String sql = "Update NhanVien SET status= 0 WHERE MaNV = ?";
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,manv);
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public boolean capnhatnhanvientruockhilenchuc (String manv, String mapb,int bacluong, int chucvu){
         String sql = "UPDATE nhanvien SET MaPB=?, IDBacLuong=? , IDChucVu=? WHERE MaNV=?";
         try {
@@ -253,5 +269,6 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
+
 
 }

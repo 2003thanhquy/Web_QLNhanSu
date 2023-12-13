@@ -185,7 +185,17 @@
             data: dataObj,
             success: getDanhSachHopDong,
             error: function () {
-                console.error("Adding failed!")
+                alert("Loi")
+            }
+        }).done(function (){
+            if(kieucapnhat==='/xoa'){
+                alert("Xóa thành công")
+            }
+            if(kieucapnhat==='/them'){
+                alert("Thêm thành công")
+            }
+            if(kieucapnhat==='/sua'){
+                alert("sửa thành công")
             }
         })
         editDisabledInput(true);

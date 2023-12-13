@@ -18,6 +18,9 @@ public interface UserService {
     public List<KThuongKLuc> getKThuongKLuattruongphong(String MaGD);
     public List<KThuongKLuc> getKThuongKLuattotruong(String MaToTruong);
     public boolean capnhatnhanvientruockhilenchuc(String manv, String mapb,int bacluong,int chucvu);
+
+    boolean xoaNV(String manv);
+
     public List<Thongtinnhanvien> laydanhsachtotruong(String MaToTruong);
 
 

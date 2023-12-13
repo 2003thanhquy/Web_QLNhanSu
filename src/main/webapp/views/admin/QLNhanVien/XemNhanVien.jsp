@@ -20,6 +20,7 @@
             background-color: var(--backcolor-menu-selected) ;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <div id="main-web" >
@@ -48,7 +49,8 @@
                                 <td>${nhanVien.tenChucVu}</td>
                                 <td>${nhanVien.tenPhongBan}</td>
                                 <td><a href="thongtin?manv=<c:out value='${nhanVien.maNV}' />"><i class="fa-solid fa-eye thongtinnhanvien-icon" data-nhanvien="${nhanVien}"></i></a></td>
-                                <td><i class="fa-solid fa-trash xoanhanvien-icon"></i></td>
+                                <td><i class="fa-solid fa-trash xoanhanvien-icon" data-user-id="<c:out value='${nhanVien.maNV}'/>" onclick="deleteUser('<c:out value='${nhanVien.maNV}'/>')"></i></td>
+
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -60,5 +62,24 @@
     </div>
 </div>
 <%@include file="/component/all_javascript.jsp"%>
+<script>
+    function deleteUser(manv){
+        let url = window.location.href + "xoa";
+        jQuery.ajax({
+            url: url,
+            method: "GET",
+            data:{
+                manv:manv
+            },
+            success: function (){
+                alert("Xoa thanh cong "+ manv)
+                location.reload()
+            },
+            error: function(){
+                console.error("Adding failed!")
+            }
+        })
+    }
+</script>
 </body>
 </html>
