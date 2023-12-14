@@ -106,7 +106,7 @@ To change this template use File | Settings | File Templates.
                                                                         id="thongtin-input-phongban" name="tnv-maphongban">
                                                                     <c:forEach items="${lstPB}" var="pb">
                                                                         <option value="${pb.maPB}"
-                                                                                <c:if test="${pb.tenPB eq ttnv.tenPhongBan}">selected</c:if>>${pb.tenPB}</option>
+                                                                                <c:if test="${pb.maPB eq ttnv.maPB}">selected</c:if>>${pb.tenPB}</option>
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
@@ -185,9 +185,21 @@ To change this template use File | Settings | File Templates.
 <script>
     var isUserRoleAdmin = <%= tkdangnhap.getUserRole().equals("admin") %>;
 
+
+    var hinhanh = document.getElementById("thongtin-fileInput-avatar")
+    var hoten = document.getElementById("thongtin-input-hoten")
+    var cccd = document.getElementById("thongtin-input-cccd")
+    var diachi = document.getElementById("thongtin-input-diachi")
+    var sdt = document.getElementById("thongtin-input-sdt")
+    var ngaysinh = document.getElementById("thongtin-input-ngaysinh")
+    var gerder_nam = document.getElementById("nam");
+    var gender_nu = document.getElementById("nu");
+    var phongbang = document.getElementById("thongtin-input-phongban")
+    var bacluong = document.getElementById("thongtin-input-bacluong")
+    var chucvu = document.getElementById("thongtin-input-chucvu")
+    var trinhdo = document.getElementById("thongtin-input-trinhdo")
     var isNhanVien;
     if (!isUserRoleAdmin ) {
-        console.log(isUserRoleAdmin);
         document.getElementById("btnUpdate").style.display = "none";
         document.querySelector(".thongtin-button--container").style.display= "none";
 
@@ -202,19 +214,6 @@ To change this template use File | Settings | File Templates.
 
 
 
-
-    var hinhanh = document.getElementById("thongtin-fileInput-avatar")
-    var hoten = document.getElementById("thongtin-input-hoten")
-    var cccd = document.getElementById("thongtin-input-cccd")
-    var diachi = document.getElementById("thongtin-input-diachi")
-    var sdt = document.getElementById("thongtin-input-sdt")
-    var ngaysinh = document.getElementById("thongtin-input-ngaysinh")
-    var gerder_nam = document.getElementById("nam");
-    var gender_nu = document.getElementById("nu");
-    var phongbang = document.getElementById("thongtin-input-phongban")
-    var bacluong = document.getElementById("thongtin-input-bacluong")
-    var chucvu = document.getElementById("thongtin-input-chucvu")
-    var trinhdo = document.getElementById("thongtin-input-trinhdo")
 
 
     var btnUpdate = document.getElementById("btnUpdate")
@@ -236,6 +235,7 @@ To change this template use File | Settings | File Templates.
     btnConfirm.disabled = true;
 
     function UpdateNV() {
+
         hinhanh.disabled = false;
         hoten.disabled = false
         cccd.disabled = false
@@ -249,6 +249,18 @@ To change this template use File | Settings | File Templates.
         chucvu.disabled = false
         trinhdo.disabled = false
         btnConfirm.disabled = false;
+        if (!isUserRoleAdmin )
+        {
+            hoten.disabled = true
+            cccd.disabled = true
+            ngaysinh.disabled = true
+            gerder_nam.disabled = true
+            gender_nu.disabled = true
+            phongbang.disabled = true
+            bacluong.disabled = true
+            chucvu.disabled = true
+            trinhdo.disabled = true
+        }
     }
 
     document.getElementById('thongtin-fileInput-avatar').addEventListener('change', function (event) {

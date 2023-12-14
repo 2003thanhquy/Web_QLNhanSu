@@ -32,4 +32,19 @@ public class HopDongServiceImpl implements HopDongService {
     public int xoaHopDong(String id) {
         return hopDongDao.deleteByMaHopDong(id);
     }
+
+    @Override
+    public List<HopDong> findhopdongtheogiamdoc(String MaGiamDoc) {
+        return hopDongDao.findhopdongtheogiamdoc(MaGiamDoc);
+    }
+
+    @Override
+    public List<HopDong> findhopdongtheotruongphong(String MaTruongPhong) {
+        return hopDongDao.findhopdongtheotruongphong(MaTruongPhong);
+    }
+
+    @Override
+    public List<HopDong> findhopdongtheototruong(String MaToTruong) {
+        return hopDongDao.findhopdongtheototruong(MaToTruong);
+    }
 }

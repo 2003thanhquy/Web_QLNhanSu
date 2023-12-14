@@ -14,4 +14,9 @@ public interface HopDongDao {
 
     int deleteByMaHopDong(String maHopDong);
     int deleteByMaNhanVien(String maNhanVien);
+    List<HopDong> findhopdongtheogiamdoc(String MaGiamDoc);
+    List<HopDong> findhopdongtheotruongphong(String MaTruongPhong);
+    List<HopDong> findhopdongtheototruong(String MaToTruong);
+
+
 }

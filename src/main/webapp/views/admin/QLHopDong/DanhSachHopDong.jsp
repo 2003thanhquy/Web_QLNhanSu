@@ -112,11 +112,17 @@
 <%@include file="/component/all_javascript.jsp"%>
 
 
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");
 
-
-
+%>
 
 <script>
+    var isUserRoleAdmin = <%= tkdangnhap.getUserRole().equals("admin") %>;
+    if (!isUserRoleAdmin) {
+        document.querySelector(".hd-tthd--buttons").style.display="none";
+    }
+
+
     var kieucapnhat = "";
 
     jQuery(document).ready(function() {
