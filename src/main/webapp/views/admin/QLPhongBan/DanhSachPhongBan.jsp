@@ -3,6 +3,7 @@
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
+<%--gan tag--%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +38,7 @@
                         <div class="danhsachphongban-container">
                             <div class="button-chuyennoidung" style="display: flex">
                                 <div tabindex="0" class="phongban-menu--container selected phongcoquanly-container " onclick="xempbqly()">
-                                    <h3>Phòng có quản lý</h3>
+                                    <h3>Phòng ban có quản lý</h3>
                                 </div>
                                 <div tabindex="0" class="phongban-menu--container phongchuacoquanly-container" onclick="xempbkhongqly()">
                                     <h3>Phòng chưa có quản lý</h3>
