@@ -283,12 +283,12 @@ h1 {
     font-size: 1.6rem;
     font-weight: 600;
 }
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+.qtct-tt-table--content td, .qtct-tt-table--content th {
+    /*border: 1px solid #dddddd;*/
+    /*text-align: left;*/
+    /*padding: 8px;*/
 }
-tr:nth-child(even) {
+.qtct-tt-table--content tr:nth-child(even) {
     background-color: #dddddd;
 }
 .qtct-tt-headingtable {
