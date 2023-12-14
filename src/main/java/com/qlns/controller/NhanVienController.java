@@ -108,16 +108,7 @@ public class NhanVienController extends HttpServlet {
         if (tk.getUserRole().equals("admin")) {
             listnv = userService.laydanhsachnhanvienadmin();
         } else {
-            if (tk.getUserRole().equals("giamdoc")) {
-                listnv = userService.laydanhsachnhanviengiamdoc(tk.getMaNV());
-            } else {
-                if (tk.getUserRole().equals("truongphong")) {
-                    listnv = userService.laydanhsachnhanvientruongphong(tk.getMaNV());
-                } else {
-                    //totruong
-                    listnv = userService.laydanhsachnhanvientruongphong(tk.getMaNV());
-                }
-            }
+            response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
         }
         request.setAttribute("listnv", listnv);
         request.getRequestDispatcher("/views/admin/QLNhanVien/XemNhanVien.jsp").forward(request, response);

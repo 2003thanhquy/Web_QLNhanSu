@@ -1,4 +1,5 @@
 <%@ page import="com.qlns.model.TaiKhoan" %>
+<%@ page import="com.qlns.model.Thongtinnhanvien" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
@@ -141,15 +142,24 @@
 
 
 
-<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");
+    Thongtinnhanvien ttnv = (Thongtinnhanvien)session.getAttribute("user");
+%>
 
 <script>
-    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
+    var isUserRoleAdmin = <%= tkdangnhap.getUserRole().equals("admin") %>;
     if (!isUserRoleAdmin) {
         document.querySelector(".thongtin-content--button").style.display = "none";
         document.querySelector(".phongchuacoquanly-container").style.display="none";
+        document.querySelector(".button-chuyennoidung").style.display="none";
 
     }
+    var roletotruong = <%= ttnv != null && ttnv.getIDChucVu()==3 %>;
+
+    if (roletotruong) {
+        document.querySelector(".button-xemphongcon--container").style.display="none";
+    }
+
 
 
     var buttonqlaiphongban = document.querySelector(".button-quaylaiphongcha--container");

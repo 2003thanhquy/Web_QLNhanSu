@@ -82,7 +82,7 @@ public class ChiNhanhController extends HttpServlet {
             listcn = chiNhanhService.danhsachchinhanh();
         }
         else
-            req.getRequestDispatcher("/nhanvien/thongtin?manv="+tk.getMaNV()+"/").forward(req,resp);
+            resp.sendRedirect(req.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
 
 
         session.setAttribute("listcn",listcn);
@@ -163,7 +163,7 @@ public class ChiNhanhController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         for (ChiNhanh CN : listcn) {
-            out.println("<tr class=\"row100 body dscn-table-tr\" onclick=\"handleItemClick('"+CN.getMaCN()+"','"+CN.getTenChiNhanh()+"','"+CN.getDiaChi()+"','"+CN.getNgayBD()+"','"+cn.getMaGiamDoc()+"')\">\n" +
+            out.println("<tr class=\"row100 body dscn-table-tr\" onclick=\"handleItemClick('"+CN.getMaCN()+"','"+CN.getTenChiNhanh()+"','"+CN.getDiaChi()+"','"+CN.getNgayBD()+"','"+CN.getMaGiamDoc()+"')\">\n" +
                     "                                                <td class=\"cell100 column1\">"+CN.getMaCN()+"</td>\n" +
                     "                                                <td class=\"cell100 column2\">"+CN.getTenChiNhanh()+"</td>\n" +
                     "                                                <td class=\"cell100 column3\">"+CN.getDiaChi()+"</td>\n" +
@@ -203,7 +203,7 @@ public class ChiNhanhController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         for (ChiNhanh CN : listcn) {
-            out.println("<tr class=\"row100 body dscn-table-tr\" onclick=\"handleItemClick('"+CN.getMaCN()+"','"+CN.getTenChiNhanh()+"','"+CN.getDiaChi()+"','"+CN.getNgayBD()+"','"+cn.getMaGiamDoc()+"')\">\n" +
+            out.println("<tr class=\"row100 body dscn-table-tr\" onclick=\"handleItemClick('"+CN.getMaCN()+"','"+CN.getTenChiNhanh()+"','"+CN.getDiaChi()+"','"+CN.getNgayBD()+"','"+CN.getMaGiamDoc()+"')\">\n" +
                     "                                                <td class=\"cell100 column1\">"+CN.getMaCN()+"</td>\n" +
                     "                                                <td class=\"cell100 column2\">"+CN.getTenChiNhanh()+"</td>\n" +
                     "                                                <td class=\"cell100 column3\">"+CN.getDiaChi()+"</td>\n" +

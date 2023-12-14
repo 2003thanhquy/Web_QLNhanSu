@@ -17,7 +17,32 @@ public class Thongtinnhanvien {
     int bacLuong;
     String tenTrinhDo;
     String hinhAnh;
+    int IDChucVu;
 
+    public Thongtinnhanvien(String maNV, String hoTen, LocalDate namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo, String hinhAnh, int IDChucVu) {
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.namSinh = namSinh;
+        this.gioiTinh = gioiTinh;
+        this.cccd = cccd;
+        this.diaChi = diaChi;
+        this.tenChiNhanh = tenChiNhanh;
+        this.tenChucVu = tenChucVu;
+        this.tenPhongBan = tenPhongBan;
+        this.soDienThoai = soDienThoai;
+        this.bacLuong = bacLuong;
+        this.tenTrinhDo = tenTrinhDo;
+        this.hinhAnh = hinhAnh;
+        this.IDChucVu = IDChucVu;
+    }
+
+    public int getIDChucVu() {
+        return IDChucVu;
+    }
+
+    public void setIDChucVu(int IDChucVu) {
+        this.IDChucVu = IDChucVu;
+    }
 
     public Thongtinnhanvien() {
     }
@@ -71,6 +96,7 @@ public class Thongtinnhanvien {
         this.bacLuong = bacLuong;
         this.tenTrinhDo = tenTrinhDo;
     }
+
 
     public String getMaNV() {
         return maNV;
