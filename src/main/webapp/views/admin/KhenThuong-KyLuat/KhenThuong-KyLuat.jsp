@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-xl-8">
                         <div class="ktkl--container">
-                            <h2 style="text-align: center">Danh sách chương trình</h2>
+                            <h2 class="ktkl--heading" style="text-align: center">DANH SÁCH CHƯƠNG TRÌNH</h2>
                             <div class="ktkl--content">
                                 <div class="table100 ver4 m-b-110">
                                     <div class="table100-head">
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-sm-12 col-xl-4">
                         <div class="ktkl-dsct--container">
-                            <h2 style="text-align: center">Thông tin chi tiết</h2>
+                            <h2 class="ktkl-dsct--heading" style="text-align: center">THÔNG TIN CHI TIẾT</h2>
                             <div class="ktkl-dsct--content">
                                 <form action="" >
                                     <div class="ktkl-dsct-inputs">
@@ -96,15 +96,15 @@
                                     </div>
                                     <div class="ktkl-dsct-buttons">
                                         <div class="ktkl-dsct-button--control">
-                                            <button type="button" class="ktkl-dsct--button btn btn-outline-primary" id="them" onclick="ThemChuongTrinh()">Thêm</button>
-                                            <div class="ktkl-dsct--button btn btn-outline-warning" id="capnhat" onclick="CapNhat()">Cập nhật</div>
+                                            <button type="button" class="ktkl-dsct--button btn btn-primary" id="them" onclick="ThemChuongTrinh()">Thêm</button>
+                                            <div class="ktkl-dsct--button btn btn-warning" id="capnhat" onclick="CapNhat()">Cập nhật</div>
 
                                             <button type="button" class="ktkl-dsct--button btn btn-outline-danger" id="xoa" onclick="handleXoaClicked()">Xóa</button>
 
                                         </div>
                                         <div class="ktkl-dsct-button--confirm">
-                                            <button type="button" class="ktkl-dsct--button btn btn-outline-secondary" id="huy" onclick="handleHuyClicked()">Hủy</button>
-                                            <button type="button" class="ktkl-dsct--button btn btn-outline-success" id="xacnhan" onclick="XacNhanChuongTrinh()">Xác nhận</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-secondary" id="huy" onclick="handleHuyClicked()">Hủy</button>
+                                            <button type="button" class="ktkl-dsct--button btn btn-success" id="xacnhan" onclick="XacNhanChuongTrinh()">Xác nhận</button>
                                         </div>
                                     </div>
                                 </form>

@@ -136,7 +136,7 @@ tr {
     cursor: pointer;
 }
 .cnpb-cn--content .table100.ver1 .table100-body tr:nth-child(even) {
-    background-color: #ebeced
+    background-color: #e9f0f7;
 }
 
 .cnpb-cn--content .table100.ver1 {
@@ -300,7 +300,7 @@ tr {
 }
 
 .cnpb-pb--content  .table100.ver1 .table100-body tr:nth-child(even) {
-    background-color: #ebeced;
+    background-color: #e9f0f7;
 }
 
 .cnpb-pb--content  .table100.ver1 {

@@ -365,5 +365,55 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
     }
 
+    @Override
+    public List<PhongBan> getPBCha(String macn) {
+        String sql = "select * from phongban \n" +
+                "where status = 1 and maCN = ? and maPBCha is null";
+        List<PhongBan> lstPb = new ArrayList<>();
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, macn);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                PhongBan pb = new PhongBan();
+                pb.setMaPB(rs.getString("MaPB"));
+                pb.setTenPB(rs.getString("TenPB"));
+                pb.setMaPBCha(rs.getString("MaPBCha"));
+                pb.setTenPBCha(rs.getString("TenPBCha"));
+
+                lstPb.add(pb);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lstPb;
+    }
+
+    @Override
+    public List<PhongBan> getPBCon(String pbcha) {
+        String sql = "select * from phongban \n" +
+                "where status = 1  and maPBCha =?";
+        List<PhongBan> lstPb = new ArrayList<>();
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, pbcha);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                PhongBan pb = new PhongBan();
+                pb.setMaPB(rs.getString("MaPB"));
+                pb.setTenPB(rs.getString("TenPB"));
+                pb.setMaPBCha(rs.getString("MaPBCha"));
+                pb.setTenPBCha(rs.getString("TenPBCha"));
+
+                lstPb.add(pb);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lstPb;
+    }
+
 
 }
