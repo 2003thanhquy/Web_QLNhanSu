@@ -114,7 +114,7 @@ public class PhongbanDaoImpl implements PhongbanDao {
         List<ThongTinPhongBan> list = new ArrayList<>();
         String sql ="   select pb.MaPB,pb.MaPBCha,pb.TenPB,TenPBCha,pb.MaCN,MaQuanLy,pb.NgayBD,pb.TenQuanLy,pb.TenChiNhanh from\n" +
                 "QuanLyNhanSu.chinhanh cn inner join QuanLyNhanSu.ThongTinPhongBan pb on pb.MaCN = cn.MaCN \n" +
-                "  where  pb.status = 1 and pb.MaPBCha is null";
+                "  where  pb.status = 1 and pb.MaPBCha is null and pb.MaQuanLy is not null";
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
