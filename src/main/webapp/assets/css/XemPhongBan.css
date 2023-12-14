@@ -106,10 +106,8 @@ h1,h2,h3 {
     padding:5px;
 }
 .danhsachphongban-main-content {
-
     padding: 20px;
-
-    height: 600px;
+    max-height: 550px;
     overflow-y: scroll;
 }
 
@@ -142,7 +140,6 @@ h1,h2,h3 {
     height: 40px;
     margin-top: 6px;
     margin-bottom: -6px;
-
 }
 .phongban-menu--container.selected {
     background-color: #6ea8fe;
@@ -153,4 +150,7 @@ h1,h2,h3 {
 }
 .button-huy--label {
     color: #fff;
+}
+.button-thongtinphongban {
+    border: none;
 }

@@ -7,5 +7,6 @@
     top: var(--header-height);
     left: var(--nav-width);
     max-width: calc(100% - var(--nav-width));
-    width: calc(100% - var(--nav-width))
+    width: calc(100% - var(--nav-width));
+    box-sizing: border-box;
 }
