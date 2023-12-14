@@ -220,6 +220,7 @@ public class NhanVienController extends HttpServlet {
             if(nv.isValid()){
                 request.setAttribute("TrangThai","Them that bai");
                 request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
+                return;
             }
             UserService user = new UserServiceImp();
             if (user.themnhanvien(nv)) {
