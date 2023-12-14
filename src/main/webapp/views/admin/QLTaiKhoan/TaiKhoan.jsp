@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="tk-tttk-buttons">
                                         <div class="tk-tttk-button--control">
-                                            <button  type="button" class="tk-tttk--button btn btn-primary" onclick="handleThemClicked()" >Tạo tài khoản</button>
+                                            <button  type="button" class="tk-tttk--button btn btn-primary adminxai" onclick="handleThemClicked()" >Tạo tài khoản</button>
                                             <button type="button" class="tk-tttk--button btn btn-warning" onclick="handleCapNhatClicked()" >Đổi mật khẩu</button>
 <%--                                            <button  type="button" class="tk-tttk--button btn btn-danger" onclick="handleXoaClicked()" >Xóa</button>--%>
                                         </div>
@@ -104,11 +104,13 @@
     <%TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");  %>
     if(!<%=tkdangnhap.getUserRole().equals("admin")%>){
         left_container.style.display = "none";
+
         document.getElementById("tk-tttk--userid").value = '<%= tkdangnhap.getUserID() %>';
         document.getElementById("tk-tttk--username").value = '<%= tkdangnhap.getUserName() %>';
         document.getElementById("tk-tttk--password").value = '<%= tkdangnhap.getPassword() %>';
         document.getElementById("tk-tttk--userrole").value = '<%= tkdangnhap.getUserRole() %>';
         document.getElementById("tk-tttk--idnhanvien").value = '<%= tkdangnhap.getMaNV() %>';
+        document.querySelector(".adminxai").style.display = "none";
     }
 </script>
 <script>

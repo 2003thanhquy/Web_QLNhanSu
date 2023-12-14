@@ -548,6 +548,7 @@ public class NhanVienController extends HttpServlet {
 
         List<DuAn> lstDA = duAnService.getDuAn();
         request.setAttribute("lstDA", lstDA);
+
         request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request, response);
     }
     public void XuLyDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -625,7 +626,19 @@ public class NhanVienController extends HttpServlet {
 
     public void XemDanhSachDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<DuAn> lstDA = duAnService.getDuAn();
+        List<DuAn> lstDA = new ArrayList<>();
+
+        HttpSession session = request.getSession();
+        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+
+        if(tk.getUserRole().equals("admin"))
+        {
+                 lstDA = duAnService.getDuAn();
+        }
+        else
+        {
+            lstDA = duAnService.DuAnNhanVienthamgia(tk.getMaNV());
+        }
 
         //Parse to JSON
         StringBuilder jsonString = new StringBuilder();
