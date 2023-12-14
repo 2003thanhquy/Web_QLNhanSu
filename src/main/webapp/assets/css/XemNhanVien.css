@@ -14,7 +14,7 @@
 .danhsachnhanvien-table-wrapper {
     position: relative;
     text-align: center;
-    border: solid 3px #0033c4;
+    border: solid 3px #1a4978;
     border-bottom: none;
     border-left: none;
     border-right: none;
@@ -72,17 +72,16 @@
     border-radius: 5px;
     overflow: hidden;
     padding-bottom: 5px;
+    border: solid 1.5px #1a4978;
 }
 .dsnv--heading {
-    background-color: #0033c4;
+    background-color: #1a4978;
     color: #fff;
     font-weight: 800;
     padding: 20px;
     text-align: center;
 }
-.dsnv--main-container {
-    border: solid 1.5px #0033c4;
-}
+
 .dsnv--table {
     margin-top: 40px;
     padding: 0 10px;

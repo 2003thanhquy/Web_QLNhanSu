@@ -124,16 +124,15 @@ h1,h2,h3 {
 .chitietphong {
     text-align: start;
     z-index: 1;
+    background-color:#597b9e;
+    padding: 20px;
 }
 .chitiet-container {
     display: flex;
     justify-content: space-between;
     color: #fff;
 }
-.chitietphong {
-    background-color:#34aeeb;
-    padding: 20px;
-}
+
 .danhsachphongbancon-content {
 
 }
