@@ -2,15 +2,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <nav id="nav">
-    <% Thongtinnhanvien ttnv = (Thongtinnhanvien)session.getAttribute("user");%>
+<%--    <% Thongtinnhanvien ttnv = (Thongtinnhanvien)session.getAttribute("user");%>--%>
     <div class="nav-human-infor">
         <div class="" style="text-align: center; z-index: 1;">
             <div class="avatar-container">
                 <div class="avatar-nav">
-                    <img src="<%= request.getContextPath()%>/uploads/<%=ttnv.getHinhAnh()%>"/>
+<%--                    <img src="<%= request.getContextPath()%>/uploads/<%=ttnv.getHinhAnh()%>"/>--%>
                 </div>
             </div>
-            <p class="nav-human-name"><%=ttnv.getHoTen()%></p>
+<%--            <p class="nav-human-name"><%=ttnv.getHoTen()%></p>--%>
         </div>
     </div>
     <div class="brand-nav">

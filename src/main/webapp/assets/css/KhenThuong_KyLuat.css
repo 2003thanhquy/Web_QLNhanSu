@@ -1,3 +1,6 @@
+#main-content {
+    padding: 30px;
+}
 .js-pscroll {
     position: relative;
     overflow: hidden
@@ -45,7 +48,9 @@
     width: 1366px;
     margin: 0 auto
 }
-
+.table100.ver1 .table100-body tr:nth-child(even) {
+    background-color: #e9f0f7;
+}
 .container-table100 {
     width: 100%;
     min-height: 100vh;
@@ -79,27 +84,26 @@ th,td {
 }
 
 .column1 {
-    width: 10%;
-    padding-left: 40px
+    width: 16.66667%;
 }
 
 .column2 {
-    width: 20%
+    width: 16.66667%;
 }
 
 .column3 {
-    width: 20%
+    width: 16.66667%;
 }
 
 .column4 {
-    width: 15%
+    width: 16.66667%;
 }
 
 .column5 {
-    width: 10%
+    width: 16.66667%;
 }
 .column6 {
-    width: 25%;
+    width: 16.66667%;
 }
 .table100-head th {
     padding-top: 18px;
@@ -124,7 +128,7 @@ th,td {
 }
 
 .table100-body {
-    max-height: 585px;
+    max-height: 450px;
     overflow: auto
 }
 
@@ -137,11 +141,10 @@ th,td {
 }
 
 .table100.ver4 th {
-    font-family: Lato-Bold;
-    font-size: 18px;
-    color: #4272d7;
-    line-height: 1.4;
-    background-color: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    color: #fff;
+    background-color: #1a4978;
     border-bottom: 2px solid #f2f2f2
 }
 
@@ -150,10 +153,9 @@ th,td {
 }
 
 .table100.ver4 td {
-    font-family: Lato-Regular;
-    font-size: 15px;
-    color: gray;
-    line-height: 1.4
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .table100.ver4 .table100-body tr {
@@ -181,11 +183,13 @@ th,td {
 }
 .ktkl--container {
     overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 .ktkl-dsct--label {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     min-width: 100px;
+    font-family: 'Roboto', sans-serif;
 }
 .ktkl-dsct--input {
     margin: 10px 0;
@@ -196,6 +200,9 @@ th,td {
     border: solid 0.5px #3d3d3d;
     border-radius: 20px;
     padding-left: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 .ktkl-dsct--content {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -212,4 +219,33 @@ th,td {
     font-size: 1.4rem;
     font-weight: 500;
     margin: 10px;
+}
+
+.ktkl-dsct--heading{
+    color: #1a4978;
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+.ktkl--heading {
+    color: #1a4978;
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+.ktkl-dsct--button {
+    background-color: #1a4978;
+    border: none;
+    color: #fff;
+    min-width: 100px;
+}
+.tk-container {
+    border: solid 4px #1a4978;
+    padding: 30px;
 }
