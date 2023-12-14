@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.qlns.model.Thongtinnhanvien" %><%--
 Created by IntelliJ IDEA.
 User: Dell
 Date: 12/7/2023
@@ -174,7 +174,35 @@ To change this template use File | Settings | File Templates.
 </div>
 
 <%@include file="/component/all_javascript.jsp" %>
+
+
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");
+    Thongtinnhanvien nhanvienhienthi = (Thongtinnhanvien)request.getAttribute("ttnv");
+%>
+
+
+
 <script>
+    var isUserRoleAdmin = <%= tkdangnhap.getUserRole().equals("admin") %>;
+
+    var isNhanVien;
+    if (!isUserRoleAdmin ) {
+        console.log(isUserRoleAdmin);
+        document.getElementById("btnUpdate").style.display = "none";
+        document.querySelector(".thongtin-button--container").style.display= "none";
+
+        isNhanVien = <%= nhanvienhienthi.getMaNV().equals(tkdangnhap.getMaNV()) %>;
+        if (isNhanVien)
+        {
+            document.getElementById("btnUpdate").style.display = "";
+            document.querySelector(".thongtin-button--container").style.display= "";
+        }
+    }
+
+
+
+
+
     var hinhanh = document.getElementById("thongtin-fileInput-avatar")
     var hoten = document.getElementById("thongtin-input-hoten")
     var cccd = document.getElementById("thongtin-input-cccd")

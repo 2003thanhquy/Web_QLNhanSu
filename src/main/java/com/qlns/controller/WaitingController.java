@@ -19,7 +19,7 @@ public class WaitingController extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/phongban/");
             }
             else {
-                if(acc.getUserRole().equals("nhanvien")){
+                if(acc.getUserRole().equals("user")){
                     response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+acc.getMaNV());
                 }
                 else response.sendRedirect(request.getContextPath()+"/nhanvien/");
