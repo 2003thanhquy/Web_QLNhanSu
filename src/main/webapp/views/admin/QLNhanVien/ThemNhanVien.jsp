@@ -155,6 +155,11 @@
     </div>
 </div>
 <%@include file="/component/all_javascript.jsp"%>
+<c:if test="${ThemThanhCong != null}">
+    <script>
+        alert("${ThemThanhCong}");
+    </script>
+</c:if>
 <script>
     document.getElementById('fileInput-avatar').addEventListener('change', function(event) {
         const selectedImage = event.target.files[0];

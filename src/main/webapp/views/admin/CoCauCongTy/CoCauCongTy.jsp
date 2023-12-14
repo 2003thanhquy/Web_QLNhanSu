@@ -56,7 +56,9 @@
             }
 
         }).done(function () {
-            level2();
+
+            level2()
+
         });
 
     })
@@ -86,10 +88,14 @@
                 }
 
             }).done(function () {
-                level3();
+
+                level3()
+
             });
         });
     }
+
+
     function level3() {
         jQuery('.tree-level-3').one('click',function (event) {
             console.log('hello tre-level3')
