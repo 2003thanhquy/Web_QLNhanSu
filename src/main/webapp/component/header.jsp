@@ -61,7 +61,7 @@
                 </a>
             </li>
             <li class="item--more-managing">
-                <a href="" class="more-managing--context">
+                <a href="<%=request.getContextPath()%>/cocaucongty/" class="more-managing--context">
                     Cơ cấu công ty
                 </a>
             </li>
