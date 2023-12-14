@@ -217,7 +217,7 @@ public class NhanVienController extends HttpServlet {
             }
             Part part = request.getPart("image");
             NhanVien nv = getNV(request, response);
-            if(nv.isValid()){
+            if(!nv.isValid()){
                 request.setAttribute("TrangThai","Them that bai");
                 request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
                 return;
