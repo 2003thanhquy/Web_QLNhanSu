@@ -3,7 +3,6 @@
 <%@include file="/common/taglib.jsp"%>
 <nav id="nav">
 <%--    <% Thongtinnhanvien ttnv = (Thongtinnhanvien)session.getAttribute("user");%>--%>
-
     <div class="nav-human-infor">
         <div class="" style="text-align: center; z-index: 1;">
             <div class="avatar-container">
