@@ -86,7 +86,7 @@
                                 <h1 class = "thongtinphongban-text">THÔNG TIN CHI TIẾT</h1>
                             </div>
                             <div class="thongtinphongban-content">
-                                <form class="thongtinphongban-content-input--container" >
+                                <form class="thongtinphongban-content-input--container" id="thongtinphongban-form">
                                     <div class="thongtinphongban-content-input--item">
                                         <label for="maphong" class="thongtinphongban-content-input--lable">Mã phòng</label>
                                         <input id="maphong" type="text" name="maphong" class="thongtinphongban-input">
@@ -147,6 +147,8 @@
 %>
 
 <script>
+<%--    Validate--%>
+
     var isUserRoleAdmin = <%= tkdangnhap.getUserRole().equals("admin") %>;
     if (!isUserRoleAdmin) {
         document.querySelector(".thongtin-content--button").style.display = "none";
