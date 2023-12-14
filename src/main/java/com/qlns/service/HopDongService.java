@@ -9,4 +9,7 @@ public interface HopDongService {
     HopDong find();
     int suaHopDong(String id, HopDong hopDong);
     int xoaHopDong(String id);
+    List<HopDong> findhopdongtheogiamdoc(String MaGiamDoc);
+    List<HopDong> findhopdongtheotruongphong(String MaTruongPhong);
+    List<HopDong> findhopdongtheototruong(String MaToTruong);
 }

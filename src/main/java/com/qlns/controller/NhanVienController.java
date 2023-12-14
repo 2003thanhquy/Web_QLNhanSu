@@ -196,6 +196,7 @@ public class NhanVienController extends HttpServlet {
     }
 
     public void ThemNhanVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+        response.setCharacterEncoding("UTF-8");
         if (request.getMethod().equals("GET")) {
             request.setAttribute("lstPB", pb.getPhongBan());
             request.setAttribute("lstLuong", luong.getLuong());
@@ -216,6 +217,10 @@ public class NhanVienController extends HttpServlet {
             }
             Part part = request.getPart("image");
             NhanVien nv = getNV(request, response);
+            if(nv.isValid()){
+                request.setAttribute("TrangThai","Them that bai");
+                request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
+            }
             UserService user = new UserServiceImp();
             if (user.themnhanvien(nv)) {
                 String realpath = request.getServletContext().getRealPath("/uploads");
@@ -223,18 +228,12 @@ public class NhanVienController extends HttpServlet {
                     System.out.println("khoi  tao thanh cong" + realpath);
                     Files.createDirectories(Paths.get(realpath));
                 }
-                //part.write(realpath + "/" + nv.getHinhAnh());
-//                response.setContentType("text/html");
-//                PrintWriter out = response.getWriter();
-//                out.println("<h1>day la file</h1>");
-//                try {
-//                    out.println("<img src='" + request.getContextPath() + "/uploads/" + nv.getHinhAnh() + "'>");
-//                } catch (Exception e) {
-//                }
-                request.setAttribute("ThemThanhCong", "Them thanh cong");
-                request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request, response);
-
+                request.setAttribute("TrangThai","Them thanh cong");
+                request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
+                return;
             }
+            request.setAttribute("TrangThai","Them that bai");
+            request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
         }
     }
 
@@ -357,11 +356,27 @@ public class NhanVienController extends HttpServlet {
         HopDongService hopDongService = new HopDongServiceImpl();
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        Thongtinnhanvien user = (Thongtinnhanvien) session.getAttribute("user");
         List<HopDong> lstHopDong = new ArrayList<>();
         if(tk.getUserRole().equals("admin")){
             lstHopDong = hopDongService.findAll();;
         }
-
+        else {
+            if (user.getIDChucVu()==1) {
+                lstHopDong =  hopDongService.findhopdongtheogiamdoc(tk.getMaNV());
+            } else {
+                if (user.getIDChucVu()==2) {
+                    lstHopDong = hopDongService.findhopdongtheotruongphong(tk.getMaNV());
+                } else {
+                    if(user.getIDChucVu()==3) {
+                        lstHopDong =  hopDongService.findhopdongtheototruong(tk.getMaNV());
+                    }
+                    else
+                        response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
+                }
+            }
+        }
+        response.setCharacterEncoding("UTF-8");
         //Parse to JSON
         StringBuilder jsonString = new StringBuilder();
         jsonString.append("[");
@@ -515,12 +530,27 @@ public class NhanVienController extends HttpServlet {
         // String maNV = request.getParameter("manv");
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        Thongtinnhanvien user = (Thongtinnhanvien)session.getAttribute("user");
         List<KThuongKLuc> lstKtkl = null;
         if(tk!= null && tk.getUserRole().equals("admin")){
             lstKtkl = userService.getKThuongKLuat();
-        }else{
-            lstKtkl = userService.getKThuongKLuat();
         }
+        else {
+            if (user.getIDChucVu()==1) {
+                lstKtkl =  userService.getKThuongKLuatgiamdoc(tk.getMaNV());
+            } else {
+                if (user.getIDChucVu()==2) {
+                    lstKtkl = userService.getKThuongKLuattruongphong(tk.getMaNV());
+                } else {
+                    if(user.getIDChucVu()==3) {
+                        lstKtkl =  userService.getKThuongKLuattotruong(tk.getMaNV());
+                    }
+                    else
+                        response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
+                }
+            }
+        }
+
         StringBuilder jsonString = new StringBuilder();
         jsonString.append("[");
 

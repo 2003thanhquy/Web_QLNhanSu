@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file = "/component/all_css.jsp"%>
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/KhenThuong_KyLuat.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/CoCauCongTy.css">
     <title>Quản lý nhân sự</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
@@ -22,7 +22,7 @@
                     <div>
                         <ul>
                             <li class="tree-node ">
-                                <span class="tree-level-1">cong ty 111</span>
+                                <span class="tree-level-1" onclick="icon_active(this)"><i class="fa-solid fa-play icon-play icon-play-1" ></i>Cong ty 111</span>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                 li.append('<ul></ul>');
                 var ul = li.find("ul");
                 jQuery.each(data, function (index, item) {
-                    var html = `<li class="tree-node" style="display: none;"><span class="tree-level-2" macn="\${item.macn}">\${item.tencn}</span></li>`;
+                    var html = `<li class="tree-node" style="display: none;"><span class="tree-level-2 " macn="\${item.macn}" onclick="icon_active(this)"><i class="fa-solid fa-play icon-play icon-play-2 " ></i>\${item.tencn}</span></li>`;
                     ul.append(html);
                 });
 
@@ -78,7 +78,7 @@
                     li.append('<ul></ul>');
                     var ul = li.find("ul");
                     jQuery.each(data, function (index, item) {
-                        var html = `<li class="tree-node" style="display: none;"><span class="tree-level-3" mapbcha="\${item.mapbcha}">\${item.tenpbcha}</span></li>`;
+                        var html = `<li class="tree-node" style="display: none;"><span class="tree-level-3" mapbcha="\${item.mapbcha}" onclick="icon_active(this)"><i class="fa-solid fa-play icon-play icon-play-3" ></i>\${item.tenpbcha}</span></li>`;
                         ul.append(html);
                     });
                     ul.find(".tree-node").toggle("slow");
@@ -127,19 +127,10 @@
         });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function icon_active(element){
+        var iconselect = element.querySelector(".icon-play")
+        iconselect.classList.toggle("active");
+    }
 </script>
 </body>
 </html>

@@ -58,8 +58,8 @@ h1 {
 .thongtin-button--container {
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: end;
+    width: 100%;
 }
 .thongtin-input-element--container {
     display: block;
@@ -117,4 +117,185 @@ h1 {
 .cntt-container {
     background-color: #e7e6e8;
     border-radius: 4px;
+}
+.thongtin-more--icon {
+    color: #1a4978;
+    font-size: 3rem;
+}
+
+.thongtin-more--button {
+    display: flex;
+    justify-content: end;
+    margin-right: 15px;
+    position: relative;
+}
+.thongtin-more-button--container:hover .more-icon--menu  {
+    background-color: #d1d1d1;
+    display: block;
+}
+
+.thongtin-more-button--container {
+    background-color: #adadac;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+}
+.thongtin-more-button--container::before{
+    content:"";
+    background-color: transparent;
+    position: absolute;
+    height: 100%;
+    width: 6px;
+    left: -5px;
+}
+.final-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.more-icon--menu {
+    display: none;
+    position: absolute;
+    left: -105px;
+    background-color: #636262;
+    color: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    font-weight: 600;
+}
+
+.more-menu--item {
+    padding: 10px;
+    cursor: pointer;
+}
+.more-menu--item:hover {
+    background-color: #8c8c8c;
+}
+.quatrinhcontac-container {
+    background-color:  rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: none;
+    animation: qtct-container-appear 0.2s ease-in;
+}
+@keyframes qtct-container-appear {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.quatrinhcontac-container.hienthi {
+    display: flex;
+}
+.quatrinhcongtac--content {
+    height: 90%;
+    width: 50%;
+    background-color: #fff;
+    border-radius: 8px;
+    animation:qtct_content_appear 0.4s ease-in-out;
+}
+@keyframes qtct_content_appear {
+    0% {
+        opacity: 0.1;
+        position: absolute;
+        top: 0;
+    }
+    50%{
+        opacity: 0.5;
+        position: absolute;
+        top: 5%;
+    }
+    75% {
+        opacity: 0.7;
+        top: 5%;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.quatrinhcontac-heading--container {
+    display: flex;
+    background-color: #0c2a47;
+    justify-content: space-around;
+    padding: 20px;
+    overflow: hidden;
+}
+.quatrinhcongtac-heading--text {
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    flex-grow: 1;
+}
+.quatrinhcontac--closebutton {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+.qtct-tt-label,
+.qtct-tt--text{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.qtct-tt-label{
+    min-width: 130px;
+}
+.qtct-tt-table--content {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.qtct-maincontent--container {
+    padding: 30px;
+}
+.qtct-tt-table--container table {
+    border-collapse: collapse;
+
+    max-height: 350px;
+    overflow: auto;
+    display: block;
+}
+.qtct-tt-table--container tr {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.qtct-tt-table--content td, .qtct-tt-table--content th {
+    /*border: 1px solid #dddddd;*/
+    /*text-align: left;*/
+    /*padding: 8px;*/
+}
+.qtct-tt-table--content tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.qtct-tt-headingtable {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+.qtct-tt--element {
+    margin: 10px 0;
 }

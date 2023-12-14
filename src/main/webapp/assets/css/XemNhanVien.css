@@ -98,9 +98,6 @@
 .column-4 {
     width: 25%;
 }
-.column-5 {
-    width: 10%;
-}
-.column-6 {
-    width: 10%;
+.danhsachnhanvien-table-wrapper table {
+    width: 100%;
 }

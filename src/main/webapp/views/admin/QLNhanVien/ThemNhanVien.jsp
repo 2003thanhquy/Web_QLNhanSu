@@ -155,9 +155,10 @@
     </div>
 </div>
 <%@include file="/component/all_javascript.jsp"%>
-<c:if test="${ThemThanhCong != null}">
+
+<c:if test="${TrangThai != null}">
     <script>
-        alert("${ThemThanhCong}");
+        alert("${TrangThai}");
     </script>
 </c:if>
 <script>

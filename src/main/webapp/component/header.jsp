@@ -66,10 +66,16 @@
                 </a>
             </li>
             <li class="item--more-managing">
+                <a href="<%=request.getContextPath()%>/quatrinhcongtac/" class="more-managing--context">
+                    Qúa trình công tác
+                </a>
+            </li>
+            <li class="item--more-managing">
                 <a href="<%=request.getContextPath()%>/cocaucongty/" class="more-managing--context">
                     Cơ cấu công ty
                 </a>
             </li>
+
         </ul>
     </div>
 </header>
