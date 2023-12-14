@@ -18,6 +18,15 @@ public class Thongtinnhanvien {
     String tenTrinhDo;
     String hinhAnh;
     int IDChucVu;
+    String MaPB;
+
+    public String getMaPB() {
+        return MaPB;
+    }
+
+    public void setMaPB(String maPB) {
+        MaPB = maPB;
+    }
 
     public Thongtinnhanvien(String maNV, String hoTen, LocalDate namSinh, String gioiTinh, String cccd, String diaChi, String tenChiNhanh, String tenChucVu, String tenPhongBan, String soDienThoai, int bacLuong, String tenTrinhDo, String hinhAnh, int IDChucVu) {
         this.maNV = maNV;

@@ -2,17 +2,35 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <nav id="nav">
-<%--    <% Thongtinnhanvien ttnv = (Thongtinnhanvien)session.getAttribute("user");%>--%>
+
+    <%
+        HttpSession currentSession = request.getSession(false);
+        TaiKhoan taiKhoan = (TaiKhoan) currentSession.getAttribute("account");
+        String hinhanh = null;
+        String hoten = null;
+        if(! taiKhoan.getUserRole().equals("admin")) {
+            Thongtinnhanvien ttnv = (Thongtinnhanvien) session.getAttribute("user");
+            hinhanh = ttnv.getHinhAnh();
+            hoten = ttnv.getHoTen();
+        }
+    %>
+
+
     <div class="nav-human-infor">
         <div class="" style="text-align: center; z-index: 1;">
             <div class="avatar-container">
                 <div class="avatar-nav">
-<%--                    <img src="<%= request.getContextPath()%>/uploads/<%=ttnv.getHinhAnh()%>"/>--%>
+                    <% if (hinhanh != null) { %>
+                    <img src="<%= request.getContextPath() %>/uploads/<%= hinhanh %>" alt="Avatar"/>
+                    <% } %>
                 </div>
             </div>
-<%--            <p class="nav-human-name"><%=ttnv.getHoTen()%></p>--%>
+            <% if (hoten != null) { %>
+            <p class="nav-human-name"><%= hoten %></p>
+            <% } %>
         </div>
     </div>
+
     <div class="brand-nav">
         <div class="nav-main-brand">
             <div class="brand-logo">

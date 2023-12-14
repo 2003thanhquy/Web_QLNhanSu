@@ -41,6 +41,7 @@ public class UserDaoImpl implements UserDao {
                 ttnv.setHinhAnh(rs.getString("HinhAnh"));
                 ttnv.setGioiTinh(rs.getString("GioiTinh"));
                 ttnv.setIDChucVu(rs.getInt("IDChucVu"));
+                ttnv.setMaPB(rs.getString("MaPB"));
                 return ttnv;
             }
 

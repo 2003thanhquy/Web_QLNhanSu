@@ -168,7 +168,6 @@
 
 
     buttonqlaiphongban.style.display = "none";
-    buttonqly.style.display="none";
 
     var kieucapnhat = "";
     var mapbcha="";
@@ -233,9 +232,8 @@
             }
         });
         buttonqlaiphongban.style.display = "";
-        buttonkhongqly.style.display="none";
-        buttonqly.style.display="none";
         trangthai ="con";
+        document.querySelector(".button-chuyennoidung").style.display="none";
 
     }
     function xempbcha() {
@@ -257,9 +255,8 @@
             }
         });
         buttonqlaiphongban.style.display = "none";
-        buttonqly.style.display="none";
-        buttonkhongqly.style.display="";
         trangthai ="cha";
+        document.querySelector(".button-chuyennoidung").style.display="";
 
     }
     function xempbqly() {
@@ -278,8 +275,6 @@
             }
         });
         buttonqlaiphongban.style.display = "none";
-        buttonqly.style.display="none";
-        buttonkhongqly.style.display="";
 
     }
     function xempbkhongqly() {
@@ -299,8 +294,6 @@
             }
         });
         buttonqlaiphongban.style.display = "none";
-        buttonkhongqly.style.display="none";
-        buttonqly.style.display="";
 
     }
 
