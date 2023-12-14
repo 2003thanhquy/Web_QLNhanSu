@@ -94,7 +94,7 @@
         jQuery('.tree-level-3').one('click',function (event) {
             console.log('hello tre-level3')
             var li = jQuery(event.currentTarget).parent() ;
-            li.children('ul').remove();
+            li.find('ul').remove();
             var mapbcha = jQuery(this).attr('mapbcha')
             jQuery.ajax({
                 url: '<%=request.getContextPath()%>/cocaucongty/pbcon',
