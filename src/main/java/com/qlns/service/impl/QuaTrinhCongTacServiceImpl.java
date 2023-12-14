@@ -17,21 +17,22 @@ public class QuaTrinhCongTacServiceImpl implements QuaTrinhCongTacService {
 
     @Override
     public List<ThongTinQuaTrinhCongTac> layquatrinhcongtacadmin() {
-        return null;
+        return quaTrinhCongTacDao.layquatrinhcongtacadmin();
     }
 
     @Override
-    public List<ThongTinQuaTrinhCongTac> layquatrinhcongtacgiamdoc() {
-        return null;
+    public List<ThongTinQuaTrinhCongTac> layquatrinhcongtacgiamdoc(String MaGIamDoc) {
+
+        return  quaTrinhCongTacDao.layquatrinhcongtacgiamdoc(MaGIamDoc);
     }
 
     @Override
-    public List<ThongTinQuaTrinhCongTac> layquatrinhcongtactruongphong() {
-        return null;
+    public List<ThongTinQuaTrinhCongTac> layquatrinhcongtactruongphong(String MaTruongPhong) {
+        return quaTrinhCongTacDao.layquatrinhcongtactruongphong(MaTruongPhong);
     }
 
     @Override
-    public List<ThongTinQuaTrinhCongTac> layquatrinhcongtactotruong() {
-        return null;
+    public List<ThongTinQuaTrinhCongTac> layquatrinhcongtactotruong(String MaToTruong) {
+        return quaTrinhCongTacDao.layquatrinhcongtactotruong(MaToTruong);
     }
 }

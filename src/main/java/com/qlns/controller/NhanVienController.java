@@ -196,6 +196,7 @@ public class NhanVienController extends HttpServlet {
     }
 
     public void ThemNhanVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+        response.setCharacterEncoding("UTF-8");
         if (request.getMethod().equals("GET")) {
             request.setAttribute("lstPB", pb.getPhongBan());
             request.setAttribute("lstLuong", luong.getLuong());
@@ -378,7 +379,7 @@ public class NhanVienController extends HttpServlet {
                 }
             }
         }
-
+        response.setCharacterEncoding("UTF-8");
         //Parse to JSON
         StringBuilder jsonString = new StringBuilder();
         jsonString.append("[");
