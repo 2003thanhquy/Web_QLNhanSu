@@ -66,7 +66,7 @@
                 </a>
             </li>
             <li class="item--more-managing">
-                <a href="" class="more-managing--context">
+                <a href="<%=request.getContextPath()%>/quatrinhcongtac/" class="more-managing--context">
                     Qúa trình công tác
                 </a>
             </li>

@@ -1,3 +1,4 @@
+<%@ page import="com.qlns.model.ThongTinQuaTrinhCongTac" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -33,8 +34,7 @@
                                                 <th class="cell100 column1">Mã chương trình</th>
                                                 <th class="cell100 column2">Mã nhân viên</th>
                                                 <th class="cell100 column3">Ngày bắt đầu</th>
-                                                <th class="cell100 column4">Mã chức vụ</th>
-
+                                                <th class="cell100 column4">Tên chức vụ</th>
                                             </tr>
                                             </thead>
                                         </table>
@@ -42,12 +42,14 @@
                                     <div class="table100-body js-pscroll">
                                         <table>
                                             <tbody>
-                                            <tr class="row100 body">
-                                                <td class="cell100 column1">Like a butterfly</td>
-                                                <td class="cell100 column2">Boxing</td>
-                                                <td class="cell100 column3">9:00 AM - 11:00 AM</td>
-                                                <td class="cell100 column4">Aaron Chapman</td>
+                                            <c:forEach items="${listqtct}" var="quatrinhcongtac">
+                                            <tr class="row100 body" onclick="handleclicknoidungqtct('${quatrinhcongtac.noiDung}')">
+                                                <td class="cell100 column1">${quatrinhcongtac.maCT}</td>
+                                                <td class="cell100 column2">${quatrinhcongtac.maNV}</td>
+                                                <td class="cell100 column3">${quatrinhcongtac.ngayBD}</td>
+                                                <td class="cell100 column4">${quatrinhcongtac.tenChucVU}</td>
                                             </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -61,7 +63,7 @@
                                 <h2 class="dsqtct-noidung--heading">NỘI DUNG CHI TIẾT</h2>
                             </div>
                             <div class="dsqtct-noidung--content">
-                                <textarea class="dsqtct-noidung--text">
+                                <textarea class="dsqtct-noidung--text" id="noidungqtct">
 
                                 </textarea>
                             </div>
@@ -76,3 +78,17 @@
 <%@include file="/component/all_javascript.jsp" %>
 </body>
 </html>
+
+
+<script>
+
+    var noidung = document.getElementById("noidungqtct");
+    noidung.disabled = true;
+    function handleclicknoidungqtct(nd)
+    {
+        noidung.innerText=nd;
+    }
+
+
+
+</script>
