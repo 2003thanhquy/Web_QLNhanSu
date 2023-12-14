@@ -20,9 +20,9 @@
             <div class="cocaucongty--container">
                 <div class="cocaucongty--heading">
                     <div>
-                        <ul>
-                            <li class="tree-node ">
-                                <span class="tree-level-1" onclick="icon_active(this)"><i class="fa-solid fa-play icon-play icon-play-1" ></i>Cong ty 111</span>
+                        <ul class="parent">
+                            <li class="child" tree-level="1">
+                                <span class="tree-text" onclick="icon_active(this)"><i class="fa-solid fa-play icon-play icon-play-1" ></i>Công ty</span>
                             </li>
                         </ul>
                     </div>
@@ -33,104 +33,109 @@
     </div>
 
 <%@include file="/component/all_javascript.jsp"%>
-<script>
-    jQuery('.tree-level-1').one('click',function(event) {
-        console.log('hello tre-level1')
-        var li = jQuery(event.currentTarget).parent() ;
-        li.children('ul').remove();
-        jQuery.ajax({
-            url: '<%=request.getContextPath()%>/cocaucongty/chinhanh',
-            success: function(data) {
-                console.log(data)
-                li.append('<ul></ul>');
-                var ul = li.find("ul");
-                jQuery.each(data, function (index, item) {
-                    var html = `<li class="tree-node" style="display: none;"><span class="tree-level-2 " macn="\${item.macn}" onclick="icon_active(this)"><i class="fa-solid fa-play icon-play icon-play-2 " ></i>\${item.tencn}</span></li>`;
-                    ul.append(html);
-                });
+        <script>
 
-               ul.find(".tree-node").toggle("slow");
-                li.find(">span").on('click', function () {
-                    ul.find("> li").toggle("slow");
-                })
+            jQuery(document).ready(function () {
+                jQuery(".tree-text").one('click', function() {
+                    callAjaxFirstClicked(this);
+                });
+            });
+
+            const URL_WITH_TREE_LEVEL = {
+                1: "<%=request.getContextPath()%>/cocaucongty/chinhanh", //return list of ChiNhanh
+                2: "<%=request.getContextPath()%>/cocaucongty/pbcha", //return list of PhongBanCha
+                3: "<%=request.getContextPath()%>/cocaucongty/pbcon", //return list of PhongBanCon
             }
 
-        }).done(function () {
+            function collapseEffect(element) {
+                element.toggle("slow");
+            }
 
-            level2()
-
-        });
-
-    })
-    function level2() {
-        jQuery('.tree-level-2').one('click', function (event) {
-            console.log('hello tre-level2')
-            var li = jQuery(event.currentTarget).parent() ;
-            li.children('ul').remove();
-            var macn = jQuery(this).attr('macn')
-            jQuery.ajax({
-                url: '<%=request.getContextPath()%>/cocaucongty/pbcha',
-                data: {
-                    macn:macn
-                },
-                success: function (data) {
-                    console.log(data)
-                    li.append('<ul></ul>');
-                    var ul = li.find("ul");
-                    jQuery.each(data, function (index, item) {
-                        var html = `<li class="tree-node" style="display: none;"><span class="tree-level-3" mapbcha="\${item.mapbcha}" onclick="icon_active(this)"><i class="fa-solid fa-play icon-play icon-play-3" ></i>\${item.tenpbcha}</span></li>`;
-                        ul.append(html);
+            function callAjax(url, queryParams) {
+                return new Promise(function(resolve, reject) {
+                    jQuery.ajax({
+                        url: url,
+                        type: "GET",
+                        dataType: "json",
+                        data: queryParams,
+                        success: function(data) {
+                            resolve(data);
+                        },
+                        error: function(error) {
+                            console.error('Call API error with endpoint: ' + url);
+                            reject(error);
+                        }
                     });
-                    ul.find(".tree-node").toggle("slow");
-                    li.find(">span").on('click', function () {
-                        ul.find("> li").toggle("slow");
-                    })
-                }
-
-            }).done(function () {
-
-                level3()
-
-            });
-        });
-    }
+                });
+            }
 
 
-    function level3() {
-        jQuery('.tree-level-3').one('click',function (event) {
-            console.log('hello tre-level3')
-            var li = jQuery(event.currentTarget).parent() ;
-            li.find('ul').remove();
-            var mapbcha = jQuery(this).attr('mapbcha')
-            jQuery.ajax({
-                url: '<%=request.getContextPath()%>/cocaucongty/pbcon',
-                data: {
-                    mapbcha:mapbcha
-                },
-                success: function (data) {
-                    console.log(data)
-                    li.append('<ul></ul>');
-                    var ul = li.find("ul");
-                    jQuery.each(data, function (index, item) {
-                        var html = `<li class="tree-node" style="display: none;"><span class="tree-level-4" mapbcha="\${item.mapbcon}">\${item.tenpbcon}</span></li>`;
-                        ul.append(html);
+            //"this" is span clicked
+            function callAjaxFirstClicked(element) {
+                let liParent = jQuery(element).parent();
+                let params = {};
+                let url = URL_WITH_TREE_LEVEL[liParent.attr("tree-level")];
+
+                //get params from parent li of span attributes
+                liParent.each(function() {
+                    jQuery.each(this.attributes, function() {
+                        if(this.specified && this.name.includes("param-")) {
+                            console.log(this.name, this.value);
+                            let paramName = this.name.substring("param-".length);
+                            params[paramName] = this.value;
+                        }
                     });
-                    ul.find(".tree-node").toggle("slow");
-                    li.find(">span").on('click', function () {
-                        ul.find("> li").toggle("slow");
+                })
+
+                console.log('Tree level', liParent.attr("tree-level"));
+                console.log('url :', url);
+                console.log('params: ', params);
+
+                callAjax(url, params)
+                    .then(data => {
+                        //data is json objects
+                        liParent.append("<ul class='parent' style='display: none;'></ul>");
+                        let ul = liParent.find(">ul");
+                        data.forEach(element => {
+                            let liHtml = "<li class='child' tree-level='" + (parseInt(liParent.attr("tree-level")) + 1).toString() + "'>"
+                                + "<span class='tree-text' onclick='icon_active(this)'></span>"
+                                + "</li>";
+
+                            let liDOM = jQuery(liHtml);
+                            for (const [key, value] of Object.entries(element)) {
+                                if (key.includes("ten")) {
+                                    liDOM.find(">.tree-text").text(value);
+                                    liDOM.find(">.tree-text").prepend("<i class='fa-solid fa-play icon-play icon-play-2'></i>");
+                                }
+                                else {
+                                    liDOM.attr("param-"+key, value);
+                                }
+                            }
+
+                            liDOM.find(">.tree-text").one('click', function() {
+                                callAjaxFirstClicked(this);
+                            });
+
+                            ul.append(liDOM);
+                        });
                     })
-                }
+                    .then(() => {
+                        collapseEffect(liParent.find("> ul"));
+                        liParent.find("> .tree-text").on('click', function() {
+                            collapseEffect(liParent.find("> ul"));
+                        });
+                    })
+                    .catch((error) => {
+                        // Handle any errors from the AJAX call
+                        console.error(error);
+                    });
 
-            }).done(function () {
-                //level3();
-            });
-        });
-    }
+            }
+            function icon_active(element){
+                var iconselect = element.querySelector(".icon-play")
+                iconselect.classList.toggle("active");
+            }
 
-    function icon_active(element){
-        var iconselect = element.querySelector(".icon-play")
-        iconselect.classList.toggle("active");
-    }
-</script>
+        </script>
 </body>
 </html>
