@@ -81,3 +81,7 @@ a{
 ::-webkit-scrollbar-track {
     background-color: #f1f1f1; /* Màu nền của khu vực chứa nội dung thanh cuộn */
 }
+label.error {
+    display: block;
+    color: #e61045;
+}

@@ -1,9 +1,9 @@
 <%@ page import="com.qlns.model.TaiKhoan" %>
-<%@ page import="com.qlns.model.Thongtinnhanvien" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
+<%--gan tag--%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +38,7 @@
                         <div class="danhsachphongban-container">
                             <div class="button-chuyennoidung" style="display: flex">
                                 <div tabindex="0" class="phongban-menu--container selected phongcoquanly-container " onclick="xempbqly()">
-                                    <h3>Phòng có quản lý</h3>
+                                    <h3>Phòng ban có quản lý</h3>
                                 </div>
                                 <div tabindex="0" class="phongban-menu--container phongchuacoquanly-container" onclick="xempbkhongqly()">
                                     <h3>Phòng chưa có quản lý</h3>
@@ -83,7 +83,7 @@
                     <div class ="col-xl-6 col-sm-12">
                         <div class="thongtinphongban-container">
                             <div class="thongtinphongban-header">
-                                <h1 class = "thongtinphongban-text">THÔNG TIN CHI TIẾT</h1>
+                                <h1 class = "thongtinphongban-text">Thông tin chi tiết</h1>
                             </div>
                             <div class="thongtinphongban-content">
                                 <form class="thongtinphongban-content-input--container" >
@@ -105,30 +105,31 @@
                                     </div>
                                     <div class="thongtinphongban-content-input--item">
                                         <label for="ngaythanhlap" class="thongtinphongban-content-input--lable">Thành lập</label>
-                                        <input id="ngaythanhlap" type="date" name="ngaythanhlap" class="thongtinphongban-input">
+                                        <input id="ngaythanhlap" type="text" name="ngaythanhlap" class="thongtinphongban-input">
                                     </div>
                                 </form>
                                 <div class="thongtin-content--button">
                                     <div class = "button-control button-container">
-                                        <div class="button-them btn btn-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
-                                            <p class="button-them--label">Tạo phòng ban</p>
+                                        <div class="button-them btn btn-outline-primary btn-lg button-thongtinphongban" onclick="ThemPhongBan()">
+                                            <p class="button-them--label">Thêm</p>
                                         </div>
-                                        <div class="button-capnhat btn btn-info btn-lg button-thongtinphongban" onclick="SuaPhongBan()">
-                                            <p class="button-capnhat--label">Cập nhật thông tin</p>
+                                        <div class="button-capnhat btn btn-outline-info btn-lg button-thongtinphongban" onclick="SuaPhongBan()">
+                                            <p class="button-capnhat--label">Cập nhật</p>
                                         </div>
-                                        <div class="button-xoa btn btn-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan()">
-                                            <p class="button-xoa--label">Xóa phòng ban</p>
+                                        <div class="button-xoa btn btn-outline-danger btn-lg button-thongtinphongban" onclick="XoaPhongBan()">
+                                            <p class="button-xoa--label">Xóa</p>
                                         </div>
                                     </div>
                                     <div class="button-confirm button-container">
-                                        <div class="button-huy btn btn-warning btn-lg button-thongtinphongban" onclick="Huy()">
+                                        <div class="button-huy btn btn-outline-warning btn-lg button-thongtinphongban" onclick="Huy()">
                                             <p class="button-huy--label">Hủy</p>
                                         </div>
-                                        <button class="button-xacnhan btn btn-success btn-lg button-thongtinphongban" onclick="XacNhan()">
+                                        <button class="button-xacnhan btn btn-outline-success btn-lg button-thongtinphongban" onclick="XacNhan()">
                                             <p class=" button-xacnhan--label">Xác nhận</p>
                                         </button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -142,24 +143,13 @@
 
 
 
-<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");
-    Thongtinnhanvien ttnv = (Thongtinnhanvien)session.getAttribute("user");
-%>
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
 
 <script>
-    var isUserRoleAdmin = <%= tkdangnhap.getUserRole().equals("admin") %>;
+    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
     if (!isUserRoleAdmin) {
         document.querySelector(".thongtin-content--button").style.display = "none";
-        document.querySelector(".phongchuacoquanly-container").style.display="none";
-        document.querySelector(".button-chuyennoidung").style.display="none";
-
     }
-    var roletotruong = <%= ttnv != null && ttnv.getIDChucVu()==3 %>;
-
-    if (roletotruong) {
-        document.querySelector(".button-xemphongcon--container").style.display="none";
-    }
-
 
 
     var buttonqlaiphongban = document.querySelector(".button-quaylaiphongcha--container");
@@ -168,6 +158,7 @@
 
 
     buttonqlaiphongban.style.display = "none";
+    buttonqly.style.display="none";
 
     var kieucapnhat = "";
     var mapbcha="";
@@ -192,6 +183,7 @@
     tencn.disabled = true;
     tenql.disabled = true;
     ngaybd.disabled = true;
+    var phongbandangclick;
     var sua="sua";
 
     function handleItemClick(event,tenPB, maPB, tenCN,tenQL, ngayBD ,maQL,maCN) {
@@ -224,6 +216,7 @@
             },
             success: function(data) {
                 row.innerHTML=data;
+                document.querySelector('.phongban-item').onclick();
 
 
             },
@@ -232,8 +225,9 @@
             }
         });
         buttonqlaiphongban.style.display = "";
+        buttonkhongqly.style.display="none";
+        buttonqly.style.display="none";
         trangthai ="con";
-        document.querySelector(".button-chuyennoidung").style.display="none";
 
     }
     function xempbcha() {
@@ -247,7 +241,7 @@
             },
             success: function(data) {
                 row.innerHTML=data;
-
+                document.querySelector('.phongban-item').onclick();
 
             },
             error: function(error) {
@@ -255,8 +249,9 @@
             }
         });
         buttonqlaiphongban.style.display = "none";
+        buttonqly.style.display="none";
+        buttonkhongqly.style.display="";
         trangthai ="cha";
-        document.querySelector(".button-chuyennoidung").style.display="";
 
     }
     function xempbqly() {
@@ -268,6 +263,7 @@
             },
             success: function(data) {
                 row.innerHTML=data;
+                document.querySelector('.phongban-item').onclick();
 
             },
             error: function(error) {
@@ -275,6 +271,8 @@
             }
         });
         buttonqlaiphongban.style.display = "none";
+        buttonqly.style.display="none";
+        buttonkhongqly.style.display="";
 
     }
     function xempbkhongqly() {
@@ -287,6 +285,7 @@
             },
             success: function(data) {
                 row.innerHTML=data;
+                document.querySelector('.phongban-item').onclick();
 
             },
             error: function(error) {
@@ -294,6 +293,8 @@
             }
         });
         buttonqlaiphongban.style.display = "none";
+        buttonkhongqly.style.display="none";
+        buttonqly.style.display="";
 
     }
 
@@ -307,11 +308,11 @@
         tenql.value = '';
         ngaybd.value = '';
         maphong.disabled=false;
-        tenpb.disabled = false;
         tencn.disabled = false;
+        tenpb.disabled=false;
+        tenql.disabled=false;
         ngaybd.disabled = false;
-        tenql.disabled = false;
-
+        document.querySelector(".button-capnhat--label").disabled = false;
         maphong.focus();
 
         if (trangthai === "con") {

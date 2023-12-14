@@ -97,6 +97,7 @@
                         liParent.append("<ul class='parent' style='display: none;'></ul>");
                         let ul = liParent.find(">ul");
                         data.forEach(element => {
+
                             let liHtml = "<li class='child' tree-level='" + (parseInt(liParent.attr("tree-level")) + 1).toString() + "'>"
                                 + "<span class='tree-text' onclick='icon_active(this)'></span>"
                                 + "</li>";
@@ -105,11 +106,12 @@
                             for (const [key, value] of Object.entries(element)) {
                                 if (key.includes("ten")) {
                                     liDOM.find(">.tree-text").text(value);
-                                    liDOM.find(">.tree-text").prepend("<i class='fa-solid fa-play icon-play icon-play-2'></i>");
+                                    liDOM.find(">.tree-text").prepend("<i class='fa-solid fa-play icon-play icon-play-`${i}`'></i>");
                                 }
                                 else {
                                     liDOM.attr("param-"+key, value);
                                 }
+
                             }
 
                             liDOM.find(">.tree-text").one('click', function() {

@@ -47,7 +47,7 @@
                     <h1 class="themnhanvien-thucong--header">THÊM NHÂN VIÊN-THỦ CÔNG</h1>
                     <div class="themnhanvien-thucong--content container">
                                 <div class="themnhanvien-thucong-form--container container">
-                                    <form action="<%=request.getContextPath()%>/nhanvien/themnhanvien" method="post" class="form-tnv container" enctype="multipart/form-data">
+                                    <form id="form-themnhanvien" action="<%=request.getContextPath()%>/nhanvien/themnhanvien" method="post" class="form-tnv container" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-4" style="padding-bottom: 20px; ">
                                                 <div class="tnv-avatar--container">
@@ -162,6 +162,50 @@
     </script>
 </c:if>
 <script>
+    jQuery().ready(function (){
+        jQuery("#form-themnhanvien").validate({
+            rules: {
+                "tnv-hovaten": {
+                    required:true
+                },
+                "tnv-cmnd": {
+                    required: true
+                },
+                "tnv-diachi": {
+                    required: true
+                },
+                "tnv-sdt": {
+                    required: true
+                },
+                "tnv-ngaysinh": {
+                    required: true
+                },
+                "gender": {
+                    required: true
+                }
+            },
+            messages: {
+                "tnv-hovaten": {
+                    required: "Yêu cầu nhập tên"
+                },
+                "tnv-cmnd": {
+                    required: "Yêu cầu chứng minh nhân dân"
+                },
+                "tnv-diachi": {
+                    required: "Yêu cầu nhập địa chỉ"
+                },
+                "tnv-sdt": {
+                    required: "Yêu cầu nhập số điện thoại"
+                },
+                "tnv-ngaysinh": {
+                    required: "Yêu cầu nhập ngày sinh"
+                },
+                "gender": {
+                    required: "Chọn giới tính của bạn"
+                }
+            }
+        });
+    })
     document.getElementById('fileInput-avatar').addEventListener('change', function(event) {
         const selectedImage = event.target.files[0];
         if (selectedImage) {
