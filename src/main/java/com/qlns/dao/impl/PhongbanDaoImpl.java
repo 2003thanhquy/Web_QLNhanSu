@@ -27,8 +27,8 @@ public class PhongbanDaoImpl implements PhongbanDao {
             rs= ps.executeQuery();
             while(rs.next()){
                 java.sql.Date dateValue = java.sql.Date.valueOf(rs.getDate(7).toLocalDate());
-        list.add(new ThongTinPhongBan(rs.getString(1),
-                rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
+                list.add(new ThongTinPhongBan(rs.getString(1),
+                        rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), dateValue.toLocalDate(), rs.getString(8),rs.getString(9)));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -99,7 +99,7 @@ public class PhongbanDaoImpl implements PhongbanDao {
 
                 ThongTinPhongBan pb = new ThongTinPhongBan(rs.getString(1),
                         rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),dateValue.toLocalDate(),rs.getString(8),rs.getString(9));
-            return pb;
+                return pb;
             }
 
         }catch (Exception e){
