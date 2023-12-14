@@ -20,6 +20,45 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 <div id="main-web">
+    <div class="quatrinhcontac-container ">
+        <div class="quatrinhcongtac--content">
+            <div class="quatrinhcontac-heading--container">
+                <h2 class="quatrinhcongtac-heading--text">QUÁ TRÌNH CÔNG TÁC</h2>
+                <button class="quatrinhcontac--closebutton btn btn-danger"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="qtct-maincontent--container">
+                <div class="qtct-tt--element">
+                    <label for="qtct-tt--idnhanvien" class="qtct-tt-label">Mã nhân viên:</label>
+                    <span class="qtct-tt--text" id="qtct-tt--idnhanvien">2111713</span>
+                </div>
+                <div class="qtct-tt--element">
+                    <label for="qtct-tt--tennhanvien" class="qtct-tt-label">Họ và tên:</label>
+                    <span class="qtct-tt--text" id="qtct-tt--tennhanvien">Phạm Hữu Tuấn</span>
+                </div>
+                <div class="qtct-tt-table--container">
+                    <h2 class="qtct-tt-headingtable">Quá trình công tác</h2>
+                    <div class="qtct-tt-table--content">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Nội dung</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Mã chức vụ</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Bắt đầu làm vệc</td>
+                                <td>2023-09-02</td>
+                                <td>1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <%@include file="/component/navbar/NoneMenu-nav.jsp" %>
     <%@include file="/component/header.jsp" %>
     <div id="content">
@@ -34,7 +73,6 @@ To change this template use File | Settings | File Templates.
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="thongtin-avatar-container ">
-
                                                 <div id="thongtin-imageContainer-avatar">
                                                     <c:if test="${!empty ttnv.hinhAnh}">
                                                         <img class="thongtin-image-avatar"
@@ -150,13 +188,25 @@ To change this template use File | Settings | File Templates.
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="thongtin-button--container">
-                                                        <button class="thongtin-button btn btn-danger" id="btnCancel"
-                                                                onclick="CancelNV()">Hủy
-                                                        </button>
-                                                        <button type="submit" class="thongtin-button btn btn-success"
-                                                                id="btnConfirm">Xác nhận
-                                                        </button>
+                                                    <div class="final-container">
+                                                        <div class="thongtin-more--button">
+                                                            <div class="thongtin-more-button--container">
+                                                                <i class="thongtin-more--icon fa-solid fa-ellipsis-vertical"></i>
+                                                                <div class="more-icon--menu">
+                                                                    <ul class="list-more--menu">
+                                                                        <li class="more-menu--item qtct-item">Quá trình công tác</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="thongtin-button--container">
+                                                            <button class="thongtin-button btn btn-danger" id="btnCancel"
+                                                                    onclick="CancelNV()">Hủy
+                                                            </button>
+                                                            <button type="submit" class="thongtin-button btn btn-success"
+                                                                    id="btnConfirm">Xác nhận
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,7 +220,6 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
     </div>
-
 </div>
 
 <%@include file="/component/all_javascript.jsp" %>
@@ -183,6 +232,18 @@ To change this template use File | Settings | File Templates.
 
 
 <script>
+<%--    Hiển thị quá trình công tác--%>
+    var qtct_iem = $(".qtct-item");
+    var qtct_container = $(".quatrinhcontac-container");
+    var qtct_closebtn = $(".quatrinhcontac--closebutton")
+    qtct_iem.addEventListener("click", e=>{
+        qtct_container.classList.add("hienthi");
+    });
+    qtct_closebtn.addEventListener("click", e =>{
+        qtct_container.classList.remove("hienthi");
+    })
+<%--    Hiển thị quá trình công tác--%>
+
     var isUserRoleAdmin = <%= tkdangnhap.getUserRole().equals("admin") %>;
 
 
