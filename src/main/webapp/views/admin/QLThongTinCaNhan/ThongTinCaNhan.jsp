@@ -20,6 +20,10 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 <div id="main-web">
+
+    <% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");
+        Thongtinnhanvien nhanvienhienthi = (Thongtinnhanvien)request.getAttribute("ttnv");
+    %>
     <div class="quatrinhcontac-container ">
         <div class="quatrinhcongtac--content">
             <div class="quatrinhcontac-heading--container">
@@ -29,11 +33,11 @@ To change this template use File | Settings | File Templates.
             <div class="qtct-maincontent--container">
                 <div class="qtct-tt--element">
                     <label for="qtct-tt--idnhanvien" class="qtct-tt-label">Mã nhân viên:</label>
-                    <span class="qtct-tt--text" id="qtct-tt--idnhanvien">2111713</span>
+                    <span class="qtct-tt--text" id="qtct-tt--idnhanvien"><%=nhanvienhienthi.getMaNV()%></span>
                 </div>
                 <div class="qtct-tt--element">
                     <label for="qtct-tt--tennhanvien" class="qtct-tt-label">Họ và tên:</label>
-                    <span class="qtct-tt--text" id="qtct-tt--tennhanvien">Phạm Hữu Tuấn</span>
+                    <span class="qtct-tt--text" id="qtct-tt--tennhanvien"><%=nhanvienhienthi.getHoTen()%></span>
                 </div>
                 <div class="qtct-tt-table--container">
                     <h2 class="qtct-tt-headingtable">Quá trình công tác</h2>
@@ -43,15 +47,10 @@ To change this template use File | Settings | File Templates.
                             <tr>
                                 <th>Nội dung</th>
                                 <th>Ngày bắt đầu</th>
-                                <th>Mã chức vụ</th>
+                                <th>Tên chức vụ</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>Bắt đầu làm vệc</td>
-                                <td>2023-09-02</td>
-                                <td>1</td>
-                            </tr>
+                            <tbody id="dataquatrinhcongtac" >
                             </tbody>
                         </table>
                     </div>
@@ -225,9 +224,6 @@ To change this template use File | Settings | File Templates.
 <%@include file="/component/all_javascript.jsp" %>
 
 
-<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account");
-    Thongtinnhanvien nhanvienhienthi = (Thongtinnhanvien)request.getAttribute("ttnv");
-%>
 
 
 
@@ -236,7 +232,23 @@ To change this template use File | Settings | File Templates.
     var qtct_iem = $(".qtct-item");
     var qtct_container = $(".quatrinhcontac-container");
     var qtct_closebtn = $(".quatrinhcontac--closebutton")
+    var qtct = '<%=nhanvienhienthi.getMaNV()%>'
     qtct_iem.addEventListener("click", e=>{
+        jQuery.ajax({
+            type: "GET",
+            url: "${request.getContextPath()}/QLNhanSu_war_exploded/quatrinhcongtac/xemcongtacbanthan",
+            data: {
+                MaNV: qtct
+            },
+            success: function(data) {
+                document.getElementById("dataquatrinhcongtac").innerHTML=data;
+
+
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
         qtct_container.classList.add("hienthi");
     });
     qtct_closebtn.addEventListener("click", e =>{
@@ -339,6 +351,9 @@ To change this template use File | Settings | File Templates.
             reader.readAsDataURL(selectedImage);
         }
     });
+
+
+
 </script>
 </body>
 </html>
