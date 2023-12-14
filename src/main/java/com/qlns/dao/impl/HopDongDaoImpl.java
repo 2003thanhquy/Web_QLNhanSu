@@ -62,6 +62,111 @@ public class HopDongDaoImpl implements HopDongDao {
 
         return null;
     }
+    public List<HopDong> findhopdongtheogiamdoc(String MaGiamDoc) {
+        String sql = " SELECT hd.*\n" +
+                "                FROM ThongTinNhanVien nv\n" +
+                "                INNER JOIN chinhanh cn ON nv.MaCN = cn.MaCN\n" +
+                "                INNER JOIN hopdong hd ON nv.MaNV = hd.MaNV\n" +
+                "                WHERE cn.MaGiamDoc = ? and hd.status =1";
+
+        try {
+            conn = new DBConnection().getConnection();
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,MaGiamDoc);
+            rs = preparedStatement.executeQuery();
+
+            List<HopDong> lstHopDong = new ArrayList<>();
+            while (rs.next()) {
+                HopDong hopDong = new HopDong();
+                hopDong.setMaHopDong(rs.getString("MaHopDong"));
+                hopDong.setMaNV(rs.getString("MaNV"));
+                hopDong.setNgayBD(rs.getDate("NgayBD").toLocalDate());
+                hopDong.setNgayKT(rs.getDate("NgayKT").toLocalDate());
+                hopDong.setNoidung(rs.getString("NoiDung"));
+
+                lstHopDong.add(hopDong);
+            }
+
+            return lstHopDong;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+    public List<HopDong> findhopdongtheotruongphong(String MaTruongPhong) {
+        String sql = " SELECT hd.*\n" +
+                "                FROM ThongTinNhanVien nv \n" +
+                "                INNER JOIN phongban pb ON nv.MaPB = pb.MaPB \n" +
+                "                INNER JOIN hopdong hd ON nv.MaNV = hd.MaNV \n" +
+                "                INNER JOIN phongban pbcha ON pb.MaPBCha = pbcha.MaPB \n" +
+                "                WHERE pbcha.MaQuanLy = ? and hd.status =1\n" +
+                "union \n" +
+                "SELECT hd.* \n" +
+                "                FROM ThongTinNhanVien nv\n" +
+                "                INNER JOIN phongban pb ON nv.MaPB = pb.MaPB\n" +
+                "                INNER JOIN hopdong hd ON nv.MaNV = hd.MaNV\n" +
+                "                WHERE pb.MaQuanLy = ? and hd.status =1";
+
+        try {
+            conn = new DBConnection().getConnection();
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,MaTruongPhong);
+            preparedStatement.setString(2,MaTruongPhong);
+            rs = preparedStatement.executeQuery();
+
+            List<HopDong> lstHopDong = new ArrayList<>();
+            while (rs.next()) {
+                HopDong hopDong = new HopDong();
+                hopDong.setMaHopDong(rs.getString("MaHopDong"));
+                hopDong.setMaNV(rs.getString("MaNV"));
+                hopDong.setNgayBD(rs.getDate("NgayBD").toLocalDate());
+                hopDong.setNgayKT(rs.getDate("NgayKT").toLocalDate());
+                hopDong.setNoidung(rs.getString("NoiDung"));
+
+                lstHopDong.add(hopDong);
+            }
+
+            return lstHopDong;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+    public List<HopDong> findhopdongtheototruong(String MaToTruong) {
+        String sql = " SELECT hd.* \n" +
+                "                FROM ThongTinNhanVien nv\n" +
+                "                INNER JOIN phongban pb ON nv.MaPB = pb.MaPB\n" +
+                "                INNER JOIN hopdong hd ON nv.MaNV = hd.MaNV\n" +
+                "                WHERE pb.MaQuanLy = ? and hd.status=1";
+
+        try {
+            conn = new DBConnection().getConnection();
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,MaToTruong);
+            rs = preparedStatement.executeQuery();
+
+            List<HopDong> lstHopDong = new ArrayList<>();
+            while (rs.next()) {
+                HopDong hopDong = new HopDong();
+                hopDong.setMaHopDong(rs.getString("MaHopDong"));
+                hopDong.setMaNV(rs.getString("MaNV"));
+                hopDong.setNgayBD(rs.getDate("NgayBD").toLocalDate());
+                hopDong.setNgayKT(rs.getDate("NgayKT").toLocalDate());
+                hopDong.setNoidung(rs.getString("NoiDung"));
+
+                lstHopDong.add(hopDong);
+            }
+
+            return lstHopDong;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
 
     @Override
     public HopDong findByMaHopDong(String maHopDong) {

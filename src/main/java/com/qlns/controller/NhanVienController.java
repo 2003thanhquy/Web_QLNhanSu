@@ -354,9 +354,25 @@ public class NhanVienController extends HttpServlet {
         HopDongService hopDongService = new HopDongServiceImpl();
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        Thongtinnhanvien user = (Thongtinnhanvien) session.getAttribute("user");
         List<HopDong> lstHopDong = new ArrayList<>();
         if(tk.getUserRole().equals("admin")){
             lstHopDong = hopDongService.findAll();;
+        }
+        else {
+            if (user.getIDChucVu()==1) {
+                lstHopDong =  hopDongService.findhopdongtheogiamdoc(tk.getMaNV());
+            } else {
+                if (user.getIDChucVu()==2) {
+                    lstHopDong = hopDongService.findhopdongtheotruongphong(tk.getMaNV());
+                } else {
+                    if(user.getIDChucVu()==3) {
+                        lstHopDong =  hopDongService.findhopdongtheototruong(tk.getMaNV());
+                    }
+                    else
+                        response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
+                }
+            }
         }
 
         //Parse to JSON
@@ -512,12 +528,27 @@ public class NhanVienController extends HttpServlet {
         // String maNV = request.getParameter("manv");
         HttpSession session = request.getSession();
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        Thongtinnhanvien user = (Thongtinnhanvien)session.getAttribute("user");
         List<KThuongKLuc> lstKtkl = null;
         if(tk!= null && tk.getUserRole().equals("admin")){
             lstKtkl = userService.getKThuongKLuat();
-        }else{
-            lstKtkl = userService.getKThuongKLuat();
         }
+        else {
+            if (user.getIDChucVu()==1) {
+                lstKtkl =  userService.getKThuongKLuatgiamdoc(tk.getMaNV());
+            } else {
+                if (user.getIDChucVu()==2) {
+                    lstKtkl = userService.getKThuongKLuattruongphong(tk.getMaNV());
+                } else {
+                    if(user.getIDChucVu()==3) {
+                        lstKtkl =  userService.getKThuongKLuattotruong(tk.getMaNV());
+                    }
+                    else
+                        response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
+                }
+            }
+        }
+
         StringBuilder jsonString = new StringBuilder();
         jsonString.append("[");
 
