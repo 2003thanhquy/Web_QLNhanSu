@@ -95,7 +95,7 @@
                                        </div>
                                        <div class="dscn--ttcn--input-container">
                                            <label class="dscn-ttcn-label-input" for="dscn--ttcn-ngaythanhlap">Ngày thành lập</label>
-                                           <input class="dscn-ttcn-input-element" type="text" id="dscn--ttcn-ngaythanhlap" name="dscn--ttcn-ngaythanhlap">
+                                           <input class="dscn-ttcn-input-element" type="date" id="dscn--ttcn-ngaythanhlap" name="dscn--ttcn-ngaythanhlap">
                                        </div>
                                        <div class="dscn--ttcn--input-container">
                                            <label class="dscn-ttcn-label-input" for="dscn--ttcn-idgiamdoc">Mã giám đốc</label>
@@ -154,9 +154,8 @@
          ngaythanhlap.disabled = true;
          magiamdoc.disabled = true;
 
-
-
      }
+    document.getElementsByClassName(".row100 body dscn-table-tr")[1][1].click();
      function  themcn(){
          kieucapnhat = "them";
          macn.value = '';

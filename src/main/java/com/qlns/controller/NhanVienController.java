@@ -223,15 +223,19 @@ public class NhanVienController extends HttpServlet {
                     System.out.println("khoi  tao thanh cong" + realpath);
                     Files.createDirectories(Paths.get(realpath));
                 }
-                part.write(realpath + "/" + nv.getHinhAnh());
-                response.setContentType("text/html");
-                PrintWriter out = response.getWriter();
-                out.println("<h1>day la file</h1>");
-                try {
-                    out.println("<img src='" + request.getContextPath() + "/uploads/" + nv.getHinhAnh() + "'>");
-                } catch (Exception e) {
-                }
+//                part.write(realpath + "/" + nv.getHinhAnh());
+//                response.setContentType("text/html");
+//                PrintWriter out = response.getWriter();
+//                out.println("<h1>day la file</h1>");
+//                try {
+//                    out.println("<img src='" + request.getContextPath() + "/uploads/" + nv.getHinhAnh() + "'>");
+//                } catch (Exception e) {
+//                }
+                request.setAttribute("TrangThai","Them thanh cong");
+                request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
             }
+            request.setAttribute("TrangThai","Them that bai");
+            request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
         }
     }
 
