@@ -89,13 +89,13 @@ public class PhongBanController extends HttpServlet {
             listpb = pbService.layhetdanhsachphongban();
         }
         else {
-            if (tk.getUserRole().equals("giamdoc")) {
+            if (user.getIDChucVu()==1) {
                 listpb =  pbService.layhetdanhsachphongbangiamdoc(tk.getMaNV());
             } else {
-                if (tk.getUserRole().equals("truongphong")) {
+                if (user.getIDChucVu()==2) {
                     listpb = pbService.layhetdanhsachphongbantruongphong(tk.getMaNV());
                 } else {
-                    if (tk.getUserRole().equals("totruong"))
+                    if (user.getIDChucVu()==3)
                     {
                         listpb.add(pbService.layhetphongbanthanquanly(tk.getMaNV()));
                     }
@@ -128,17 +128,17 @@ public class PhongBanController extends HttpServlet {
             listpb = pbService.laydanhsachphongbanchaquyenadmin();
         }
         else {
-            if (tk.getUserRole().equals("giamdoc")) {
+            if (user.getIDChucVu()==1) {
                 listpb =  pbService.laydanhsachphongbangiamdoc(tk.getMaNV());
             } else {
-                if (tk.getUserRole().equals("truongphong")) {
+                if (user.getIDChucVu()==2) {
                     listpb.add(pbService.layhetphongbanthanquanly(tk.getMaNV()));
                 } else {
-                    if(tk.getUserRole().equals("totruong")) {
+                    if(user.getIDChucVu()==3) {
                         listpb.add(pbService.layhetphongbanthanquanly(tk.getMaNV()));
                     }
                     else
-                        request.getRequestDispatcher("/nhanvien/thongtin?manv="+tk.getMaNV()+"/").forward(request,response);
+                        response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
                 }
             }
         }
@@ -256,7 +256,7 @@ public class PhongBanController extends HttpServlet {
                     "    <td class='column-1'>" + nv.getMaNV() + "</td>\n" +
                     "    <td class='column-2'>" + nv.getHoTen() + "</td>\n" +
                     "    <td class='column-3'>" + nv.getTenChucVu() + "</td>\n" +
-                    "    <td class=\"column-4\"><a href=\"thongtin?manv=" + nv.getMaNV() + "\"><i class=\"fa-solid fa-eye\" data-nhanvien=\"" + nv + "\"></i></a></td>\n" +
+                    "    <td class=\"column-4\"><a href=\""+req.getContextPath()+"/nhanvien/thongtin?manv=" + nv.getMaNV() + "\"><i class=\"fa-solid fa-eye\" data-nhanvien=" + nv + "></i></a></td>\n" +
                     "</tr>");
         }
 

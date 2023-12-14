@@ -1,3 +1,4 @@
+<%@ page import="com.qlns.model.TaiKhoan" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp"%>
 <header id="header">
@@ -20,7 +21,11 @@
                 <div class="header-deltail-container" tabindex="0">
                     <ul class="header-deltail-list-tiems">
                         <li class="header-detail-item">
-                            <a href="<%=request.getContextPath()%>/nhanvien/thongtin" class="detail-item--context">
+                            <%
+                                TaiKhoan tk=  (TaiKhoan)session.getAttribute("account");
+
+                            %>
+                            <a href="<%=request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV()%>" class="detail-item--context">
                                 Quản lý thông tin cá nhân
                             </a>
                         </li>
