@@ -10,6 +10,7 @@ public interface DuAnDao {
     List<DuAn> getDuAn();
     List<DANhanVien> getChiTietDA(String maDA);
     List<DuAn> getDuAn(String maDA);
+    public List<DuAn> DuAnNhanVienthamgia(String MaNV);
     int create(DuAn duAn);
     int delete(String id);
     int update(String id, DuAn duAn);

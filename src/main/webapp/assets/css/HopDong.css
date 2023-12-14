@@ -119,7 +119,7 @@ th,td {
 }
 
 .table100-body {
-    max-height: 500px;
+    max-height: 400px;
     overflow: auto
 }
 
@@ -132,20 +132,19 @@ th,td {
 }
 
 .table100.ver5 th {
-    font-family: Lato-Bold;
-    font-size: 14px;
-    color: #555;
-    line-height: 1.4;
-    text-transform: uppercase;
-    background-color: transparent
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 500;
+    background-color: #1a4978
 }
 
 .table100.ver5 td {
-    font-family: Lato-Regular;
-    font-size: 15px;
-    color: gray;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
     line-height: 1.4;
-    background-color: #f7f7f7
+    background-color: #f7f7f7;
+    font-weight: 500;
 }
 
 .table100.ver5 .table100-body tr {
@@ -184,8 +183,7 @@ th,td {
 }
 
 .table100.ver5 .table100-head th {
-    padding-top: 25px;
-    padding-bottom: 25px
+
 }
 
 .table100.ver5 {
@@ -215,9 +213,10 @@ th,td {
     padding: 20px;
 }
 .hd-tthd-input--label{
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     min-width: 120px;
+    font-family: 'Roboto', sans-serif;
 }
 .hd-tthd-input--content {
     margin: 10px 0;
@@ -228,6 +227,9 @@ th,td {
     border-radius: 20px;
     border: solid 0.5px #545454;
     padding-left: 10px;
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
 }
 .hd-tthd-noidung--element {
     display: block;
@@ -235,6 +237,9 @@ th,td {
     height: 200px;
     border: solid 1px #545454;
     font-size: 1.2rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    font-family: 'Arial', sans-serif;
     font-weight: 500;
 }
 .hd-tthd--controlbuttons,
@@ -248,4 +253,33 @@ th,td {
     height: 40px;
     font-size: 1.4rem;
     font-weight: 500;
+    border: none;
+    background-color: #1a4978;
+    color: #fff;
+}
+.hd-dshd--heading {
+    color: #1a4978;
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+.hd-dshd--container {
+    padding: 20px;
+    border: solid 4px #1a4978;
+
+}
+.hd-tthd--heading {
+    color: #1a4978;
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+.hd-container{
+    padding: 30px;
 }

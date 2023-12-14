@@ -24,8 +24,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="dsda-da--container" style="height: 50%">
-                                    <h2  style="text-align: center;" class="dsda-da--heading ">Danh sách dự án</h2>
                                     <div class="dsda-da--content">
+                                        <h2 class="dsda-da--header"  style="text-align: center; font-weight: 700; color: #fff" class="dsda-da--heading ">DANH SÁCH DỰ ÁN</h2>
                                         <div class="dsda-da-table table100 ver1 m-b-110">
                                             <div class="table100-body js-pscroll">
                                                 <table id="tbl-duan">
@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-sm-12 col-xl-4 container-fluid">
                         <div class="dsda-ttct--container">
-                            <h2 style="text-align: center">Thông tin dự án</h2>
+                            <h2 class="dsda-ttct--header" style="text-align: center; font-weight: 700; color: #fff">THÔNG TIN DỰ ÁN</h2>
                             <div class="dsda-ttct--content">
                                 <form class="da-dsdu--form" action="" method="post">
                                     <div class="dsda-ttct-inputs--container">
@@ -68,13 +68,13 @@
                                     </div>
                                     <div class="dsda-button--container">
                                         <div class="dsda-thaotac-button--container">
-                                            <button type="button" class="dsda-button dsda-them-button btn btn-outline-primary" id="them" onclick="handleThemClicked()">Thêm</button>
-                                            <div class="dsda-button dsda-sua-button btn btn-outline-warning" id="capnhat" onclick="handleCapNhatClicked()">Cập nhật</div>
+                                            <button type="button" class="dsda-button dsda-them-button btn btn-primary" id="them" onclick="handleThemClicked()">Thêm</button>
+                                            <div class="dsda-button dsda-sua-button btn btn-warning" id="capnhat" onclick="handleCapNhatClicked()">Cập nhật</div>
                                             <button type="button" class="dsda-button dsda-xoa-button btn btn-outline-danger" id="xoa" onclick="handleXoaClicked()">Xóa</button>
                                         </div>
                                         <div class="dsda-confirm-button--container">
-                                            <button type="button" class="dsda-button dsda-huy-button btn btn-outline-secondary" id="huy" onclick="handleHuyClicked()">Hủy</button>
-                                            <button type="button" class="dsda-button dsda-xacnhan-button btn btn-outline-success" id="xacnhan" onclick="XacNhan()">Xác nhận</button>
+                                            <button type="button" class="dsda-button dsda-huy-button btn btn-secondary" id="huy" onclick="handleHuyClicked()">Hủy</button>
+                                            <button type="button" class="dsda-button dsda-xacnhan-button btn btn-success" id="xacnhan" onclick="XacNhan()">Xác nhận</button>
                                         </div>
                                     </div>
                                 </form>

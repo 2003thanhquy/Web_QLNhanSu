@@ -69,6 +69,32 @@ public class DuAnDaoImpl implements DuAnDao {
         return null;
     }
 
+
+    public List<DuAn> DuAnNhanVienthamgia(String MaNV)
+    {
+        String sql = "\n" +
+                "select * from duan\n" +
+                "inner join nhanvien_duan on duan.MaDuAn = nhanvien_duan.MaDA\n" +
+                "where MaNV = ?";
+        List<DuAn> lstDA = new ArrayList<>();
+        try{
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                DuAn da = new DuAn();
+                da.setMaDuAn(rs.getString("MaDuAn"));
+                da.setTenDuAn(rs.getString("TenDuAN"));
+                da.setTrangThai(rs.getString("TrangThaiLamViec"));
+                lstDA.add(da);
+            }
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return lstDA;
+    }
+
     @Override
     public int create(DuAn duAn) {
         String sql = "INSERT INTO DuAn(MaDuAn, TenDuAn, TrangThaiLamViec) VALUES (?, ?, ?)";

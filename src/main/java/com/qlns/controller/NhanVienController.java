@@ -108,16 +108,7 @@ public class NhanVienController extends HttpServlet {
         if (tk.getUserRole().equals("admin")) {
             listnv = userService.laydanhsachnhanvienadmin();
         } else {
-            if (tk.getUserRole().equals("giamdoc")) {
-                listnv = userService.laydanhsachnhanviengiamdoc(tk.getMaNV());
-            } else {
-                if (tk.getUserRole().equals("truongphong")) {
-                    listnv = userService.laydanhsachnhanvientruongphong(tk.getMaNV());
-                } else {
-                    //totruong
-                    listnv = userService.laydanhsachnhanvientruongphong(tk.getMaNV());
-                }
-            }
+            response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
         }
         request.setAttribute("listnv", listnv);
         request.getRequestDispatcher("/views/admin/QLNhanVien/XemNhanVien.jsp").forward(request, response);
@@ -557,6 +548,7 @@ public class NhanVienController extends HttpServlet {
 
         List<DuAn> lstDA = duAnService.getDuAn();
         request.setAttribute("lstDA", lstDA);
+
         request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request, response);
     }
     public void XuLyDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -634,7 +626,19 @@ public class NhanVienController extends HttpServlet {
 
     public void XemDanhSachDuAn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<DuAn> lstDA = duAnService.getDuAn();
+        List<DuAn> lstDA = new ArrayList<>();
+
+        HttpSession session = request.getSession();
+        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+
+        if(tk.getUserRole().equals("admin"))
+        {
+                 lstDA = duAnService.getDuAn();
+        }
+        else
+        {
+            lstDA = duAnService.DuAnNhanVienthamgia(tk.getMaNV());
+        }
 
         //Parse to JSON
         StringBuilder jsonString = new StringBuilder();

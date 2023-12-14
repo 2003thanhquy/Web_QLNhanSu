@@ -6,13 +6,13 @@ h1 {
     padding: 0 50px;
 }
 .themnhanvien-excel--container {
-    border: solid 1px #0033c4;
+    border: solid 1px #1a4978;
     border-radius: 4px;
     overflow:hidden;
     margin-bottom: 20px;
 }
 .tnv-excel--label {
-    background-color: #0033c4;
+    background-color: #1a4978;
     color: #fff;
     font-weight: 800;
     text-align: center;
@@ -35,12 +35,12 @@ h1 {
 }
 
 .themnhanvien-thucong--container {
-    border: solid 1px #0033c4;
+    border: solid 1px #1a4978;
     border-radius: 4px;
     overflow: hidden;
 }
 .themnhanvien-thucong--header {
-    background-color: #0033c4;
+    background-color: #1a4978;
     color: #fff;
     font-weight: 800;
     text-align: center;
@@ -96,7 +96,7 @@ h1 {
     height: 100%;
 }
 .tnv-avatar--label {
-    color: #0033c4;
+    color: #1a4978;
     text-align: center;
     font-weight: 750;
     display: block;

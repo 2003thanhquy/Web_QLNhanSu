@@ -1,3 +1,6 @@
+.cnpb-container{
+    padding: 30px;
+}
 .cnpb-cn--content .js-pscroll {
     position: relative;
     overflow: hidden
@@ -116,15 +119,15 @@
 }
 
 .cnpb-cn--content .table100.ver1 th {
-    font-family: Lato-Bold;
+    font-family:'Roboto', sans-serif;
     font-size: 18px;
     color: #fff;
     line-height: 1.4;
-    background-color: #6c7ae0
+    background-color: #1a4978
 }
 
 .cnpb-cn--content .table100.ver1 td {
-    font-family: Lato-Regular;
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
     color: gray;
     line-height: 1.4
@@ -133,11 +136,10 @@ tr {
     cursor: pointer;
 }
 .cnpb-cn--content .table100.ver1 .table100-body tr:nth-child(even) {
-    background-color: #f8f6ff
+    background-color: #e9f0f7;
 }
 
 .cnpb-cn--content .table100.ver1 {
-    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
     -moz-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
@@ -283,26 +285,26 @@ tr {
 }
 
 .cnpb-pb--content  .table100.ver1 th {
-    font-family: Lato-Bold;
+    font-family: 'Roboto', sans-serif;
     font-size: 18px;
     color: #fff;
     line-height: 1.4;
-    background-color: #6c7ae0
+    background-color: #1a4978
 }
 
 .cnpb-pb--content  .table100.ver1 td {
-    font-family: Lato-Regular;
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
     color: gray;
     line-height: 1.4
 }
 
 .cnpb-pb--content  .table100.ver1 .table100-body tr:nth-child(even) {
-    background-color: #f8f6ff
+    background-color: #e9f0f7;
 }
 
 .cnpb-pb--content  .table100.ver1 {
-    border-radius: 10px;
+
     overflow: hidden;
     box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
     -moz-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);

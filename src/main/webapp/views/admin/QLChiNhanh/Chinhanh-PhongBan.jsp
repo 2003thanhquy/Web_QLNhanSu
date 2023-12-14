@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-xl-6">
                         <div class="cnpb-cn--container">
-                            <h1  style="text-align: center">Danh sách chi nhánh</h1>
+                            <h1  style="text-align: center;font-weight: 700; color: #1a4978;">DANH SÁCH CHI NHÁNH</h1>
                             <div class="cnpb-cn--content">
                                 <div class="table100 ver1 m-b-110">
                                     <div class="table100-head">
@@ -53,8 +53,6 @@
                                                     <td class="cell100 column1">${chinhanh.maCN}</td>
                                                     <td class="cell100 column2">${chinhanh.tenChiNhanh}</td>
                                                     <td class="cell100 column3">${chinhanh.diaChi}</td>
-                                                    <td class="cell100 column4">${chinhanh.ngayBD}</td>
-                                                    <td class="cell100 column5">${chinhanh.maGiamDoc}</td>
                                                 </tr>
                                             </c:forEach>
                                             </tbody>
@@ -66,7 +64,7 @@
                     </div>
                     <div class="col-sm-12 col-xl-6">
                         <div class="cnpb-pb--container">
-                            <h1>Danh sách phòng ban</h1>
+                            <h1 style="text-align: center;font-weight: 700;color: #1a4978;">DANH SÁCH PHÒNG BAN</h1>
                             <div class="cnpb-pb--content">
                                 <div class="table100 ver1 m-b-110">
                                     <div class="table100-head">

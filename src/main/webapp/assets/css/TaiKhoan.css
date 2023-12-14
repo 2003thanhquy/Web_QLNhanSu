@@ -1,3 +1,11 @@
+#main-content {
+    padding: 30px;
+}
+.tk-container {
+
+    box-sizing: border-box;
+    padding:0 50px;
+}
 .js-pscroll {
     position: relative;
     overflow: hidden
@@ -122,7 +130,7 @@ th,td {
 }
 
 .table100-body {
-    max-height: 585px;
+    max-height: 450px;
     overflow: auto
 }
 
@@ -135,11 +143,11 @@ th,td {
 }
 
 .table100.ver4 th {
-    font-family: Lato-Bold;
-    font-size: 18px;
-    color: #4272d7;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7rem;
+    color: #fff;
     line-height: 1.4;
-    background-color: transparent;
+    background-color: #1a4978;
     border-bottom: 2px solid #f2f2f2
 }
 
@@ -148,22 +156,26 @@ th,td {
 }
 
 .table100.ver4 td {
-    font-family: Lato-Regular;
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
-    color: gray;
     line-height: 1.4
 }
 
 .table100.ver4 .table100-body tr {
     border-bottom: 1px solid #f2f2f2
 }
-
+#tbl-taikhoan {
+    background-color: #fff;
+}
 .table100.ver4 {
     overflow: hidden
 }
 
 .table100.ver4 .table100-body {
-    padding-right: 20px
+
+    padding-right: 20px;
+    padding-left: 10px;
+    background-color: #1a4978;
 }
 
 .table100.ver4 .ps__rail-y {
@@ -179,9 +191,12 @@ th,td {
 }
 .tk-dstk--container {
     overflow: hidden;
+    background-color: #1a4978;
+
+
 }
 .tk-tttk--label {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     min-width: 100px;
 }
@@ -194,6 +209,9 @@ th,td {
     border: solid 0.5px #3d3d3d;
     border-radius: 20px;
     padding-left: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
 }
 .tk-tttk--content {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -205,9 +223,33 @@ th,td {
     justify-content: space-around;
 }
 .tk-tttk--button {
-    width: 100px;
-    height: 30px;
+
+    min-width: 100px;
     font-size: 1.4rem;
     font-weight: 500;
     margin: 10px;
+    border: none;
+    padding: 10px;
+    background-color: #1a4978;
+    color: #fff;
+}
+.tk-dst--heading {
+    padding: 20px 0;
+    color: #fff;
+    font-weight: 700;
+}
+.tk-dstk--content {
+    padding-bottom: 10px;
+}
+.tk-tttk--container {
+    border: solid 4px #1a4978;
+    padding: 10px;
+}
+.tk-tttk--heading {
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px 0;
+    margin-bottom: 10px;
 }

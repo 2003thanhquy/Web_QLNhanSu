@@ -106,7 +106,6 @@
 
 .dsda-da--content .table100 {
     position: relative;
-    padding-top: 60px
 }
 
 .dsda-da--content .table100-head {
@@ -129,7 +128,7 @@ td {
     color: #fff;
     line-height: 1.4;
     height: 40px;
-    background-color: #6c7ae0
+    background-color: #1a4978
 }
 
 .dsda-da--content .table100.ver1 td {
@@ -140,17 +139,12 @@ td {
 }
 
 .dsda-da--content .table100.ver1 .table100-body tr:nth-child(even) {
-    background-color: #f8f6ff
+    background-color: #e9f0f7;
 }
 
 .dsda-da--content .table100.ver1 {
-    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -moz-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -webkit-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -o-box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    -ms-box-shadow: 0 0 40px 0 rgba(0,0,0,.15)
+
 }
 
 .dsda-da--content .table100.ver1 .ps__rail-y {
@@ -170,12 +164,11 @@ td {
 }
 .dsda-ttct--content {
     box-shadow: 0 0 40px 0 rgba(0,0,0,.15);
-    border-radius: 10px;
     box-sizing: border-box;
     padding: 20px;
 }
 .dsda-input--label {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     min-width: 100px;
@@ -186,6 +179,9 @@ td {
     border-radius: 30px;
     border: solid 0.5px #5e5e5e;
     padding-left: 10px;
+    font-size: 1.4rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
 }
 .dsda-thaotac-button--container,
 .dsda-confirm-button--container
@@ -206,4 +202,24 @@ td {
 .dsda-sua-button {
     color: #e0bd10;
     border-color: #e0bd10;
+}
+.dsda-container {
+    padding: 30px;
+}
+.dsda-ttct--header {
+    color:#fff;
+    background-color: #1a4978;
+    padding: 20px 0;
+    margin: 0;
+}
+.dsda-da--header{
+    color: #fff;
+    background-color: #1a4978;
+    padding: 20px 0;
+    margin: 0;
+}
+.dsda-button {
+    background-color: #1a4978;
+    color: #fff;
+    border: none;
 }

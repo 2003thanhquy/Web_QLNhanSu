@@ -155,9 +155,6 @@
          magiamdoc.disabled = true;
 
 
-         if (magiamdoc.value === null) {
-             magiamdoc.value = "";
-         }
 
      }
      function  themcn(){

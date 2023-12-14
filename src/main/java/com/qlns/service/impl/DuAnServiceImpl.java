@@ -21,6 +21,11 @@ public class DuAnServiceImpl implements DuAnService {
     }
 
     @Override
+    public List<DuAn> DuAnNhanVienthamgia(String MaNV) {
+        return daDao.DuAnNhanVienthamgia(MaNV);
+    }
+
+    @Override
     public int themDuAn(DuAn duAn) {
         return daDao.create(duAn);
     }
