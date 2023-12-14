@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="thongtinphongban-content-input--item">
                                         <label for="ngaythanhlap" class="thongtinphongban-content-input--lable">Thành lập</label>
-                                        <input id="ngaythanhlap" type="text" name="ngaythanhlap" class="thongtinphongban-input">
+                                        <input id="ngaythanhlap" type="date" name="ngaythanhlap" class="thongtinphongban-input">
                                     </div>
                                 </form>
                                 <div class="thongtin-content--button">
