@@ -25,8 +25,8 @@
                     <div class="image-avatar"></div>
                 </div>
                 <div class="login-heading--text">
-                    <h4>WELCOME</h4>
-                    <p>Sign in by entering the information below</p>
+                    <h4>Quản lý nhân sự</h4>
+                    <p>Đăng nhập để tiếp tục</p>
                 </div>
             </div>
             <div class="login-content--container container-sm">
@@ -46,7 +46,7 @@
                             <input type="password" name="pwd" id="pwd" placeholder="Password" class="input--element " />
                         </div>
                         <div class="login-button--container">
-                            <button class="login-button"  type="submit">Get Started</button>
+                            <button class="login-button"  type="submit">Đăng nhập</button>
                         </div>
                     </div>
                 </form>
