@@ -196,6 +196,7 @@ public class NhanVienController extends HttpServlet {
     }
 
     public void ThemNhanVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+        response.setCharacterEncoding("UTF-8");
         if (request.getMethod().equals("GET")) {
             request.setAttribute("lstPB", pb.getPhongBan());
             request.setAttribute("lstLuong", luong.getLuong());
@@ -216,6 +217,11 @@ public class NhanVienController extends HttpServlet {
             }
             Part part = request.getPart("image");
             NhanVien nv = getNV(request, response);
+            if(!nv.isValid()){
+                request.setAttribute("TrangThai","Them that bai");
+                request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
+                return;
+            }
             UserService user = new UserServiceImp();
             if (user.themnhanvien(nv)) {
                 String realpath = request.getServletContext().getRealPath("/uploads");
@@ -223,16 +229,9 @@ public class NhanVienController extends HttpServlet {
                     System.out.println("khoi  tao thanh cong" + realpath);
                     Files.createDirectories(Paths.get(realpath));
                 }
-//                part.write(realpath + "/" + nv.getHinhAnh());
-//                response.setContentType("text/html");
-//                PrintWriter out = response.getWriter();
-//                out.println("<h1>day la file</h1>");
-//                try {
-//                    out.println("<img src='" + request.getContextPath() + "/uploads/" + nv.getHinhAnh() + "'>");
-//                } catch (Exception e) {
-//                }
                 request.setAttribute("TrangThai","Them thanh cong");
                 request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
+                return;
             }
             request.setAttribute("TrangThai","Them that bai");
             request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
@@ -378,7 +377,7 @@ public class NhanVienController extends HttpServlet {
                 }
             }
         }
-
+        response.setCharacterEncoding("UTF-8");
         //Parse to JSON
         StringBuilder jsonString = new StringBuilder();
         jsonString.append("[");

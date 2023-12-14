@@ -272,15 +272,12 @@ To change this template use File | Settings | File Templates.
     var chucvu = document.getElementById("thongtin-input-chucvu")
     var trinhdo = document.getElementById("thongtin-input-trinhdo")
     var isNhanVien;
-    if (!isUserRoleAdmin ) {
-        document.getElementById("btnUpdate").style.display = "none";
-        document.querySelector(".thongtin-button--container").style.display= "none";
-
+    if (!isUserRoleAdmin) {
         isNhanVien = <%= nhanvienhienthi.getMaNV().equals(tkdangnhap.getMaNV()) %>;
-        if (isNhanVien)
+        if (! isNhanVien )
         {
-            document.getElementById("btnUpdate").style.display = "";
-            document.querySelector(".thongtin-button--container").style.display= "";
+            document.getElementById("btnUpdate").style.display = "none";
+            document.querySelector(".thongtin-button--container").style.display= "none";
         }
     }
 
@@ -322,18 +319,18 @@ To change this template use File | Settings | File Templates.
         chucvu.disabled = false
         trinhdo.disabled = false
         btnConfirm.disabled = false;
-        if (!isUserRoleAdmin )
-        {
-            hoten.disabled = true
-            cccd.disabled = true
-            ngaysinh.disabled = true
-            gerder_nam.disabled = true
-            gender_nu.disabled = true
-            phongbang.disabled = true
-            bacluong.disabled = true
-            chucvu.disabled = true
-            trinhdo.disabled = true
-        }
+        // if (!isUserRoleAdmin ) {
+        //     hoten.disabled = true
+        //
+        //     cccd.disabled = true
+        //     ngaysinh.disabled = true
+        // //     gerder_nam.disabled = true
+        // //     gender_nu.disabled = true
+        // //     phongbang.disabled = true
+        // //     bacluong.disabled = true
+        // //     chucvu.disabled = true
+        // //     trinhdo.disabled = true
+        // // }
     }
 
     document.getElementById('thongtin-fileInput-avatar').addEventListener('change', function (event) {

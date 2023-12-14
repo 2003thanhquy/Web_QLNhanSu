@@ -146,4 +146,18 @@ public class NhanVien {
     public void setGioiTinh(String gioiTinh) {
         GioiTinh = gioiTinh;
     }
+
+
+    public boolean isValid() {
+        return  maPB != null && !maPB.isEmpty() &&
+                idBacLuong > 0 &&
+                idChucVu > 0 &&
+                idTrinhDo > 0 &&
+                HoTen != null && !HoTen.isEmpty() &&
+                CCCD != null && !CCCD.isEmpty() &&
+                DiaChi != null && !DiaChi.isEmpty() &&
+                sdt != null && !sdt.isEmpty() &&
+                namSinh != null &&
+                GioiTinh != null && !GioiTinh.isEmpty();
+    }
 }
