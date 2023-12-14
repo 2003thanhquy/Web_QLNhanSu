@@ -38,6 +38,9 @@ public interface PhongbanDao {
 
     void capnhatphongbanchuaquanly(PhongBan phongBan);
 
+    List<PhongBan> getPBCha(String macn);
+    List<PhongBan> getPBCon(String pbcha);
+
 
 
 
