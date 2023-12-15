@@ -533,7 +533,7 @@ public class NhanVienController extends HttpServlet {
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
         Thongtinnhanvien user = (Thongtinnhanvien)session.getAttribute("user");
         List<KThuongKLuc> lstKtkl = null;
-        if(tk!= null && tk.getUserRole().equals("admin")){
+        if(tk.getUserRole().equals("admin")){
             lstKtkl = userService.getKThuongKLuat();
         }
         else {
@@ -547,7 +547,7 @@ public class NhanVienController extends HttpServlet {
                         lstKtkl =  userService.getKThuongKLuattotruong(tk.getMaNV());
                     }
                     else
-                        response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
+                        lstKtkl = userService.getKThuongKLuat(tk.getMaNV());
                 }
             }
         }

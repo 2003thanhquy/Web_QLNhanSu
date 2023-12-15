@@ -105,6 +105,14 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="input-container">
+                                                                    <label class="input-text" for="tnv-idtrinhdo">Phòng ban</label>
+                                                                    <select class="tnv-input"   id="tnv-idphongban" name="tnv-maphongban">
+                                                                        <c:forEach items="${lstPB}" var="pb">
+                                                                            <option value="${pb.maPB}">${pb.tenPB}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="input-container">
                                                                     <label class="input-text" for="tnv-idbacluong">Bậc lương</label>
                                                                     <select class="tnv-input"   id="tnv-idbacluong" name="tnv-idbacluong">
                                                                         <c:forEach items="${lstLuong}" var="l">

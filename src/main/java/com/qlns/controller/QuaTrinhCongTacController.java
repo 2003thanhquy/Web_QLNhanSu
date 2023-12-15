@@ -66,15 +66,8 @@ public class QuaTrinhCongTacController extends HttpServlet {
             if (user.getIDChucVu() == 1) {
                 listqtct = quaTrinhCongTacService.layquatrinhcongtacgiamdoc(tk.getMaNV());
             } else {
-                if (user.getIDChucVu() == 2) {
-                    listqtct = quaTrinhCongTacService.layquatrinhcongtactruongphong(tk.getMaNV());
-                } else {
-                    if (user.getIDChucVu() == 3) {
-                        listqtct = quaTrinhCongTacService.layquatrinhcongtactotruong(tk.getMaNV());
-                    } else
-                        response.sendRedirect(request.getContextPath() + "/nhanvien/thongtin?manv=" + tk.getMaNV());
-                }
-            }
+                response.sendRedirect(request.getContextPath() + "/nhanvien/thongtin?manv=" + tk.getMaNV());
+
         }
         request.setAttribute("listqtct",listqtct);
 
