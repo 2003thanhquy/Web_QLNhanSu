@@ -32,7 +32,7 @@ public class QuaTrinhCongTacController extends HttpServlet {
         try {
             switch (relativePath) {
                 case "/":
-                    xemcongtacnhanvien(request,response);
+                    xemcongtacnhanvien(request, response);
                     break;
                 case "/xemcongtacbanthan":
                     xemquatrinhcongtacbanthan(request, response);
@@ -53,54 +53,49 @@ public class QuaTrinhCongTacController extends HttpServlet {
         UserService userService = new UserServiceImp();
 
         HttpSession session = request.getSession();
-        TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
+        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
         Thongtinnhanvien user = userService.laythongtincanhan(tk.getMaNV());
         session.setAttribute("user", user);
-        QuaTrinhCongTacService quaTrinhCongTacService =  new QuaTrinhCongTacServiceImpl();
-         List<ThongTinQuaTrinhCongTac> listqtct = new ArrayList<>();
+        QuaTrinhCongTacService quaTrinhCongTacService = new QuaTrinhCongTacServiceImpl();
+        List<ThongTinQuaTrinhCongTac> listqtct = new ArrayList<>();
 
-        if(tk.getUserRole().equals("admin")){
+        if (tk.getUserRole().equals("admin")) {
             listqtct = quaTrinhCongTacService.layquatrinhcongtacadmin();
-        }
-        else {
+        } else {
             if (user.getIDChucVu() == 1) {
                 listqtct = quaTrinhCongTacService.layquatrinhcongtacgiamdoc(tk.getMaNV());
             } else {
-                if (user.getIDChucVu() == 2) {
-                    listqtct = quaTrinhCongTacService.layquatrinhcongtactruongphong(tk.getMaNV());
-                } else {
-                    if (user.getIDChucVu() == 3) {
-                        listqtct = quaTrinhCongTacService.layquatrinhcongtactotruong(tk.getMaNV());
-                    } else
-                        response.sendRedirect(request.getContextPath() + "/nhanvien/thongtin?manv=" + tk.getMaNV());
-                }
+                response.sendRedirect(request.getContextPath() + "/nhanvien/thongtin?manv=" + tk.getMaNV());
+
             }
-        }
-        request.setAttribute("listqtct",listqtct);
+            request.setAttribute("listqtct", listqtct);
 
-        request.getRequestDispatcher("/views/admin/QuaTrinhCongTac/QuaTrinhCongTac.jsp").forward(request,response);
+            request.getRequestDispatcher("/views/admin/QuaTrinhCongTac/QuaTrinhCongTac.jsp").forward(request, response);
+        }
     }
 
-    private void xemquatrinhcongtacbanthan(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        private void xemquatrinhcongtacbanthan (HttpServletRequest request, HttpServletResponse response) throws
+        IOException {
 
-        String MaNV = request.getParameter("MaNV");
-        QuaTrinhCongTacService quaTrinhCongTacService = new QuaTrinhCongTacServiceImpl();
-        List<ThongTinQuaTrinhCongTac> listttct = new ArrayList<>();
-        listttct = quaTrinhCongTacService.Layquatrinhcongtacbanthan(MaNV);
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
+            String MaNV = request.getParameter("MaNV");
+            QuaTrinhCongTacService quaTrinhCongTacService = new QuaTrinhCongTacServiceImpl();
+            List<ThongTinQuaTrinhCongTac> listttct = new ArrayList<>();
+            listttct = quaTrinhCongTacService.Layquatrinhcongtacbanthan(MaNV);
+            response.setContentType("text/html");
+            response.setCharacterEncoding("UTF-8");
 
-        PrintWriter out = response.getWriter();
-        for (ThongTinQuaTrinhCongTac qtct : listttct) {
-            out.println("   <tr>\n" +
-                    "                                <td>" + qtct.getNoiDung() + "</td>\n" +
-                    "                                <td>" + qtct.getNgayBD() + "</td>\n" +
-                    "                                <td>" + qtct.getTenChucVU() + "</td>\n" +
-                    "                            </tr>");
+            PrintWriter out = response.getWriter();
+            for (ThongTinQuaTrinhCongTac qtct : listttct) {
+                out.println("   <tr>\n" +
+                        "                                <td>" + qtct.getNoiDung() + "</td>\n" +
+                        "                                <td>" + qtct.getNgayBD() + "</td>\n" +
+                        "                                <td>" + qtct.getTenChucVU() + "</td>\n" +
+                        "                            </tr>");
+            }
+
         }
-
     }
-}
+
 
 
 

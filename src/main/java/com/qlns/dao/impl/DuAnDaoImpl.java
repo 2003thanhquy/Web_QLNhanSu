@@ -80,6 +80,7 @@ public class DuAnDaoImpl implements DuAnDao {
         try{
             conn = new DBConnection().getConnection();
             ps = conn.prepareStatement(sql);
+            ps.setString(1,MaNV);
             rs= ps.executeQuery();
             while(rs.next()){
                 DuAn da = new DuAn();

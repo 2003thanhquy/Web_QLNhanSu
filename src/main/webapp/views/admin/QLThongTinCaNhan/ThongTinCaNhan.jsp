@@ -202,8 +202,9 @@ To change this template use File | Settings | File Templates.
                                                             <button class="thongtin-button btn btn-danger" id="btnCancel"
                                                                     onclick="CancelNV()">Hủy
                                                             </button>
-                                                            <button type="submit" class="thongtin-button btn btn-success"
-                                                                    id="btnConfirm">Xác nhận
+                                                            <button type="submit" class="thongtin-button btn btn-success "
+                                                                    id="btnConfirm" onclick="Confirm()">Xác nhận
+
                                                             </button>
                                                         </div>
                                                     </div>
@@ -228,7 +229,7 @@ To change this template use File | Settings | File Templates.
 
 
 <script>
-<%--    Hiển thị quá trình công tác--%>
+    <%--    Hiển thị quá trình công tác--%>
     var qtct_iem = $(".qtct-item");
     var qtct_container = $(".quatrinhcontac-container");
     var qtct_closebtn = $(".quatrinhcontac--closebutton")
@@ -254,7 +255,7 @@ To change this template use File | Settings | File Templates.
     qtct_closebtn.addEventListener("click", e =>{
         qtct_container.classList.remove("hienthi");
     })
-<%--    Hiển thị quá trình công tác--%>
+    <%--    Hiển thị quá trình công tác--%>
 
     var isUserRoleAdmin = <%= tkdangnhap.getUserRole().equals("admin") %>;
 
@@ -319,18 +320,36 @@ To change this template use File | Settings | File Templates.
         chucvu.disabled = false
         trinhdo.disabled = false
         btnConfirm.disabled = false;
-        // if (!isUserRoleAdmin ) {
-        //     hoten.disabled = true
-        //
-        //     cccd.disabled = true
-        //     ngaysinh.disabled = true
-        // //     gerder_nam.disabled = true
-        // //     gender_nu.disabled = true
-        // //     phongbang.disabled = true
-        // //     bacluong.disabled = true
-        // //     chucvu.disabled = true
-        // //     trinhdo.disabled = true
-        // // }
+        if (!isUserRoleAdmin)
+        {
+            hoten.disabled = true
+        cccd.disabled = true
+        ngaysinh.disabled = true
+        gerder_nam.disabled = true
+        gender_nu.disabled = true
+        phongbang.disabled = true
+        bacluong.disabled = true
+        chucvu.disabled = true
+            trinhdo.disabled = true;
+         }
+
+
+    }
+
+    function Confirm()
+    {
+            hinhanh.disabled = false;
+            hoten.disabled = false
+            cccd.disabled = false
+            diachi.disabled = false
+            sdt.disabled = false
+            ngaysinh.disabled = false
+            gerder_nam.disabled = false
+            gender_nu.disabled = false
+            phongbang.disabled = false
+            bacluong.disabled = false
+            chucvu.disabled = false
+            trinhdo.disabled = false
     }
 
     document.getElementById('thongtin-fileInput-avatar').addEventListener('change', function (event) {

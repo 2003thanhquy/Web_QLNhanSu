@@ -94,7 +94,13 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
+
 <script>
+    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
+    if (!isUserRoleAdmin) {
+        document.querySelector(".nvda-ttnv--button").style.display = "none";
+    }
     const maDuAn = new URL(window.location.href).searchParams.get("maduan");
     console.log("maduan = ", maDuAn);
 

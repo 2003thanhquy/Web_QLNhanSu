@@ -229,6 +229,7 @@ public class NhanVienController extends HttpServlet {
                     System.out.println("khoi  tao thanh cong" + realpath);
                     Files.createDirectories(Paths.get(realpath));
                 }
+                part.write(realpath+"/"+nv.getHinhAnh());
                 request.setAttribute("TrangThai","Them thanh cong");
                 request.getRequestDispatcher("/views/admin/QLNhanVien/ThemNhanVien.jsp").forward(request,response);
                 return;
@@ -254,8 +255,6 @@ public class NhanVienController extends HttpServlet {
 
     public void XemNhanVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         String manv = request.getParameter("manv");
         UserService user = new UserServiceImp();
@@ -269,17 +268,23 @@ public class NhanVienController extends HttpServlet {
             request.getRequestDispatcher("/views/admin/QLThongTinCaNhan/ThongTinCaNhan.jsp").forward(request, response);
         } else {
             Part part = request.getPart("image");
+            String realpath = request.getServletContext().getRealPath("/uploads");
             NhanVien nv = getNV(request, response);
             nv.setMaNV(manv);
             if (user.UpdateNV(nv)) {
-                response.setContentType("text/html");
-                PrintWriter out = response.getWriter();
-                out.println("<h1>Them thanh cong</h1>");
+                Thongtinnhanvien ttnv = user.laythongtincanhan(manv);
+                request.setAttribute("lstPB", pb.getPhongBan());
+                request.setAttribute("lstLuong", luong.getLuong());
+                request.setAttribute("lstCV", cv.getChucVu());
+                request.setAttribute("lstTD", td.getTrinhDo());
+                request.setAttribute("ttnv", ttnv);
+                request.getRequestDispatcher("/views/admin/QLThongTinCaNhan/ThongTinCaNhan.jsp").forward(request, response);
 
             }
         }
 
     }
+
 
     private NhanVien getNV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 
@@ -533,7 +538,7 @@ public class NhanVienController extends HttpServlet {
         TaiKhoan tk = (TaiKhoan)session.getAttribute("account");
         Thongtinnhanvien user = (Thongtinnhanvien)session.getAttribute("user");
         List<KThuongKLuc> lstKtkl = null;
-        if(tk!= null && tk.getUserRole().equals("admin")){
+        if(tk.getUserRole().equals("admin")){
             lstKtkl = userService.getKThuongKLuat();
         }
         else {
@@ -547,7 +552,7 @@ public class NhanVienController extends HttpServlet {
                         lstKtkl =  userService.getKThuongKLuattotruong(tk.getMaNV());
                     }
                     else
-                        response.sendRedirect(request.getContextPath()+"/nhanvien/thongtin?manv="+tk.getMaNV());
+                        lstKtkl = userService.getKThuongKLuat(tk.getMaNV());
                 }
             }
         }
@@ -580,7 +585,14 @@ public class NhanVienController extends HttpServlet {
     public void XemDuAn (HttpServletRequest request, HttpServletResponse response) throws
     ServletException, IOException {
 
-        List<DuAn> lstDA = duAnService.getDuAn();
+        HttpSession session = request.getSession();
+        TaiKhoan tk = (TaiKhoan) session.getAttribute("account");
+        List<DuAn> lstDA = new ArrayList<>();
+        if (tk.getUserRole().equals("admin")) {
+            lstDA = duAnService.getDuAn();
+        } else {
+            lstDA = duAnService.DuAnNhanVienthamgia(tk.getMaNV());
+        }
         request.setAttribute("lstDA", lstDA);
 
         request.getRequestDispatcher("/views/admin/QLDuAn/DanhSachDuAn.jsp").forward(request, response);

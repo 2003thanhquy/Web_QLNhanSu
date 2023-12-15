@@ -114,7 +114,10 @@
                                                                 </div>
                                                                 <div class="input-container">
                                                                     <label class="input-text" for="tnv-idchucvu">Chức vụ</label>
-                                                                    <select class="tnv-input"   id="tnv-idchucvu" name="tnv-idchucvu">
+                                                                    <div class="input-container">
+                                                                        <label class="input-text" for="tnv-cmnd">CMND/CCCD</label>
+                                                                    </div>
+                                                                    <select class="tnv-input"  type="text" id="tnv-idchucvu" name="tnv-idchucvu">
                                                                         <c:forEach items="${lstCV}" var="cv">
                                                                             <option value="${cv.idChucVu}">${cv.tenChucVu}</option>
                                                                         </c:forEach>

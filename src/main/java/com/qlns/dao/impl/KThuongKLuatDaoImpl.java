@@ -42,7 +42,7 @@ public class KThuongKLuatDaoImpl implements KThuongKLuatDao {
                 "FROM ThongTinNhanVien nv\n" +
                 "INNER JOIN chinhanh cn ON nv.MaCN = cn.MaCN\n" +
                 "INNER JOIN kthuong_kluc kk ON nv.MaNV = kk.MaNV\n" +
-                "WHERE cn.MaGiamDoc = ? and status =1";
+                "WHERE cn.MaGiamDoc = ? and kk.status =1";
         List<KThuongKLuc> lstKtkl = new ArrayList<>();
         try{
             conn = new DBConnection().getConnection();
@@ -70,12 +70,12 @@ public class KThuongKLuatDaoImpl implements KThuongKLuatDao {
                 "FROM ThongTinNhanVien nv\n" +
                 "INNER JOIN phongban pb ON nv.MaPB = pb.MaPB\n" +
                 "INNER JOIN kthuong_kluc kk ON nv.MaNV = kk.MaNV\n" +
-                "WHERE pb.MaQuanLy = ? and status = 1";
+                "WHERE pb.MaQuanLy = ? and kk.status = 1";
         List<KThuongKLuc> lstKtkl = new ArrayList<>();
         try{
             conn = new DBConnection().getConnection();
-            ps.setString(1,MaToTruong);
             ps = conn.prepareStatement(sql);
+            ps.setString(1,MaToTruong);
             rs= ps.executeQuery();
             while(rs.next()){
                 KThuongKLuc ktkl = new KThuongKLuc();
@@ -109,9 +109,9 @@ public class KThuongKLuatDaoImpl implements KThuongKLuatDao {
         List<KThuongKLuc> lstKtkl = new ArrayList<>();
         try{
             conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(sql);
             ps.setString(1,MaTruongPhong);
             ps.setString(2,MaTruongPhong);
-            ps = conn.prepareStatement(sql);
             rs= ps.executeQuery();
             while(rs.next()){
                 KThuongKLuc ktkl = new KThuongKLuc();
@@ -129,6 +129,7 @@ public class KThuongKLuatDaoImpl implements KThuongKLuatDao {
         }
         return lstKtkl;
     }
+
 
 
     @Override

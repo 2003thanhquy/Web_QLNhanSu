@@ -319,6 +319,10 @@
             tencn.value=macn;
             tencn.disabled=true;
         }
+        else
+        {
+
+        }
 
     }
     function SuaPhongBan() {
@@ -364,7 +368,7 @@
                 tenpb : tenpb.value,
                 mapbcha:mapbcha,
                 tenpbcha:tenpbcha,
-                macn: macn,
+                macn: tencn.value,
                 maql: tenql.value,
                 mgaybd :ngaybd.value,
             },
