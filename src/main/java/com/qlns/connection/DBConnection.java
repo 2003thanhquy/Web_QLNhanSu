@@ -11,7 +11,7 @@ public class DBConnection {
 
 
 
-        String jdbcPassword = "PhamHuuTuan258654@";
+        String jdbcPassword = "Huutan2k3@";
 
 
         Connection connection = null;

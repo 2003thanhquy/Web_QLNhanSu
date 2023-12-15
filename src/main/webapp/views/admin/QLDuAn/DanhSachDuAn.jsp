@@ -88,7 +88,14 @@
 </div>
 
 <%@include file="/component/all_javascript.jsp"%>
+
+<% TaiKhoan tkdangnhap = (TaiKhoan)session.getAttribute("account"); %>
+
 <script>
+    var isUserRoleAdmin = <%= tkdangnhap != null && tkdangnhap.getUserRole().equals("admin") %>;
+    if (!isUserRoleAdmin) {
+        document.querySelector(".dsda-button--container").style.display = "none";
+    }
     var kieucapnhat = "";
 
     jQuery(document).ready(function() {

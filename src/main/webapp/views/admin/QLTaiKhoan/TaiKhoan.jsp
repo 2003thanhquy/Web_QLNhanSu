@@ -112,6 +112,7 @@
         document.getElementById("tk-tttk--idnhanvien").value = '<%= tkdangnhap.getMaNV() %>';
         document.querySelector(".adminxai").style.display = "none";
     }
+
 </script>
 <script>
     var kieucapnhat = "";
